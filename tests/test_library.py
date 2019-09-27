@@ -8,7 +8,7 @@ class Testing(unittest.TestCase):
         self.assertIsNotNone(Catalogue())
 
     def test_library_catalogue_filter_books(self):
-        self.assertIsNotNone(Catalogue().filter_books())
+        self.assertIsNotNone(Catalogue().filter_books(1))
 
 if __name__ == '__main__':
     unittest.main()
