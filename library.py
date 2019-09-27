@@ -15,8 +15,7 @@ class Catalogue:
                 self.catalogue = json.load(f)
                 self.current_files = self.scan_folder()
             except Exception:
-                with open(config.book_shelf, 'w') as f:
-                    json.dump(self.filter_books(), f)
+                self.filter_books()
 
     def scan_folder(self, folder=config.book_path):
         for f in os.listdir(folder):
@@ -27,12 +26,15 @@ class Catalogue:
                 self.file_list.append(self.scan_folder(_path))
             self.file_list.append(_path)
 
-    def filter_books(self):
-        scan = self.scan_folder()
+    def filter_books(self, ret=0):
+        self.scan_folder()
         regx = re.compile(r"\.epub")
         self.books = list(filter(regx.search, filter(None, self.file_list)))
-        with open(config.book_shelf, 'w') as f:
-                json.dump(self.books, f)
+        if ret == 0:
+            with open(config.book_shelf, 'w') as f:
+                    json.dump(self.books, f)
+        else:
+            return self.books
 
     def compare_shelf_current(self):
         try:
