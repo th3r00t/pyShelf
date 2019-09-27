@@ -7,4 +7,5 @@ from library import Catalogue
 config = Config()
 
 InitFiles(config.file_array)
-
+Catalogue = Catalogue()
+book_list = Catalogue.filter_books(1)
