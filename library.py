@@ -44,18 +44,29 @@ class Catalogue:
         self.scan_folder()
         regx = re.compile(r"\.epub")
         self.books = list(filter(regx.search, filter(None, self.file_list)))
+        _book_list_expanded = {}
         if ret == 0:
             with open(config.book_shelf, 'w') as f:
-                    json.dump(self.books, f)
+                for book in self.books:
+                    _book_list_expanded[book] = self.process_book(book)
+                json.dump(_book_list_expanded, f)
         else:
             return self.books
 
-    def filter_tags(self, book):
+    def process_book(self, book):
         f_name = 'content.opf'
-        try:
-            content_opf = list(filter(re.search, book))
-        except:
-            return False
+        book = zipfile.ZipFile(book, 'r')
+        details = {}
+        with book as book_zip:
+            details['files'] = []
+            expanded = book_zip.infolist()
+            regx = re.compile(r'\.opf|cover')
+            for i in expanded:
+                match = re.search(regx, i.filename)
+                if match:
+                    # Returns zip file location of requested files
+                    details['files'].append(match.string)
+        return details
 
     def compare_shelf_current(self):
         try:
