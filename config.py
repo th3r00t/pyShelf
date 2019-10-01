@@ -3,9 +3,11 @@ class Config:
    def __init__(self):
       self.book_path = "books/"
       self.book_shelf = "data/shelf.json"
+      self.catalogue_db = "data/catalogue.db"
       self.file_array = [
          "data/catalogue.json",
-         "data/shelf.json",
+         self.book_shelf,
+         self.catalogue_db,
          "conf/settings.json"
          ]
       self.auto_scan = True

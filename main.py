@@ -1,5 +1,7 @@
 #!/usr/bin/python
 # import zipfile as Zip
+import sys
+sys.path.insert(1, 'lib/')
 from pyShelf import InitFiles
 from config import Config
 from library import Catalogue
@@ -11,5 +13,7 @@ InitFiles(config.file_array)
 Catalogue = Catalogue()
 # Filter Your books
 # This only needs to be run on first run, & when new books are added
-book_list = Catalogue.filter_books(0)
-
+book_list = Catalogue.filter_books()
+for book in book_list:
+    extracted = Catalogue.extract_metadata(book_list[book])
+    print(extracted)

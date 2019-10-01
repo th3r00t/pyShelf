@@ -1,6 +1,8 @@
 import unittest
 import os
 import shutil
+import sys
+sys.path.insert(1, 'lib/')
 from pyShelf import InitFiles
 from pyShelf import Epub
 
