@@ -6,6 +6,8 @@ import zipfile
 from PIL import Image
 from bs4 import BeautifulSoup
 from config import Config
+from api_hooks import DuckDuckGo
+
 config = Config()
 
 
@@ -14,6 +16,9 @@ class Catalogue:
     """Step One: filter_books"""
     def __init__(self):
         self.file_list = []
+        self.opf_regx = re.compile(r'\.opf')
+        self.cover_regx = re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
+        self.html_regx = re.compile(r'\.html')
         with open(config.book_shelf, 'r') as f:
             try:
                 self.catalogue = json.load(f)
@@ -79,17 +84,45 @@ class Catalogue:
         book['files'] == list of files from self.process_book(book)
         """
         book_zip = zipfile.ZipFile(book['path'], 'r')
-        opf_regx, cover_regx = re.compile(r'\.opf'), re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         with book_zip as f:
-            content = book_zip.open(list(filter(opf_regx.search, book['files']))[0])
-            cover = book_zip.open(list(filter(cover_regx.search, book['files']))[0])
-            # TODO Handle books that have no Cover Image
-            ## TODO Handle books with html covers
-            soup = BeautifulSoup(content, "xml")
+            content = self.extract_content(book_zip, book)
+            soup = BeautifulSoup(content, "lxml")
             title = soup.find("dc:title")
+            if title == None:
+                title = book['path'].split('/')[-1].rsplit('.', 1)[0]
             author = soup.find("dc:creator")
+            try: cover = self.extract_cover_image(book_zip, book)
+            except IndexError:
+                # cover = self.extract_cover_html(book_zip, book)
+                cover = DuckDuckGo().image_result(title)
             book_details = [title.contents[0], author.contents[0], cover]
         return book_details
+
+    def extract_content(self, book_zip, book):
+        content = book_zip.open(
+            list(
+                filter(self.opf_regx.search, book['files'])
+            )[0]
+        )
+        return content
+
+    def extract_cover_html(self, book_zip, book):
+        cover = book_zip.open(
+            list(
+                filter(self.html_regx.search, book['files'])
+            )[0]
+        )
+        return cover
+
+    def extract_cover_image(self, book_zip, book):
+        # TODO Handle books that have no Cover Image
+        # TODO Handle books with html covers
+        cover = book_zip.open(
+            list(
+                filter(self.cover_regx.search, book['files'])
+            )[0]
+        )
+        return cover
 
     def compare_shelf_current(self):
         try:
