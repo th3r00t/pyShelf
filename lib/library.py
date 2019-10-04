@@ -3,6 +3,7 @@ import json
 import os
 import re
 import zipfile
+from PIL import Image
 from bs4 import BeautifulSoup
 from config import Config
 config = Config()
@@ -78,15 +79,16 @@ class Catalogue:
         book['files'] == list of files from self.process_book(book)
         """
         book_zip = zipfile.ZipFile(book['path'], 'r')
-        opf_regx, cover_regx = re.compile(r'\.opf'), re.compile(r'\.jpg|\.png|\.bmp|\.gif')
+        opf_regx, cover_regx = re.compile(r'\.opf'), re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         with book_zip as f:
-            content = list(filter(opf_regx.search, book['files']))
-            content = book_zip.open(content[0])
+            content = book_zip.open(list(filter(opf_regx.search, book['files']))[0])
+            cover = book_zip.open(list(filter(cover_regx.search, book['files']))[0])
             soup = BeautifulSoup(content, "xml")
             title = soup.find("dc:title")
             author = soup.find("dc:creator")
-            cover = soup.find("meta", attrs={"name" : "cover"})
-        return title
+            book_details = [title.contents[0], author.contents[0], cover]
+        return book_details
+
     def compare_shelf_current(self):
         try:
             self.books

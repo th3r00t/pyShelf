@@ -2,3 +2,4 @@ books/*
 *.json
 *.pyc
 content.opf
+.vscode/.editorconfig
