@@ -19,7 +19,10 @@ Catalogue = Catalogue()
 book_list = Catalogue.filter_books()
 for book in book_list:
     extracted = Catalogue.extract_metadata(book_list[book])
-    cover_image = Image.open(extracted[2])
-    cover_image.show()
+    # TODO Insert extracted data to database
+    if extracted[2] != False:
+        # Only display if a image is present
+        cover_image = Image.open(extracted[2])
+        cover_image.show()
     # TODO Insert book in database
     print(extracted)
