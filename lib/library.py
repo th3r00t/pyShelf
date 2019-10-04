@@ -83,6 +83,8 @@ class Catalogue:
         with book_zip as f:
             content = book_zip.open(list(filter(opf_regx.search, book['files']))[0])
             cover = book_zip.open(list(filter(cover_regx.search, book['files']))[0])
+            # TODO Handle books that have no Cover Image
+            ## TODO Handle books with html covers
             soup = BeautifulSoup(content, "xml")
             title = soup.find("dc:title")
             author = soup.find("dc:creator")
