@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # import zipfile as Zip
 import sys
+from PIL import Image
 sys.path.insert(1, 'lib/')
 from pyShelf import InitFiles
 from config import Config
@@ -16,4 +17,6 @@ Catalogue = Catalogue()
 book_list = Catalogue.filter_books()
 for book in book_list:
     extracted = Catalogue.extract_metadata(book_list[book])
+    cover_image = Image.open(extracted[2])
+    cover_image.show()
     print(extracted)
