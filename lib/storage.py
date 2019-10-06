@@ -46,7 +46,10 @@ class Storage:
             except: cover_image = book[2]
             x = self.cursor.execute(q_x, (book[0],))
             try: len(x.fetchone()) > 0
-            except Exception: self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
+            except Exception:
+                if not book[2]: # If cover image is missing unset entry
+                    cover_image = None
+                self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
             return True
         except Exception as e:
             print(e)
