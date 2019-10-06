@@ -16,3 +16,4 @@ Epub().import_books() # Filter Your books
 # TODO Update testing
 # TODO Update Documentation
 # TODO Requirements.txt
+# TODO Test image storage
