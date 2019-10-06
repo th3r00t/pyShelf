@@ -94,8 +94,7 @@ class Catalogue:
                 title = book['path'].split('/')[-1].rsplit('.', 1)[0]
             else: title = title.contents[0]
             author = soup.find("dc:creator")
-            if author == None: author = 'Unlisted'
-            else: author = author.contents[0]
+            if author != None: author = author.contents[0]
             try: cover = self.extract_cover_image(book_zip, book)
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
