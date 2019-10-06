@@ -12,6 +12,7 @@ class Storage:
     def __init__(self):
         self.db_file = db_pointer
         self.database()
+        self.create_tables()
 
     def database(self):
         """Create database cursor"""
@@ -26,11 +27,11 @@ class Storage:
         """Create table structure"""
         q_check = "SELECT * FROM books"
         q_create = '''CREATE TABLE books(title text, author text,
-        categories text, cover blob,  pages int, progress int,
+        categories text, cover blob, pages int, progress int,
         file_name text)'''
         try:
             self.cursor.execute(q_check)
-        except Exception as e:
+        except sqlite3.OperationalError as e:
             self.cursor.execute(q_create)
 
     def insert_book(self, book):
@@ -38,11 +39,19 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q = '''INSERT INTO books (title, author, categories, cover,
-        pages, progress, file_name) values (%s, %s, %s, %s, 0, %s)''' % ()
+        q_x = '''SELECT title FROM books WHERE EXISTS(SELECT * from books WHERE `title` = ?)'''
+        q = '''INSERT INTO books (title, author, cover, file_name) values (?, ?, ?, ?)'''
         try:
-            self.cursor.execute(q)
+            try: cover_image = book[2].data
+            except: cover_image = book[2]
+            x = self.cursor.execute(q_x, (book[0],))
+            try: len(x.fetchone()) > 0
+            except Exception: self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
             return True
         except Exception as e:
             print(e)
             return False
+
+    def commit(self):
+        try: self.db.commit(); return True
+        except Exception as e: return False

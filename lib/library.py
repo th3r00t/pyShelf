@@ -19,12 +19,14 @@ class Catalogue:
         self.opf_regx = re.compile(r'\.opf')
         self.cover_regx = re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         self.html_regx = re.compile(r'\.html')
+        """
         with open(config.book_shelf, 'r') as f:
             try:
                 self.catalogue = json.load(f)
                 self.current_files = self.scan_folder()
             except Exception:
                 self.filter_books()
+        """
 
     def scan_folder(self, folder=config.book_path):
         for f in os.listdir(folder):
@@ -90,12 +92,15 @@ class Catalogue:
             title = soup.find("dc:title")
             if title == None:
                 title = book['path'].split('/')[-1].rsplit('.', 1)[0]
+            else: title = title.contents[0]
             author = soup.find("dc:creator")
+            if author == None: author = 'Unlisted'
+            else: author = author.contents[0]
             try: cover = self.extract_cover_image(book_zip, book)
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
                 cover = DuckDuckGo().image_result(title)
-            book_details = [title.contents[0], author.contents[0], cover]
+            book_details = [title, author, cover, book['path']]
         return book_details
 
     def extract_content(self, book_zip, book):
@@ -122,7 +127,8 @@ class Catalogue:
                 filter(self.cover_regx.search, book['files'])
             )[0]
         )
-        return cover
+        try: cover = book_zip.read(cover.name); return cover
+        except KeyError: return False
 
     def compare_shelf_current(self):
         try:
