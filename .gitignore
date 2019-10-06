@@ -3,3 +3,4 @@ books/*
 *.pyc
 content.opf
 .vscode/.editorconfig
+data/catalogue.db
