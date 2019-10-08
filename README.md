@@ -16,6 +16,8 @@ Currently pyShelf will recursively scan your collection, extract and store some 
 * HTML Frontend for file transfers
 * HTML Backend for catalogue maintenance
 * Terminal Backend for catalogue maintenance
-* Calculate page count from total characters (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
+* Calculate page count from total characters 
+  * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
 * Move towards sqlAlchemy and enable user to specify desired storage system
+  * (Thanks to Sarcism) over on r/opensource for this idea!
 * Android app for easy integration with your catalogue
