@@ -1,7 +1,7 @@
 import unittest
 import sys
-sys.path.insert(1, 'lib/')
-from storage import Storage
+sys.path.insert(1, '../')
+from lib.storage import Storage
 
 storage = Storage()
 

@@ -6,7 +6,7 @@ import zipfile
 from PIL import Image
 from bs4 import BeautifulSoup
 from config import Config
-from api_hooks import DuckDuckGo
+from lib.api_hooks import DuckDuckGo
 
 config = Config()
 
@@ -19,14 +19,6 @@ class Catalogue:
         self.opf_regx = re.compile(r'\.opf')
         self.cover_regx = re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         self.html_regx = re.compile(r'\.html')
-        """
-        with open(config.book_shelf, 'r') as f:
-            try:
-                self.catalogue = json.load(f)
-                self.current_files = self.scan_folder()
-            except Exception:
-                self.filter_books()
-        """
 
     def scan_folder(self, folder=config.book_path):
         for f in os.listdir(folder):
@@ -44,7 +36,7 @@ class Catalogue:
             try: _epub_open.open('content.opf'); return True
             except Exception as e: print(e); return False
 
-    def filter_books(self):
+    def filter_books(self, ret=0):
         """
         Scan book folder recursively for epub files
         filter_books(0) -> Catalogue.books
@@ -59,8 +51,11 @@ class Catalogue:
         with open(config.book_shelf, 'w') as f:
             for book in self.books:
                 _book_list_expanded[book] = self.process_book(book)
-            json.dump(_book_list_expanded, f)
-        return _book_list_expanded
+            if ret != 0: return _book_list_expanded
+            else:
+                import ipdb; ipdb.set_trace()
+                json.dump(_book_list_expanded, f)
+                return _book_list_expanded
 
     def process_book(self, book):
         """Return dictionary of epub file contents"""
@@ -133,6 +128,6 @@ class Catalogue:
         try:
             self.books
         except Exception:
-            self.filter_books()
+            self.filter_books(1)
         unique = set(self.books) - set(self.catalogue)
         return unique
