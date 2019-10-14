@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys
 import sqlite3
-sys.path.insert(1,'../')
+# sys.path.insert(1, '../')
 from config import Config
 db_pointer = Config().catalogue_db
 
@@ -54,6 +54,13 @@ class Storage:
         except Exception as e:
             print(e)
             return False
+
+    def book_paths_list(self):
+        q = '''SELECT file_name FROM books'''
+        x = self.cursor.execute(q)
+        try: x = x.fetchall()
+        except Exception: x = []
+        return x
 
     def commit(self):
         try: self.db.commit(); return True

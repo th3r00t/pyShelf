@@ -3,7 +3,9 @@ import json
 import os
 import re
 import zipfile
-from PIL import Image
+# import sys
+# sys.path.insert(1, '../')
+from lib.storage import Storage
 from bs4 import BeautifulSoup
 from config import Config
 from lib.api_hooks import DuckDuckGo
@@ -19,22 +21,29 @@ class Catalogue:
         self.opf_regx = re.compile(r'\.opf')
         self.cover_regx = re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         self.html_regx = re.compile(r'\.html')
+        self.scan_folder()
 
     def scan_folder(self, folder=config.book_path):
         for f in os.listdir(folder):
-            _path = os.path.abspath(folder+'/'+f)
-            #_path = os.path.abspath('.')+'/'+folder+f+'/'
-            _is_dir = os.path.isdir(_path.strip()+'/')
+            _path = os.path.abspath(folder + '/' + f)
+            # _path = os.path.abspath('.')+'/'+folder+f+'/'
+            _is_dir = os.path.isdir(_path.strip() + '/')
             if _is_dir:
                 self.file_list.append(self.scan_folder(_path))
             self.file_list.append(_path)
+        regx = re.compile(r"\.epub")
+        self.books = list(filter(regx.search, filter(None, self.file_list)))
 
     def scan_book(self, book):
         """REMOVE ME?"""
         _epub = zipfile.ZipFile(book)
         with _epub as _epub_open:
-            try: _epub_open.open('content.opf'); return True
-            except Exception as e: print(e); return False
+            try:
+                _epub_open.open('content.opf')
+                return True
+            except Exception as e:
+                print(e)
+                return False
 
     def filter_books(self, ret=0):
         """
@@ -44,16 +53,12 @@ class Catalogue:
         :param ret: 0 -> create class property -> dump json
         :param ret: 1 -> create & return class property
         """
-        self.scan_folder()
-        regx = re.compile(r"\.epub")
-        self.books = list(filter(regx.search, filter(None, self.file_list)))
         _book_list_expanded = {}
         with open(config.book_shelf, 'w') as f:
             for book in self.books:
                 _book_list_expanded[book] = self.process_book(book)
             if ret != 0: return _book_list_expanded
             else:
-                import ipdb; ipdb.set_trace()
                 json.dump(_book_list_expanded, f)
                 return _book_list_expanded
 
@@ -87,10 +92,12 @@ class Catalogue:
             title = soup.find("dc:title")
             if title == None:
                 title = book['path'].split('/')[-1].rsplit('.', 1)[0]
-            else: title = title.contents[0]
+            else:
+                title = title.contents[0]
             author = soup.find("dc:creator")
             if author != None: author = author.contents[0]
-            try: cover = self.extract_cover_image(book_zip, book)
+            try:
+                cover = self.extract_cover_image(book_zip, book)
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
                 cover = DuckDuckGo().image_result(title)
@@ -99,35 +106,32 @@ class Catalogue:
 
     def extract_content(self, book_zip, book):
         content = book_zip.open(
-            list(
-                filter(self.opf_regx.search, book['files'])
-            )[0]
-        )
+            list(filter(self.opf_regx.search, book['files']))[0])
         return content
 
     def extract_cover_html(self, book_zip, book):
         cover = book_zip.open(
-            list(
-                filter(self.html_regx.search, book['files'])
-            )[0]
-        )
+            list(filter(self.html_regx.search, book['files']))[0])
         return cover
 
     def extract_cover_image(self, book_zip, book):
         # TODO Handle books that have no Cover Image
         # TODO Handle books with html covers
         cover = book_zip.open(
-            list(
-                filter(self.cover_regx.search, book['files'])
-            )[0]
-        )
-        try: cover = book_zip.read(cover.name); return cover
-        except KeyError: return False
-
-    def compare_shelf_current(self):
+            list(filter(self.cover_regx.search, book['files']))[0])
         try:
-            self.books
+            cover = book_zip.read(cover.name)
+            return cover
+        except KeyError:
+            return False
+
+    def new_files(self):
+        storage = Storage()
+        try:
+            a = []
+            stored = storage.book_paths_list()
+            for i in stored: a.append(i[-1])
+            unique = set(self.books) - set(a)
+            return unique
         except Exception:
-            self.filter_books(1)
-        unique = set(self.books) - set(self.catalogue)
-        return unique
+            return False

@@ -2,7 +2,7 @@ import unittest
 import os
 import shutil
 import sys
-sys.path.insert(1, '../')
+# sys.path.insert(1, '../')
 from lib.pyShelf import InitFiles
 from lib.pyShelf import Epub
 

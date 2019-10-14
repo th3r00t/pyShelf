@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import sys
 import requests
-sys.path.insert(1, 'lib/')
+# sys.path.insert(1, 'lib/')
 
 
 class DuckDuckGo:
@@ -18,7 +18,10 @@ class DuckDuckGo:
         try: query = query.string
         except AttributeError: query = query
         search_result = requests.get(self.url+query+_key)
-        if search_result.status_code == 200 and search_result.json()['Image'] != '':
+        try: image_result = search_result.json()['Image']
+        except ValueError:
+            image_result = ''
+        if search_result.status_code == 200 and image_result != '':
             image = requests.get(search_result.json()['Image'], stream=True)
             image.raw.decode_content = True
             return image.raw
