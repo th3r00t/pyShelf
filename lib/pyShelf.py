@@ -22,22 +22,3 @@ class InitFiles:
             os.mkdir(os.path.split(_pointer)[0])
             f = open(_pointer, "w+")
         f.close()
-
-
-class Epub:
-    """All Epub file handling"""
-    def __init__(self):
-        global config
-        self.book_path = config.book_path
-        self.Catalogue = Catalogue()
-
-    def import_books(self, list=None):
-        if list is not None: book_list = list
-        else: book_list = self.Catalogue.filter_books()
-        for book in book_list:
-            extracted = self.Catalogue.extract_metadata(book_list[book])
-            Storage.insert_book(extracted)
-        Storage.commit()
-
-    def book_list(self):
-        pass
