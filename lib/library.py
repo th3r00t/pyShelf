@@ -123,14 +123,17 @@ class Catalogue:
         except KeyError: return False
 
     def compare_shelf_current(self):
-        stored_books = Storage()
-        stored_books = stored_books.book_paths_list()
-        try:
-            self.books
-        except Exception:
-            self.filter_books()
-        unique = set(self.books) - set(stored_books)
-        return unique
+        db = Storage()
+        stored = db.book_paths_list()
+        closed = db.close()
+        try: self.books
+        except Exception: self.filter_books()
+        on_disk, in_storage = [], []
+        for _x in self.books: on_disk.append(_x)
+        for _y in stored: in_storage.append(_y[0])
+        a, b, = set(on_disk), set(in_storage)
+        c = set.difference(a, b)
+        return c
 
     def import_books(self, list=None):
         book_list = self.compare_shelf_current()
@@ -139,4 +142,7 @@ class Catalogue:
             book = self.process_book(book)
             extracted = self.extract_metadata(book)
             db.insert_book(extracted)
-        db.commit()
+        inserted = db.commit()
+        if inserted != True:
+            print(inserted)
+        db.close()
