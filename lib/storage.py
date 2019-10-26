@@ -64,4 +64,8 @@ class Storage:
 
     def commit(self):
         try: self.db.commit(); return True
-        except Exception as e: return False
+        except Exception as e: return e
+
+    def close(self):
+        self.db.close()
+        return True
