@@ -10,7 +10,7 @@ InitFiles(config.file_array)  # Initialize file system
 Catalogue = Catalogue()  # Open the Catalogue
 # new_books = Catalogue.new_files()
 Catalogue.import_books()  # Filter Your books
+# TODO Resolve database locking after querying for book list
 # TODO Figure out a system to get books page count
 # TODO Update Documentation
 # TODO Requirements.txt
-# TODO Test image storage
