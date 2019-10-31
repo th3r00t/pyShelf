@@ -3,10 +3,13 @@ import json
 import os
 import re
 import zipfile
-from PIL import Image
+
 from bs4 import BeautifulSoup
+from PIL import Image
+
 from config import Config
-from api_hooks import DuckDuckGo
+from lib.api_hooks import DuckDuckGo
+from lib.storage import Storage
 
 config = Config()
 
@@ -14,19 +17,12 @@ config = Config()
 class Catalogue:
     """Decodes and stores book information"""
     """Step One: filter_books"""
+
     def __init__(self):
         self.file_list = []
         self.opf_regx = re.compile(r'\.opf')
         self.cover_regx = re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         self.html_regx = re.compile(r'\.html')
-        """
-        with open(config.book_shelf, 'r') as f:
-            try:
-                self.catalogue = json.load(f)
-                self.current_files = self.scan_folder()
-            except Exception:
-                self.filter_books()
-        """
 
     def scan_folder(self, folder=config.book_path):
         for f in os.listdir(folder):
@@ -46,11 +42,11 @@ class Catalogue:
 
     def filter_books(self):
         """
-        Scan book folder recursively for epub files
-        filter_books(0) -> Catalogue.books
-        filter_books(1) -> self.books[]
-        :param ret: 0 -> create class property -> dump json
-        :param ret: 1 -> create & return class property
+            Scan book folder recursively for epub files
+            filter_books(0) -> Catalogue.books
+            filter_books(1) -> self.books[]
+            :param ret: 0 -> create class property -> dump json
+            :param ret: 1 -> create & return class property
         """
         self.scan_folder()
         regx = re.compile(r"\.epub")
@@ -119,8 +115,6 @@ class Catalogue:
         return cover
 
     def extract_cover_image(self, book_zip, book):
-        # TODO Handle books that have no Cover Image
-        # TODO Handle books with html covers
         cover = book_zip.open(
             list(
                 filter(self.cover_regx.search, book['files'])
@@ -130,9 +124,28 @@ class Catalogue:
         except KeyError: return False
 
     def compare_shelf_current(self):
-        try:
-            self.books
-        except Exception:
-            self.filter_books()
-        unique = set(self.books) - set(self.catalogue)
-        return unique
+        db = Storage()
+        stored = db.book_paths_list()
+        closed = db.close()
+        try: self.books
+        except Exception: self.filter_books()
+        on_disk, in_storage = [], []
+        for _x in self.books: on_disk.append(_x)
+        for _y in stored: in_storage.append(_y[0])
+        a, b, = set(on_disk), set(in_storage)
+        c = set.difference(a, b)
+        return c
+
+    def import_books(self, list=None):
+        book_list = self.compare_shelf_current()
+        db = Storage()
+        for book in book_list:
+            book = self.process_book(book)
+            extracted = self.extract_metadata(book)
+            db.insert_book(extracted)
+        inserted = db.commit()
+        if inserted is not True:
+            print(inserted)
+            if input('Continue ? y/n') == 'y':
+                pass
+        db.close()

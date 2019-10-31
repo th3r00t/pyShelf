@@ -1,19 +1,18 @@
 #!/usr/bin/python
 import sys
-from PIL import Image
-sys.path.insert(1, 'lib/')
-from pyShelf import InitFiles, Epub
-from config import Config
-from library import Catalogue
 
-config = Config() # Get configuration settings
-InitFiles(config.file_array) # Initialize file system
-Catalogue = Catalogue() # Open the Catalogue
-# This only needs to be run on first run, & when new books are added
-Epub().import_books() # Filter Your books
-# TODO Implement file tracking system to avoid processing already tracked books
+from config import Config
+from lib.library import Catalogue
+from lib.pyShelf import InitFiles
+
+sys.path.insert(1, 'lib/')
+
+config = Config()  # Get configuration settings
+InitFiles(config.file_array)  # Initialize file system
+Catalogue = Catalogue()  # Open the Catalogue
+
+# new_books = Catalogue.new_files()
+Catalogue.import_books()  # Filter Your books
 # TODO Figure out a system to get books page count
-# TODO Update testing
 # TODO Update Documentation
 # TODO Requirements.txt
-# TODO Test image storage
