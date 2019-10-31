@@ -7,9 +7,9 @@ import zipfile
 from bs4 import BeautifulSoup
 from PIL import Image
 
-from api_hooks import DuckDuckGo
 from config import Config
-from storage import Storage
+from lib.api_hooks import DuckDuckGo
+from lib.storage import Storage
 
 config = Config()
 
@@ -17,6 +17,7 @@ config = Config()
 class Catalogue:
     """Decodes and stores book information"""
     """Step One: filter_books"""
+
     def __init__(self):
         self.file_list = []
         self.opf_regx = re.compile(r'\.opf')
@@ -143,6 +144,8 @@ class Catalogue:
             extracted = self.extract_metadata(book)
             db.insert_book(extracted)
         inserted = db.commit()
-        if inserted != True:
+        if inserted is not True:
             print(inserted)
+            if input('Continue ? y/n') == 'y':
+                pass
         db.close()
