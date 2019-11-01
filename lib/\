@@ -25,22 +25,13 @@ class InitFiles:
         f.close()
 
 
-class RequestHandler(BaseHTTPRequestHandler):
-    """Request Handler"""
-    def do_GET(self):
-        self.send_response(200)
-        self.end_headers()
-        self.wfile.write(b'Welcome To pyShelf!')
-
-
 class BookServer:
     """HTTP Frontend"""
     def __init__(self):
         self.server_address = ('', 8000)
-        self.handler = RequestHandler
+        self.handler = 'BaseHTTPRequestHandler'
 
     def close_prompt(self):
-        """Prompt to close server"""
         close = input("Close Server? y/n")
         if close == 'y':
             self.close()
@@ -49,20 +40,17 @@ class BookServer:
             self.close_prompt()
 
     def run(self):
-        """Start HTTP Server"""
         self.httpd = HTTPServer(self.server_address, self.handler)
         try:
             self.httpd.serve_forever()
             self.httpd.handle_request()
             if self.close_prompt() == True:
                 pass
-        except KeyboardInterrupt:
-            print(KeyboardInterrupt, " Closing Server")
+        except Exception:
             self.close()
             return False
 
     def close(self):
-        """Stop HTTP Server"""
         try:
             self.httpd.server_close()
             return True
