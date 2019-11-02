@@ -1,10 +1,12 @@
 #!/usr/bin/python
 import os
 import zipfile
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import BaseHTTPRequestHandler, HTTPServer
+
 from config import Config
 from lib.library import Catalogue
 from lib.storage import Storage
+
 config = Config()
 Storage = Storage()
 
@@ -16,6 +18,7 @@ class InitFiles:
         for _pointer in file_array:
             if not os.path.isfile(_pointer):
                 self.CreateFile(_pointer)
+        print("Concluded file creation")
 
     def CreateFile(self, _pointer):
         """Create the file"""
@@ -28,14 +31,21 @@ class InitFiles:
 class RequestHandler(BaseHTTPRequestHandler):
     """Request Handler"""
     def do_GET(self):
+        # TODO determine how to include stylesheets
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(b'Welcome To pyShelf!')
-
+        if self.path == '/':
+            self.path = '../static/index.html'
+            serve_file = open(self.path[1:]).read()
+        else:
+            self.send_response(404)
+            serve_file = "File Not Found"
+        self.wfile.write(bytes(serve_file, 'utf-8'))
 
 class BookServer:
     """HTTP Frontend"""
     def __init__(self):
+        # TODO Get server Ip Address
         self.server_address = ('', 8000)
         self.handler = RequestHandler
 
@@ -52,13 +62,13 @@ class BookServer:
         """Start HTTP Server"""
         self.httpd = HTTPServer(self.server_address, self.handler)
         try:
+            print("Server running @ http://127.0.0.1:8000")
             self.httpd.serve_forever()
             self.httpd.handle_request()
-            if self.close_prompt() == True:
-                pass
         except KeyboardInterrupt:
-            print(KeyboardInterrupt, " Closing Server")
+            print("Interrupt received, Closing Server")
             self.close()
+            print("Server shutdown, Goodbye!")
             return False
 
     def close(self):
@@ -68,4 +78,3 @@ class BookServer:
             return True
         except Exception:
             return False
-
