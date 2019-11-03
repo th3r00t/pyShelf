@@ -1,3 +1,31 @@
 body{
-    background-color: #f1f1
+    margin: 0px 10px 0px 10px;
+    padding: 0px;
+}
+#app{
+    display: grid;
+    grid-template-areas: "app_header"
+                         "app_body"
+                         "app_footer";
+}
+.app_header{
+    grid-area: app_header;
+}
+.app_body{
+    display: grid;
+    grid-area: app_body;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-areas: "left_col  shelf  right_col"
+}
+.app_footer{
+    grid-area: app_footer;
+}
+.left_col{
+    grid-area: left_col
+}
+.shelf{
+    grid-area: shelf
+}
+.right_col{
+    grid-area: right_col
 }

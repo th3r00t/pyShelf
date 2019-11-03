@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import mimetypes
 import os
 import zipfile
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -33,13 +34,17 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         # TODO determine how to include stylesheets
         self.send_response(200)
-        self.end_headers()
+        mimetype = mimetypes.guess_type(self.path)
+        self.send_header('Content-type', mimetype)
         if self.path == '/':
             self.path = '../static/index.html'
-            serve_file = open(self.path[1:]).read()
+        elif self.path.split('.', 1)[1] == 'css':
+            self.path = '../static' + self.path
         else:
             self.send_response(404)
             serve_file = "File Not Found"
+        serve_file = open(self.path[1:]).read()
+        self.end_headers()
         self.wfile.write(bytes(serve_file, 'utf-8'))
 
 class BookServer:
