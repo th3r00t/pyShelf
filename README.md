@@ -8,7 +8,9 @@ a server is cumbersome when running on a headless server. Thus I am creating pyS
 the functionality required to organize and host all your local ebooks.
 
 I am open to and hoping for community help in the design and execution of this program.
-
+## Configuration
+All configuration is done in config.py.
+The only currently required configuration is to set book_path to the location of your books.
 ## Current Features
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
 
