@@ -34,18 +34,35 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         # TODO determine how to include stylesheets
         self.send_response(200)
-        mimetype = mimetypes.guess_type(self.path)
-        self.send_header('Content-type', mimetype)
         if self.path == '/':
             self.path = '../static/index.html'
+            mimetype = 'text/html'
+            serve_file = open(self.path[1:]).read()
+            self.send_header('Content-type', mimetype)
+            self.end_headers()
+            self.wfile.write(bytes(serve_file, 'utf-8'))
         elif self.path.split('.', 1)[1] == 'css':
             self.path = '../static' + self.path
+            mimetype = 'text/css'
+            serve_file = open(self.path[1:]).read()
+            self.send_header('Content-type', mimetype)
+            self.end_headers()
+            self.wfile.write(bytes(serve_file, 'utf-8'))
+        elif self.path.endswith('.png'):
+            self.path = '../static' + self.path
+            mimetype = 'image/png'
+            serve_file = open(self.path[1:], 'rb') # Important to rb read binary for images
+            self.send_header('Content-type', mimetype)
+            self.end_headers()
+            self.wfile.write(serve_file.read())
         else:
             self.send_response(404)
             serve_file = "File Not Found"
-        serve_file = open(self.path[1:]).read()
-        self.end_headers()
-        self.wfile.write(bytes(serve_file, 'utf-8'))
+            mimetype = 'text/html'
+            self.send_header('Content-type', mimetype)
+            self.end_headers()
+        try: serve_file.close()
+        except Exception: pass
 
 class BookServer:
     """HTTP Frontend"""
