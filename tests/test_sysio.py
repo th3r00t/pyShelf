@@ -1,10 +1,10 @@
-import unittest
 import os
 import shutil
 import sys
+import unittest
+
 # sys.path.insert(1, '../')
 from lib.pyShelf import InitFiles
-from lib.pyShelf import Epub
 
 
 class SysIoTest(unittest.TestCase):
