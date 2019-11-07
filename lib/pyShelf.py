@@ -66,8 +66,10 @@ class RequestHandler(BaseHTTPRequestHandler):
         except Exception: pass
 
 class BookDisplay:
+    """All functions related to displaying book information in the HTML UI"""
 
     def __init__(self):
+        """Initialize class variables"""
         self.books_per_page = None
         self.current_page = 0
         self.thumbnail_size = [200, 300]
@@ -75,6 +77,7 @@ class BookDisplay:
         self.total_pages = None
 
     def nextPage(self):
+        """Goto next book page"""
         self.current_page += 1
         return self.current_page
 
