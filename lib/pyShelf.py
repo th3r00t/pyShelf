@@ -65,11 +65,15 @@ class RequestHandler(BaseHTTPRequestHandler):
         try: serve_file.close()
         except Exception: pass
 
+
 class BookDisplay:
     """All functions related to displaying book information in the HTML UI"""
 
     def __init__(self):
-        """Initialize class variables"""
+        """
+        Initialize class variables
+        :return: None
+        """
         self.books_per_page = None
         self.current_page = 0
         self.thumbnail_size = [200, 300]
@@ -77,22 +81,39 @@ class BookDisplay:
         self.total_pages = None
 
     def nextPage(self):
-        """Goto next book page"""
+        """
+        Goto next book page
+        :return: new current_page
+        """
         self.current_page += 1
         return self.current_page
 
     def previousPage(self):
+        """
+        Goto previous book page
+        :return: new current_page
+        """
         self.current_page -= 1
         return self.current_page
 
     def booksPerPage(self, screen_size):
+        """
+        Set books per page
+
+        :param screen_size: Array containing x,y pixel sizes
+        :return: self.books_per_page
+        """
         x = (self.thumbnail_size[0] * self.thumbnail_scale) + 10
         y = (self.thumbnail_size[1] * self.thumbnail_scale) + 10
         self.books_per_page = int(screen_size[0]//x) * int(screen_size[1]//y)
+        return self.books_per_page
 
 
 class BookServer:
-    """HTTP Frontend"""
+    """
+    HTTP server functions required to display e-books    
+    """
+
     def __init__(self):
         # TODO Get server Ip Address
         self.server_address = ('', 8000)
@@ -107,17 +128,8 @@ class BookServer:
         else:
             self.close_prompt()
 
-    def run(self, test=0):
+    def run(self):
         """Start HTTP Server"""
-        self.httpd = HTTPServer(self.server_address, self.handler)
-        if test != 0:
-            try:
-                self.httpd.serve_forever()
-                self.httpd.handle_request()
-                self.close()
-                return True
-            except Exception:
-                return False
         try:
             print("Server running @ http://127.0.0.1:8000")
             self.httpd.serve_forever()
