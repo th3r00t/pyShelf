@@ -115,9 +115,9 @@ class BookServer:
     """
 
     def __init__(self):
-        # TODO Get server Ip Address
         self.server_address = ('', 8000)
         self.handler = RequestHandler
+        self.httpd = HTTPServer(self.server_address, self.handler)
 
     def close_prompt(self):
         """Prompt to close server"""
