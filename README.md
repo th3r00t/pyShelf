@@ -13,6 +13,7 @@ All configuration is done in config.py.
 The only currently required configuration is to set book_path to the location of your books.
 ## Current Features
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
+The basic template system is in place, as well as a template mockup. This can be seen hosted on port 8000
 
 ## Future Goals
 * HTML Frontend for file transfers
