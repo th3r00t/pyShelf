@@ -4,8 +4,10 @@ A simple terminal based ebook server
 Frustrated with Calibre being my only option for hosting my eBook collection, I have decided to spin up my own.
 
 Calibre is a great organizational tool for your books, however not having a terminal based option for running and maintaining
-a server is cumbersome when running on a headless server. Thus I am creating pyShelf and I hope to be able to provide all
-the functionality required to organize and host all your local ebooks.
+a server is cumbersome when running on a headless server. 
+Calibre does have a console based server solution, However there is currently no way to create, and manage your library in a headless enviroment.
+
+Thus I am creating pyShelf and I hope to be able to provide all the functionality required to organize and host all your ebooks.
 
 I am open to and hoping for community help in the design and execution of this program.
 ## Configuration
