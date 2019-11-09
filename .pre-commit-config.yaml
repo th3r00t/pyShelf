@@ -10,3 +10,15 @@ repos:
     rev: v1.3.0
     hooks:
       - id: trailing-whitespace
+
+  # Python import formatting
+  - repo: https://github.com/asottile/seed-isort-config
+    rev: v1.9.3
+    hooks:
+      - id: seed-isort-config
+
+  - repo: https://github.com/timothycrosley/isort
+    rev: 4.3.21-2
+    hooks:
+      - id: isort
+        additional_dependencies: ["toml"]

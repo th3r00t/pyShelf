@@ -1,8 +1,10 @@
 #!/usr/bin/python
-import sys
 import sqlite3
+import sys
+
 # sys.path.insert(1, '../')
 from config import Config
+
 db_pointer = Config().catalogue_db
 
 

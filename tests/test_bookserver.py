@@ -1,8 +1,9 @@
 import sys
 import unittest
 
-from lib.pyShelf import BookDisplay, BookServer
 from lib.display import Frontend
+from lib.pyShelf import BookDisplay, BookServer
+
 sys.path.insert(0, '../lib')
 sys.path.insert(1, '../')
 
