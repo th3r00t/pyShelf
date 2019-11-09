@@ -111,7 +111,7 @@ class BookDisplay:
 
 class BookServer:
     """
-    HTTP server functions required to display e-books    
+    HTTP server functions required to display e-books
     """
 
     def __init__(self):
