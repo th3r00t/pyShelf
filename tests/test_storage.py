@@ -1,5 +1,6 @@
-import unittest
 import sys
+import unittest
+
 # sys.path.insert(1, '../')
 from lib.storage import Storage
 

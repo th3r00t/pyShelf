@@ -2,8 +2,9 @@
 import cgi
 import sys
 
-sys.path.insert(0, '../')
 from config import Config
+
+sys.path.insert(0, '../')
 
 
 class Frontend():

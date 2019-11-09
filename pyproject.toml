@@ -1,0 +1,10 @@
+[tool.isort]
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+use_parentheses = true
+# NOTE: the known_third_party setting is managed by
+# seed-isort-config and should not be modified directly.
+# Any changes made to this setting will be overwritten.
+known_third_party = ["PIL", "bs4", "requests"]
