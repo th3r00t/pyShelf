@@ -26,7 +26,8 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+# pyShelf uses its own `lib` directory, don't ignore it.
+# lib/
 lib64/
 parts/
 sdist/

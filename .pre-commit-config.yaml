@@ -1,0 +1,12 @@
+repos:
+  # Meta housekeeping to keep pre-commit operating correctly
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+
+  # General housekeeping and auto-fixers
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.3.0
+    hooks:
+      - id: trailing-whitespace

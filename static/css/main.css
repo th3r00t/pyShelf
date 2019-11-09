@@ -25,7 +25,7 @@ body{
     font-size: 25px;
     text-align: start;
 }
-.shadow{ 
+.shadow{
     text-shadow: #4c5c68 -5px 3px 5px;
 }
 .app_subhdr{
@@ -61,7 +61,7 @@ body{
     grid-area: right_col
 }
 .python_logo{
-    
+
 }
 #python_logo{
     height: 50px;
