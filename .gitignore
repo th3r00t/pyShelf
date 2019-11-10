@@ -7,6 +7,7 @@ app/data/catalogue.db
 GPATH
 GRTAGS
 GTAGS
+.#*
 
 # Standard Python gitignore below
 # Created by https://www.gitignore.io/api/python
