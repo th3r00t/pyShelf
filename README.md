@@ -12,10 +12,12 @@ Thus I am creating pyShelf and I hope to be able to provide all the functionalit
 I am open to and hoping for community help in the design and execution of this program.
 
 ## Development
+pyShelf uses ['sem-ver'](https://semver.org)
 pyShelf uses [`pre-commit`](https://pre-commit.com/) to automate some tasks.
 Before developing, run `pre-commit install`.
 See the [documentation](https://pre-commit.com/) for more information.
-
+pyShelf uses ['Doxygen'](https://http://www.doxygen.nl/) for source code documentation.
+Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
 ## Configuration
 All configuration is done in config.py.
 The only currently required configuration is to set book_path to the location of your books.
