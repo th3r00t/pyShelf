@@ -1,4 +1,4 @@
-# pyShelf
+# pyShelf 0.1.0
 A simple terminal based ebook server
 
 Frustrated with Calibre being my only option for hosting my eBook collection, I have decided to spin up my own.
@@ -12,9 +12,15 @@ Thus I am creating pyShelf and I hope to be able to provide all the functionalit
 I am open to and hoping for community help in the design and execution of this program.
 
 ## Development
+
 pyShelf uses [`pre-commit`](https://pre-commit.com/) to automate some tasks.
 Before developing, run `pre-commit install`.
 See the [documentation](https://pre-commit.com/) for more information.
+
+pyShelf uses ['Doxygen'](https://http://www.doxygen.nl/) for source code documentation.
+Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
+
+pyShelf follows ['sem-ver'](https://semver.org) standards. Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
 
 ## Configuration
 All configuration is done in config.py.
@@ -22,7 +28,8 @@ The only currently required configuration is to set book_path to the location of
 
 ## Current Features
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
-The basic template system is in place, as well as a template mockup. This can be seen hosted on port 8000
+
+Django is being implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this.
 
 ## Future Goals
 * HTML Frontend for file transfers

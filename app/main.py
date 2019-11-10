@@ -15,7 +15,7 @@ UI = Frontend()
 Server = BookServer()
 # new_books = Catalogue.new_files()
 Catalogue.import_books()  # Filter Your books
-Server.run()
+# Server.run()
 # TODO Figure out a system to get books page count
 # TODO Update Documentation
 # TODO Requirements.txt

@@ -1,0 +1,87 @@
+.TH "app.lib.storage.Storage" 3 "Sun Nov 10 2019" "Version 0.1.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+app.lib.storage.Storage
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP (self)"
+.br
+.ti -1c
+.RI "def \fBdatabase\fP (self)"
+.br
+.ti -1c
+.RI "def \fBcreate_tables\fP (self)"
+.br
+.ti -1c
+.RI "def \fBinsert_book\fP (self, book)"
+.br
+.ti -1c
+.RI "def \fBbook_paths_list\fP (self)"
+.br
+.ti -1c
+.RI "def \fBcommit\fP (self)"
+.br
+.ti -1c
+.RI "def \fBclose\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBdb_file\fP"
+.br
+.ti -1c
+.RI "\fBdb\fP"
+.br
+.ti -1c
+.RI "\fBcursor\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+
+.PP
+.nf
+Contains all methods for system storage
+.fi
+.PP
+
+.SH "Member Function Documentation"
+.PP
+.SS "def app\&.lib\&.storage\&.Storage\&.create_tables ( self)"
+
+.PP
+.nf
+Create table structure
+.fi
+.PP
+
+.SS "def app\&.lib\&.storage\&.Storage\&.database ( self)"
+
+.PP
+.nf
+Create database cursor
+.fi
+.PP
+
+.SS "def app\&.lib\&.storage\&.Storage\&.insert_book ( self,  book)"
+
+.PP
+.nf
+Insert book in database
+:returns: True if succeeds False if not
+
+.fi
+.PP
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.
