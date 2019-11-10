@@ -3,6 +3,8 @@ class Config:
     def __init__(self):
         self.book_path = "books/"
         self.TITLE = "pyShelf E-Book Server"
+        self.VERSION = "0.1.0"
+        self.TITLE = self.TITLE + " ver" + self.VERSION
         self.book_shelf = "data/shelf.json"
         # self.catalogue_db = "data/catalogue.db"
         self.catalogue_db = "../frontend/db.sqlite3"
