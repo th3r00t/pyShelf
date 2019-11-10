@@ -1,4 +1,4 @@
-# pyShelf
+# pyShelf 0.1.0
 A simple terminal based ebook server
 
 Frustrated with Calibre being my only option for hosting my eBook collection, I have decided to spin up my own.
