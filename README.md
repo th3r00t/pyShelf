@@ -22,7 +22,8 @@ The only currently required configuration is to set book_path to the location of
 
 ## Current Features
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
-The basic template system is in place, as well as a template mockup. This can be seen hosted on port 8000
+
+Django is being implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this.
 
 ## Future Goals
 * HTML Frontend for file transfers
