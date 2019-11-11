@@ -8,3 +8,5 @@ urllib3
 urwid
 w3lib
 websockets
+pre-commit
+isort
