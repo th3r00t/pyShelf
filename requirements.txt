@@ -10,3 +10,4 @@ w3lib
 websockets
 pre-commit
 isort
+django
