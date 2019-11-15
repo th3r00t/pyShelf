@@ -5,6 +5,7 @@ books/*
 app/content.opf
 .vscode
 app/data/catalogue.db
+fontend/db.sqlite3
 GPATH
 GRTAGS
 GTAGS
