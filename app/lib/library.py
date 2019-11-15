@@ -7,38 +7,41 @@ import zipfile
 from bs4 import BeautifulSoup
 from PIL import Image
 
-from config import Config
-from lib.api_hooks import DuckDuckGo
-from lib.storage import Storage
+from .api_hooks import DuckDuckGo
+from .config import Config
+from .storage import Storage
 
-config = Config()
+# config = Config()
 
 
 class Catalogue:
     """Decodes and stores book information"""
     """Step One: filter_books"""
 
-    def __init__(self):
+    def __init__(self, root):
         self.file_list = []
         self.opf_regx = re.compile(r'\.opf')
         self.cover_regx = re.compile(r'\.jpg|\.jpeg|\.png|\.bmp|\.gif')
         self.html_regx = re.compile(r'\.html')
+        self.root_dir = root
+        _config = Config(root)
+        self.book_folder = _config.book_path
+        self.book_shelf = _config.book_shelf
+        self._book_list_expanded = None
+        self.books = None
 
-    def scan_folder(self, folder=config.book_path):
+    def scan_folder(self, _path=None):
+        if _path is not None:
+            folder = _path
+        elif os.path.isdir(self.root_dir+'/'+self.book_folder):
+            folder = self.root_dir+'/'+self.book_folder
+        else: folder = self.book_folder
         for f in os.listdir(folder):
             _path = os.path.abspath(folder+'/'+f)
-            #_path = os.path.abspath('.')+'/'+folder+f+'/'
             _is_dir = os.path.isdir(_path.strip()+'/')
             if _is_dir:
                 self.file_list.append(self.scan_folder(_path))
             self.file_list.append(_path)
-
-    def scan_book(self, book):
-        """REMOVE ME?"""
-        _epub = zipfile.ZipFile(book)
-        with _epub as _epub_open:
-            try: _epub_open.open('content.opf'); return True
-            except Exception as e: print(e); return False
 
     def filter_books(self):
         """
@@ -50,17 +53,20 @@ class Catalogue:
         """
         self.scan_folder()
         regx = re.compile(r"\.epub")
-        self.books = list(filter(regx.search, filter(None, self.file_list)))
-        _book_list_expanded = {}
-        with open(config.book_shelf, 'w') as f:
+        try:
+            self.books = list(filter(regx.search, filter(None, self.file_list)))
+        except TypeError as e:
+            print(e)
+        self._book_list_expanded = {}
+        with open(self.book_shelf, 'w') as f:
             for book in self.books:
-                _book_list_expanded[book] = self.process_book(book)
-            json.dump(_book_list_expanded, f)
-        return _book_list_expanded
+                self._book_list_expanded[book] = self.process_book(book)
+            json.dump(self._book_list_expanded, f)
+        return self._book_list_expanded
 
-    def process_book(self, book):
+    @staticmethod
+    def process_book(book):
         """Return dictionary of epub file contents"""
-        f_name = 'content.opf'
         book = zipfile.ZipFile(book, 'r')
         details = {}
         with book as book_zip:
@@ -86,11 +92,11 @@ class Catalogue:
             content = self.extract_content(book_zip, book)
             soup = BeautifulSoup(content, "lxml")
             title = soup.find("dc:title")
-            if title == None:
+            if title is None:
                 title = book['path'].split('/')[-1].rsplit('.', 1)[0]
             else: title = title.contents[0]
             author = soup.find("dc:creator")
-            if author != None: author = author.contents[0]
+            if author is not None: author = author.contents[0]
             try: cover = self.extract_cover_image(book_zip, book)
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
@@ -127,8 +133,8 @@ class Catalogue:
         db = Storage()
         stored = db.book_paths_list()
         closed = db.close()
-        try: self.books
-        except Exception: self.filter_books()
+        if self.books is None:
+            self.filter_books()
         on_disk, in_storage = [], []
         for _x in self.books: on_disk.append(_x)
         for _y in stored: in_storage.append(_y[0])

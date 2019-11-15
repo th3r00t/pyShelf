@@ -3,18 +3,20 @@ import sqlite3
 import sys
 
 # sys.path.insert(1, '../')
-from config import Config
+from .config import Config
 
-db_pointer = Config().catalogue_db
+# db_pointer = Config().catalogue_db
 
 
-class Storage:
+class Storage():
     """Contains all methods for system storage"""
 
-    def __init__(self):
+    def __init__(self, db_pointer=None):
+        # Optionaly pass db_file to specify another db or for testing
+        if db_pointer is None: db_pointer = Config().catalogue_db
         self.db_file = db_pointer
         self.database()
-        self.create_tables()
+        # self.create_tables()
 
     def database(self):
         """Create database cursor"""
@@ -23,6 +25,8 @@ class Storage:
             self.cursor = self.db.cursor()
             return True
         except Exception as e:
+            print(self.db_file)
+            print(e)
             return False
 
     def create_tables(self):

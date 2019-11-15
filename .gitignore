@@ -1,5 +1,5 @@
-app/books/*
-*.json
+books/*
+*.idea
 *.pyc
 app/content.opf
 .vscode
