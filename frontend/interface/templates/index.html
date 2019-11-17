@@ -21,9 +21,9 @@
             </div>
             <div class="shelf">
                 <div class="shelf_contents" >
-                    <ul>
+                    <ul id="book_shelf">
                     {% for book in Books %}
-                        <li>{{ book.title }} <img alt="Embedded Image" src="data:image;base64,{{ book.cover[2:-2]|bin_2_img }}" style="width:50px;height:50px;"/> </li>
+                        <li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb"/> </li>
                     {% endfor %}
                     </ul>
                 </div>

@@ -50,7 +50,9 @@ body{
 }
 .shelf{
     grid-area: shelf;
-    margin: 0px auto 0px auto;
+    margin: 0px 0px;
+    padding: 0px;
+    list-style-type: none;
 }
 .shelf_contents{
     display: flex;
@@ -66,4 +68,16 @@ body{
 #python_logo{
     height: 50px;
     width: 91px;
+}
+#book_shelf{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    list-style-type: none;
+}
+.shelf_item{
+
+}
+.book_thumb{
+    width: 300px;
+    height: 375px;
 }
