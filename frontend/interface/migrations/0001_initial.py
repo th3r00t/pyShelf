@@ -7,21 +7,28 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='books',
+            name="books",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('author', models.CharField(blank=True, max_length=255)),
-                ('categories', models.CharField(blank=True, max_length=255)),
-                ('cover', models.BinaryField(blank=True, editable=True)),
-                ('pages', models.IntegerField(blank=True)),
-                ('progress', models.IntegerField(blank=True)),
-                ('file_name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("author", models.CharField(blank=True, max_length=255)),
+                ("categories", models.CharField(blank=True, max_length=255)),
+                ("cover", models.BinaryField(blank=True, editable=True)),
+                ("pages", models.IntegerField(blank=True)),
+                ("progress", models.IntegerField(blank=True)),
+                ("file_name", models.CharField(max_length=255)),
             ],
         ),
     ]

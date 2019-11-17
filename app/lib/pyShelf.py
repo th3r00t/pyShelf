@@ -10,6 +10,7 @@ from .storage import Storage
 
 class InitFiles:
     """First run file creation operations"""
+
     def __init__(self, file_array):
         print("Begining creation of file structure")
         for _pointer in file_array:
@@ -38,8 +39,10 @@ class BookDisplay:
         self.thumbnail_size = [200, 300]
         self.thumbnail_scale = 1
         self.total_pages = None
-        try: self.screen_size = kwargs['screen_size']
-        except Exception: self.screen_size = [900, 600]
+        try:
+            self.screen_size = kwargs["screen_size"]
+        except Exception:
+            self.screen_size = [900, 600]
 
     def nextPage(self):
         """
@@ -66,4 +69,6 @@ class BookDisplay:
         """
         x = (self.thumbnail_size[0] * self.thumbnail_scale) + 10
         y = (self.thumbnail_size[1] * self.thumbnail_scale) + 10
-        self.books_per_page = int(self.screen_size[0]//x) * int(self.screen_size[1]//y)
+        self.books_per_page = int(self.screen_size[0] // x) * int(
+            self.screen_size[1] // y
+        )
