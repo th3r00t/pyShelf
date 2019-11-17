@@ -33,7 +33,7 @@ class Storage():
         """Create table structure"""
         q_check = "SELECT * FROM books"
         q_create = '''CREATE TABLE books(title text, author text,
-        categories text, cover blob, pages int, progress int,
+        categories text null, cover blob null, pages int null, progress int null,
         file_name text)'''
         try:
             self.cursor.execute(q_check)
@@ -46,7 +46,7 @@ class Storage():
         :returns: True if succeeds False if not
         """
         q_x = '''SELECT title FROM books WHERE EXISTS(SELECT * from books WHERE `title` = ?)'''
-        q = '''INSERT INTO books (title, author, cover, file_name) values (?, ?, ?, ?)'''
+        q = '''INSERT INTO books (title, author, cover, progress, file_name, pages) values (?, ?, ?, 0, ?, 0)'''
         try:
             try: cover_image = book[2].data
             except: cover_image = book[2]
