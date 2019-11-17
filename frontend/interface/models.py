@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 
-class books(models.Model):
+class Books(models.Model):
     """
     pyShelfs Book Database class
     :param title: Book title
@@ -14,10 +14,20 @@ class books(models.Model):
     :param progress: Reader percentage <-- Not implented
     :param file_name: Path to book
     """
+    class Meta:
+        db_table = 'books'
+
+    def __str__(self):
+        return self.title
+
     title = models.CharField(max_length=255)
-    author = models.CharField(max_length=255, blank=True)
-    categories = models.CharField(max_length=255, blank=True)
-    cover = models.BinaryField(blank=True, editable=True)
-    pages = models.IntegerField(blank=True)
-    progress = models.IntegerField(blank=True)
-    file_name = models.CharField(max_length=255, blank=False)
+    author = models.CharField(max_length=255, null=True)
+    categories = models.CharField(max_length=255, null=True)
+    cover = models.BinaryField(null=True, editable=True)
+    pages = models.IntegerField(null=True)
+    progress = models.IntegerField(null=True)
+    file_name = models.CharField(max_length=255, null=False)
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular instance of MyModelName."""
+        return reverse('model-detail-view', args=[str(self.id)])
