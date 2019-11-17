@@ -1,10 +1,11 @@
+{% load filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link type="text/css" rel="stylesheet" href="/css/main.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/main.css" />
 <title>pyShelf E-Book Server</title>
 <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
 </head>
@@ -19,12 +20,18 @@
                 left_col
             </div>
             <div class="shelf">
-                <div class="shelf_contents" >Shelf</div>
+                <div class="shelf_contents" >
+                    <ul>
+                    {% for book in Books %}
+                        <li>{{ book.title }} <img alt="Embedded Image" src="data:image;base64,{{ book.cover[2:-2]|bin_2_img }}" style="width:50px;height:50px;"/> </li>
+                    {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="app_footer" >
             <div class="python_logo" >
-                <img src="/img/py.png" id="python_logo" />
+                <img src="/static/img/py.png" id="python_logo" />
             </div>
         </div>
     </div>
