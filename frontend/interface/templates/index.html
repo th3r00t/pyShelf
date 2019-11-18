@@ -17,13 +17,13 @@
         </div>
         <div class="app_body" >
             <div class="left_col">
-                left_col
+                Navigation and page controls will go here
             </div>
             <div class="shelf">
                 <div class="shelf_contents" >
                     <ul id="book_shelf">
                     {% for book in Books %}
-                        <li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb"/> </li>
+                    <a href="{% url 'download' book.file_name %}" class="book_link"><li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb"/> </li></a>
                     {% endfor %}
                     </ul>
                 </div>

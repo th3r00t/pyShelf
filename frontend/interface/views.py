@@ -1,10 +1,15 @@
 from django.shortcuts import render
+from xsendfile import XSendfileApplication
 
 from .models import Books
 
 
 def index(request):
     return render(request, "index.html", {"Books": Books.objects.all()})
+
+
+def download(request):
+    return XSendfileApplication(file_name)
 
 
 def book_set(_set):

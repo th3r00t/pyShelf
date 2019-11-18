@@ -44,6 +44,8 @@ body{
 }
 .app_footer{
     grid-area: app_footer;
+    position: fixed;
+    bottom: 0px;
 }
 .left_col{
     grid-area: left_col
@@ -73,11 +75,20 @@ body{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     list-style-type: none;
+    font-family: 'Audiowide', cursive;
+    font-size: 25px;
 }
 .shelf_item{
-
+    background-color: burlywood;
+    margin: 10px 0px;
+    max-width: 300px;
+    max-height: 375px;
+    text-align: center;
 }
 .book_thumb{
     width: 300px;
     height: 375px;
+}
+a.book_link{
+    text-decoration: none;
 }

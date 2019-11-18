@@ -11,3 +11,4 @@ websockets
 pre-commit
 isort
 django
+xsendfile
