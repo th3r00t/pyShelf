@@ -17,7 +17,7 @@ pyShelf uses [`pre-commit`](https://pre-commit.com/) to automate some tasks.
 Before developing, run `pre-commit install`.
 See the [documentation](https://pre-commit.com/) for more information.
 
-pyShelf uses ['Doxygen'](https://http://www.doxygen.nl/) for source code documentation.
+pyShelf uses ['Doxygen'](http://www.doxygen.nl/) for source code documentation.
 Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
 
 pyShelf follows ['sem-ver'](https://semver.org) standards. Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
