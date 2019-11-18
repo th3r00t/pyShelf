@@ -10,7 +10,7 @@ class TestConfig:
         assert os.path.isdir(self.config.book_path)
 
     def test_title(self):
-        assert 'pyShelf' in self.config.TITLE
+        assert "pyShelf" in self.config.TITLE
 
     def test_version(self):
         assert self.config.VERSION is not None

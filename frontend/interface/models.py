@@ -14,8 +14,9 @@ class Books(models.Model):
     :param progress: Reader percentage <-- Not implented
     :param file_name: Path to book
     """
+
     class Meta:
-        db_table = 'books'
+        db_table = "books"
 
     def __str__(self):
         return self.title
@@ -30,4 +31,4 @@ class Books(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
-        return reverse('model-detail-view', args=[str(self.id)])
+        return reverse("model-detail-view", args=[str(self.id)])
