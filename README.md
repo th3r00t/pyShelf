@@ -37,7 +37,7 @@ Inside uwsgi.ini you should make changes to reflect your install directory, and 
 User configuration is contained within config.json in the project root. The only currently required configuration is to set book_path to the location of your books.
 
 ## Current Features
-Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
+Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database. It will also provide you with a web based frontend to view and download your books. Note that this is a very early alpha and lacking the ability to sort and search your collection. This feature is coming however.
 
 Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, albeit not recomended.
 
@@ -48,6 +48,7 @@ Django has been implemented to power the frontend experience, and web based data
 * Improved cover image storage, and acquisition.
 
 ## Future Goals
+* Support for other book formats (Currently on supporting EPUBS)
 * HTML Frontend for file transfers
 * HTML Backend for catalogue maintenance
 * Terminal Backend for catalogue maintenance
