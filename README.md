@@ -25,13 +25,13 @@ pyShelf follows ['sem-ver'](https://semver.org) standards. Before advancing vers
 ## Configuration
 All pyShelf configuration is done in config.py.
 
-###Nginx configuration
+### Nginx configuration
 I have included a default nginx config file pyshelf_nginx.conf. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
 
-###uwsgi configuration
+### uwsgi configuration
 Inside uwsgi.ini you should make changes to reflect your install directory, and the port you wish uwsgi to listen on. Alternativly you can make the requisite changes to listen on a socket instead. This change would also require a change to the pyshelf_nginx.conf file as well.
 
-###pyShelf configuration
+### pyShelf configuration
 User configuration is contained within config.json in the project root. The only currently required configuration is to set book_path to the location of your books.
 
 ## Current Features
