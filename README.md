@@ -28,6 +28,8 @@ All pyShelf configuration is done in config.py.
 ### Nginx configuration
 I have included a default nginx config file pyshelf_nginx.conf. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
 
+Further resources for nginx setup may be found @ [nginx, django, & uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
+
 ### uwsgi configuration
 Inside uwsgi.ini you should make changes to reflect your install directory, and the port you wish uwsgi to listen on. Alternativly you can make the requisite changes to listen on a socket instead. This change would also require a change to the pyshelf_nginx.conf file as well.
 
