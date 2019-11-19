@@ -28,7 +28,7 @@ All pyShelf configuration is done in config.py.
 ### Nginx configuration
 I have included a default nginx config file pyshelf_nginx.conf. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
 
-Further resources for nginx setup may be found @ [nginx, django, & uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
+Further resources for nginx setup may be found @ [This nginx, django, & uwsgi, guide](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
 
 ### uwsgi configuration
 Inside uwsgi.ini you should make changes to reflect your install directory, and the port you wish uwsgi to listen on. Alternativly you can make the requisite changes to listen on a socket instead. This change would also require a change to the pyshelf_nginx.conf file as well.
@@ -39,7 +39,13 @@ User configuration is contained within config.json in the project root. The only
 ## Current Features
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
 
-Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, however due to how file downloads are being handled some changes to the program itself would be required as the current itteration relies on Xsendfile.
+Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, albeit not recomended.
+
+## In Progress
+
+* UI/UX tweaks, including making the book display responsive. and not so ugly.
+* Searching, & further organizational tools.
+* Improved cover image storage, and acquisition.
 
 ## Future Goals
 * HTML Frontend for file transfers
