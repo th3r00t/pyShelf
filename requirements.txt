@@ -11,6 +11,6 @@ websockets
 pre-commit
 isort
 django
-xsendfile
 toml
 uwsgi
+django-debug-toolbar
