@@ -1,5 +1,5 @@
+import xsendfile
 from django.shortcuts import render
-from xsendfile import XSendfileApplication
 
 from .models import Books
 
@@ -8,8 +8,9 @@ def index(request):
     return render(request, "index.html", {"Books": Books.objects.all()})
 
 
-def download(request):
-    return XSendfileApplication(file_name)
+def download(request, pk):
+    _fp = Books.objects.all().filter(pk=pk)[0].file_name
+    return xsendfile.XSendfile('"' + _fp + '"')
 
 
 def book_set(_set):

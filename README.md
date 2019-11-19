@@ -23,13 +23,21 @@ Any changes to source should be documented and have run doxygen doxygen.conf pri
 pyShelf follows ['sem-ver'](https://semver.org) standards. Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
 
 ## Configuration
-All configuration is done in config.py.
-The only currently required configuration is to set book_path to the location of your books.
+All pyShelf configuration is done in config.py.
+
+###Nginx configuration
+I have included a default nginx config file pyshelf_nginx.conf. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
+
+###uwsgi configuration
+Inside uwsgi.ini you should make changes to reflect your install directory, and the port you wish uwsgi to listen on. Alternativly you can make the requisite changes to listen on a socket instead. This change would also require a change to the pyshelf_nginx.conf file as well.
+
+###pyShelf configuration
+User configuration is contained within config.json in the project root. The only currently required configuration is to set book_path to the location of your books.
 
 ## Current Features
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database.
 
-Django is being implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this.
+Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, however due to how file downloads are being handled some changes to the program itself would be required as the current itteration relies on Xsendfile.
 
 ## Future Goals
 * HTML Frontend for file transfers

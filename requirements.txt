@@ -12,3 +12,5 @@ pre-commit
 isort
 django
 xsendfile
+toml
+uwsgi

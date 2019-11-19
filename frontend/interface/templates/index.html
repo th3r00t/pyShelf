@@ -23,7 +23,7 @@
                 <div class="shelf_contents" >
                     <ul id="book_shelf">
                     {% for book in Books %}
-                    <a href="{% url 'download' book.file_name %}" class="book_link"><li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb"/> </li></a>
+                    <a href="{% url 'download' pk=book.pk %}" class="book_link"><li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb"/> </li></a>
                     {% endfor %}
                     </ul>
                 </div>
