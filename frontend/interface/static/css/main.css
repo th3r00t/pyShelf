@@ -20,7 +20,7 @@ body{
 }
 .app_hdr{
     grid-area: title;
-    margin: 0px;
+    margin: 0;
     font-family: 'Audiowide', cursive;
     font-size: 25px;
     text-align: start;
@@ -30,7 +30,7 @@ body{
 }
 .app_subhdr{
     grid-area: slogan;
-    margin: 0px;
+    margin: 0;
     font-family: 'Audiowide', cursive;
     font-size: 18px;
     text-shadow: #4c5c68 -5px 3px 5px;
@@ -39,16 +39,18 @@ body{
 .app_body{
     display: grid;
     grid-area: app_body;
-    grid-template-columns: 20% 80%;
-    grid-template-areas: "left_col  shelf";
+    grid-template-rows: 5vh auto;
+    grid-template-areas:    "nav_top"
+                            "shelf";
+    justify-items: center;
 }
 .app_footer{
     grid-area: app_footer;
     position: fixed;
     bottom: 0px;
 }
-.left_col{
-    grid-area: left_col
+.nav_top{
+    grid-area: nav_top
 }
 .shelf{
     grid-area: shelf;
@@ -80,14 +82,14 @@ body{
 }
 .shelf_item{
     background-color: burlywood;
-    margin: 10px 0px;
-    max-width: 300px;
-    max-height: 375px;
+    margin: 0 10px 10px 0;
+    max-width: 23vw;
+    max-height: 75vh;
     text-align: center;
 }
 .book_thumb{
-    width: 300px;
-    height: 375px;
+    width: 23vw;
+    height: 75vh;
 }
 a.book_link{
     text-decoration: none;
