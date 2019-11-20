@@ -1,6 +1,11 @@
 # pyShelf 0.1.0
-A simple terminal based ebook server
-
+<p align=center>
+ A simple terminal based ebook server
+ </p>
+ <br />
+ <p>
+![alt text](https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png)
+</p>
 Frustrated with Calibre being my only option for hosting my eBook collection, I have decided to spin up my own.
 
 Calibre is a great organizational tool for your books, however not having a terminal based option for running and maintaining
