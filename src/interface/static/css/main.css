@@ -1,0 +1,97 @@
+body{
+    margin: 0px 10px 0px 10px;
+    padding: 0px;
+    background-color: #DCDCDD;
+    color: #46494C
+}
+#app{
+    display: grid;
+    grid-template-areas: "app_header"
+                         "app_body"
+                         "app_footer";
+    grid-template-rows: 5vh 90vh 5vh;
+    max-height: 100%
+}
+.app_header{
+    grid-area: app_header;
+    display: grid;
+    grid-template-areas: "title slogan";
+    align-items: center;
+}
+.app_hdr{
+    grid-area: title;
+    margin: 0;
+    font-family: 'Audiowide', cursive;
+    font-size: 25px;
+    text-align: start;
+}
+.shadow{
+    text-shadow: #4c5c68 -5px 3px 5px;
+}
+.app_subhdr{
+    grid-area: slogan;
+    margin: 0;
+    font-family: 'Audiowide', cursive;
+    font-size: 18px;
+    text-shadow: #4c5c68 -5px 3px 5px;
+    text-align: end;
+}
+.app_body{
+    display: grid;
+    grid-area: app_body;
+    grid-template-rows: 5vh auto;
+    grid-template-areas:    "nav_top"
+                            "shelf";
+    justify-items: center;
+}
+.app_footer{
+    grid-area: app_footer;
+    position: fixed;
+    bottom: 0px;
+}
+.nav_top{
+    grid-area: nav_top
+}
+.shelf{
+    grid-area: shelf;
+    margin: 0px 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.shelf_contents{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.right_col{
+    grid-area: right_col
+}
+.python_logo{
+
+}
+#python_logo{
+    height: 50px;
+    width: 91px;
+}
+#book_shelf{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    list-style-type: none;
+    font-family: 'Audiowide', cursive;
+    font-size: 25px;
+    padding: 0;
+}
+.shelf_item{
+    background-color: burlywood;
+    margin: 0 10px 10px 0;
+    max-width: 23vw;
+    max-height: 75vh;
+    text-align: center;
+}
+.book_thumb{
+    width: 23vw;
+    height: 75vh;
+}
+a.book_link{
+    text-decoration: none;
+}
