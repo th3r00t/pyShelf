@@ -11,7 +11,7 @@ from .config import Config
 class Storage:
     """Contains all methods for system storage"""
 
-    def __init__(self, db_pointer=None):
+    def __init__(self, db_pointer):
         # Optionaly pass db_file to specify another db or for testing
         if db_pointer is None:
             db_pointer = Config().catalogue_db

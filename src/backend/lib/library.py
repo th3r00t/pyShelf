@@ -1,11 +1,11 @@
 #!/usr/bin/python
 import json
 import os
+import pathlib
 import re
 import zipfile
 
 from bs4 import BeautifulSoup
-from PIL import Image
 
 from .api_hooks import DuckDuckGo
 from .config import Config
@@ -29,20 +29,21 @@ class Catalogue:
         self.book_shelf = config.book_shelf
         self._book_list_expanded = None
         self.books = None
+        self.db_pointer = config.catalogue_db
 
     def scan_folder(self, _path=None):
         if _path is not None:
             folder = _path
-        elif os.path.isdir(self.root_dir + "/" + self.book_folder):
-            folder = self.root_dir + "/" + self.book_folder
+        elif os.path.isdir(str(self.root_dir) + "/" + self.book_folder):
+            folder = str(self.root_dir) + "/" + self.book_folder
         else:
             folder = self.book_folder
         for f in os.listdir(folder):
             _path = os.path.abspath(folder + "/" + f)
-            _is_dir = os.path.isdir(_path.strip() + "/")
-            if _is_dir:
+            if os.path.isdir(_path.strip() + "/"):
                 self.file_list.append(self.scan_folder(_path))
-            self.file_list.append(_path)
+            else:
+                self.file_list.append(_path)
 
     def filter_books(self):
         """
@@ -125,7 +126,7 @@ class Catalogue:
             return False
 
     def compare_shelf_current(self):
-        db = Storage()
+        db = Storage(self.db_pointer)
         stored = db.book_paths_list()
         closed = db.close()
         if self.books is None:
@@ -141,7 +142,7 @@ class Catalogue:
 
     def import_books(self, list=None):
         book_list = self.compare_shelf_current()
-        db = Storage()
+        db = Storage(self.db_pointer)
         for book in book_list:
             book = self.process_book(book)
             extracted = self.extract_metadata(book)

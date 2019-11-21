@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import os
+import time
 
 from .config import Config
 from .storage import Storage
@@ -12,11 +13,16 @@ class InitFiles:
     """First run file creation operations"""
 
     def __init__(self, file_array):
-        print("Begining creation of file structure")
+        print("Checking for program files")
         for _pointer in file_array:
+            time.sleep(1)
             if not os.path.isfile(_pointer):
                 self.CreateFile(_pointer)
-        print("Concluded file creation")
+                print("%s created" % _pointer)
+            else:
+                print("%s present" % _pointer)
+        time.sleep(1)
+        print("File check complete.")
 
     def CreateFile(self, _pointer):
         """Create the file"""
