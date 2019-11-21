@@ -1,7 +1,7 @@
 # pyShelf 0.1.0
 
 <p align="center"><b>A simple terminal based ebook server</b></p>
-<script id="asciicast-jbvokXG3erGqnnT6CW1J0rAI2" src="https://asciinema.org/a/jbvokXG3erGqnnT6CW1J0rAI2.js" async></script>
+<a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
 <img src="https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png" alt="Server Frontend" align="center" />
 
 Frustrated with Calibre being my only option for hosting my eBook collection, I have decided to spin up my own.
