@@ -1,6 +1,9 @@
+import json
 import os
+from base64 import b64decode, b64encode
 
 from django.db import models
+from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render
 from django.utils.text import slugify
 
@@ -8,17 +11,61 @@ from .models import Books
 
 
 def index(request):
-    return render(request, "index.html", {"Books": book_set()})
+    _set = 1
+    return render(
+        request, "index.html", {"Books": book_set(20, _set), "Set": str(_set)}
+    )
     # return render(request, "index.html", {"Books": Books.objects.all()})
+
+
+def next_page(request):
+    try:
+        _set = int(request.GET["bookset"]) + 1
+    except Exception:
+        _set = 1
+    return HttpResponse(book_set_as_dict(20, _set), mimetype="application/json")
+
+
+def prev_page(request):
+    try:
+        _set = request.GET["bookset"] - 1
+        if _set < 0:
+            _set = 0
+    except Exception:
+        _set = 1
+    return render(
+        request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
+    )
 
 
 def book_set(_limit=None, _set=1):
     if _limit is None:
         _limit = 20  # TODO default from user choice
-    _set_max = _set * _limit
+    _set_max = int(_set) * _limit
     _set_min = _set_max - _limit
     books = Books.objects.all()[_set_min:_set_max]
     return books
+
+
+def book_set_as_dict(_limit=None, _set=1):
+    breakpoint()
+    if _limit is None:
+        _limit = 20
+    _set_max = int(_set) * _limit
+    _set_min = _set_max - _limit
+    _set = {}
+    for book in Books.objects.all()[_set_min:_set_max]:
+        _set[book.title] = {
+            "title": book.title,
+            "author": book.author,
+            "categories": book.categories,
+            "cover": b64decode(book.cover),
+            "pages": book.pages,
+            "progress": book.progress,
+            "file_name": book.file_name,
+            "pk": book.pk,
+        }
+    return json.dumps(_set)
 
 
 def download(request, pk):

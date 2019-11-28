@@ -9,6 +9,8 @@
 <title>pyShelf E-Book Server</title>
 <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Gruppo&display=swap" rel="stylesheet">
+<script src="/static/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="app">
@@ -17,28 +19,27 @@
                         <h1 class="app_hdr shadow">pyShelf</h1>
                 </div>
                 <div class="app_slogan">
-                        <h2 class="app_slogan shadow">""An elegant tool... for a more civilized age."</h3>
+                        <h3 class="app_slogan shadow">""An elegant tool... for a more civilized age."</h3>
                 </div>
                 <div class="app_subhdr">
                         <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
                         <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
                 </div>
-
-            </h2>
         </div>
         <div class="app_body" >
             <div class="nav_top">
                 <div class="navbar top">
-                        <div style="grid-area:left">
-                        <input class="nav_button" type="submit" value="<< Prev Page">
-                        </div>
-                        <div style="grid-area:center">
+                    <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
+                    <div style="grid-area:left">
+                        <input class="nav_button prev_page" type="submit" value="<< Prev Page">
+                    </div>
+                    <div style="grid-area:center">
                         <input class="nav_search" type="text" size="15">
                         <input class="nav_button" type="submit" value="Search">
-                        </div>
-                        <div style="grid-area:right">
-                        <input class="nav_button" type="submit" value="Next Page >>">
-                        </div>
+                    </div>
+                    <div style="grid-area:right">
+                        <input class="nav_button next_page" type="submit" value="Next Page >>">
+                    </div>
                 </div>
             </div>
             <div class="shelf">
