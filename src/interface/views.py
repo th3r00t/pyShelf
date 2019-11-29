@@ -4,7 +4,7 @@ from base64 import b64decode, b64encode
 
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, render, render_to_response
 from django.utils.text import slugify
 
 from .models import Books
@@ -15,24 +15,27 @@ def index(request):
     return render(
         request, "index.html", {"Books": book_set(20, _set), "Set": str(_set)}
     )
-    # return render(request, "index.html", {"Books": Books.objects.all()})
 
 
-def next_page(request):
+def next_page(request, bookset):
     try:
-        _set = int(request.GET["bookset"]) + 1
+        _set = int(bookset) + 1
     except Exception:
         _set = 1
-    return HttpResponse(book_set_as_dict(20, _set), mimetype="application/json")
+    return render(
+        request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
+    )
 
 
-def prev_page(request):
-    try:
-        _set = request.GET["bookset"] - 1
-        if _set < 0:
-            _set = 0
-    except Exception:
+def prev_page(request, bookset):
+    _set = int(bookset)
+    if _set <= 1:
         _set = 1
+    else:
+        try:
+            _set = int(bookset) - 1
+        except Exception:
+            _set = 1
     return render(
         request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
     )
@@ -59,7 +62,7 @@ def book_set_as_dict(_limit=None, _set=1):
             "title": book.title,
             "author": book.author,
             "categories": book.categories,
-            "cover": b64decode(book.cover),
+            "cover": book.cover,
             "pages": book.pages,
             "progress": book.progress,
             "file_name": book.file_name,

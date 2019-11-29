@@ -31,14 +31,14 @@
                 <div class="navbar top">
                     <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
                     <div style="grid-area:left">
-                        <input class="nav_button prev_page" type="submit" value="<< Prev Page">
+                        <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/prev_page/{{ Set }}'">
                     </div>
                     <div style="grid-area:center">
                         <input class="nav_search" type="text" size="15">
                         <input class="nav_button" type="submit" value="Search">
                     </div>
                     <div style="grid-area:right">
-                        <input class="nav_button next_page" type="submit" value="Next Page >>">
+                            <input class="nav_button next_page" type="button" value="Next Page >>" onclick="window.location.href = '/next_page/{{ Set }}'">
                     </div>
                 </div>
             </div>

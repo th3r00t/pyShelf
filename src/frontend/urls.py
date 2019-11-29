@@ -22,8 +22,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
     path("download/<pk>", views.download, name="download"),
-    path("prev_page", views.prev_page, name="prev_page"),
-    path("next_page", views.next_page, name="next_page"),
+    path("prev_page/<bookset>", views.prev_page, name="prev_page"),
+    path("next_page/<bookset>", views.next_page, name="next_page"),
 ]
 if settings.DEBUG:
     import debug_toolbar
