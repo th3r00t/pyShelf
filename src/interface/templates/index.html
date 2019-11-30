@@ -15,33 +15,31 @@
 <body>
     <div id="app">
         <div class="app_header" >
-                <div class="app_hdr">
-                        <h1 class="app_hdr shadow">pyShelf</h1>
-                </div>
-                <div class="app_slogan">
-                        <h3 class="app_slogan shadow">""An elegant tool... for a more civilized age."</h3>
-                </div>
-                <div class="app_subhdr">
-                        <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
-                        <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
-                </div>
+        <div class="app_hdr">
+                <h1 class="app_hdr shadow">pyShelf</h1>
+        </div>
+        <div class="app_slogan">
+                <h3 class="app_slogan shadow">""An elegant tool... for a more civilized age."</h3>
+        </div>
+        <div class="app_subhdr">
+                <!--
+                <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
+                <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
+                -->
+                <a href="https://github.com/th3r00t/pyShelf" class="nav_link" alt="Git Hub Link">GitHub.com/th3r00t/pyShelf</a>
+        </div>
+            <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
+            <div class="nav_left_top">
+                <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/prev_page/{{ Set }}'">
+            </div>
+            <div class="nav_center_top">
+                <input class="nav_search" type="text" size="25"><input class="nav_button" type="submit" value="Search">
+            </div>
+            <div class="nav_right_top">
+                    <input class="nav_button next_page" type="button" value="Next Page >>" onclick="window.location.href = '/next_page/{{ Set }}'">
+            </div>
         </div>
         <div class="app_body" >
-            <div class="nav_top">
-                <div class="navbar top">
-                    <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
-                    <div style="grid-area:left">
-                        <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/prev_page/{{ Set }}'">
-                    </div>
-                    <div style="grid-area:center">
-                        <input class="nav_search" type="text" size="15">
-                        <input class="nav_button" type="submit" value="Search">
-                    </div>
-                    <div style="grid-area:right">
-                            <input class="nav_button next_page" type="button" value="Next Page >>" onclick="window.location.href = '/next_page/{{ Set }}'">
-                    </div>
-                </div>
-            </div>
             <div class="shelf">
                 <div class="shelf_contents" >
                     <ul id="book_shelf">

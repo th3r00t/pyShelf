@@ -21,14 +21,32 @@ body{
     grid-area: app_header;
     margin: 0px;
     display: grid;
-    grid-template-areas: "title slogan subhdr";
+    grid-template-areas:
+    "title slogan subhdr"
+    "nav_left_top nav_center_top nav_right_top";
     align-items: center;
     background-color: #2b2b2b;
-    padding: 0px;
+    padding: 4px 0px 4px;
+    grid-auto-columns: auto;
+}
+.nav_left_top{
+        grid-area: nav_left_top;
+        display: flex;
+        justify-content: left;
+}
+.nav_center_top{
+        grid-area: nav_center_top;
+        display: flex;
+        justify-content: center;
+}
+.nav_right_top{
+        grid-area: nav_right_top;
+        display: flex;
+        justify-content: right;
 }
 .app_hdr{
     grid-area: title;
-    margin: 0;
+    margin: 0px 0px 5px 0px;
     font-family: 'Gruppo', cursive;
     font-size: 36px;
     text-align: start;
@@ -55,30 +73,38 @@ body{
     display: grid;
     grid-area: app_body;
     grid-template-rows: auto;
-    grid-template-areas:    "nav_top"
-                            "shelf";
+    grid-template-areas: "shelf";
     justify-items: center;
     overflow: scroll;
     background-color: dimgray;
 }
 .app_footer{
-    grid-area: app_footer;
     position: fixed;
     bottom: 0px;
     min-width: 100%;
     background-color: #2b2b2b;
+    margin: 0px;
 }
 .nav_top{
     grid-area: nav_top;
     display: grid;
     grid-template-areas: "left center right";
-    grid-template-rows: 1vw auto 1vw;
+    grid-template-columns: auto auto auto;
 }
 .navbar{
         list-style-type: none;
-        display: inline-flex;
-        align-items: first baseline;
-        margin: 5px 0px;
+}
+.left_align{
+display: flex;
+justify-content: left;
+}
+.center_align{
+display: flex;
+justify-content:center;
+}
+.right_align{
+display: flex;
+justify-content: right;
 }
 .top{
 
@@ -112,7 +138,7 @@ body{
 .shelf{
     grid-area: shelf;
     margin: 0px 0px;
-    padding: 0px;
+    padding: 10px 0px 10px;
     list-style-type: none;
 }
 .shelf_contents{
@@ -152,4 +178,8 @@ body{
 }
 a.book_link{
     text-decoration: none;
+}
+a.nav_link{
+        text-decoration: none;
+        color: #fff;
 }
