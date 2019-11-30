@@ -14,33 +14,7 @@ Title=pyShelf Open Source Ebook Server
 main="pyShelf Open Source Ebook Server","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x70387e,,,,,,,,0
 
 [FILES]
-classapp_1_1config_1_1Config.html
-classapp_1_1config_1_1Config-members.html
-classapp_1_1lib_1_1api__hooks_1_1DuckDuckGo.html
-classapp_1_1lib_1_1api__hooks_1_1DuckDuckGo-members.html
-classapp_1_1lib_1_1display_1_1Frontend.html
-classapp_1_1lib_1_1display_1_1Frontend-members.html
-classapp_1_1lib_1_1library_1_1Catalogue.html
-classapp_1_1lib_1_1library_1_1Catalogue-members.html
-classapp_1_1lib_1_1pyShelf_1_1BookDisplay.html
-classapp_1_1lib_1_1pyShelf_1_1BookDisplay-members.html
-classapp_1_1lib_1_1pyShelf_1_1BookServer.html
-classapp_1_1lib_1_1pyShelf_1_1BookServer-members.html
-classapp_1_1lib_1_1pyShelf_1_1InitFiles.html
-classapp_1_1lib_1_1pyShelf_1_1InitFiles-members.html
-classapp_1_1lib_1_1pyShelf_1_1RequestHandler.html
-classapp_1_1lib_1_1pyShelf_1_1RequestHandler-members.html
-classapp_1_1lib_1_1storage_1_1Storage.html
-classapp_1_1lib_1_1storage_1_1Storage-members.html
-dir_d422163b96683743ed3963d4aac17747.html
-dir_9dc6c7acf21934bbaaf79b41db58c4e7.html
 index.html
-annotated.html
-classes.html
-hierarchy.html
-functions.html
-functions_func.html
-files.html
 tab_a.png
 tab_b.png
 tab_h.png
@@ -54,4 +28,3 @@ open.png
 bdwn.png
 sync_on.png
 sync_off.png
-classapp_1_1lib_1_1pyShelf_1_1RequestHandler.png
