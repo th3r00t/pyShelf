@@ -10,9 +10,8 @@ body{
     grid-template-areas: "app_header"
                          "app_body"
                          "app_footer";
-    grid-template-rows: auto 90vh 5vh;
+    grid-template-rows: auto 84vh auto;
     max-height: 100%;
-    position: relative;
 }
 .clear{
         clear: both;
@@ -65,7 +64,7 @@ body{
 .app_slogan{
         grid-area: slogan;
         margin: 0;
-        fontsize: 18px;
+        font-size: 18px;
         font-family: 'Gruppo', cursive;
         text-align: center;
 }
@@ -75,12 +74,11 @@ body{
     grid-template-rows: auto;
     grid-template-areas: "shelf";
     justify-items: center;
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: dimgray;
 }
 .app_footer{
-    position: fixed;
-    bottom: 0px;
+    grid-area: app_footer;
     min-width: 100%;
     background-color: #2b2b2b;
     margin: 0px;
