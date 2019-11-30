@@ -8,17 +8,43 @@
 <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
 <title>pyShelf E-Book Server</title>
 <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Gruppo&display=swap" rel="stylesheet">
+<script src="/static/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+<script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body>
     <div id="app">
         <div class="app_header" >
-            <h1 class="app_hdr shadow">pyShelf</h1>
-            <h2 class="app_subhdr shadow">Open Source E-book Server</h2>
+        <div class="app_hdr">
+                <h1 class="app_hdr shadow">pyShelf</h1>
+        </div>
+        <div class="app_slogan">
+                <h3 class="app_slogan shadow">""An elegant tool... for a more civilized age."</h3>
+        </div>
+        <div class="app_subhdr">
+                <!-- Place this tag where you want the button to render. -->
+                <a class="github-button" href="https://github.com/th3r00t/pyShelf/fork" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork th3r00t/pyShelf on GitHub">Fork</a>
+                <!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/th3r00t/pyShelf/issues" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue th3r00t/pyShelf on GitHub">Issue</a>
+                <!--
+                <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
+                <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
+                -->
+        </div>
+            <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
+            <div class="nav_left_top">
+                <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/prev_page/{{ Set }}'">
+            </div>
+            <div class="nav_center_top">
+                <input class="nav_search" type="text" size="25" value="-- Not Yet Implemented --"><input class="nav_button" type="submit" value="Search">
+            </div>
+            <div class="nav_right_top">
+                    <input class="nav_button next_page" type="button" value="Next Page >>" onclick="window.location.href = '/next_page/{{ Set }}'">
+            </div>
         </div>
         <div class="app_body" >
-            <div class="nav_top">
-                    <!--Navigation and page controls will go here-->
-            </div>
             <div class="shelf">
                 <div class="shelf_contents" >
                     <ul id="book_shelf">
