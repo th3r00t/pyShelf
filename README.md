@@ -59,7 +59,7 @@ Django has been implemented to power the frontend experience, and web based data
 * Improved cover image storage, and acquisition.
 
 ## Future Goals
-* Support for other book formats (Currently on supporting EPUBS)
+* Support for other book formats (Currently only supporting EPUBS)
 * Terminal Backend for catalogue maintenance
 * Calculate page count from total characters
   * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
