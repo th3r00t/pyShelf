@@ -1,0 +1,61 @@
+.TH "pyShelf.src.interface.migrations.0001_initial.Migration" 3 "Sun Dec 1 2019" "Version 0.2.1" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pyShelf.src.interface.migrations.0001_initial.Migration
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits Migration\&.
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBinitial\fP = True"
+.br
+.ti -1c
+.RI "list \fBdependencies\fP = []"
+.br
+.ti -1c
+.RI "list \fBoperations\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+.SH "Member Data Documentation"
+.PP
+.SS "list pyShelf\&.src\&.interface\&.migrations\&.0001_initial\&.Migration\&.operations\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=  [
+        migrations\&.CreateModel(
+            name="Books",
+            fields=[
+                (
+                    "id",
+                    models\&.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models\&.CharField(max_length=255)),
+                ("author", models\&.CharField(max_length=255, null=True)),
+                ("categories", models\&.CharField(max_length=255, null=True)),
+                ("cover", models\&.BinaryField(editable=True, null=True)),
+                ("pages", models\&.IntegerField(null=True)),
+                ("progress", models\&.IntegerField(null=True)),
+                ("file_name", models\&.CharField(max_length=255)),
+            ],
+            options={"db_table": "books",},
+        ),
+    ]
+.fi
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

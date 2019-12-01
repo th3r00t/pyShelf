@@ -1,0 +1,83 @@
+.TH "pyShelf.src.interface.models.Books" 3 "Sun Dec 1 2019" "Version 0.2.1" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+pyShelf.src.interface.models.Books
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits Model\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBMeta\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__str__\fP (self)"
+.br
+.ti -1c
+.RI "def \fBget_absolute_url\fP (self)"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBtitle\fP = models\&.CharField(max_length=255)"
+.br
+.ti -1c
+.RI "\fBauthor\fP = models\&.CharField(max_length=255, null=True)"
+.br
+.ti -1c
+.RI "\fBcategories\fP = models\&.CharField(max_length=255, null=True)"
+.br
+.ti -1c
+.RI "\fBcover\fP = models\&.BinaryField(null=True, editable=True)"
+.br
+.ti -1c
+.RI "\fBpages\fP = models\&.IntegerField(null=True)"
+.br
+.ti -1c
+.RI "\fBprogress\fP = models\&.IntegerField(null=True)"
+.br
+.ti -1c
+.RI "\fBfile_name\fP = models\&.CharField(max_length=255, null=False)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+
+.PP
+.nf
+pyShelfs Book Database class
+:param title: Book title
+:param author: Author
+:param categories: Categories <-- Not implemented
+:param cover: Cover image BinaryField
+:param pages: # of pages <-- Not implemented
+:param progress: Reader percentage <-- Not implented
+:param file_name: Path to book
+
+.fi
+.PP
+
+.SH "Member Function Documentation"
+.PP
+.SS "def pyShelf\&.src\&.interface\&.models\&.Books\&.get_absolute_url ( self)"
+
+.PP
+.nf
+Returns the url to access a particular instance of MyModelName.
+.fi
+.PP
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.
