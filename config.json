@@ -1,7 +1,9 @@
 {
   "TITLE": "pyShelf E-Book Server",
-  "VERSION": "0.2.0",
+  "VERSION": "0.2.1",
   "BOOKPATH": "books/",
-  "DATABASE": "src/db.sqlite3",
+  "DATABASE": "pyshelf",
+  "USER": "pyshelf",
+  "PASSWORD": "pyshelf",
   "BOOKSHELF": "data/shelf.json"
 }
