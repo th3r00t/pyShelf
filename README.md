@@ -1,4 +1,4 @@
-# pyShelf 0.2.0
+# pyShelf 0.2.1
 
 <p align="center"><b>A simple terminal based ebook server</b></p>
 <a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
@@ -43,6 +43,11 @@ User configuration is contained within config.json in the project root. The only
 Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database. It will also provide you with a web based frontend to view and download your books. Note that this is a very early alpha and lacking the ability to sort and search your collection. This feature is coming however.
 
 Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, albeit not recomended.
+
+## New in 0.2.1
+* UX
+  * Began implementing search functionality
+  * Switched to Postgresql as a default to enable better search functionality within Django, and speed up response time on queries.
 
 ## New in 0.2.0
 * UI
