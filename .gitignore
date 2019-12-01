@@ -9,6 +9,7 @@ fontend/db.sqlite3
 GPATH
 GRTAGS
 GTAGS
+data/shelf.json
 .#*
 frontend/interface/migrations/*
 # Standard Python gitignore below
