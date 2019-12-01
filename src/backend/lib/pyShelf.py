@@ -25,7 +25,9 @@ class InitFiles:
         print("File check complete.")
 
     def CreateFile(self, _pointer):
-        """Create the file"""
+        """
+        Checks if file exists and creates it if not
+        """
         if not os.path.isdir(os.path.split(_pointer)[0]):
             os.mkdir(os.path.split(_pointer)[0])
             f = open(_pointer, "w+")
@@ -52,6 +54,7 @@ class BookDisplay:
 
     def nextPage(self):
         """
+        ## TODO Remove me
         Goto next book page
         :return: new current_page
         """
@@ -60,6 +63,7 @@ class BookDisplay:
 
     def previousPage(self):
         """
+        ## TODO Remove me
         Goto previous book page
         :return: new current_page
         """
@@ -68,8 +72,8 @@ class BookDisplay:
 
     def booksPerPage(self, screen_size):
         """
+        ## TODO Remove me
         Set books per page
-
         :param screen_size: Array containing x,y pixel sizes
         :return: self.books_per_page
         """

@@ -15,9 +15,9 @@ from .storage import Storage
 
 
 class Catalogue:
-    """Decodes and stores book information"""
-
-    """Step One: filter_books"""
+    """
+    Decodes book metadata for storage
+    """
 
     def __init__(self, config):
         self.file_list = []
@@ -33,6 +33,9 @@ class Catalogue:
         self.config = config
 
     def scan_folder(self, _path=None):
+        """
+        Scan folder by _path, allows recurisive scanning
+        """
         if _path is not None:
             folder = _path
         elif os.path.isdir(str(self.root_dir) + "/" + self.book_folder):
@@ -48,11 +51,10 @@ class Catalogue:
 
     def filter_books(self):
         """
-            Scan book folder recursively for epub files
-            filter_books(0) -> Catalogue.books
-            filter_books(1) -> self.books[]
-            :param ret: 0 -> create class property -> dump json
-            :param ret: 1 -> create & return class property
+        Calls scan_folder and filters out book files
+        Proceeds to call process_book
+
+        :returns self._book_list_expanded: json string containing all book metadata
         """
         self.scan_folder()
         regx = re.compile(r"\.epub")
@@ -111,14 +113,23 @@ class Catalogue:
         return book_details
 
     def extract_content(self, book_zip, book):
+        """
+        Opens epub as zip file filters then stores as list any files matching opf_regx
+        """
         content = book_zip.open(list(filter(self.opf_regx.search, book["files"]))[0])
         return content
 
     def extract_cover_html(self, book_zip, book):
+        """
+        Opens epub as zip file filters then stores as list any files matching html_regx
+        """
         cover = book_zip.open(list(filter(self.html_regx.search, book["files"]))[0])
         return cover
 
     def extract_cover_image(self, book_zip, book):
+        """
+        Opens epub as zip file filters then stores as list any files matching cover_regx
+        """
         cover = book_zip.open(list(filter(self.cover_regx.search, book["files"]))[0])
         try:
             cover = book_zip.read(cover.name)
@@ -127,6 +138,9 @@ class Catalogue:
             return False
 
     def compare_shelf_current(self):
+        """
+        Calls storage system, gets list of books stored and compares against files on disk
+        """
         db = Storage(self.db_pointer, self.config)
         stored = db.book_paths_list()
         closed = db.close()
@@ -142,6 +156,11 @@ class Catalogue:
         return c
 
     def import_books(self, list=None):
+        """
+        Main entry point for import operations.
+        Gets a list of new files via compare_shelf_current.
+        Iterates over list and inserts new books into database.
+        """
         book_list = self.compare_shelf_current()
         db = Storage(self.db_pointer, self.config)
         for book in book_list:

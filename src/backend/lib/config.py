@@ -32,6 +32,9 @@ class Config:
         self.auto_scan = True
 
     def open_file(self, _cp):
+        """
+        Opens config.json and reads in configuration options
+        """
         with open(str(_cp), "r") as read_file:
             data = json.load(read_file)
         return data

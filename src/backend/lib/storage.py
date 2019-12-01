@@ -69,6 +69,9 @@ class Storage:
             return False
 
     def book_paths_list(self):
+        """
+        Get file paths from database for comparison to system files
+        """
         q = """SELECT file_name FROM books"""
         x = self.cursor.execute(q)
         try:
@@ -78,6 +81,9 @@ class Storage:
         return x
 
     def commit(self):
+        """
+        Commit database transactions
+        """
         try:
             self.db.commit()
             return True
@@ -85,5 +91,8 @@ class Storage:
             return e
 
     def close(self):
+        """
+        Close database connection
+        """
         self.db.close()
         return True
