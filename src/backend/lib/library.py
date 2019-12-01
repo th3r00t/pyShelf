@@ -30,6 +30,7 @@ class Catalogue:
         self._book_list_expanded = None
         self.books = None
         self.db_pointer = config.catalogue_db
+        self.config = config
 
     def scan_folder(self, _path=None):
         if _path is not None:
@@ -126,7 +127,7 @@ class Catalogue:
             return False
 
     def compare_shelf_current(self):
-        db = Storage(self.db_pointer)
+        db = Storage(self.db_pointer, self.config)
         stored = db.book_paths_list()
         closed = db.close()
         if self.books is None:
@@ -142,7 +143,7 @@ class Catalogue:
 
     def import_books(self, list=None):
         book_list = self.compare_shelf_current()
-        db = Storage(self.db_pointer)
+        db = Storage(self.db_pointer, self.config)
         for book in book_list:
             book = self.process_book(book)
             extracted = self.extract_metadata(book)
