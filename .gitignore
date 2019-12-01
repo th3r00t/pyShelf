@@ -4,7 +4,7 @@ books/*
 *.pyc
 app/content.opf
 .vscode
-app/data/*
+
 fontend/db.sqlite3
 GPATH
 GRTAGS
