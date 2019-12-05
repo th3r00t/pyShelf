@@ -1,4 +1,7 @@
-# pyShelf 0.2.0
+# pyShelf 0.2.1
+## Patch Notes.
+* fixed missing src/interface/models.py. thanks to u/thelastpenguin212
+* Removed un necessary data files from repo
 
 <p align="center"><b>A simple terminal based ebook server</b></p>
 <a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
