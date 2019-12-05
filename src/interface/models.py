@@ -1,3 +1,4 @@
+from django.contrib.postgres.search import SearchVector
 from django.db import models
 
 # Create your models here.
@@ -32,3 +33,9 @@ class Books(models.Model):
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
         return reverse("model-detail-view", args=[str(self.id)])
+
+    def generic_search(self, query):
+        results = Books.objects.annotate(
+            search=SearchVector("author", "title", "file_name")
+        ).filter(str(query))
+        return results
