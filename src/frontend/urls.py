@@ -24,6 +24,7 @@ urlpatterns = [
     path("download/<pk>", views.download, name="download"),
     path("prev_page/<bookset>", views.prev_page, name="prev_page"),
     path("next_page/<bookset>", views.next_page, name="next_page"),
+    path("search/<query>", views.search, name="search"),
 ]
 if settings.DEBUG:
     import debug_toolbar

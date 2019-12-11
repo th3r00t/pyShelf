@@ -1,4 +1,5 @@
 # pyShelf 0.2.1
+
 ## Patch Notes.
 * fixed missing src/interface/models.py. thanks to u/thelastpenguin212
 * Removed un necessary data files from repo
@@ -47,6 +48,11 @@ Currently pyShelf will recursively scan your collection, extract and store some 
 
 Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, albeit not recomended.
 
+## New in 0.2.1
+* UX
+  * Began implementing search functionality
+  * Switched to Postgresql as a default to enable better search functionality within Django, and speed up response time on queries.
+
 ## New in 0.2.0
 * UI
   * The UI has moved closer to what I have envisioned for this project, however more features and changes will be coming as needed to both the form and function.
@@ -66,6 +72,4 @@ Django has been implemented to power the frontend experience, and web based data
 * Terminal Backend for catalogue maintenance
 * Calculate page count from total characters
   * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
-* Move towards sqlAlchemy and enable user to specify desired storage system
-  * (Thanks to Sarcism) over on r/opensource for this idea!
-* Android app for easy integration with your catalogue
+* Reader for easy integration with your catalogue

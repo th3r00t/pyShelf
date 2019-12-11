@@ -20,15 +20,21 @@ class Config:
         self.TITLE = self.TITLE + " ver " + self.VERSION
         self.book_shelf = _data["BOOKSHELF"]
         # self.catalogue_db = "data/catalogue.db"
-        self.catalogue_db = str(root) + "/" + _data["DATABASE"]
+        # self.catalogue_db = str(root) + "/" + _data["DATABASE"]
+        self.catalogue_db = _data["DATABASE"]
+        self.user = _data["USER"]
+        self.password = _data["PASSWORD"]
         self.file_array = [
             self.book_shelf,
-            self.catalogue_db,
+            # self.catalogue_db,
         ]
         self.root = root
         self.auto_scan = True
 
     def open_file(self, _cp):
+        """
+        Opens config.json and reads in configuration options
+        """
         with open(str(_cp), "r") as read_file:
             data = json.load(read_file)
         return data

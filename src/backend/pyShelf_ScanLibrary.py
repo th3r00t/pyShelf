@@ -11,6 +11,10 @@ sys.path.append(os.path.abspath("."))
 
 
 def execute_scan(root):
+    """
+    Main scan execution
+    :param root: Project root. Required to properly execute program. Sends to configuration.
+    """
     _t1 = time.time()
     config = Config(root)  # Get configuration settings
     InitFiles(config.file_array)  # Initialize file system

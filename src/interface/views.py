@@ -41,6 +41,18 @@ def prev_page(request, bookset):
     )
 
 
+def search(request, query=None):
+    breakpoint()
+    if query == None:
+        return False
+    else:
+        try:
+            _r = Books().generic_search(query)
+            return _r
+        except Exception as e:
+            return e
+
+
 def book_set(_limit=None, _set=1):
     if _limit is None:
         _limit = 20  # TODO default from user choice

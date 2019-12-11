@@ -4,13 +4,14 @@ books/*
 *.pyc
 app/content.opf
 .vscode
-app/data/*
 fontend/db.sqlite3
 GPATH
 GRTAGS
 GTAGS
+data/shelf.json
 .#*
 frontend/interface/migrations/*
+src/backend/data/*.json
 # Standard Python gitignore below
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -122,3 +123,4 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/python
+0
