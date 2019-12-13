@@ -44,11 +44,8 @@ def prev_page(request, bookset):
 def search(request, query=None):
     if query is None:
         return render(request, "index.html", {"Books": None})
-    try:
-        _r = Books().generic_search(query)
-        return render(request, "index.html", {"Books": _r})
-    except Exception as e:
-        raise
+    _r = Books().generic_search(query)
+    return render(request, "index.html", {"Books": _r})
 
 
 def book_set(_limit=None, _set=1):
