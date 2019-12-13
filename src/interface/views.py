@@ -42,15 +42,13 @@ def prev_page(request, bookset):
 
 
 def search(request, query=None):
-    breakpoint()
-    if query == None:
-        return False
-    else:
-        try:
-            _r = Books().generic_search(query)
-            return _r
-        except Exception as e:
-            return e
+    if query is None:
+        return render(request, "index.html", {"Books": None})
+    try:
+        _r = Books().generic_search(query)
+        return render(request, "index.html", {"Books": _r})
+    except Exception as e:
+        raise
 
 
 def book_set(_limit=None, _set=1):
