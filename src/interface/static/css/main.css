@@ -133,6 +133,11 @@ justify-content: right;
 .search{
 
 }
+.search_details{
+        display: flex;
+        justify-content: center;
+        margin: 0px 0px 5px 0px;
+}
 .shelf{
     grid-area: shelf;
     margin: 0px 0px;
@@ -140,9 +145,6 @@ justify-content: right;
     list-style-type: none;
 }
 .shelf_contents{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
 }
 .right_col{
     grid-area: right_col
@@ -162,10 +164,12 @@ justify-content: right;
     font-size: 25px;
     padding: 0;
     margin: 0px;
+    min-width: 99vw;
 }
 .shelf_item{
+    display: grid;
     background-color: burlywood;
-    margin: 0 10px 10px 0;
+    margin: 0 10px 10px 10px;
     max-width: 23vw;
     max-height: 75vh;
     text-align: center;
