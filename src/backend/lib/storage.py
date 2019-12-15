@@ -2,6 +2,7 @@
 import sqlite3
 
 import psycopg2
+from psycopg2 import Error
 
 from .config import Config
 
@@ -16,20 +17,13 @@ class Storage:
         self.sql = config.catalogue_db
         self.user = config.user
         self.password = config.password
-        self.database()
+        self.db_host = config.db_host
+        self.db_port = config.db_port
+        self.db = psycopg2.connect(
+            database=self.sql, user=self.user, password=self.password, host=self.db_host
+        )
+        self.cursor = self.db.cursor()
         # self.create_tables()
-
-    def database(self):
-        """Create database cursor"""
-        try:
-            # self.db = sqlite3.connect(self.db_file)
-            self.db = psycopg2.connect(database=self.sql, user=self.user)
-            self.cursor = self.db.cursor()
-            return True
-        except Exception as e:
-            print(self.sql)
-            print(e)
-            return False
 
     def create_tables(self):
         """Create table structure"""
@@ -47,22 +41,15 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q_x = (
-            "SELECT title FROM books WHERE EXISTS(SELECT * from books WHERE title = %s)"
-        )
-        q = "INSERT INTO books (title, author, cover, progress, file_name, pages) values (%s, %s, %s, 0, %s, 0)"
+        q = "INSERT INTO books (title, author, cover, progress, file_name, pages) values (%s, %s, %s, 0, %s, 0);"
         try:
             try:
                 cover_image = book[2].data
             except:
                 cover_image = book[2]
-            x = self.cursor.execute(q_x, (book[0],))
-            try:
-                len(x.fetchone()) > 0
-            except Exception:
-                if not book[2]:  # If cover image is missing unset entry
-                    cover_image = None
-                self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
+            if not book[2]:  # If cover image is missing unset entry
+                cover_image = None
+            self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
             return True
         except Exception as e:
             print(e)
@@ -72,11 +59,12 @@ class Storage:
         """
         Get file paths from database for comparison to system files
         """
-        q = """SELECT file_name FROM books"""
-        x = self.cursor.execute(q)
+        q = "SELECT file_name FROM books;"
+        self.cursor.execute(q)
         try:
-            x = x.fetchall()
-        except Exception:
+            x = self.cursor.fetchall()
+        except psycopg2.Error as e:
+            print(e)
             x = []
         return x
 
