@@ -24,6 +24,8 @@ class Config:
         self.catalogue_db = _data["DATABASE"]
         self.user = _data["USER"]
         self.password = _data["PASSWORD"]
+        self.db_host = _data["DB_HOST"]
+        self.db_port = _data["DB_PORT"]
         self.file_array = [
             self.book_shelf,
             # self.catalogue_db,
