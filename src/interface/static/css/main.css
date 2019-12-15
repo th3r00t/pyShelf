@@ -3,14 +3,14 @@ body{
     padding: 0px;
     background-color: #DCDCDD;
     color: #fff;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 #app{
     display: grid;
     grid-template-areas: "app_header"
                          "app_body"
                          "app_footer";
-    grid-template-rows: auto 84vh auto;
+    grid-template-rows: auto auto auto;
     max-height: 100%;
 }
 .clear{
@@ -74,22 +74,38 @@ body{
     grid-template-rows: auto;
     grid-template-areas: "shelf";
     justify-items: center;
-    overflow-y: scroll;
     background-color: dimgray;
 }
 .app_footer{
     grid-area: app_footer;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-areas: "python_badge gplv3_badge contact";
+    grid-template-columns: 1fr 1fr 8fr;
     justify-content: space-between;
     min-width: 100%;
     background-color: #2b2b2b;
     margin: 0px;
+    font-family: Audiowide, cursive;
+    font-size: 15px;
+}
+.web_footer_link{
+        text-decoration: none;
+        color: #a5a3a3;
 }
 .copyright{
-
+        grid-area: gplv3_badge;
+        display: grid;
+        align-content: center;
+        font-family: Audiowide, cursive;
+        font-size: 9px;
+        justify-self: left;
 }
 .footer_contact{
+        grid-area: contact;
+        display: inline-grid;
+        align-content: center;
+        justify-items: right;
+        font-size: 12px;
 
 }
 .nav_top{
@@ -163,7 +179,13 @@ justify-content: right;
     grid-area: right_col
 }
 .python_logo{
+        grid-area: python_badge;
+        display: grid;
+        align-content: center;
 
+}
+p{
+        margin: 0px;
 }
 #python_logo{
     height: 37px;
@@ -189,7 +211,7 @@ justify-content: right;
 }
 .book_thumb{
     width: 23vw;
-    height: 75vh;
+    height: 50vh;
 }
 a.book_link{
     text-decoration: none;
