@@ -24,9 +24,11 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 Just about all the changes in this release were in some way related to implementing the search features.
 There is one new requirement
 * Requirement: PostgreSQL
-        * This is what I believe to be the last infrastructure requirement, users with larger libraries should notice an increase in access speed.
+
+ * This is what I believe to be the last infrastructure requirement, users with larger libraries should notice an increase in access speed.
 * Feature: Searching.
-        * The search feature is now implemented. In its current incarnation you will by default search the author, title, & file_name fields. More defined search options will be available in future releases. Searches are paginated @ 20 results per page.
+
+ * The search feature is now implemented. In its current incarnation you will by default search the author, title, & file_name fields. More defined search options will be available in future releases. Searches are paginated @ 20 results per page.
 * Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS)
 * IRC find us on freenode.net @ #pyshelf
 
