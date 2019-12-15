@@ -12,6 +12,9 @@ class Config:
     _fp = "config.json"
 
     def __init__(self, root):
+        """
+        Initialize main configuration options
+        """
         _cp = pathlib.Path.joinpath(root, self._fp)
         _data = self.open_file(_cp)
         self.book_path = _data["BOOKPATH"]
