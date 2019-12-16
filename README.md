@@ -1,64 +1,68 @@
-# pyShelf 0.2.1
-## Patch Notes.
-* fixed missing src/interface/models.py. thanks to u/thelastpenguin212
-* Removed un necessary data files from repo
+# pyShelf 0.3.0
 
-<p align="center"><b>A simple terminal based ebook server</b></p>
+<p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
+
+Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
+
+## Current Features
+* Recursive Scanning
+* Fast database access
+* Django based frontend
+* Basic seaching via a SearchVector of author, title, & file_name fields.
+
+## Currently Supported Formats
+* epub
+
+## Installation Example
 <a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
+* In addition to the above steps you must now also make the requisite changes in config.json to reflect the connection to your postgresql server
 <img src="https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png" alt="Server Frontend" align="center" />
 
-Frustrated with Calibre being my only option for hosting my eBook collection, I have decided to spin up my own.
+## 0.3.0 Patch Notes.
+### "And now we search."
 
-Calibre is a great organizational tool for your books, however not having a terminal based option for running and maintaining
-a server is cumbersome when running on a headless server.
-Calibre does have a console based server solution, However there is currently no way to create, and manage your library in a headless enviroment.
-
-Thus I am creating pyShelf and I hope to be able to provide all the functionality required to organize and host all your ebooks.
-
-I am open to and hoping for community help in the design and execution of this program.
+Just about all the changes in this release were in some way related to implementing the search features.
+There is one new requirement
+* Requirement: **PostgreSQL**
+*This is what I believe to be the last infrastructure requirement, users with larger libraries should notice an increase in access speed.*
+* Feature: **Searching**
+*The search feature is now implemented. In its current incarnation you will by default search the author, title, & file_name fields. More defined search options will be available in future releases. Searches are paginated @ 20 results per page.*
+* Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS)
+* IRC find us on freenode.net @ #pyshelf
 
 ## Development
 
-pyShelf uses [`pre-commit`](https://pre-commit.com/) to automate some tasks.
-Before developing, run `pre-commit install`.
-See the [documentation](https://pre-commit.com/) for more information.
+* [`pre-commit`](https://pre-commit.com/)
+_Before developing, run `pre-commit install` See the [documentation](https://pre-commit.com/) for more information._
 
-pyShelf uses ['Doxygen'](http://www.doxygen.nl/) for source code documentation.
-Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
+* ['Doxygen'](http://www.doxygen.nl/)
+_Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting._
 
-pyShelf follows ['sem-ver'](https://semver.org) standards. Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
+* ['sem-ver'](https://semver.org)
+_Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly._
 
 ## Configuration
-All pyShelf configuration is done in config.py.
 
-### Nginx configuration
-I have included a default nginx config file pyshelf_nginx.conf. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
+### Nginx
+Included is a default nginx config file {pyshelf_nginx.conf}. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
 
 Further resources for nginx setup may be found @ [This nginx, django, & uwsgi, guide](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
 
-### uwsgi configuration
+### uwsgi
 Inside uwsgi.ini you should make changes to reflect your install directory, and the port you wish uwsgi to listen on. Alternativly you can make the requisite changes to listen on a socket instead. This change would also require a change to the pyshelf_nginx.conf file as well.
 
-### pyShelf configuration
-User configuration is contained within config.json in the project root. The only currently required configuration is to set book_path to the location of your books.
+### pyShelf
+User configuration is contained within config.json in the project root. You must set book_path to the location of your books, and change the database connection details to match your environment.
 
-## Current Features
-Currently pyShelf will recursively scan your collection, extract and store some metadata in the sqlite database. It will also provide you with a web based frontend to view and download your books. Note that this is a very early alpha and lacking the ability to sort and search your collection. This feature is coming however.
+## Misc
+Django has been implemented to power the frontend experience, and web based database maintenance. A properly configured web server is required for hosting the frontend, and a PostgreSQL server for the database, configuration of these servers is outside of the scope of this readme.
 
-Django has been implemented to power the frontend experience, and web based database maintenance. The first steps of which are included in this commit. Also the book database has been switched over to reflect this. A properly configured web server is required for hosting the frontend, configuration of which is outside of the scope of this readme. Running via the Django test server might be possible, albeit not recomended.
-
-## New in 0.2.0
-* UI
-  * The UI has moved closer to what I have envisioned for this project, however more features and changes will be coming as needed to both the form and function.
-* UX
-  * Results have now been limited to 20 per page. Currently this is hardcoded in however in the future it will be user definable.
-  * Previous page & next page buttons have been implemented, and are working.
-
+Running via the Django test server might be possible, albeit not recomended.
 
 ## In Progress
 
-* UI/UX tweaks, including making the book display responsive. and not so ugly.
 * Searching, & further organizational tools.
+* Docker image for those who need it.
 * Improved cover image storage, and acquisition.
 
 ## Future Goals
@@ -66,6 +70,4 @@ Django has been implemented to power the frontend experience, and web based data
 * Terminal Backend for catalogue maintenance
 * Calculate page count from total characters
   * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
-* Move towards sqlAlchemy and enable user to specify desired storage system
-  * (Thanks to Sarcism) over on r/opensource for this idea!
-* Android app for easy integration with your catalogue
+* Reader for easy integration with your catalogue

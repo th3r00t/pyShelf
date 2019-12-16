@@ -11,6 +11,9 @@ from .models import Books
 
 
 def index(request):
+    """
+    Return template index
+    """
     _set = 1
     return render(
         request, "index.html", {"Books": book_set(20, _set), "Set": str(_set)}
@@ -18,6 +21,9 @@ def index(request):
 
 
 def next_page(request, bookset):
+    """
+    Goto next page in bookset
+    """
     try:
         _set = int(bookset) + 1
     except Exception:
@@ -28,6 +34,9 @@ def next_page(request, bookset):
 
 
 def prev_page(request, bookset):
+    """
+    Goto previous page in bookset
+    """
     _set = int(bookset)
     if _set <= 1:
         _set = 1
@@ -41,7 +50,33 @@ def prev_page(request, bookset):
     )
 
 
+def search(request, query=None, _set=1, _limit=None):
+    """
+    Call generic search and return rendered results
+    """
+    _set = int(_set)
+    if query is None:
+        return render(request, "index.html", {"Books": None})
+    if _limit is None:
+        _limit = 20  ## TODO set to user defaults
+    if _set < 1:
+        _set = 1
+    _set_max = int(_set) * _limit
+    _set_min = _set_max - _limit
+    search = Books().generic_search(query)
+    search_len = search.count()
+    _r = search[_set_min:_set_max]
+    return render(
+        request,
+        "search.html",
+        {"Books": _r, "Query": query, "Set": _set, "len_results": search_len},
+    )
+
+
 def book_set(_limit=None, _set=1):
+    """
+    Get books results by set #
+    """
     if _limit is None:
         _limit = 20  # TODO default from user choice
     _set_max = int(_set) * _limit
@@ -72,6 +107,9 @@ def book_set_as_dict(_limit=None, _set=1):
 
 
 def download(request, pk):
+    """
+    Download book by primary key
+    """
     _book = Books.objects.all().filter(pk=pk)[0]
     _fn = hr_name(_book)
     response = HttpResponse(
@@ -82,4 +120,7 @@ def download(request, pk):
 
 
 def hr_name(book):
+    """
+    Nicer file names
+    """
     return "{0}.{1}".format(slugify(book.title), book.file_name.split(".")[1])

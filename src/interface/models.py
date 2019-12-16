@@ -35,7 +35,10 @@ class Books(models.Model):
         return reverse("model-detail-view", args=[str(self.id)])
 
     def generic_search(self, query):
-        results = Books.objects.annotate(
-            search=SearchVector("author", "title", "file_name")
-        ).filter(str(query))
+        try:
+            results = Books.objects.annotate(
+                search=SearchVector("author", "title", "file_name"),
+            ).filter(search=query)
+        except Exception as e:
+            raise
         return results

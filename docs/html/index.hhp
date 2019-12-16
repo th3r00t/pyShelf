@@ -14,7 +14,37 @@ Title=pyShelf Open Source Ebook Server
 main="pyShelf Open Source Ebook Server","index.hhc","index.hhk","index.html","index.html",,,,,0x23520,,0x70387e,,,,,,,,0
 
 [FILES]
+dd/d4a/classpyShelf_1_1src_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html
+dc/deb/classpyShelf_1_1src_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo-members.html
+d7/dc4/classpyShelf_1_1src_1_1backend_1_1lib_1_1config_1_1Config.html
+d1/d06/classpyShelf_1_1src_1_1backend_1_1lib_1_1config_1_1Config-members.html
+d4/d49/classpyShelf_1_1src_1_1backend_1_1lib_1_1library_1_1Catalogue.html
+da/d1e/classpyShelf_1_1src_1_1backend_1_1lib_1_1library_1_1Catalogue-members.html
+d2/dd1/classpyShelf_1_1src_1_1backend_1_1lib_1_1pyShelf_1_1BookDisplay.html
+dd/df7/classpyShelf_1_1src_1_1backend_1_1lib_1_1pyShelf_1_1BookDisplay-members.html
+dd/d7e/classpyShelf_1_1src_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html
+da/de5/classpyShelf_1_1src_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles-members.html
+d2/d53/classpyShelf_1_1src_1_1backend_1_1lib_1_1storage_1_1Storage.html
+dc/d11/classpyShelf_1_1src_1_1backend_1_1lib_1_1storage_1_1Storage-members.html
+df/d16/classpyShelf_1_1src_1_1backend_1_1tests_1_1config__test_1_1TestConfig.html
+dd/df1/classpyShelf_1_1src_1_1backend_1_1tests_1_1config__test_1_1TestConfig-members.html
+d4/d5d/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html
+d7/d7c/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue-members.html
+d7/d46/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html
+d1/d44/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1Test__Config-members.html
+d5/d85/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1TestCatalogue.html
+d5/d74/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1TestCatalogue-members.html
+dir_3f615ade772d23cefe5e20dcb18424a2.html
+dir_1c7294442ce83d360610449d04c9d7fc.html
+dir_68267d1309a1af8e8297ef4c3efbcdba.html
+dir_9020577e2da81c4cf5a5554c26431f94.html
 index.html
+annotated.html
+classes.html
+hierarchy.html
+functions.html
+functions_func.html
+files.html
 tab_a.png
 tab_b.png
 tab_h.png
@@ -28,3 +58,7 @@ open.png
 bdwn.png
 sync_on.png
 sync_off.png
+d7/dc4/classpyShelf_1_1src_1_1backend_1_1lib_1_1config_1_1Config.png
+d4/d49/classpyShelf_1_1src_1_1backend_1_1lib_1_1library_1_1Catalogue.png
+d4/d5d/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.png
+d7/d46/classpyShelf_1_1src_1_1backend_1_1tests_1_1library__test_1_1Test__Config.png
