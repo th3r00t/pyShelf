@@ -12,6 +12,9 @@ class Config:
     _fp = "config.json"
 
     def __init__(self, root):
+        """
+        Initialize main configuration options
+        """
         _cp = pathlib.Path.joinpath(root, self._fp)
         _data = self.open_file(_cp)
         self.book_path = _data["BOOKPATH"]
@@ -24,6 +27,8 @@ class Config:
         self.catalogue_db = _data["DATABASE"]
         self.user = _data["USER"]
         self.password = _data["PASSWORD"]
+        self.db_host = _data["DB_HOST"]
+        self.db_port = _data["DB_PORT"]
         self.file_array = [
             self.book_shelf,
             # self.catalogue_db,

@@ -1,4 +1,4 @@
-.TH "pyShelf.src.backend.lib.storage.Storage" 3 "Sun Dec 1 2019" "Version 0.2.1" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.TH "pyShelf.src.backend.lib.storage.Storage" 3 "Sun Dec 15 2019" "Version 0.3.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -11,9 +11,6 @@ pyShelf.src.backend.lib.storage.Storage
 .in +1c
 .ti -1c
 .RI "def \fB__init__\fP (self, db_pointer, config)"
-.br
-.ti -1c
-.RI "def \fBdatabase\fP (self)"
 .br
 .ti -1c
 .RI "def \fBcreate_tables\fP (self)"
@@ -42,6 +39,12 @@ pyShelf.src.backend.lib.storage.Storage
 .br
 .ti -1c
 .RI "\fBpassword\fP"
+.br
+.ti -1c
+.RI "\fBdb_host\fP"
+.br
+.ti -1c
+.RI "\fBdb_port\fP"
 .br
 .ti -1c
 .RI "\fBdb\fP"
@@ -93,14 +96,6 @@ Commit database transactions
 .PP
 .nf
 Create table structure
-.fi
-.PP
-
-.SS "def pyShelf\&.src\&.backend\&.lib\&.storage\&.Storage\&.database ( self)"
-
-.PP
-.nf
-Create database cursor
 .fi
 .PP
 

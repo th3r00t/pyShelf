@@ -143,7 +143,7 @@ class Catalogue:
         """
         db = Storage(self.db_pointer, self.config)
         stored = db.book_paths_list()
-        closed = db.close()
+        db.close()
         if self.books is None:
             self.filter_books()
         on_disk, in_storage = [], []
