@@ -33,14 +33,13 @@ There is one new requirement
 ## Development
 
 * [`pre-commit`](https://pre-commit.com/)
-        * Before developing, run `pre-commit install`.
-        * See the [documentation](https://pre-commit.com/) for more information.
+_Before developing, run `pre-commit install` See the [documentation](https://pre-commit.com/) for more information._
 
 * ['Doxygen'](http://www.doxygen.nl/)
-        * Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
+_Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting._
 
 * ['sem-ver'](https://semver.org)
-        * Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
+_Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly._
 
 ## Configuration
 
