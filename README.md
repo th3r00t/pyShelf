@@ -2,6 +2,8 @@
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D51ALZH)
+
 Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
 
 ## Current Features
