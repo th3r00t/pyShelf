@@ -1,6 +1,7 @@
 ## Getting Help With **pyShelf**
 
 If you have issues during initial setup please make sure you have a working Web Server (the pyShelf team recommends [NGINX](https://nginx.com), and that you have correctly setup your webserver to forward cgi requests to [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/Download.html). Additionaly uWSGI must be setup to serve the application. A sample NGINX config (**pyshelf_nginx.conf**), and (**uwsgi.ini**) are included in the project root.
+**<p align=center>Ensure your Webserver has appropriate access to your install directory!</p>**
 
 ### pyshelf_nginx.conf
 ```
