@@ -11,7 +11,7 @@ upstream django {
     server 127.0.0.1:8001; # for a web port socket (we'll use this first)
 }
 ```
-* Set the **server** port, this must match the socket decleration in your uwsgi config **uwsgi.ini** by default.
+* Set `server 127.0.0.1:8001`, this must match the socket decleration in your uwsgi config **uwsgi.ini**.
 ```
 # configuration of the server
 server {
@@ -24,8 +24,8 @@ server {
     # max upload size
     client_max_body_size 75M;   # adjust to taste
 ```
-* Set **listen** to the port you want to serve the frontend on
-* Set **server_name** to the ip address, or FQDN of your server
+* Set `listen   8000;`  to the port you want to serve the frontend on
+* Set `server_name 127.0.0.1;` to the ip address, or FQDN of your server
 ```
     # Django media
     location /media  {
@@ -69,7 +69,7 @@ socket=127.0.0.1:8001
 Now you may restart your webserver to apply the changes, and then either run `uwsgi -i uwsgi.ini` fron the project root, or restart your uwsgi service.
 
 ### Import your books
-* Run ./importBooks in your project root
+* Run `./importBooks` in your project root
 
 ### Access pyShelf's frontend
 * Browse to `http://localhost:8000` _substitute ip:port as defined in your webserver_ and you should be greeted by the pyShelf frontend.
