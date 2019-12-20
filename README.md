@@ -20,6 +20,9 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 * In addition to the above steps you must now also make the requisite changes in config.json to reflect the connection to your postgresql server
 <img src="https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png" alt="Server Frontend" align="center" />
 
+## Further Installation & Support Information
+* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
+
 ## 0.3.0 Patch Notes.
 ### "And now we search."
 
