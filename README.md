@@ -2,6 +2,8 @@
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D51ALZH)
+
 Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
 
 ## Current Features
@@ -17,6 +19,9 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 <a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
 * In addition to the above steps you must now also make the requisite changes in config.json to reflect the connection to your postgresql server
 <img src="https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png" alt="Server Frontend" align="center" />
+
+## Further Installation & Support Information
+* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ## 0.3.0 Patch Notes.
 ### "And now we search."
