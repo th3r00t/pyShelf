@@ -7,5 +7,6 @@
   "DATABASE": "pyshelf",
   "USER": "pyshelf",
   "PASSWORD": "pyshelf",
-  "BOOKSHELF": "data/shelf.json"
+  "BOOKSHELF": "data/shelf.json",
+  "ALLOWED_HOSTS": "*"
 }

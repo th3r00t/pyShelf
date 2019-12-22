@@ -36,6 +36,10 @@ class Config:
         self.root = root
         self.auto_scan = True
 
+        self.allowed_hosts = _data["ALLOWED_HOSTS"]
+        self.db_user = _data["USER"]
+        self.db_pass = _data["PASSWORD"]
+
     def open_file(self, _cp):
         """
         Opens config.json and reads in configuration options
