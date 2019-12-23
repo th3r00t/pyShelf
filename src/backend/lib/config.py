@@ -22,8 +22,6 @@ class Config:
         self.VERSION = _data["VERSION"]
         self.TITLE = self.TITLE + " ver " + self.VERSION
         self.book_shelf = _data["BOOKSHELF"]
-        # self.catalogue_db = "data/catalogue.db"
-        # self.catalogue_db = str(root) + "/" + _data["DATABASE"]
         self.catalogue_db = _data["DATABASE"]
         self.user = _data["USER"]
         self.password = _data["PASSWORD"]
@@ -31,7 +29,6 @@ class Config:
         self.db_port = _data["DB_PORT"]
         self.file_array = [
             self.book_shelf,
-            # self.catalogue_db,
         ]
         self.root = root
         self.auto_scan = True

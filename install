@@ -1,0 +1,28 @@
+#!/usr/bin/python
+import json
+import pathlib
+
+from src.backend.lib.config import Config
+from src.backend.lib.display import TerminalDisplay
+
+PRG_PATH = pathlib.Path.cwd()
+LIB_PATH = pathlib.Path.joinpath(PRG_PATH, "src", "backend", "lib")
+# sys.path.insert(0, PRG_PATH)
+
+TerminalDisplay().installer()
+
+
+class Configuration:
+    def __init__(self):
+        _cp = pathlib.Path("config.json")
+        _data = self.open_file()
+
+    def open_file(self):
+        with open(str(self._cp), "r") as read_file:
+            data = json.load(read_file)
+        return data
+
+    def write_file(self, data):
+        with open(str(self._cp), "rw") as write_file:
+            json.dumps(write_file)
+        return True
