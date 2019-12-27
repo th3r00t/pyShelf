@@ -1,9 +1,5 @@
 from __future__ import unicode_literals
-
 import os
-import sys
-from pprint import pprint
-
 from prompt_toolkit import prompt as prm
 
 
@@ -11,6 +7,8 @@ class TerminalDisplay:
     def __init__(self):
         self.term = True
         self.w, self.y = os.get_terminal_size()[0], os.get_terminal_size()[1]
+        self.home = os.environ["HOME"]
+        self.user = os.environ["USER"]
 
     def screen(self):
         return self.term
@@ -18,38 +16,42 @@ class TerminalDisplay:
     def installer(self):
         questions = [
             {
-                "message": "Input the absolute path to your ebooks\nEg. /home/{user}/Books > ",
+                "message": "Input the absolute path to your ebooks\nEnter for default \"~/Books\" > ",
                 "options": "",
                 "name": "BOOKPATH",
-                "answer": "",
+                "answer": None,
+                "default": self.home+"/Books"
             },
             {
-                "message": "Input your PostgreSQL server ip\nEg. localhost > ",
+                "message": "Input your PostgreSQL server ip\nEnter for default \"localhost\" > ",
                 "options": "localhost",
                 "name": "DB_HOST",
-                "answer": "",
+                "answer": None,
+                "default": "localhost"
             },
             {
-                "message": "Input your PostgreSQL server port\nEg. 5432 > ",
+                "message": "Input your PostgreSQL server port\nEnter for default \"5432\" > ",
                 "options": "5432",
                 "name": "DB_PORT",
-                "answer": "",
+                "answer": None,
+                "default": "5432"
             },
             {
-                "message": "Input your PostgreSQL user name\nEg. pyshelf > ",
+                "message": "Input your PostgreSQL user name\nEnter for default \"pyshelf\" > ",
                 "options": "pyshelf",
                 "name": "USER",
-                "answer": "",
+                "answer": None,
+                "default": "pyshelf"
             },
             {
-                "message": "Input your PostgreSQL password\neg. pyshelf > ",
+                "message": "Input your PostgreSQL password\nEnter for default \"pyshelf\" > ",
                 "options": "pyshelf",
                 "name": "PASSWORD",
-                "answer": "",
+                "answer": None,
+                "default": "pyshelf"
             },
         ]
-        answers = self.prompt(questions)
-        pprint(answers)
+        return self.prompt(questions)
 
     @staticmethod
     def clear():
@@ -61,6 +63,8 @@ class TerminalDisplay:
         for answer in answers:
             self.h_rule()
             answer["answer"] = prm(answer["message"])
+            if answer["answer"] == "":
+                answer["answer"] = answer["default"]
             self.clear()
         return answers
 

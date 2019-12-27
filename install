@@ -1,35 +1,44 @@
 #!/usr/bin/python3.8
 import json
 import pathlib
-from pprint import pprint
-# from src.backend.lib.config import Config # Use ptShelfs configuration class or stay independant for portability?
+import os
 from src.backend.lib.display import TerminalDisplay
-
-# PRG_PATH = pathlib.Path.cwd()
-# LIB_PATH = pathlib.Path.joinpath(PRG_PATH, "src", "backend", "lib")
-# sys.path.insert(0, PRG_PATH)
-
-# Call for the ui and installer questions.
-install_answers = TerminalDisplay().installer()
 
 
 class Configuration:
     def __init__(self):
         self._cp = pathlib.Path("config.json")
         self._data = self.open_file()
+        self.system = os.sys.environ
 
     def open_file(self):
-        with open(str(self._cp), "r") as read_file:
-            data = json.load(read_file)
-        return data
+        """
+        Try to open and then backup the configuration file.
+        Fail and return false if initial configuration is not found.
+        # TODO: More specific error handling 
+        """
+        try:
+            with open(str(self._cp), "r") as read_file:
+                data = json.load(read_file)
+            with open('config.backup.json', 'w') as backup_file:
+                json.dump(data, backup_file)
+            return data
+        except Exception as e:
+            print(e)
+            return False
 
     def write_file(self, data):
-        with open(str(self._cp), "rw") as write_file:
-            json.dumps(write_file)
+        """
+        Write the provided data to the new configuration file
+        """
+        with open(str(self._cp), "w") as write_file:
+            json.dump(data, write_file)
         return True
 
 
 config = Configuration().open_file()
-# Print a comparison between config.json and user inputs.
-pprint(install_answers)
-pprint(config)
+install_answers = TerminalDisplay().installer()
+for key in install_answers:
+    config[key["name"]] = key["answer"]
+Configuration().write_file(config)
+
