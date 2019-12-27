@@ -1,7 +1,9 @@
 #!/usr/bin/python3.8
 import json
 import pathlib
-import os
+import platform
+
+import psutil
 from src.backend.lib.display import TerminalDisplay
 
 
@@ -9,18 +11,18 @@ class Configuration:
     def __init__(self):
         self._cp = pathlib.Path("config.json")
         self._data = self.open_file()
-        self.system = os.sys.environ
+        self.system = platform.system()
 
     def open_file(self):
         """
         Try to open and then backup the configuration file.
         Fail and return false if initial configuration is not found.
-        # TODO: More specific error handling 
+        # TODO: More specific error handling
         """
         try:
             with open(str(self._cp), "r") as read_file:
                 data = json.load(read_file)
-            with open('config.backup.json', 'w') as backup_file:
+            with open("config.backup.json", "w") as backup_file:
                 json.dump(data, backup_file)
             return data
         except Exception as e:
@@ -36,9 +38,29 @@ class Configuration:
         return True
 
 
+class RequiredServices:
+    @staticmethod
+    def check_ps(service_list):
+        breakpoint()
+        ps = psutil
+        passed = []
+        for p in ps.process_iter(attrs=["name", "exe", "cmdline"]):
+            for s in service_list:
+                if s == p.name:
+                    passed.append(s)
+                    return
+        if len(passed) == len(service_list):
+            return True
+        else:
+            return failed
+
+
 config = Configuration().open_file()
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
     config[key["name"]] = key["answer"]
 Configuration().write_file(config)
 
+# Start checking for our list of required services
+service_list = ["postgresql", "nginx", "httpd"]
+req = RequiredServices.check_ps(service_list)
