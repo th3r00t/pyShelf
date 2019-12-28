@@ -1,7 +1,11 @@
 #!/usr/bin/python3.8
 import json
+import os
 import pathlib
 import platform
+import subprocess as sp
+import sys
+from shutil import copyfile
 
 import psutil
 from src.backend.lib.display import TerminalDisplay
@@ -39,28 +43,201 @@ class Configuration:
 
 
 class RequiredServices:
+    def check_ps(self, service_list):
+        """
+        Check service_list against running processes
+        by calling self.process_list, remove found
+        services from the list and return
+        """
+        # Get the matched processes
+        _matches = self.process_list().intersection(set(service_list))
+        for r in _matches:
+            service_list.remove(r)
+        return service_list
+
     @staticmethod
-    def check_ps(service_list):
-        breakpoint()
-        ps = psutil
-        passed = []
-        for p in ps.process_iter(attrs=["name", "exe", "cmdline"]):
-            for s in service_list:
-                if s == p.name:
-                    passed.append(s)
-                    return
-        if len(passed) == len(service_list):
-            return True
+    def process_list():
+        """
+        Iterate running processes returning the name of each
+        make it a set and return
+        """
+        _processes = []
+        for p in psutil.process_iter():
+            _processes.append(p.name())
+        return set(_processes)
+
+    @staticmethod
+    def web_server_found(service_list):
+        # Determine whether or not both possible webservers are missing
+        _c = 0
+        for r in service_list:
+            if r == "nginx" or r == "httpd":
+                _c = _c + 1
+        if _c > 1:
+            return False  # Return false if neither are found
         else:
-            return failed
+            return True  # Return true if one is found
+
+    @staticmethod
+    def db_server_found(service_list):
+        _c = 0
+        for r in service_list:
+            if r == "postgres":
+                _c = _c + 1
+        if _c > 0:
+            return False
+        else:
+            return True
+
+
+class SystemInstaller:
+    def __init__(self):
+        self.bin = self.get()
+        self.site_dirs = ["/etc/nginx/sites-available", "/etc/nginx/sites-enabled"]
+        self.nginx_conf = "pyshelf_nginx.conf"
+
+    def get(self):
+        platfrm = platform.platform().split("-")
+        if platfrm[0].lower() == "linux":
+            installers = [
+                {"bin": "apt", "options": [], "search": "search", "install": "install"},
+                {"bin": "pacman", "options": [], "search": "-Ss", "install": "-S"},
+                {"bin": "yum", "options": [], "search": "search", "install": "install"},
+                {"bin": "docker", "options": []},
+            ]
+            _paths = os.environ["PATH"].split(":")
+            for p in _paths:
+                for _installer in installers:
+                    _fp = p + "/" + str(_installer["bin"])
+                    if os.path.isfile(_fp):
+                        return _installer
+
+    def copy_config(self, _file=None, _dirs=None):
+        if _file is None:
+            _file = self.nginx_conf
+        if _dirs is None:
+            _dirs = self.site_dirs
+        for r in _dirs:
+            copyfile(_file, r)
+        return True
+
+    def make_nginx_config(self, answers):
+        breakpoint()
+        nginx_conf_str = """
+        # pyshelf_nginx.conf
+        upstream django {server 127.0.0.1:8001;}
+        server {
+            listen      %s;
+            server_name %s;
+            charset     utf-8;
+            client_max_body_size 75M;
+            location /media  {alias %s/frontend/interface/media;}
+            location /static {alias %s/frontend/interface/static;}
+            location /books {internal; alias %s;}
+            location / {uwsgi_pass django; include %s/uwsgi_params;}
+        }
+        """ % (
+            answers
+        )
 
 
 config = Configuration().open_file()
+installer = None
+messages = []
+# Get user configuration options
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
     config[key["name"]] = key["answer"]
+
+# Write configuration
 Configuration().write_file(config)
 
 # Start checking for our list of required services
-service_list = ["postgresql", "nginx", "httpd"]
-req = RequiredServices.check_ps(service_list)
+service_list = ["postgres", "nginx", "httpd", "test"]
+req = RequiredServices().check_ps(service_list)
+
+# Does user have either nginx || apache?
+if RequiredServices().web_server_found(req) is False:
+    web_prompt = [
+        {
+            "message": "You must have either apache or nginx\nwould you like us to try and install nginx now?  > ",
+            "options": "nginx",
+            "name": "NGINX",
+            "answer": None,
+            "default": "no",
+        }
+    ]
+    install_prompt = TerminalDisplay().prompt(web_prompt)
+    if install_prompt[0]["answer"] == "yes":
+        if installer is None:
+            installer = SystemInstaller().bin
+        if installer["bin"] == "pacman":
+            package = "nginx-mainline"
+        else:
+            package = "nginx"
+        options = ""
+        for o in installer["options"]:
+            options = options + " " + o
+        cmd = (
+            "sudo "
+            + installer["bin"]
+            + " "
+            + installer["install"]
+            + " "
+            + options
+            + package
+        )
+        install_status = os.system(cmd)
+        srvc_start = os.system("sudo systemctl start nginx")
+        messages = messages + [
+            "Nginx installed and started",
+            "To enable autostart you must run",
+            "    sudo systemctl enable nginx",
+            "\n",
+        ]
+# Does user have postgreSQL?
+if RequiredServices().db_server_found(req) is False:
+    db_prompt = [
+        {
+            "message": "You must have PostgreSQL\nwould you like us to try and install it now? > ",
+            "options": "postgres",
+            "name": "postgresql",
+            "answer": None,
+            "default": "no",
+        }
+    ]
+    install_prompt = TerminalDisplay().prompt(db_prompt)
+    if install_prompt[0]["answer"] == "yes":
+        if installer is None:
+            installer = SystemInstaller().bin
+        options = ""
+        for o in installer["options"]:
+            options = options + " " + o
+        package = "postgresql"
+        cmd = (
+            "sudo "
+            + installer["bin"]
+            + " "
+            + installer["install"]
+            + " "
+            + options
+            + package
+        )
+        install_status = os.system(cmd)
+        copy_config = SystemInstaller().copy_config()
+        srvc_start = os.system("sudo systemctl start postgresql")
+        messages = messages + [
+            "PostgreSQL installed and started",
+            "To enable autostart you must run",
+            "    sudo systemctl enable nginx",
+            "\n",
+        ]
+        if copy_config:
+            messages = messages + ["pyShelf site config copied to sites_enabled"]
+
+# Display end screen
+TerminalDisplay().clear()
+TerminalDisplay().h_rule()
+for message in messages:
+    print(message)
+TerminalDisplay().h_rule()
