@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import os
 
+import pyfiglet
 from prompt_toolkit import prompt as prm
 
 
@@ -11,6 +12,11 @@ class TerminalDisplay:
         self.w, self.y = os.get_terminal_size()[0], os.get_terminal_size()[1]
         self.home = os.environ["HOME"]
         self.user = os.environ["USER"]
+        self.version = "0.4.0"
+        self.slogan = "Installer Initiative"
+        self.green = "\033[1;32m"
+        self.blue = "\033[94m"
+        self.clr_term = "\033[m"
 
     def screen(self):
         return self.term
@@ -84,7 +90,7 @@ class TerminalDisplay:
         self.clear()
         answers = questions
         for answer in answers:
-            self.h_rule()
+            self.banner()
             answer["answer"] = prm(answer["message"])
             if answer["answer"] == "":
                 answer["answer"] = answer["default"]
@@ -93,3 +99,25 @@ class TerminalDisplay:
 
     def h_rule(self):
         print("\u2501" * self.w)
+
+    def banner(self):
+        self.h_rule()
+        title = pyfiglet.Figlet(font="cyberlarge")
+        print(self.green + title.renderText("pyShelf") + self.clr_term)
+        print(
+            self.blue + " version " + self.version + self.clr_term + " " + self.slogan
+        )
+        self.h_rule()
+        print()
+
+    def banner_render(self):
+        title = pyfiglet.Figlet(font="cyberlarge")
+        _banner = (
+            title.renderText("pyShelf")
+            + "\nversion "
+            + self.version
+            + " "
+            + self.slogan
+            + "\n"
+        )
+        return _banner

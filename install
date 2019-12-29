@@ -1,14 +1,18 @@
-#!/usr/bin/python3.8
+#!/usr/bin/python3
 import json
 import os
 import pathlib
 import platform
+import pprint
 import subprocess as sp
 import sys
 from shutil import copyfile
 
 import psutil
 from src.backend.lib.display import TerminalDisplay
+
+log_file = "installer.log"
+messages = []
 
 
 class Configuration:
@@ -110,6 +114,10 @@ class SystemInstaller:
                 for _installer in installers:
                     _fp = p + "/" + str(_installer["bin"])
                     if os.path.isfile(_fp):
+                        global messages
+                        messages = messages + [
+                            "Found system installer binary " + str(_installer["bin"])
+                        ]
                         return _installer
 
     def copy_config(self, _file=None, _dirs=None):
@@ -117,15 +125,42 @@ class SystemInstaller:
             _file = self.nginx_conf
         if _dirs is None:
             _dirs = self.site_dirs
+
+        outfile = "/%s" % _file.__str__()
+        if os.path.isdir(_dirs[0]):
+            os.system("sudo cp %s %s" % (_file, _dirs[0] + outfile))
+        else:
+            os.system("sudo mkdir %s" % _dirs[0])
+            os.system("sudo cp %s %s" % (_file, _dirs[0] + outfile))
+        try:
+            if os.path.isdir(_dirs[1]):
+                ln_string = str(_dirs[0] + outfile + " " + _dirs[1] + outfile)
+                os.system("sudo ln -s %s" % ln_string)
+        except Exception as e:
+            pass
+        """
         for r in _dirs:
-            copyfile(_file, r)
+            if os.path.isdir(r):
+                os.system("sudo cp %s %s" % (_file, r+"/"+_file.__str__()))
+            else:
+                os.system("sudo mkdir %s" % r)
+                os.system("sudo cp %s %s" % (_file, r+"/"+_file.__str__()))
+        """
         return True
 
     def make_nginx_config(self, answers):
-        breakpoint()
+        root = os.path.abspath(".")
+        _fp = "pyshelf_nginx.conf"
+        for r in answers:
+            if r["name"] == "hostname":
+                hostname = r["answer"]
+            elif r["name"] == "webport":
+                port = r["answer"]
+            elif r["name"] == "wsgiport":
+                wsgiport = r["answer"]
         nginx_conf_str = """
         # pyshelf_nginx.conf
-        upstream django {server 127.0.0.1:8001;}
+        upstream django {server 127.0.0.1:%s;}
         server {
             listen      %s;
             server_name %s;
@@ -137,13 +172,32 @@ class SystemInstaller:
             location / {uwsgi_pass django; include %s/uwsgi_params;}
         }
         """ % (
-            answers
+            wsgiport,
+            port,
+            hostname,
+            root,
+            root,
+            root,
+            root,
         )
+        with open(_fp, "w") as write_file:
+            write_file.write(nginx_conf_str)
+        global messages
+        messages = messages + ["Generated new pyshelf_nginx.conf", nginx_conf_str]
+
+    def log(self):
+        global log_file
+        global messages
+        with open(log_file, "w") as write_file:
+            write_file.write(TerminalDisplay().banner_render())
+            for message in messages:
+                write_file.write(message + "\n")
+        messages = messages + ["Log file written to " + log_file.__str__()]
 
 
 config = Configuration().open_file()
-installer = None
-messages = []
+sysinstall = SystemInstaller()
+installer = sysinstall.bin
 # Get user configuration options
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
@@ -224,7 +278,6 @@ if RequiredServices().db_server_found(req) is False:
             + package
         )
         install_status = os.system(cmd)
-        copy_config = SystemInstaller().copy_config()
         srvc_start = os.system("sudo systemctl start postgresql")
         messages = messages + [
             "PostgreSQL installed and started",
@@ -232,12 +285,19 @@ if RequiredServices().db_server_found(req) is False:
             "    sudo systemctl enable nginx",
             "\n",
         ]
-        if copy_config:
-            messages = messages + ["pyShelf site config copied to sites_enabled"]
+
+# Post install configurations
+sysinstall.make_nginx_config(install_answers)
+copy_config = sysinstall.copy_config()
+if copy_config:
+    messages = messages + ["pyShelf site config copied to sites_enabled"]
 
 # Display end screen
+sysinstall.log()
 TerminalDisplay().clear()
-TerminalDisplay().h_rule()
+TerminalDisplay().banner()
 for message in messages:
     print(message)
+print()
+
 TerminalDisplay().h_rule()
