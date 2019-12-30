@@ -13,7 +13,7 @@ class TerminalDisplay:
         self.home = os.environ["HOME"]
         self.user = os.environ["USER"]
         self.version = "0.4.0"
-        self.slogan = "Installer Initiative"
+        self.slogan = "The Installer Initiative"
         self.green = "\033[1;32m"
         self.blue = "\033[94m"
         self.clr_term = "\033[m"
@@ -24,56 +24,56 @@ class TerminalDisplay:
     def installer(self):
         questions = [
             {
-                "message": 'Input the absolute path to your ebooks\nEnter for default "~/Books" > ',
+                "message": ' Input the absolute path to your ebooks\n Enter for default "~/Books" > ',
                 "options": "",
                 "name": "BOOKPATH",
                 "answer": None,
                 "default": self.home + "/Books",
             },
             {
-                "message": 'Input your PostgreSQL server ip\nEnter for default "localhost" > ',
+                "message": ' Input your PostgreSQL server ip\n Enter for default "localhost" > ',
                 "options": "localhost",
                 "name": "DB_HOST",
                 "answer": None,
                 "default": "localhost",
             },
             {
-                "message": 'Input your PostgreSQL server port\nEnter for default "5432" > ',
+                "message": ' Input your PostgreSQL server port\n Enter for default "5432" > ',
                 "options": "5432",
                 "name": "DB_PORT",
                 "answer": None,
                 "default": "5432",
             },
             {
-                "message": 'Input your PostgreSQL user name\nEnter for default "pyshelf" > ',
+                "message": ' Input your PostgreSQL user name\n Enter for default "pyshelf" > ',
                 "options": "pyshelf",
                 "name": "USER",
                 "answer": None,
                 "default": "pyshelf",
             },
             {
-                "message": 'Input your PostgreSQL password\nEnter for default "pyshelf" > ',
+                "message": ' Input your PostgreSQL password\n Enter for default "pyshelf" > ',
                 "options": "pyshelf",
                 "name": "PASSWORD",
                 "answer": None,
                 "default": "pyshelf",
             },
             {
-                "message": 'Web ui hostname/ip\nEnter for default "localhost" > ',
+                "message": ' Web ui hostname/ip\n Enter for default "localhost" > ',
                 "options": "localhost",
                 "name": "hostname",
                 "answer": None,
                 "default": "localhost",
             },
             {
-                "message": 'Web ui port\nEnter for default "8000" > ',
+                "message": ' Web ui port\n Enter for default "8000" > ',
                 "options": "8000",
                 "name": "webport",
                 "answer": None,
                 "default": "8000",
             },
             {
-                "message": 'wsgi port\nEnter for default "8001"\n"You should probably leave this alone, unless you know what you\'re doing" > ',
+                "message": ' wsgi port\n Enter for default "8001 > ',
                 "options": "8001",
                 "name": "wsgiport",
                 "answer": None,

@@ -138,14 +138,6 @@ class SystemInstaller:
                 os.system("sudo ln -s %s" % ln_string)
         except Exception as e:
             pass
-        """
-        for r in _dirs:
-            if os.path.isdir(r):
-                os.system("sudo cp %s %s" % (_file, r+"/"+_file.__str__()))
-            else:
-                os.system("sudo mkdir %s" % r)
-                os.system("sudo cp %s %s" % (_file, r+"/"+_file.__str__()))
-        """
         return True
 
     def make_nginx_config(self, answers):
@@ -160,14 +152,16 @@ class SystemInstaller:
                 wsgiport = r["answer"]
         nginx_conf_str = """
         # pyshelf_nginx.conf
-        upstream django {server 127.0.0.1:%s;}
+        upstream django {server localhost:%s;}
         server {
             listen      %s;
             server_name %s;
+            access_log  /var/log/nginx/pyshelf.access.log;
+            error_log  /var/log/nginx/pyshelf.error.log;
             charset     utf-8;
             client_max_body_size 75M;
-            location /media  {alias %s/frontend/interface/media;}
-            location /static {alias %s/frontend/interface/static;}
+            location /media  {root %s/src/interface;}
+            location /static {root %s/src/interface;}
             location /books {internal; alias %s;}
             location / {uwsgi_pass django; include %s/uwsgi_params;}
         }
@@ -184,6 +178,32 @@ class SystemInstaller:
             write_file.write(nginx_conf_str)
         global messages
         messages = messages + ["Generated new pyshelf_nginx.conf", nginx_conf_str]
+
+    def make_wsgi_config(self, answers):
+        root = os.path.abspath(".")
+        _fp = "uwsgi.ini"
+        for r in answers:
+            if r["name"] == "hostname":
+                hostname = r["answer"]
+            elif r["name"] == "wsgiport":
+                wsgiport = r["answer"]
+        wsgi_conf_str = """
+        [uwsgi]
+        chdir=%s/src
+        module=frontend.wsgi
+        master=True
+        pidfile=/tmp/pyShelf.pid
+        vacuum=True
+        socket=%s:%s
+        """ % (
+            root,
+            hostname,
+            wsgiport
+        )
+        with open(_fp, "w") as write_file:
+            write_file.write(wsgi_conf_str)
+        global messages
+        messages = messages + ["Generated uwsgi.ini", wsgi_conf_str]
 
     def log(self):
         global log_file
@@ -214,7 +234,7 @@ req = RequiredServices().check_ps(service_list)
 if RequiredServices().web_server_found(req) is False:
     web_prompt = [
         {
-            "message": "You must have either apache or nginx\nwould you like us to try and install nginx now?  > ",
+            "message": " You must have either apache or nginx\n would you like us to try and install nginx now?  > ",
             "options": "nginx",
             "name": "NGINX",
             "answer": None,
@@ -242,7 +262,7 @@ if RequiredServices().web_server_found(req) is False:
             + package
         )
         install_status = os.system(cmd)
-        srvc_start = os.system("sudo systemctl start nginx")
+        os.system("sudo systemctl start nginx")
         messages = messages + [
             "Nginx installed and started",
             "To enable autostart you must run",
@@ -253,7 +273,7 @@ if RequiredServices().web_server_found(req) is False:
 if RequiredServices().db_server_found(req) is False:
     db_prompt = [
         {
-            "message": "You must have PostgreSQL\nwould you like us to try and install it now? > ",
+            "message": " You must have PostgreSQL\n would you like us to try and install it now? > ",
             "options": "postgres",
             "name": "postgresql",
             "answer": None,
@@ -267,7 +287,7 @@ if RequiredServices().db_server_found(req) is False:
         options = ""
         for o in installer["options"]:
             options = options + " " + o
-        package = "postgresql"
+        package = "postgresql postgresql-contrib"
         cmd = (
             "sudo "
             + installer["bin"]
@@ -278,26 +298,50 @@ if RequiredServices().db_server_found(req) is False:
             + package
         )
         install_status = os.system(cmd)
-        srvc_start = os.system("sudo systemctl start postgresql")
+        for r in install_answers:
+            if r["name"] == "USER": sql_user = r["answer"]
+            elif r["name"] == "PASSWORD": sql_pass = r["answer"]
+        db_name = "pyshelf"
+        psql_cmd = """
+        CREATE DATABASE %s;
+        CREATE USER %s WITH ENCRYPTED PASSWORD \'%s\';
+        GRANT ALL PRIVILEGES ON DATABASE %s TO %s;
+        """ % (db_name, sql_user, sql_pass, db_name, sql_user)
+        _sql_file = "create_db.sql"
+        with open(_sql_file, "w") as sql_file_open:
+            sql_file_open.write(psql_cmd)
+        sql_file_open.close()
+        os.system("sudo systemctl start postgresql")
+        os.system("sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data")
+        os.system("sudo -u postgres psql -f %s"%_sql_file)
         messages = messages + [
             "PostgreSQL installed and started",
             "To enable autostart you must run",
             "    sudo systemctl enable nginx",
             "\n",
+            "Database cluster initialized at /var/lib/postgres",
+            "pyShelf database and user created",
+            psql_cmd
         ]
 
 # Post install configurations
 sysinstall.make_nginx_config(install_answers)
-copy_config = sysinstall.copy_config()
-if copy_config:
-    messages = messages + ["pyShelf site config copied to sites_enabled"]
+try:
+    copy_config = sysinstall.copy_config()
+    if copy_config:
+        messages = messages + ["pyShelf site config copied to sites-available, and symlinked to sites-enabled"]
+except Exception as e:
+    messages = messages + ["nginx site config not copied",
+                           "you are responsible for setting up your web server"]
+sysinstall.make_wsgi_config(install_answers)
+message = message + ["You should now import your books by running importBooks", "You can then start the interface with uwsgi --ini uwsgi.ini"]
 
 # Display end screen
 sysinstall.log()
 TerminalDisplay().clear()
 TerminalDisplay().banner()
 for message in messages:
-    print(message)
+    print(" "+message)
 print()
 
 TerminalDisplay().h_rule()
