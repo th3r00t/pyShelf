@@ -141,8 +141,7 @@ class SystemInstaller:
         return True
 
     def make_nginx_config(self, answers):
-        root = os.path.abspath(".")
-        _fp = "pyshelf_nginx.conf"
+        root = os.path.abspath(".") _fp = "pyshelf_nginx.conf"
         for r in answers:
             if r["name"] == "hostname":
                 hostname = r["answer"]
@@ -334,7 +333,7 @@ except Exception as e:
     messages = messages + ["nginx site config not copied",
                            "you are responsible for setting up your web server"]
 sysinstall.make_wsgi_config(install_answers)
-message = message + ["You should now import your books by running importBooks", "You can then start the interface with uwsgi --ini uwsgi.ini"]
+messages = messages + ["You should now import your books by running importBooks", "You can then start the interface with uwsgi --ini uwsgi.ini"]
 
 # Display end screen
 sysinstall.log()
