@@ -152,7 +152,7 @@ class SystemInstaller:
                 wsgiport = r["answer"]
         nginx_conf_str = """
         # pyshelf_nginx.conf
-        upstream django {server %s:%s;}
+        upstream django {server unix:///tmp/pyshelf_wsgi.sock;}
         server {
             listen      %s;
             server_name %s;
@@ -166,8 +166,6 @@ class SystemInstaller:
             location / {uwsgi_pass django; include %s/uwsgi_params;}
         }
         """ % (
-            hostname,
-            wsgiport,
             port,
             hostname,
             root,
@@ -195,11 +193,10 @@ class SystemInstaller:
         master=True
         pidfile=/tmp/pyShelf.pid
         vacuum=True
-        socket=%s:%s
+        socket=/tmp/pyshelf_wsgi.sock
+        chmod-socket=777
         """ % (
             root,
-            hostname,
-            wsgiport
         )
         with open(_fp, "w") as write_file:
             write_file.write(wsgi_conf_str)
@@ -223,7 +220,7 @@ installer = sysinstall.bin
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
     config[key["name"]] = key["answer"]
-
+config["USER"] = os.environ["USER"]
 # Write configuration
 Configuration().write_file(config)
 
@@ -300,8 +297,9 @@ if RequiredServices().db_server_found(req) is False:
         )
         install_status = os.system(cmd)
         for r in install_answers:
-            if r["name"] == "USER": sql_user = r["answer"]
-            elif r["name"] == "PASSWORD": sql_pass = r["answer"]
+            if r["name"] == "PASSWORD": sql_pass = r["answer"]
+
+        sql_user = config["USER"]
         db_name = "pyshelf"
         psql_cmd = """
         CREATE DATABASE %s;

@@ -45,13 +45,6 @@ class TerminalDisplay:
                 "default": "5432",
             },
             {
-                "message": ' Input your PostgreSQL user name\n Enter for default "pyshelf" > ',
-                "options": "pyshelf",
-                "name": "USER",
-                "answer": None,
-                "default": "pyshelf",
-            },
-            {
                 "message": ' Input your PostgreSQL password\n Enter for default "pyshelf" > ',
                 "options": "pyshelf",
                 "name": "PASSWORD",
