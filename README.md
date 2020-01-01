@@ -29,6 +29,8 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 All work this time around was centered on creating an installer simple and inclusive enough to hopefully enable all
 users to simply set it and forget it. I have debugged as much as I can with my setup. I am performing some simple file finding to determine which system installer is present, and setting it as the installer used by pyShelf.
 
+This setup has been tested and is working flawlessly on arch based distros, and i have done what I can for debian, and centos based distros, If you do encounter installer issues please let me know if it isnt finding the system installer, or possibly isnt passing command line arguments to your installer.
+
 Also it should be noted that I am determining the presence of your postgresql, and nginx servers based on whether or not the
 process is listed in the process list.
 
