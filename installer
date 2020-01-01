@@ -152,7 +152,7 @@ class SystemInstaller:
                 wsgiport = r["answer"]
         nginx_conf_str = """
         # pyshelf_nginx.conf
-        upstream django {server unix:///tmp/pyshelf_wsgi.sock;}
+        upstream django {server unix://%s/pyshelf_wsgi.sock;}
         server {
             listen      %s;
             server_name %s;
@@ -166,6 +166,7 @@ class SystemInstaller:
             location / {uwsgi_pass django; include %s/uwsgi_params;}
         }
         """ % (
+            root,
             port,
             hostname,
             root,
@@ -193,10 +194,11 @@ class SystemInstaller:
         master=True
         pidfile=/tmp/pyShelf.pid
         vacuum=True
-        socket=/tmp/pyshelf_wsgi.sock
-        chmod-socket=664
+        socket=%s/pyshelf_wsgi.sock
+        chmod-socket=666
         """ % (
             root,
+            root
         )
         with open(_fp, "w") as write_file:
             write_file.write(wsgi_conf_str)
