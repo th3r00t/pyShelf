@@ -1,106 +1,132 @@
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:19: warning: Compound pyShelf::src::backend::tests::library_test::Test_Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:28: warning: Compound pyShelf::src::backend::tests::library_test::TestCatalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:6: warning: Compound pyShelf::src::backend::tests::config_test::TestConfig is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:8: warning: Compound pyShelf::src::backend::tests::library_test::Test_Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/api_hooks.py:12: warning: Member __init__(self) (function) of class pyShelf::src::backend::lib::api_hooks::DuckDuckGo is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/api_hooks.py:13: warning: Member url (variable) of class pyShelf::src::backend::lib::api_hooks::DuckDuckGo is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/api_hooks.py:15: warning: return type of member pyShelf.src.backend.lib.api_hooks.DuckDuckGo.image_result is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:20: warning: Member book_path (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:21: warning: Member TITLE (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:22: warning: Member VERSION (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:24: warning: Member book_shelf (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:27: warning: Member catalogue_db (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:28: warning: Member user (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:29: warning: Member password (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:30: warning: Member db_host (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:31: warning: Member db_port (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:32: warning: Member file_array (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:36: warning: Member root (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:37: warning: Member auto_scan (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:39: warning: return type of member pyShelf.src.backend.lib.config.Config.open_file is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:22: warning: Member __init__(self, config) (function) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:23: warning: Member file_list (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:24: warning: Member opf_regx (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:25: warning: Member cover_regx (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:26: warning: Member html_regx (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:27: warning: Member root_dir (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:28: warning: Member book_folder (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:29: warning: Member book_shelf (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:31: warning: Member books (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:32: warning: Member db_pointer (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:33: warning: Member config (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:140: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.compare_shelf_current is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:115: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_content is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:122: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_cover_html is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:129: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_cover_image is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:89: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_metadata is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:52: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.filter_books is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:158: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.import_books is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:73: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.process_book is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:35: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.scan_folder is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:45: warning: Member books_per_page (variable) of class pyShelf::src::backend::lib::pyShelf::BookDisplay is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:46: warning: Member current_page (variable) of class pyShelf::src::backend::lib::pyShelf::BookDisplay is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:47: warning: Member thumbnail_size (variable) of class pyShelf::src::backend::lib::pyShelf::BookDisplay is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:48: warning: Member thumbnail_scale (variable) of class pyShelf::src::backend::lib::pyShelf::BookDisplay is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:49: warning: Member total_pages (variable) of class pyShelf::src::backend::lib::pyShelf::BookDisplay is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:51: warning: Member screen_size (variable) of class pyShelf::src::backend::lib::pyShelf::BookDisplay is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:40: warning: parameters of member pyShelf.src.backend.lib.pyShelf.BookDisplay.__init__ are not (all) documented
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:73: warning: return type of member pyShelf.src.backend.lib.pyShelf.BookDisplay.booksPerPage is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:55: warning: return type of member pyShelf.src.backend.lib.pyShelf.BookDisplay.nextPage is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:64: warning: return type of member pyShelf.src.backend.lib.pyShelf.BookDisplay.previousPage is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:15: warning: Member __init__(self, file_array) (function) of class pyShelf::src::backend::lib::pyShelf::InitFiles is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:27: warning: return type of member pyShelf.src.backend.lib.pyShelf.InitFiles.CreateFile is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:15: warning: Member __init__(self, db_pointer, config) (function) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:17: warning: Member sql (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:18: warning: Member user (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:19: warning: Member password (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:20: warning: Member db_host (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:21: warning: Member db_port (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:22: warning: Member db (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:25: warning: Member cursor (variable) of class pyShelf::src::backend::lib::storage::Storage is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:58: warning: return type of member pyShelf.src.backend.lib.storage.Storage.book_paths_list is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:81: warning: return type of member pyShelf.src.backend.lib.storage.Storage.close is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:71: warning: return type of member pyShelf.src.backend.lib.storage.Storage.commit is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:28: warning: return type of member pyShelf.src.backend.lib.storage.Storage.create_tables is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:39: warning: return type of member pyShelf.src.backend.lib.storage.Storage.insert_book is not documented
-/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:9: warning: Member test_book_dir(self) (function) of class pyShelf::src::backend::tests::config_test::TestConfig is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:12: warning: Member test_title(self) (function) of class pyShelf::src::backend::tests::config_test::TestConfig is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:15: warning: Member test_version(self) (function) of class pyShelf::src::backend::tests::config_test::TestConfig is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:7: warning: Member config (variable) of class pyShelf::src::backend::tests::config_test::TestConfig is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:20: warning: Member __init__(self) (function) of class pyShelf::src::backend::tests::library_test::Test_Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:24: warning: Member book_shelf (variable) of class pyShelf::src::backend::tests::library_test::Test_Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:23: warning: Member file_list (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:24: warning: Member opf_regx (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:25: warning: Member cover_regx (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:26: warning: Member html_regx (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:27: warning: Member root_dir (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:28: warning: Member book_folder (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:31: warning: Member books (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:32: warning: Member db_pointer (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:33: warning: Member config (variable) of class pyShelf::src::backend::lib::library::Catalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:140: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.compare_shelf_current is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:115: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_content is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:122: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_cover_html is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:129: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_cover_image is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:89: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.extract_metadata is not documented
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:23: warning: return type of member pyShelf.src.backend.tests.library_test.Test_Catalogue.filter_books is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:158: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.import_books is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:73: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.process_book is not documented
-/home/raelon/Projects/pyShelf/src/backend/lib/library.py:35: warning: return type of member pyShelf.src.backend.lib.library.Catalogue.scan_folder is not documented
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:9: warning: Member __init__(self) (function) of class pyShelf::src::backend::tests::library_test::Test_Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:20: warning: Member book_path (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:21: warning: Member TITLE (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:22: warning: Member VERSION (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:24: warning: Member book_shelf (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:27: warning: Member catalogue_db (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:28: warning: Member user (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:29: warning: Member password (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:30: warning: Member db_host (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:31: warning: Member db_port (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:32: warning: Member file_array (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:36: warning: Member root (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/lib/config.py:37: warning: Member auto_scan (variable) of class pyShelf::src::backend::lib::config::Config is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:13: warning: return type of member pyShelf.src.backend.tests.library_test.Test_Config.open_file is not documented
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:32: warning: Member test_filter_books(self) (function) of class pyShelf::src::backend::tests::library_test::TestCatalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:29: warning: Member root (variable) of class pyShelf::src::backend::tests::library_test::TestCatalogue is not documented.
-/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:30: warning: Member config (variable) of class pyShelf::src::backend::tests::library_test::TestCatalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:9: warning: Compound src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:19: warning: Compound src::backend::tests::library_test::Test_Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:8: warning: Compound src::backend::tests::library_test::Test_Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:28: warning: Compound src::backend::tests::library_test::TestCatalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:6: warning: Compound src::backend::tests::config_test::TestConfig is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/api_hooks.py:12: warning: Member __init__(self) (function) of class src::backend::lib::api_hooks::DuckDuckGo is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/api_hooks.py:13: warning: Member url (variable) of class src::backend::lib::api_hooks::DuckDuckGo is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/api_hooks.py:15: warning: return type of member src.backend.lib.api_hooks.DuckDuckGo.image_result is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:20: warning: Member book_path (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:21: warning: Member TITLE (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:22: warning: Member VERSION (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:24: warning: Member book_shelf (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:25: warning: Member catalogue_db (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:26: warning: Member user (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:27: warning: Member password (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:28: warning: Member db_host (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:29: warning: Member db_port (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:30: warning: Member file_array (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:33: warning: Member root (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:34: warning: Member auto_scan (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:36: warning: Member allowed_hosts (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:37: warning: Member db_user (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:38: warning: Member db_pass (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:40: warning: return type of member src.backend.lib.config.Config.open_file is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:10: warning: Member __init__(self) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:21: warning: Member screen(self) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:24: warning: Member installer(self) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:82: warning: Member prompt(self, questions) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:93: warning: Member h_rule(self) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:96: warning: Member banner(self) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:106: warning: Member banner_render(self) (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:79: warning: Member clear() (function) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:11: warning: Member term (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:12: warning: Member y (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:13: warning: Member home (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:14: warning: Member user (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:15: warning: Member version (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:16: warning: Member slogan (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:17: warning: Member green (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:18: warning: Member blue (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/display.py:19: warning: Member clr_term (variable) of class src::backend::lib::display::TerminalDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:22: warning: Member __init__(self, config) (function) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:23: warning: Member file_list (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:24: warning: Member opf_regx (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:25: warning: Member cover_regx (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:26: warning: Member html_regx (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:27: warning: Member root_dir (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:28: warning: Member book_folder (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:29: warning: Member book_shelf (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:31: warning: Member books (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:32: warning: Member db_pointer (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:33: warning: Member config (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:140: warning: return type of member src.backend.lib.library.Catalogue.compare_shelf_current is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:115: warning: return type of member src.backend.lib.library.Catalogue.extract_content is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:122: warning: return type of member src.backend.lib.library.Catalogue.extract_cover_html is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:129: warning: return type of member src.backend.lib.library.Catalogue.extract_cover_image is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:89: warning: return type of member src.backend.lib.library.Catalogue.extract_metadata is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:52: warning: return type of member src.backend.lib.library.Catalogue.filter_books is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:158: warning: return type of member src.backend.lib.library.Catalogue.import_books is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:73: warning: return type of member src.backend.lib.library.Catalogue.process_book is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:35: warning: return type of member src.backend.lib.library.Catalogue.scan_folder is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:45: warning: Member books_per_page (variable) of class src::backend::lib::pyShelf::BookDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:46: warning: Member current_page (variable) of class src::backend::lib::pyShelf::BookDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:47: warning: Member thumbnail_size (variable) of class src::backend::lib::pyShelf::BookDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:48: warning: Member thumbnail_scale (variable) of class src::backend::lib::pyShelf::BookDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:49: warning: Member total_pages (variable) of class src::backend::lib::pyShelf::BookDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:51: warning: Member screen_size (variable) of class src::backend::lib::pyShelf::BookDisplay is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:40: warning: parameters of member src.backend.lib.pyShelf.BookDisplay.__init__ are not (all) documented
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:73: warning: return type of member src.backend.lib.pyShelf.BookDisplay.booksPerPage is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:55: warning: return type of member src.backend.lib.pyShelf.BookDisplay.nextPage is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:64: warning: return type of member src.backend.lib.pyShelf.BookDisplay.previousPage is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:15: warning: Member __init__(self, file_array) (function) of class src::backend::lib::pyShelf::InitFiles is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/pyShelf.py:27: warning: return type of member src.backend.lib.pyShelf.InitFiles.CreateFile is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:15: warning: Member __init__(self, config) (function) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:27: warning: Member check_ownership(self, table=None) (function) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:16: warning: Member sql (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:17: warning: Member user (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:18: warning: Member password (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:19: warning: Member db_host (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:20: warning: Member db_port (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:21: warning: Member db (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:24: warning: Member config (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:25: warning: Member cursor (variable) of class src::backend::lib::storage::Storage is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:76: warning: return type of member src.backend.lib.storage.Storage.book_paths_list is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:99: warning: return type of member src.backend.lib.storage.Storage.close is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:89: warning: return type of member src.backend.lib.storage.Storage.commit is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:46: warning: return type of member src.backend.lib.storage.Storage.create_tables is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/storage.py:57: warning: return type of member src.backend.lib.storage.Storage.insert_book is not documented
+/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:9: warning: Member test_book_dir(self) (function) of class src::backend::tests::config_test::TestConfig is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:12: warning: Member test_title(self) (function) of class src::backend::tests::config_test::TestConfig is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:15: warning: Member test_version(self) (function) of class src::backend::tests::config_test::TestConfig is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/config_test.py:7: warning: Member config (variable) of class src::backend::tests::config_test::TestConfig is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:20: warning: Member __init__(self) (function) of class src::backend::tests::library_test::Test_Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:24: warning: Member book_shelf (variable) of class src::backend::tests::library_test::Test_Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:23: warning: Member file_list (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:24: warning: Member opf_regx (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:25: warning: Member cover_regx (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:26: warning: Member html_regx (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:27: warning: Member root_dir (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:28: warning: Member book_folder (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:31: warning: Member books (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:32: warning: Member db_pointer (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:33: warning: Member config (variable) of class src::backend::lib::library::Catalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:140: warning: return type of member src.backend.lib.library.Catalogue.compare_shelf_current is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:115: warning: return type of member src.backend.lib.library.Catalogue.extract_content is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:122: warning: return type of member src.backend.lib.library.Catalogue.extract_cover_html is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:129: warning: return type of member src.backend.lib.library.Catalogue.extract_cover_image is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:89: warning: return type of member src.backend.lib.library.Catalogue.extract_metadata is not documented
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:23: warning: return type of member src.backend.tests.library_test.Test_Catalogue.filter_books is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:158: warning: return type of member src.backend.lib.library.Catalogue.import_books is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:73: warning: return type of member src.backend.lib.library.Catalogue.process_book is not documented
+/home/raelon/Projects/pyShelf/src/backend/lib/library.py:35: warning: return type of member src.backend.lib.library.Catalogue.scan_folder is not documented
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:9: warning: Member __init__(self) (function) of class src::backend::tests::library_test::Test_Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:20: warning: Member book_path (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:21: warning: Member TITLE (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:22: warning: Member VERSION (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:24: warning: Member book_shelf (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:25: warning: Member catalogue_db (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:26: warning: Member user (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:27: warning: Member password (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:28: warning: Member db_host (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:29: warning: Member db_port (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:30: warning: Member file_array (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:33: warning: Member root (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:34: warning: Member auto_scan (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:36: warning: Member allowed_hosts (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:37: warning: Member db_user (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/lib/config.py:38: warning: Member db_pass (variable) of class src::backend::lib::config::Config is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:13: warning: return type of member src.backend.tests.library_test.Test_Config.open_file is not documented
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:32: warning: Member test_filter_books(self) (function) of class src::backend::tests::library_test::TestCatalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:29: warning: Member root (variable) of class src::backend::tests::library_test::TestCatalogue is not documented.
+/home/raelon/Projects/pyShelf/src/backend/tests/library_test.py:30: warning: Member config (variable) of class src::backend::tests::library_test::TestCatalogue is not documented.
