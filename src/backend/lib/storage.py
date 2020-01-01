@@ -12,8 +12,7 @@ from .config import Config
 class Storage:
     """Contains all methods for system storage"""
 
-    def __init__(self, db_pointer, config):
-        # self.db_file = db_pointer
+    def __init__(self, config):
         self.sql = config.catalogue_db
         self.user = config.user
         self.password = config.password
@@ -22,8 +21,27 @@ class Storage:
         self.db = psycopg2.connect(
             database=self.sql, user=self.user, password=self.password, host=self.db_host
         )
+        self.config = config
         self.cursor = self.db.cursor()
-        # self.create_tables()
+
+    def check_ownership(self, table=None):
+        if table is None:
+            table = "books"
+        _q = "SELECT * FROM books"
+        try:
+            self.cursor.execute(_q)
+        except Exception as e:
+            breakpoint()
+            if e.pgcode == "42501":
+                _q = """ALTER TABLE public.books OWNER to pyshelf;"""
+                self.close()
+                set_perms = Storage(self.config)
+                try:
+                    set_perms.cursor.execute(_q)
+                    set_perms.close()
+                except Exception as e:
+                    print(e)
+                    set_perms.close()
 
     def create_tables(self):
         """Create table structure"""

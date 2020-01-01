@@ -3,6 +3,7 @@
 import pathlib
 import sys
 
+from src.backend.lib.storage import Storage
 from src.backend.pyShelf_ScanLibrary import execute_scan
 
 PRG_PATH = pathlib.Path.cwd()

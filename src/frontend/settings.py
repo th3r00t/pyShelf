@@ -11,7 +11,17 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
+from pathlib import Path
 
+from backend.lib.config import Config
+
+CUR_DIR = Path.cwd()
+PRG_DIR = CUR_DIR.parts[0:-1]
+PRG_DIR = Path(*PRG_DIR)
+
+
+CONFIG = Config(PRG_DIR)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +35,7 @@ SECRET_KEY = "@(9b9jslgg41u1u=mr)-2*-n2x0vef0zsy39*z@sz18&tvow18"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = CONFIG.allowed_hosts
 
 
 # Application definition
@@ -82,7 +92,7 @@ WSGI_APPLICATION = "frontend.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
+"""
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -92,7 +102,15 @@ DATABASES = {
         # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
+"""
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": CONFIG.catalogue_db,
+        "PASSWORD": CONFIG.password,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

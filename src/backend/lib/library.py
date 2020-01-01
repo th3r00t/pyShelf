@@ -141,7 +141,7 @@ class Catalogue:
         """
         Calls storage system, gets list of books stored and compares against files on disk
         """
-        db = Storage(self.db_pointer, self.config)
+        db = Storage(self.config)
         stored = db.book_paths_list()
         db.close()
         if self.books is None:
@@ -162,7 +162,7 @@ class Catalogue:
         Iterates over list and inserts new books into database.
         """
         book_list = self.compare_shelf_current()
-        db = Storage(self.db_pointer, self.config)
+        db = Storage(self.config)
         for book in book_list:
             book = self.process_book(book)
             extracted = self.extract_metadata(book)
