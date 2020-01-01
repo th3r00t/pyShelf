@@ -107,8 +107,8 @@ DATABASES = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": CONFIG.DATABASE,
-        "PASSWORD": CONFIG.PASSWORD,
+        "NAME": CONFIG.database,
+        "PASSWORD": CONFIG.password,
     }
 }
 
