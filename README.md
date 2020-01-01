@@ -12,6 +12,7 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 * Fast database access
 * Django based frontend
 * Basic seaching via a SearchVector of author, title, & file_name fields.
+* Ebook Downloading
 
 ## Currently Supported Formats
 * epub
