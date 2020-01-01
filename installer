@@ -194,7 +194,7 @@ class SystemInstaller:
         pidfile=/tmp/pyShelf.pid
         vacuum=True
         socket=/tmp/pyshelf_wsgi.sock
-        chmod-socket=777
+        chmod-socket=664
         """ % (
             root,
         )
@@ -325,6 +325,16 @@ if RequiredServices().db_server_found(req) is False:
 
 # Post install configurations
 sysinstall.make_nginx_config(install_answers)
+try:
+    os.chdir("src/")
+    os.system("python manage.py makemigrations")
+    os.system("python manage.py makemigrations interface")
+    os.system("python manage.py migrate")
+    os.system("python manage.py migrate interface")
+    os.chdir("../")
+except Exception as e:
+    print("-"*80)
+    print(" E:"+e)
 try:
     copy_config = sysinstall.copy_config()
     if copy_config:
