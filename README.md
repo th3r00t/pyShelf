@@ -1,4 +1,4 @@
-# pyShelf 0.3.0
+# pyShelf 0.4.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 
@@ -7,6 +7,7 @@
 Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
 
 ## Current Features
+* Custom Installer
 * Recursive Scanning
 * Fast database access
 * Django based frontend
@@ -17,7 +18,6 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 
 ## Installation Example
 <a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
-* In addition to the above steps you must now also make the requisite changes in config.json to reflect the connection to your postgresql server
 <img src="https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png" alt="Server Frontend" align="center" />
 
 ## Further Installation & Support Information
@@ -48,25 +48,13 @@ _Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf 
 
 ## Configuration
 
-### Nginx
-Included is a default nginx config file {pyshelf_nginx.conf}. This file should be sufficient to get you up and running. You are required to change the location alias's to reflect your pyshelf install folder leaving everything after /frontend intact.
-
-Further resources for nginx setup may be found @ [This nginx, django, & uwsgi, guide](https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html)
-
-### uwsgi
-Inside uwsgi.ini you should make changes to reflect your install directory, and the port you wish uwsgi to listen on. Alternativly you can make the requisite changes to listen on a socket instead. This change would also require a change to the pyshelf_nginx.conf file as well.
-
-### pyShelf
-User configuration is contained within config.json in the project root. You must set book_path to the location of your books, and change the database connection details to match your environment.
-
-## Misc
-Django has been implemented to power the frontend experience, and web based database maintenance. A properly configured web server is required for hosting the frontend, and a PostgreSQL server for the database, configuration of these servers is outside of the scope of this readme.
+All configuration is now handled by the installer.
 
 Running via the Django test server might be possible, albeit not recomended.
 
 ## In Progress
 
-* Searching, & further organizational tools.
+* Organizational tools.
 * Docker image for those who need it.
 * Improved cover image storage, and acquisition.
 

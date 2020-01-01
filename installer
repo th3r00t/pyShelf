@@ -342,8 +342,7 @@ try:
     if copy_config:
         messages = messages + ["pyShelf site config copied to sites-available, and symlinked to sites-enabled"]
 except Exception as e:
-    messages = messages + ["nginx site config not copied",
-                           "you are responsible for setting up your web server"]
+    messages = messages + ["nginx site config not copied", "A nginx config for your install has been created \"pyshelf_nginx.conf\""]
 sysinstall.make_wsgi_config(install_answers)
 messages = messages + ["You should now import your books by running importBooks", "You can then start the interface with uwsgi --ini uwsgi.ini"]
 
