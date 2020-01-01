@@ -18,7 +18,6 @@ class Books(models.Model):
 
     class Meta:
         db_table = "books"
-        managed = False
 
     def __str__(self):
         return self.title
