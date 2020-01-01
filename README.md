@@ -17,11 +17,21 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 * epub
 
 ## Installation Example
-<a href="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a" target="_blank"><img src="https://asciinema.org/a/M739CljirFAf9nzeNyNO0113a.svg" /></a>
-<img src="https://raw.githubusercontent.com/th3r00t/pyShelf/development/src/interface/static/img/pyShelf_frontend_0_1_0.png" alt="Server Frontend" align="center" />
+<a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
 
 ## Further Installation & Support Information
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
+
+## 0.4.0 Patch Notes.
+### The Installer Initiative
+
+All work this time around was centered on creating an installer simple and inclusive enough to hopefully enable all
+users to simply set it and forget it. I have debugged as much as I can with my setup. I am performing some simple file finding to determine which system installer is present, and setting it as the installer used by pyShelf.
+
+Also it should be noted that I am determining the presence of your postgresql, and nginx servers based on whether or not the
+process is listed in the process list.
+
+At this time I would suggest stopping both your postgresql and nginx servers should you already have them and allowing the installer to do its work generating custom configurations and putting the nginx config files in place (/etc/nginx/sites-available, and symlinked to /etc/nginx/sites-enabled/) None of your existing configurations will be overwritten.
 
 ## 0.3.0 Patch Notes.
 ### "And now we search."
