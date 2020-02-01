@@ -4,7 +4,7 @@ from base64 import b64decode, b64encode
 
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render, render_to_response
+from django.shortcuts import HttpResponse, render #render_to_response
 from django.utils.text import slugify
 
 from .models import Books
