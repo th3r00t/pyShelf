@@ -222,7 +222,8 @@ installer = sysinstall.bin
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
     config[key["name"]] = key["answer"]
-config["USER"] = os.environ["USER"]
+#config["USER"] = os.environ["USER"]
+config["USER"] = 'pyshelf'
 # Write configuration
 Configuration().write_file(config)
 
