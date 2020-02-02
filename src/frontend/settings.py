@@ -108,6 +108,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": CONFIG.catalogue_db,
+        "USER": "pyshelf",
         "PASSWORD": CONFIG.password,
     }
 }
