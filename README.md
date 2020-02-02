@@ -1,10 +1,12 @@
-# pyShelf 0.4.0
+# pyShelf 0.4.1
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D51ALZH)
 
 Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
+
+### Join the discussion: Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf
 
 ## Current Features
 * Custom Installer
@@ -23,6 +25,10 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 ## Further Installation & Support Information
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
+## 0.4.1 Patch Notes.
+### Filename detection
+Now using os.path.splitext to ensure proper formating of downloaded files
+
 ## 0.4.0 Patch Notes.
 ### The Installer Initiative
 
@@ -35,18 +41,6 @@ Also it should be noted that I am determining the presence of your postgresql, a
 process is listed in the process list.
 
 At this time I would suggest stopping both your postgresql and nginx servers should you already have them and allowing the installer to do its work generating custom configurations and putting the nginx config files in place (/etc/nginx/sites-available, and symlinked to /etc/nginx/sites-enabled/) None of your existing configurations will be overwritten.
-
-## 0.3.0 Patch Notes.
-### "And now we search."
-
-Just about all the changes in this release were in some way related to implementing the search features.
-There is one new requirement
-* Requirement: **PostgreSQL**
-*This is what I believe to be the last infrastructure requirement, users with larger libraries should notice an increase in access speed.*
-* Feature: **Searching**
-*The search feature is now implemented. In its current incarnation you will by default search the author, title, & file_name fields. More defined search options will be available in future releases. Searches are paginated @ 20 results per page.*
-* Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS)
-* IRC find us on freenode.net @ #pyshelf
 
 ## Development
 
