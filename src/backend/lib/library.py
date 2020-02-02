@@ -56,7 +56,7 @@ class Catalogue:
 
         :returns self._book_list_expanded: json string containing all book metadata
         """
-        self.scan_folder()
+        self.scan_folder() # Populate file list
         regx = re.compile(r"\.epub")
         try:
             self.books = list(filter(regx.search, filter(None, self.file_list)))

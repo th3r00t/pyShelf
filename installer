@@ -222,7 +222,8 @@ installer = sysinstall.bin
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
     config[key["name"]] = key["answer"]
-config["USER"] = os.environ["USER"]
+#config["USER"] = os.environ["USER"]
+config["USER"] = 'pyshelf'
 # Write configuration
 Configuration().write_file(config)
 
@@ -301,7 +302,8 @@ if RequiredServices().db_server_found(req) is False:
         for r in install_answers:
             if r["name"] == "PASSWORD": sql_pass = r["answer"]
 
-        sql_user = config["USER"]
+        #sql_user = config["USER"]
+        sql_user = "pyshelf"
         db_name = "pyshelf"
         psql_cmd = """
         CREATE DATABASE %s;

@@ -4,7 +4,7 @@ from base64 import b64decode, b64encode
 
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render, render_to_response
+from django.shortcuts import HttpResponse, render #render_to_response
 from django.utils.text import slugify
 
 from .models import Books
@@ -123,4 +123,4 @@ def hr_name(book):
     """
     Nicer file names
     """
-    return "{0}.{1}".format(slugify(book.title), book.file_name.split(".")[1])
+    return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])
