@@ -123,4 +123,4 @@ def hr_name(book):
     """
     Nicer file names
     """
-    return "{0}.{1}".format(slugify(book.title), book.file_name.split(".")[1])
+    return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])

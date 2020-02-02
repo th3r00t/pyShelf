@@ -92,23 +92,11 @@ WSGI_APPLICATION = "frontend.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-"""
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        # "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "pyshelf",
-        "PASSWORD": "",
-        # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
-"""
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": CONFIG.catalogue_db,
-        "USER":"pyshelf",
+        "USER": "pyshelf",
         "PASSWORD": CONFIG.password,
     }
 }
