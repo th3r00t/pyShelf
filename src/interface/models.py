@@ -30,6 +30,15 @@ class Books(models.Model):
     progress = models.IntegerField(null=True)
     file_name = models.CharField(max_length=255, null=False)
 
+class Collections(models.Model):
+
+    class Meta:
+        db_table = "collections"
+    def __str__(self):
+        return self.collection
+    collection = models.CharField(max_length=255)
+    book_id = models.ForeignKey(Books, on_delete=models.PROTECT)
+
     def get_absolute_url(self):
         """Returns the url to access a particular instance of MyModelName."""
         return reverse("model-detail-view", args=[str(self.id)])

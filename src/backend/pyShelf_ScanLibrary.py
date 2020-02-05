@@ -19,7 +19,6 @@ def execute_scan(root):
     _t1 = time.time()
     config = Config(root)  # Get configuration settings
     InitFiles(config.file_array)  # Initialize file system
-
     Storage(config).check_ownership()
     catalogue = Catalogue(config)  # Open the Catalogue
     catalogue.import_books()

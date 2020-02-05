@@ -6,17 +6,22 @@ from django.db import models
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render #render_to_response
 from django.utils.text import slugify
-
+from pathlib import Path
 from .models import Books
+from backend.lib.config import Config
 
-
+config = Config(Path('../'))
 def index(request):
     """
     Return template index
     """
     _set = 1
     return render(
-        request, "index.html", {"Books": book_set(20, _set), "Set": str(_set)}
+        request, "index.html", {
+            "Books": book_set(20, _set),
+            "Set": str(_set),
+            "Version": config.VERSION
+        }
     )
 
 
@@ -29,7 +34,11 @@ def next_page(request, bookset):
     except Exception:
         _set = 1
     return render(
-        request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
+        request, "index.html", {
+            "Books": book_set(None, _set),
+            "Set": str(_set),
+            "Version": config.VERSION
+        }
     )
 
 
@@ -46,7 +55,11 @@ def prev_page(request, bookset):
         except Exception:
             _set = 1
     return render(
-        request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
+        request, "index.html", {
+            "Books": book_set(None, _set),
+            "Set": str(_set),
+            "Version": config.VERSION
+        }
     )
 
 
@@ -56,7 +69,10 @@ def search(request, query=None, _set=1, _limit=None):
     """
     _set = int(_set)
     if query is None:
-        return render(request, "index.html", {"Books": None})
+        return render(request, "index.html", {
+            "Books": None,
+            "Version": config.VERSION
+        })
     if _limit is None:
         _limit = 20  ## TODO set to user defaults
     if _set < 1:
@@ -69,7 +85,13 @@ def search(request, query=None, _set=1, _limit=None):
     return render(
         request,
         "search.html",
-        {"Books": _r, "Query": query, "Set": _set, "len_results": search_len},
+        {
+            "Books": _r,
+            "Query": query,
+            "Set": _set,
+            "len_results": search_len,
+            "Version": config.VERSION
+        },
     )
 
 
