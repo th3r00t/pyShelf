@@ -41,7 +41,7 @@ body{
 .nav_right_top{
         grid-area: nav_right_top;
         display: flex;
-        justify-content: right;
+        justify-content: flex-end;
 }
 .app_hdr{
     grid-area: title;
