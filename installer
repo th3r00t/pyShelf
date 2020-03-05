@@ -314,8 +314,8 @@ if RequiredServices().db_server_found(req) is False:
         with open(_sql_file, "w") as sql_file_open:
             sql_file_open.write(psql_cmd)
         sql_file_open.close()
-        os.system("sudo systemctl start postgresql")
         os.system("sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data")
+        os.system("sudo systemctl start postgresql")
         os.system("sudo -u postgres psql -f %s"%_sql_file)
         messages = messages + [
             "PostgreSQL installed and started",
