@@ -81,7 +81,7 @@ Inherited by \fBsrc\&.backend\&.tests\&.library_test\&.Test_Catalogue\fP\&.
 .br
 .in -1c
 .SH "Detailed Description"
-.PP 
+.PP
 
 .PP
 .nf
@@ -89,9 +89,9 @@ Decodes book metadata for storage
 
 .fi
 .PP
- 
+
 .SH "Member Function Documentation"
-.PP 
+.PP
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.compare_shelf_current ( self)"
 
 .PP
@@ -100,7 +100,7 @@ Calls storage system, gets list of books stored and compares against files on di
 
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_content ( self,  book_zip,  book)"
 
 .PP
@@ -109,7 +109,7 @@ Opens epub as zip file filters then stores as list any files matching opf_regx
 
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_cover_html ( self,  book_zip,  book)"
 
 .PP
@@ -118,7 +118,7 @@ Opens epub as zip file filters then stores as list any files matching html_regx
 
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_cover_image ( self,  book_zip,  book)"
 
 .PP
@@ -127,7 +127,7 @@ Opens epub as zip file filters then stores as list any files matching cover_regx
 
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_metadata ( self,  book)"
 
 .PP
@@ -138,7 +138,7 @@ book['files'] == list of files from self.process_book(book)
 
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.filter_books ( self)"
 
 .PP
@@ -150,7 +150,7 @@ Proceeds to call process_book
 
 .fi
 .PP
- 
+
 .PP
 Reimplemented in \fBsrc\&.backend\&.tests\&.library_test\&.Test_Catalogue\fP\&.
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.import_books ( self,  list = \fCNone\fP)"
@@ -163,7 +163,7 @@ Iterates over list and inserts new books into database.
 
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.process_book ( book)\fC [static]\fP"
 
 .PP
@@ -171,7 +171,7 @@ Iterates over list and inserts new books into database.
 Return dictionary of epub file contents
 .fi
 .PP
- 
+
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.scan_folder ( self,  _path = \fCNone\fP)"
 
 .PP
@@ -180,8 +180,8 @@ Scan folder by _path, allows recurisive scanning
 
 .fi
 .PP
- 
+
 
 .SH "Author"
-.PP 
+.PP
 Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

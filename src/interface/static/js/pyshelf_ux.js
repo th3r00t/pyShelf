@@ -3,7 +3,7 @@ $(document).ready(function(){
                 var query = $('.nav_search').val();
                 console.log(query);
                 window.location.href = '/search/'+query;
-        })
+        });
         $('.nav_search').on('keypress', function (e) {
                 if(e.which === 13){
                         $(this).attr("disabled", "disabled");

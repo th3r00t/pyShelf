@@ -1,28 +1,71 @@
 import json
 import os
 from base64 import b64decode, b64encode
+from pathlib import Path
 
+from backend.lib.config import Config
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render #render_to_response
+from django.shortcuts import HttpResponse, render  # render_to_response
 from django.utils.text import slugify
-from pathlib import Path
-from .models import Books
-from backend.lib.config import Config
 
-config = Config(Path('../'))
+from .models import Books, Collections
+
+config = Config(Path("../"))
+
+
 def index(request):
     """
     Return template index
     """
     _set = 1
     return render(
-        request, "index.html", {
+        request,
+        "index.html",
+        {
             "Books": book_set(20, _set),
             "Set": str(_set),
-            "Version": config.VERSION
-        }
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
+
+
+def show_collection(request, _collection, _colset):
+    try:
+        _set = int(_colset) + 1
+    except Exception:
+        _set = 1
+    return render(
+        request,
+        "search.html",
+        {
+            "Books": collection(_collection, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
+    )
+
+
+def menu(which):
+    if which == "collections":
+        collection_list = Collections.objects.all()
+        collections = []
+        collection_key = []
+        x = 0
+        for i in collection_list:
+            if x % 2 == 0:
+                c = 0
+            else:
+                c = 1
+            if i.collection not in collection_key:
+                collections.append(
+                    {"string": i.collection, "link": i.collection, "class": c}
+                )
+                collection_key.append(i.collection)
+            x = x + 1
+        return collections
 
 
 def next_page(request, bookset):
@@ -34,11 +77,9 @@ def next_page(request, bookset):
     except Exception:
         _set = 1
     return render(
-        request, "index.html", {
-            "Books": book_set(None, _set),
-            "Set": str(_set),
-            "Version": config.VERSION
-        }
+        request,
+        "index.html",
+        {"Books": book_set(None, _set), "Set": str(_set), "Version": config.VERSION},
     )
 
 
@@ -55,11 +96,9 @@ def prev_page(request, bookset):
         except Exception:
             _set = 1
     return render(
-        request, "index.html", {
-            "Books": book_set(None, _set),
-            "Set": str(_set),
-            "Version": config.VERSION
-        }
+        request,
+        "index.html",
+        {"Books": book_set(None, _set), "Set": str(_set), "Version": config.VERSION},
     )
 
 
@@ -69,10 +108,7 @@ def search(request, query=None, _set=1, _limit=None):
     """
     _set = int(_set)
     if query is None:
-        return render(request, "index.html", {
-            "Books": None,
-            "Version": config.VERSION
-        })
+        return render(request, "index.html", {"Books": None, "Version": config.VERSION})
     if _limit is None:
         _limit = 20  ## TODO set to user defaults
     if _set < 1:
@@ -90,7 +126,7 @@ def search(request, query=None, _set=1, _limit=None):
             "Query": query,
             "Set": _set,
             "len_results": search_len,
-            "Version": config.VERSION
+            "Version": config.VERSION,
         },
     )
 
@@ -107,8 +143,23 @@ def book_set(_limit=None, _set=1):
     return books
 
 
+def collection(_collection, _set, _limit=None):
+    """
+    Get books by collection id
+    """
+    _books = []
+    books = []
+    if _limit is None:
+        _limit = 20
+    _set_max = int(_set) * _limit
+    _set_min = _set_max - _limit
+    _collections = Collections.objects.filter(collection=_collection)
+    for c in _collections:
+        _books.append(c.book_id_id)
+    return Books.objects.filter(id__in=_books)
+
+
 def book_set_as_dict(_limit=None, _set=1):
-    breakpoint()
     if _limit is None:
         _limit = 20
     _set_max = int(_set) * _limit
