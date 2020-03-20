@@ -84,6 +84,7 @@ body {
     grid-area: app_body;
     grid-template-rows: auto;
     grid-template-areas: "nav_l shelf";
+    grid-template-columns: 13vw auto;
     justify-items: center;
     background-color: dimgray;
 }
@@ -95,11 +96,11 @@ body {
 
 .nav_l_hdr {}
 
-.nav_l_0 {}
+.nav_l_0 {background-color: #2b2b2b; font-size: 15px; padding: 5px;}
 
-.nav_l_1 {}
-
-#vert-nav {}
+.nav_l_1 {font-size: 15px; padding: 5px;}
+.nav_link {}
+#vert-nav {list-style: None; padding: 0px;}
 
 .vert-nav-item {}
 
