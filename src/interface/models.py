@@ -30,6 +30,15 @@ class Books(models.Model):
     progress = models.IntegerField(null=True)
     file_name = models.CharField(max_length=255, null=False)
 
+    def generic_search(self, query):
+        try:
+            results = Books.objects.annotate(
+                search=SearchVector("title", "file_name", "author"),
+            ).filter(search=query)
+        except Exception as e:
+            raise
+        return results
+
 
 class Collections(models.Model):
     class Meta:

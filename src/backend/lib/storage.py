@@ -1,4 +1,6 @@
 #!/usr/bin/python
+import re
+
 import psycopg2
 
 
@@ -96,6 +98,7 @@ class Storage:
         return True
 
     def make_collections(self):
+        _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
         _q = "SELECT id,file_name FROM books"
         self.cursor.execute(_q)
         _set = self.cursor.fetchall()
@@ -107,6 +110,9 @@ class Storage:
             _pathing.pop(-1)
             for _p in _pathing:
                 _s = _p.replace("'", "")
+                _x = re.sub(_title_regx, "", _s)
+                _s = _x.strip()
+                breakpoint()
                 _q_x = """
                 SELECT id FROM collections where collection='%s' AND book_id_id=%s
                 """ % (

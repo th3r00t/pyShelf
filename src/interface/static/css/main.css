@@ -12,7 +12,7 @@ body {
         "app_body"
         "app_footer";
     grid-template-rows: auto auto auto;
-    max-height: 100%;
+    /*max-height: 100%;*/
 }
 
 .clear {
@@ -84,23 +84,61 @@ body {
     grid-area: app_body;
     grid-template-rows: auto;
     grid-template-areas: "nav_l shelf";
-    grid-template-columns: 13vw auto;
-    justify-items: center;
+    grid-template-columns: 15vw 85vw;
     background-color: dimgray;
 }
 
 .nav_l {
     display: grid;
     grid-area: nav_l;
+    font-family: 'Gruppo', cursive;
+    font-size: 20px;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 0px 10px;
 }
 
-.nav_l_hdr {}
+.popover{
+    display: none;
+    z-index: 100;
+    background-color: #000;
+    /*min-width: 200px;*/
+    min-height: 30px;
+    position: fixed;
+    text-align: center;
+    font-weight: bold;
+    align-items: center;
+    justify-content:center;
+    justify-items: center;
+    padding: 0px 10px;
+}
+.nav_l_hdr {
+    text-align: center;
+    padding: 5px;
+    background-color: #292f35;
+    border-bottom: 2px solid #000;
+}
 
-.nav_l_0 {background-color: #2b2b2b; font-size: 15px; padding: 5px;}
+.nav_l_0 {
+    background-color: #2b2b2b;
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+}
 
-.nav_l_1 {font-size: 15px; padding: 5px;}
+.nav_l_1 {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+}
 .nav_link {}
-#vert-nav {list-style: None; padding: 0px;}
+#vert-nav {
+    list-style: None;
+    padding: 0px;
+    margin: 10px 0px;
+    border-left: 5px solid #292f35;
+    border-right: 5px solid #292f35;
+}
 
 .vert-nav-item {}
 
@@ -208,6 +246,8 @@ body {
     margin: 0px 0px;
     padding: 10px 0px 10px;
     list-style-type: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .shelf_contents {}
@@ -234,7 +274,7 @@ p {
 
 #book_shelf {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 21% 21% 21% 21%;
     list-style-type: none;
     font-family: 'Audiowide', cursive;
     font-size: 25px;
@@ -247,14 +287,14 @@ p {
     display: grid;
     background-color: burlywood;
     margin: 0 10px 10px 10px;
-    max-width: 23vw;
-    max-height: 75vh;
+    max-width: 20vw;
+    max-height: 70vh;
     text-align: center;
 }
 
 .book_thumb {
-    width: 23vw;
-    height: 50vh;
+    width: 20vw;
+    height: 70vh;
 }
 
 a.book_link {

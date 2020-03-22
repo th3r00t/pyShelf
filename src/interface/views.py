@@ -38,7 +38,7 @@ def show_collection(request, _collection, _colset):
         _set = 1
     return render(
         request,
-        "search.html",
+        "index.html",
         {
             "Books": collection(_collection, _set),
             "Set": str(_set),
@@ -46,26 +46,6 @@ def show_collection(request, _collection, _colset):
             "LeftNav": menu("collections"),
         },
     )
-
-
-def menu(which):
-    if which == "collections":
-        collection_list = Collections.objects.all()
-        collections = []
-        collection_key = []
-        x = 0
-        for i in collection_list:
-            if x % 2 == 0:
-                c = 0
-            else:
-                c = 1
-            if i.collection not in collection_key:
-                collections.append(
-                    {"string": i.collection, "link": i.collection, "class": c}
-                )
-                collection_key.append(i.collection)
-            x = x + 1
-        return collections
 
 
 def next_page(request, bookset):
@@ -79,7 +59,12 @@ def next_page(request, bookset):
     return render(
         request,
         "index.html",
-        {"Books": book_set(None, _set), "Set": str(_set), "Version": config.VERSION},
+        {
+            "Books": book_set(None, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
 
 
@@ -98,7 +83,12 @@ def prev_page(request, bookset):
     return render(
         request,
         "index.html",
-        {"Books": book_set(None, _set), "Set": str(_set), "Version": config.VERSION},
+        {
+            "Books": book_set(None, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
 
 
@@ -127,6 +117,7 @@ def search(request, query=None, _set=1, _limit=None):
             "Set": _set,
             "len_results": search_len,
             "Version": config.VERSION,
+            "LeftNav": menu("collections"),
         },
     )
 
@@ -197,3 +188,33 @@ def hr_name(book):
     Nicer file names
     """
     return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])
+
+
+def menu(which, _set=1):
+    if which == "collections":
+        collection_list = Collections.objects.all()
+        collections, collection_key, x = [], [], 0
+        for i in collection_list:
+            if i.collection not in collection_key:
+                # Using c as the alternating row identifier
+                # set c here
+                if x % 2 == 0:
+                    c = 0
+                else:
+                    c = 1
+                if x <= 10:
+                    x = x + 1
+                else:
+                    x = 0
+                breakpoint()
+                # TODO trim #'s and symbols from front of collection name
+                if len(i.collection) > 16:
+                    collection_string = i.collection[0:16] + " ..."
+                else:
+                    collection_string = i.collection
+
+                collections.append(
+                    {"string": collection_string, "link": i.collection, "class": c}
+                )
+                collection_key.append(i.collection)
+        return collections
