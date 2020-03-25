@@ -1,12 +1,7 @@
 #!/usr/bin/python
-import sqlite3
+import re
 
 import psycopg2
-from psycopg2 import Error
-
-from .config import Config
-
-# db_pointer = Config().catalogue_db
 
 
 class Storage:
@@ -31,7 +26,6 @@ class Storage:
         try:
             self.cursor.execute(_q)
         except Exception as e:
-            breakpoint()
             if e.pgcode == "42501":
                 _q = """ALTER TABLE public.books OWNER to pyshelf;"""
                 self.close()
@@ -102,3 +96,38 @@ class Storage:
         """
         self.db.close()
         return True
+
+    def make_collections(self):
+        _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
+        _q = "SELECT id,file_name FROM books"
+        self.cursor.execute(_q)
+        _set = self.cursor.fetchall()
+        for book in _set:
+            path = self.config.book_path + "/"
+            _collections = []
+            _pathing = book[1].split(path)[1].split("/")
+            _pathing.pop(0)
+            _pathing.pop(-1)
+            for _p in _pathing:
+                _s = _p.replace("'", "")
+                _x = re.sub(_title_regx, "", _s)
+                _s = _x.strip()
+                breakpoint()
+                _q_x = """
+                SELECT id FROM collections where collection='%s' AND book_id_id=%s
+                """ % (
+                    _s,
+                    book[0],
+                )
+                try:
+                    self.cursor.execute(_q_x)
+                    if len(self.cursor.fetchall()) < 1:
+                        self.cursor.execute(
+                            """INSERT INTO collections (collection, book_id_id) VALUES ('%s',%s)"""
+                            % (_s, book[0])
+                        )
+                except Exception as e:
+                    print(e)
+                _collections.append(_p)
+        self.db.commit()
+        self.close()

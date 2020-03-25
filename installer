@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!python
 import json
 import os
 import pathlib
@@ -136,6 +136,9 @@ class SystemInstaller:
             if os.path.isdir(_dirs[1]):
                 ln_string = str(_dirs[0] + outfile + " " + _dirs[1] + outfile)
                 os.system("sudo ln -s %s" % ln_string)
+
+            """ TODO check for sites-enabled, create it if it doesnt exist,
+            then symlink the config """
         except Exception as e:
             pass
         return True
@@ -152,7 +155,7 @@ class SystemInstaller:
                 wsgiport = r["answer"]
         nginx_conf_str = """
         # pyshelf_nginx.conf
-        upstream django {server unix://%s/pyshelf_wsgi.sock;}
+        upstream django {server unix:///tmp/pyshelf_wsgi.sock;}
         server {
             listen      %s;
             server_name %s;
@@ -166,7 +169,6 @@ class SystemInstaller:
             location / {uwsgi_pass django; include %s/uwsgi_params;}
         }
         """ % (
-            root,
             port,
             hostname,
             root,
@@ -194,11 +196,10 @@ class SystemInstaller:
         master=True
         pidfile=/tmp/pyShelf.pid
         vacuum=True
-        socket=%s/pyshelf_wsgi.sock
+        socket=/tmp/pyshelf_wsgi.sock
         chmod-socket=666
         """ % (
             root,
-            root
         )
         with open(_fp, "w") as write_file:
             write_file.write(wsgi_conf_str)
@@ -222,8 +223,8 @@ installer = sysinstall.bin
 install_answers = TerminalDisplay().installer()
 for key in install_answers:
     config[key["name"]] = key["answer"]
-#config["USER"] = os.environ["USER"]
-config["USER"] = 'pyshelf'
+# config["USER"] = os.environ["USER"]
+config["USER"] = "pyshelf"
 # Write configuration
 Configuration().write_file(config)
 
@@ -300,23 +301,29 @@ if RequiredServices().db_server_found(req) is False:
         )
         install_status = os.system(cmd)
         for r in install_answers:
-            if r["name"] == "PASSWORD": sql_pass = r["answer"]
+            if r["name"] == "PASSWORD":
+                sql_pass = r["answer"]
 
-        #sql_user = config["USER"]
+        # sql_user = config["USER"]
         sql_user = "pyshelf"
         db_name = "pyshelf"
-        psql_cmd = """
-        CREATE DATABASE %s;
-        CREATE USER %s WITH PASSWORD \'%s\';
-        GRANT ALL PRIVILEGES ON DATABASE %s TO %s;
-        """ % (db_name, sql_user, sql_pass, db_name, sql_user)
-        _sql_file = "create_db.sql"
+        import pudb
+
+        pudb.set_trace()
+        psql_cmd = (
+            "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"
+            % (db_name, sql_user, sql_pass, db_name, sql_user)
+        )
+        _sql_file = "/tmp/create_db.sql"
         with open(_sql_file, "w") as sql_file_open:
             sql_file_open.write(psql_cmd)
         sql_file_open.close()
-        os.system("sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data")
+        os.system(
+            "sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data"
+        )
         os.system("sudo systemctl start postgresql")
-        os.system("sudo -u postgres psql -f %s"%_sql_file)
+        os.system("sudo -u postgres psql -f %s" % _sql_file)
+        # os.system("sudo -u postgres psql -c \'%s\'"%psql_cmd)
         messages = messages + [
             "PostgreSQL installed and started",
             "To enable autostart you must run",
@@ -324,7 +331,7 @@ if RequiredServices().db_server_found(req) is False:
             "\n",
             "Database cluster initialized at /var/lib/postgres",
             "pyShelf database and user created",
-            psql_cmd
+            psql_cmd,
         ]
 
 # Post install configurations
@@ -337,23 +344,31 @@ try:
     os.system("python manage.py migrate interface")
     os.chdir("../")
 except Exception as e:
-    print("-"*80)
-    print(" E:"+e)
+    print("-" * 80)
+    print(" E:" + e)
 try:
     copy_config = sysinstall.copy_config()
     if copy_config:
-        messages = messages + ["pyShelf site config copied to sites-available, and symlinked to sites-enabled"]
+        messages = messages + [
+            "pyShelf site config copied to sites-available, and symlinked to sites-enabled"
+        ]
 except Exception as e:
-    messages = messages + ["nginx site config not copied", "A nginx config for your install has been created \"pyshelf_nginx.conf\""]
+    messages = messages + [
+        "nginx site config not copied",
+        'A nginx config for your install has been created "pyshelf_nginx.conf"',
+    ]
 sysinstall.make_wsgi_config(install_answers)
-messages = messages + ["You should now import your books by running importBooks", "You can then start the interface with uwsgi --ini uwsgi.ini"]
+messages = messages + [
+    "You should now import your books by running importBooks",
+    "You can then start the interface with uwsgi --ini uwsgi.ini",
+]
 
 # Display end screen
 sysinstall.log()
 TerminalDisplay().clear()
 TerminalDisplay().banner()
 for message in messages:
-    print(" "+message)
+    print(" " + message)
 print()
 
 TerminalDisplay().h_rule()
