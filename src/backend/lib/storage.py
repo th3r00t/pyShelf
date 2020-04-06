@@ -112,7 +112,6 @@ class Storage:
                 _s = _p.replace("'", "")
                 _x = re.sub(_title_regx, "", _s)
                 _s = _x.strip()
-                breakpoint()
                 _q_x = """
                 SELECT id FROM collections where collection='%s'\
                 AND book_id_id=%s
