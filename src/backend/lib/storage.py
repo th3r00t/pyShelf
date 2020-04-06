@@ -112,9 +112,9 @@ class Storage:
                 _s = _p.replace("'", "")
                 _x = re.sub(_title_regx, "", _s)
                 _s = _x.strip()
-                breakpoint()
                 _q_x = """
-                SELECT id FROM collections where collection='%s' AND book_id_id=%s
+                SELECT id FROM collections where collection='%s'\
+                AND book_id_id=%s
                 """ % (
                     _s,
                     book[0],
@@ -123,7 +123,8 @@ class Storage:
                     self.cursor.execute(_q_x)
                     if len(self.cursor.fetchall()) < 1:
                         self.cursor.execute(
-                            """INSERT INTO collections (collection, book_id_id) VALUES ('%s',%s)"""
+                            """INSERT INTO collections\
+                            (collection, book_id_id) VALUES ('%s',%s)"""
                             % (_s, book[0])
                         )
                 except Exception as e:

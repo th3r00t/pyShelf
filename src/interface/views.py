@@ -206,7 +206,6 @@ def menu(which, _set=1):
                     x = x + 1
                 else:
                     x = 0
-                breakpoint()
                 # TODO trim #'s and symbols from front of collection name
                 if len(i.collection) > 16:
                     collection_string = i.collection[0:16] + " ..."
