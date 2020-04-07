@@ -1,3 +1,3 @@
-CREATE USER pyshelf WITH PASSWORD pyshelf;
+CREATE USER pyshelf WITH PASSWORD 'pyshelf';
 CREATE DATABASE pyshelf;
 GRANT ALL PRIVILEGES ON DATABASE pyshelf TO pyshelf;
