@@ -1,3 +1,3 @@
 #!/bin/bash
-git pull
-sh -c database.sh
+git fetch
+sh -c ./database.sh
