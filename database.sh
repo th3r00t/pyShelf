@@ -9,4 +9,5 @@ cd src && \
     python manage.py makemigrations interface && \
     python manage.py migrate && \
     python manage.py migrate interface && \
-cd .. &&
+cd ..
+echo "pyShelf Env Started"
