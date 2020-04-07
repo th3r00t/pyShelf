@@ -6,7 +6,7 @@ RUN sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/da
 RUN systemctl enable postgresql
 RUN useradd pyshelf && chpasswd pyshelf:pyshelf
 RUN mkdir -p /srv/Books && mkdir -p /srv/http && mkdir -p /srv/logs/ \
-    chown -r http.pyshelf /srv/Books && chown -r http.pyshelf /srv/http && \
+    chown http.pyshelf /srv/Books && chown http.pyshelf /srv/http && \
     chmod e+rw /srv/logs
 RUN systemctl enable sshd
 RUN sudo -u postgres pg_ctl -D /var/lib/postgres/data -l /srv/logs/pgsql.log start
