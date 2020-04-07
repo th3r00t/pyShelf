@@ -19,3 +19,4 @@ psutil
 pyfiglet
 psycopg2-binary
 gunicorn
+pudb
