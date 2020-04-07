@@ -1,3 +1,3 @@
 #!/bin/bash
-git fetch
+git pull
 sh /srv/http/database.sh
