@@ -5,9 +5,13 @@ RUN pacman -S --noconfirm python python-pip git openssh postgresql sudo
 RUN sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
 RUN systemctl enable postgresql
 RUN useradd pyshelf && chpasswd pyshelf:pyshelf
-RUN mkdir -p /srv/Books && mkdir -p /srv/http && mkdir -p /srv/logs/ \
-    chown http.pyshelf /srv/Books && chown http.pyshelf /srv/http && \
-    chmod a=rw /srv/logs
+RUN mkdir -p /srv/Books && \
+    mkdir -p /srv/http && \
+    mkdir -p /srv/logs/ && \
+    touch /srv/logs/pgsql.log && \
+    chown http.pyshelf /srv/Books && \
+    chown http.pyshelf /srv/http && \
+    chown postgres /srv/logs/pgsql.log
 RUN systemctl enable sshd
 RUN sudo -u postgres pg_ctl -D /var/lib/postgres/data -l /srv/logs/pgsql.log start
 VOLUME ['/srv/Books','/srv/http']
