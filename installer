@@ -307,9 +307,6 @@ if RequiredServices().db_server_found(req) is False:
         # sql_user = config["USER"]
         sql_user = "pyshelf"
         db_name = "pyshelf"
-        import pudb
-
-        pudb.set_trace()
         psql_cmd = (
             "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"
             % (db_name, sql_user, sql_pass, db_name, sql_user)
