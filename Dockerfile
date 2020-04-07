@@ -7,7 +7,7 @@ RUN systemctl enable postgresql
 RUN useradd pyshelf && chpasswd pyshelf:pyshelf
 RUN mkdir -p /srv/Books && mkdir -p /srv/http && mkdir -p /srv/logs/ \
     chown http.pyshelf /srv/Books && chown http.pyshelf /srv/http && \
-    chmod e+rw /srv/logs
+    chmod a=rw /srv/logs
 RUN systemctl enable sshd
 RUN sudo -u postgres pg_ctl -D /var/lib/postgres/data -l /srv/logs/pgsql.log start
 VOLUME ['/srv/Books','/srv/http']
