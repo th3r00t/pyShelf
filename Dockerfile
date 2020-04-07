@@ -3,11 +3,12 @@ RUN pacman -Syy
 RUN pacman -Syu --noconfirm
 RUN pacman -S --noconfirm python python-pip git openssh postgresql sudo
 RUN sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
-RUN systemctl enable postgresql && systemctl start postgresql
+RUN systemctl enable postgresql
+RUN sudo -u postgres pg_ctl -D /var/lib/postgres/data -l /srv/http/pgsql.log start
 RUN useradd pyshelf && chpasswd pyshelf:pyshelf
 RUN mkdir -p /srv/Books && mkdir -p /srv/http && \
     chown -R http.pyshelf /srv/Books && chown -R http.pyshelf /srv/http
-RUN systemctl enable sshd && systemctl start sshd
+RUN systemctl enable sshd
 VOLUME ['/srv/Books','/srv/http']
 ENV nginx_conf /etc/nginx/nginx.conf
 ENV PYTHONUNBUFFERED 1
