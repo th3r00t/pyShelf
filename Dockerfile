@@ -1,7 +1,7 @@
 FROM archlinux:latest
 RUN pacman -Syy
 RUN pacman -Syu --noconfirm
-RUN pacman -S --noconfirm python python-pip git openssh postgresql
+RUN pacman -S --noconfirm python python-pip git openssh postgresql sudo
 RUN sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
 RUN systemctl enable postgresql && systemctl start postgresql
 RUN useradd pyshelf && chpasswd pyshelf:pyshelf
