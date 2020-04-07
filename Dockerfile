@@ -22,4 +22,4 @@ RUN git clone https://github.com/th3r00t/pyShelf.git /srv/http && \
 # RUN sudo -u postgres psql -f create_db.sql
 # RUN gunicorn pyShelf.wsgi 8000:8000
 EXPOSE 80 22 8000
-CMD ["sh", "-c","entry.sh"]
+CMD ["sh", "-c","/srv/http/entry.sh"]
