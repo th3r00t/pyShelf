@@ -12,12 +12,10 @@ pre-commit
 isort
 django
 toml
-:close
-
-q
 django-debug-toolbar
 psycopg2-binary
 prompt_toolkit
 psutil
 pyfiglet
 psycopg2
+shutil
