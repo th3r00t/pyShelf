@@ -1,0 +1,12 @@
+#!python
+import os
+
+from installer import RequiredPackages
+
+# Package List
+breakpoint()
+package_list = [["gcc", "/usr/bin/gcc"]]
+packages, required_packages = "", RequiredPackages(package_list)
+for package in required_packages:
+    packages = packages + package + " "
+os.system("sudo pacman -S %s" % packages)
