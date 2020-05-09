@@ -17,5 +17,5 @@ psycopg2-binary
 prompt_toolkit
 psutil
 pyfiglet
-psycopg2
+psycopg2-binary
 shutil
