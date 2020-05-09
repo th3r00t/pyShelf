@@ -229,14 +229,15 @@ config["USER"] = "pyshelf"
 Configuration().write_file(config)
 
 # Start checking for our list of required services
-service_list = ["postgres", "nginx", "httpd", "test"]
+service_list = ["postgres", "nginx", "httpd"]
 req = RequiredServices().check_ps(service_list)
 
 # Does user have either nginx || apache?
 if RequiredServices().web_server_found(req) is False:
     web_prompt = [
         {
-            "message": " You must have either apache or nginx\n would you like us to try and install nginx now?  > ",
+            "message": " You must have either apache or nginx\n would you like \
+            us to try and install nginx now? Enter for default 'no' > ",
             "options": "nginx",
             "name": "NGINX",
             "answer": None,
@@ -275,7 +276,8 @@ if RequiredServices().web_server_found(req) is False:
 if RequiredServices().db_server_found(req) is False:
     db_prompt = [
         {
-            "message": " You must have PostgreSQL\n would you like us to try and install it now? > ",
+            "message": " You must have PostgreSQL\n would you like us to try \
+            and install it now? Enter for default 'no' > ",
             "options": "postgres",
             "name": "postgresql",
             "answer": None,
@@ -307,19 +309,19 @@ if RequiredServices().db_server_found(req) is False:
         # sql_user = config["USER"]
         sql_user = "pyshelf"
         db_name = "pyshelf"
-        import pudb
-
-        pudb.set_trace()
         psql_cmd = (
-            "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"
+            "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; \
+            GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"
             % (db_name, sql_user, sql_pass, db_name, sql_user)
         )
         _sql_file = "/tmp/create_db.sql"
+        breakpoint()
         with open(_sql_file, "w") as sql_file_open:
             sql_file_open.write(psql_cmd)
         sql_file_open.close()
         os.system(
-            "sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data"
+            "sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 \
+            -D /var/lib/postgres/data"
         )
         os.system("sudo systemctl start postgresql")
         os.system("sudo -u postgres psql -f %s" % _sql_file)
@@ -333,6 +335,24 @@ if RequiredServices().db_server_found(req) is False:
             "pyShelf database and user created",
             psql_cmd,
         ]
+    else:
+        psql_cmd = (
+            "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; \
+                    GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"
+            % (db_name, sql_user, sql_pass, db_name, sql_user)
+        )
+        _sql_file = "/tmp/create_db.sql"
+        with open(_sql_file, "w") as sql_file_open:
+            sql_file_open.write(psql_cmd)
+        sql_file_open.close()
+        os.system("sudo systemctl start postgresql")
+        os.system("sudo -u postgres psql -f %s" % _sql_file)
+        # os.system("sudo -u postgres psql -c \'%s\'"%psql_cmd)
+        messages = messages + [
+            "pyShelf database and user created",
+            psql_cmd,
+        ]
+
 
 # Post install configurations
 sysinstall.make_nginx_config(install_answers)
