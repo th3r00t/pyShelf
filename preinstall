@@ -22,5 +22,5 @@ class RequiredPackages:
 package_list = [["gcc", "/usr/bin/gcc"]]
 packages, required_packages = "", RequiredPackages(package_list)
 for package in required_packages.to_be_installed:
-    packages = packages + package[0] + " "
+    packages = packages + package + " "
 os.system("sudo pacman -S %s" % packages)
