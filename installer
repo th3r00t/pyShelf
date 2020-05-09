@@ -94,6 +94,21 @@ class RequiredServices:
             return True
 
 
+class RequiredPackages:
+    def __init__(self, bins):
+        self.required = bins
+        self.to_be_installed = []
+        self.locate()
+        return self.to_be_installed
+
+    def locate(self):
+        for bin in self.required:
+            if os.path.isfile(bin[1]):
+                continue
+            else:
+                self.to_be_installed.append(bin[0])
+
+
 class SystemInstaller:
     def __init__(self):
         self.bin = self.get()
@@ -227,11 +242,15 @@ for key in install_answers:
 config["USER"] = "pyshelf"
 # Write configuration
 Configuration().write_file(config)
-
+# Package List
+breakpoint()
+package_list = [["gcc", "/usr/bin/gcc"]]
+packages, required_packages = "", RequiredPackages(package_list)
+for package in required_packages:
+    packages = packages + package + " "
 # Start checking for our list of required services
 service_list = ["postgres", "nginx", "httpd"]
 req = RequiredServices().check_ps(service_list)
-
 # Does user have either nginx || apache?
 if RequiredServices().web_server_found(req) is False:
     web_prompt = [
@@ -315,7 +334,6 @@ if RequiredServices().db_server_found(req) is False:
             % (db_name, sql_user, sql_pass, db_name, sql_user)
         )
         _sql_file = "/tmp/create_db.sql"
-        breakpoint()
         with open(_sql_file, "w") as sql_file_open:
             sql_file_open.write(psql_cmd)
         sql_file_open.close()
