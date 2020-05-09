@@ -94,21 +94,6 @@ class RequiredServices:
             return True
 
 
-class RequiredPackages:
-    def __init__(self, bins):
-        self.required = bins
-        self.to_be_installed = []
-        self.locate()
-        return self.to_be_installed
-
-    def locate(self):
-        for bin in self.required:
-            if os.path.isfile(bin[1]):
-                continue
-            else:
-                self.to_be_installed.append(bin[0])
-
-
 class SystemInstaller:
     def __init__(self):
         self.bin = self.get()

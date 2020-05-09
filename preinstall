@@ -1,7 +1,21 @@
 #!python
 import os
 
-from installer import RequiredPackages
+
+class RequiredPackages:
+    def __init__(self, bins):
+        self.required = bins
+        self.to_be_installed = []
+        self.locate()
+        return self.to_be_installed
+
+    def locate(self):
+        for bin in self.required:
+            if os.path.isfile(bin[1]):
+                continue
+            else:
+                self.to_be_installed.append(bin[0])
+
 
 # Package List
 breakpoint()
