@@ -9,6 +9,7 @@ class RequiredPackages:
         self.locate()
 
     def locate(self):
+        breakpoint()
         for bin in self.required:
             if os.path.isfile(bin[1]):
                 continue
@@ -18,7 +19,6 @@ class RequiredPackages:
 
 
 # Package List
-breakpoint()
 package_list = [["gcc", "/usr/bin/gcc"]]
 packages, required_packages = "", RequiredPackages(package_list)
 for package in required_packages:
