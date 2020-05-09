@@ -7,7 +7,6 @@ class RequiredPackages:
         self.required = bins
         self.to_be_installed = []
         self.locate()
-        return self.to_be_installed
 
     def locate(self):
         for bin in self.required:
@@ -15,6 +14,7 @@ class RequiredPackages:
                 continue
             else:
                 self.to_be_installed.append(bin[0])
+        return self.to_be_installed
 
 
 # Package List
