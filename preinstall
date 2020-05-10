@@ -1,5 +1,6 @@
 #!python
 import os
+from subprocess import call
 
 
 class RequiredPackages:
@@ -26,6 +27,6 @@ for package in required_packages.to_be_installed:
 try:
     ret = call("sudo pacman -S %s") % packages
     print(ret)
-except:
+except Exception as e:
     ret = call("pacman -S %s") % packages
     print(ret)
