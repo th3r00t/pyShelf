@@ -11,6 +11,7 @@ class TerminalDisplay:
         self.term = True
         self.w, self.y = os.get_terminal_size()[0], os.get_terminal_size()[1]
         self.home = os.environ["HOME"]
+        breakpoint()
         self.user = os.environ["USER"]
         self.version = "0.4.0"
         self.slogan = "The Installer Initiative"
