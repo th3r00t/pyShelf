@@ -24,8 +24,8 @@ packages, required_packages = "", RequiredPackages(package_list)
 for package in required_packages.to_be_installed:
     packages = packages + package + " "
 try:
-    ret = os.call("sudo pacman -S %s") % packages
+    ret = call("sudo pacman -S %s") % packages
     print(ret)
 except:
-    ret = os.call("pacman -S %s") % packages
+    ret = call("pacman -S %s") % packages
     print(ret)
