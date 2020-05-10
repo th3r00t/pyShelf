@@ -1,6 +1,6 @@
 #!python
 import os
-from subprocess import call
+from subprocess import run
 
 
 class RequiredPackages:
@@ -10,7 +10,6 @@ class RequiredPackages:
         self.locate()
 
     def locate(self):
-        breakpoint()
         for bin in self.required:
             if os.path.isfile(bin[1]):
                 continue
@@ -25,8 +24,9 @@ packages, required_packages = "", RequiredPackages(package_list)
 for package in required_packages.to_be_installed:
     packages = packages + package + " "
 try:
-    ret = call("sudo pacman -S %s") % packages
+    breakpoint()
+    ret = run("sudo pacman -S %s") % packages
     print(ret)
 except Exception as e:
-    ret = call("pacman -S %s") % packages
+    ret = run("pacman -S %s") % packages
     print(ret)
