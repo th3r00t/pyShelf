@@ -25,8 +25,8 @@ for package in required_packages.to_be_installed:
     packages = packages + package + " "
 try:
     breakpoint()
-    ret = run(["sudo", "pacman", "-S", packages])
+    ret = run(["sudo", "pacman", "-S", packages], capture_output=True)
     print(ret)
 except Exception as e:
-    ret = run(["pacman", "-S", packages])
+    ret = run(["pacman", "-S", packages], capture_output=True)
     print(ret)
