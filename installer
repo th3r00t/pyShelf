@@ -376,9 +376,9 @@ for package in required_packages.to_be_installed:
     packages = packages + package + " "
 try:
     breakpoint()
-    ret = sp.run(["sudo", "pacman", "-S", packages[0:-1]], capture_output=True)
+    ret = sp.run(["sudo", "pacman", "-S", packages[0:-1]])
 except Exception as e:
-    ret = sp.run(["pacman", "-S", packages[0:-1]], capture_output=True)
+    ret = sp.run(["pacman", "-S", packages[0:-1]])
 
 # Post install configurations
 sysinstall.make_nginx_config(install_answers)
