@@ -371,15 +371,14 @@ Attempt to acquire them if non existant
 """
 package_list = [["gcc", "/usr/bin/gcc"]]
 
-packages, required_packages = "", RequiredPackages(package_list)
+packages, required_packages = None, RequiredPackages(package_list)
 for package in required_packages.to_be_installed:
     packages = packages + package + " "
 try:
+    breakpoint()
     ret = sp.run(["sudo", "pacman", "-S", packages[0:-1]], capture_output=True)
-    print(ret)
 except Exception as e:
     ret = sp.run(["pacman", "-S", packages[0:-1]], capture_output=True)
-    print(ret)
 
 # Post install configurations
 sysinstall.make_nginx_config(install_answers)
