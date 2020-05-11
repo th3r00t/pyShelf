@@ -31,8 +31,8 @@ We are now categorizing your ebooks into collections based on the folder
 structure used to store them. Any folder after the root book folder is now
 considered as a collection.
 
-books/forgotten realms/ -> Forgotten Realms Collection.
-books/Dune/Prelude To Dune -> Dune, & Preluse To Dune Collections.
+#### books/forgotten realms/ -> Forgotten Realms Collection.
+#### books/Dune/Prelude To Dune -> Dune, & Preluse To Dune Collections.
 
 In addition to the work on the collection system, a good deal of time was spent
 on the installer, and the concept of having an installer in the first place.
