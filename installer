@@ -320,6 +320,7 @@ if RequiredServices().db_server_found(req) is False:
             "sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 \
             -D /var/lib/postgres/data"
         )
+        breakpoint()
         os.system("sudo systemctl start postgresql")
         os.system("sudo -u postgres psql -f %s" % _sql_file)
         # os.system("sudo -u postgres psql -c \'%s\'"%psql_cmd)
