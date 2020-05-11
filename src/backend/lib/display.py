@@ -14,7 +14,7 @@ class TerminalDisplay:
         try:
             self.user = os.environ["USER"]
         except KeyError:
-            self.user = os.environ["PWD"]
+            self.user = None
         self.version = "0.4.0"
         self.slogan = "The Installer Initiative"
         self.green = "\033[1;32m"
