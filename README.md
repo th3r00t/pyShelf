@@ -1,7 +1,8 @@
 # pyShelf 0.5.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
-
+![alt text](./preview_1_050.png)
+![alt text](./preview_050.png)
 
 Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
 
@@ -39,7 +40,6 @@ running the installer.
 We are now categorizing your ebooks into collections based on the folder
 structure used to store them. Any folder after the root book folder is now
 considered as a collection.
-
 #### books/forgotten realms/ -> Forgotten Realms Collection.
 #### books/Dune/Prelude To Dune -> Dune, & Preluse To Dune Collections.
 
