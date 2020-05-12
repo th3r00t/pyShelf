@@ -9,7 +9,7 @@
 <p align="center"><b>Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf</b></p>
 
 ## Current Features
-* Custom Installer -- For Arch Based Distros Only
+* Custom Installer -- pre-req installs work on Arch Based Distros Only
 * Recursive Scanning
 * Fast database access
 * Django based frontend
@@ -28,11 +28,12 @@
 
 ## 0.5.0 Patch Notes.
 
-### Additional Dependencies
+### Pre-req Dependencies
 * gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
 Users on distros other then Arch should install gcc via their systems package manager prior to
 running the installer.
-
+* Python3
+* pip
 ### New Features
 * Collections
 We are now categorizing your ebooks into collections based on the folder
