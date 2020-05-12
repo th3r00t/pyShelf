@@ -129,3 +129,6 @@ create_db.sql
 uwsgi.ini
 installer.log
 pyshelf_nginx.conf
+tags
+TAGS
+config.json

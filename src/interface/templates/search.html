@@ -18,7 +18,7 @@
     <div id="app">
         <div class="app_header" >
         <div class="app_hdr">
-                <h1 class="app_hdr shadow">pyShelf 0.4.1</h1>
+            <h1 class="app_hdr shadow">pyShelf {{Version}}</h1>
         </div>
         <div class="app_slogan">
                 <h3 class="app_slogan shadow">"An elegant tool... for a more civilized age."</h3>
@@ -48,6 +48,18 @@
             </div>
         </div>
         <div class="app_body" >
+            <div class="nav_l">
+                <ul id="vert-nav">
+                    <li class="vert-nav-item nav_l_hdr">Collections</li>
+                    {% for row in LeftNav %}
+                    <a href="{% url 'show_collection' _collection=row.link _colset=Set%}" class="nav_link" alt="{{row.link}}">
+                        <li class="nav_l_{{row.class}}">
+                            {{ row.string }}
+                        </li>
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
                 <div class="shelf">
                         <div class="search_details">
                                 Your search for {{ Query }} returned {{ len_results }} results

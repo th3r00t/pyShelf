@@ -1,0 +1,33 @@
+#!python
+import os
+from subprocess import run
+
+
+class RequiredPackages:
+    def __init__(self, bins):
+        self.required = bins
+        self.to_be_installed = []
+        self.locate()
+
+    def locate(self):
+        for bin in self.required:
+            if os.path.isfile(bin[1]):
+                continue
+            else:
+                self.to_be_installed.append(bin[0])
+        return self.to_be_installed
+
+
+# Package List
+
+package_list = [["gcc", "/usr/bin/gcc"]]
+
+packages, required_packages = "", RequiredPackages(package_list)
+for package in required_packages.to_be_installed:
+    packages = packages + package + " "
+try:
+    ret = run(["sudo", "pacman", "-S", packages[0:-1]])
+    print(ret)
+except Exception as e:
+    ret = run(["pacman", "-S", packages[0:-1]])
+    print(ret)

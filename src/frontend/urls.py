@@ -27,6 +27,11 @@ urlpatterns = [
     path("search/", views.search, name="search"),
     path("search/<query>", views.search, name="search"),
     path("search/<query>/<_set>", views.search, name="search"),
+    path(
+        "show_collection/<_collection>/<_colset>",
+        views.show_collection,
+        name="show_collection",
+    ),
 ]
 if settings.DEBUG:
     import debug_toolbar

@@ -1,13 +1,17 @@
 import json
 import os
 from base64 import b64decode, b64encode
+from pathlib import Path
 
+from backend.lib.config import Config
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render #render_to_response
+from django.shortcuts import HttpResponse, render  # render_to_response
 from django.utils.text import slugify
 
-from .models import Books
+from .models import Books, Collections
+
+config = Config(Path("../"))
 
 
 def index(request):
@@ -16,7 +20,31 @@ def index(request):
     """
     _set = 1
     return render(
-        request, "index.html", {"Books": book_set(20, _set), "Set": str(_set)}
+        request,
+        "index.html",
+        {
+            "Books": book_set(20, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
+    )
+
+
+def show_collection(request, _collection, _colset):
+    try:
+        _set = int(_colset) + 1
+    except Exception:
+        _set = 1
+    return render(
+        request,
+        "index.html",
+        {
+            "Books": collection(_collection, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
 
 
@@ -29,7 +57,14 @@ def next_page(request, bookset):
     except Exception:
         _set = 1
     return render(
-        request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
+        request,
+        "index.html",
+        {
+            "Books": book_set(None, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
 
 
@@ -46,7 +81,14 @@ def prev_page(request, bookset):
         except Exception:
             _set = 1
     return render(
-        request, "index.html", {"Books": book_set(None, _set), "Set": str(_set)}
+        request,
+        "index.html",
+        {
+            "Books": book_set(None, _set),
+            "Set": str(_set),
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
 
 
@@ -56,7 +98,7 @@ def search(request, query=None, _set=1, _limit=None):
     """
     _set = int(_set)
     if query is None:
-        return render(request, "index.html", {"Books": None})
+        return render(request, "index.html", {"Books": None, "Version": config.VERSION})
     if _limit is None:
         _limit = 20  ## TODO set to user defaults
     if _set < 1:
@@ -69,7 +111,14 @@ def search(request, query=None, _set=1, _limit=None):
     return render(
         request,
         "search.html",
-        {"Books": _r, "Query": query, "Set": _set, "len_results": search_len},
+        {
+            "Books": _r,
+            "Query": query,
+            "Set": _set,
+            "len_results": search_len,
+            "Version": config.VERSION,
+            "LeftNav": menu("collections"),
+        },
     )
 
 
@@ -85,8 +134,23 @@ def book_set(_limit=None, _set=1):
     return books
 
 
+def collection(_collection, _set, _limit=None):
+    """
+    Get books by collection id
+    """
+    _books = []
+    books = []
+    if _limit is None:
+        _limit = 20
+    _set_max = int(_set) * _limit
+    _set_min = _set_max - _limit
+    _collections = Collections.objects.filter(collection=_collection)
+    for c in _collections:
+        _books.append(c.book_id_id)
+    return Books.objects.filter(id__in=_books)
+
+
 def book_set_as_dict(_limit=None, _set=1):
-    breakpoint()
     if _limit is None:
         _limit = 20
     _set_max = int(_set) * _limit
@@ -124,3 +188,32 @@ def hr_name(book):
     Nicer file names
     """
     return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])
+
+
+def menu(which, _set=1):
+    if which == "collections":
+        collection_list = Collections.objects.all()
+        collections, collection_key, x = [], [], 0
+        for i in collection_list:
+            if i.collection not in collection_key:
+                # Using c as the alternating row identifier
+                # set c here
+                if x % 2 == 0:
+                    c = 0
+                else:
+                    c = 1
+                if x <= 10:
+                    x = x + 1
+                else:
+                    x = 0
+                # TODO trim #'s and symbols from front of collection name
+                if len(i.collection) > 16:
+                    collection_string = i.collection[0:16] + " ..."
+                else:
+                    collection_string = i.collection
+
+                collections.append(
+                    {"string": collection_string, "link": i.collection, "class": c}
+                )
+                collection_key.append(i.collection)
+        return collections

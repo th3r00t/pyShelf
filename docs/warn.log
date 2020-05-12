@@ -4,7 +4,7 @@
 /opt/pyshelf/src/backend/tests/library_test.py:8: warning: Compound src::backend::tests::library_test::Test_Config is not documented.
 /opt/pyshelf/src/backend/lib/display.py:9: warning: Compound src::backend::lib::display::TerminalDisplay is not documented.
 error: Problems running htags. Check your installation
-error: USE_HTAGS is YES but htags(1) failed. 
+error: USE_HTAGS is YES but htags(1) failed.
 /opt/pyshelf/src/backend/lib/api_hooks.py:12: warning: Member __init__(self) (function) of class src::backend::lib::api_hooks::DuckDuckGo is not documented.
 /opt/pyshelf/src/backend/lib/api_hooks.py:13: warning: Member url (variable) of class src::backend::lib::api_hooks::DuckDuckGo is not documented.
 /opt/pyshelf/src/backend/lib/api_hooks.py:15: warning: parameters of member src.backend.lib.api_hooks.DuckDuckGo.image_result are not (all) documented

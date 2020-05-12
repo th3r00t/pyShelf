@@ -12,7 +12,6 @@ pre-commit
 isort
 django
 toml
-uwsgi
 django-debug-toolbar
 psycopg2-binary
 prompt_toolkit
