@@ -1,8 +1,8 @@
 # pyShelf 0.5.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
-![pyShelf 0.5.0 Collection 1](https://raw.githubusercontent.com/th3r00tt/pyShelf/preview_1_050.png)
-![pyShelf 0.5.0 Collection 2](https://raw.githubusercontent.com/th3r00tt/pyShelf/preview_050.png)
+![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/development/preview_050.png)
+![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/development/preview_1_050.png)
 
 Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
 
