@@ -29,10 +29,8 @@
 ## 0.5.0 Patch Notes.
 
 ### Additional Dependencies
-* gcc -- This will be installed by the new pre-installer script if its binary
-is not detected at the arch distro default of /usr/bin/gcc
-
-All other distros should install via their systems package manager prior to
+* gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
+Users on distros other then Arch should install gcc via their systems package manager prior to
 running the installer.
 
 ### New Features
