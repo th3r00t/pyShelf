@@ -4,8 +4,8 @@
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/development/preview_050.png)
-![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/development/preview_1_050.png)
+![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/master/preview_050.png)
+![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/master/preview_1_050.png)
 
 <p align="center"><b>Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf</b></p>
 
