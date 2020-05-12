@@ -61,11 +61,6 @@ installation already present in the source now, however it is not complete and
 should not be relied upon to be present in future releases unless completed by
 a member of the community,
 
-
-## 0.4.1 Patch Notes.
-### Filename detection
-Now using os.path.splitext to ensure proper formating of downloaded files
-
 ## Development
 
 * [`pre-commit`](https://pre-commit.com/)
@@ -83,15 +78,24 @@ All configuration is now handled by the installer.
 
 Running via the Django test server might be possible, albeit not recomended.
 
-## In Progress
+### In Progress
 
-* Organizational tools.
-* Docker image for those who need it.
-* Improved cover image storage, and acquisition.
+#### Organizational tools.
+- [x] Automated Collections
+- [ ] Manual Collections
+- [ ] Books Removal
+- [ ] Access Restrictions
+- [ ] Metadata Manipulation
+- [ ] Others?
+#### Improved cover image storage, and acquisition.
+#### OPDS Support
+#### Support for other formats
+- [ ] .mobi
+- [ ] .pdf
+- [ ] .cbz
+- [ ] .zip (Zipped book folders, is this a new idea? (Consider storing your library folders zipped and retrieving a book on demand))
 
-## Future Goals
-* Support for other book formats (Currently only supporting EPUBS)
-* Terminal Backend for catalogue maintenance
-* Calculate page count from total characters
+### Future Goals
+#### Terminal Backend for catalogue maintenance
+#### Calculate page count from total characters
   * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
-* Reader for easy integration with your catalogue
