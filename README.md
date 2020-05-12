@@ -26,7 +26,16 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ## 0.5.0 Patch Notes.
-### Collections
+
+### Additional Dependencies
+* gcc -- This will be installed by the new pre-installer script if its binary
+is not detected at the arch distro default of /usr/bin/gcc
+
+All other distros should install via their systems package manager prior to
+running the installer.
+
+### New Features
+* Collections
 We are now categorizing your ebooks into collections based on the folder
 structure used to store them. Any folder after the root book folder is now
 considered as a collection.
@@ -43,10 +52,14 @@ Postgres server. Beyond that theres nothing the user has to do to make the
 system work...
 
 The installer will only run correctly on arch based distros. This could be
-easily rectified to include other package managers however not
-running any other distros myself I will not be including support. Members of
-the community are welcome to dig into the installer source and patch in support
+easily rectified to include other package managers, Members of the community
+are welcome to dig into the installer source and patch in support
 for other package managers.
+
+There is some support for detection of the aptitude package manager
+installation already present in the source now, however it is not complete and
+should not be relied upon to be present in future releases unless completed by
+a member of the community,
 
 
 ## 0.4.1 Patch Notes.
