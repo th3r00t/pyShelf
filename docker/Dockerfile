@@ -12,9 +12,8 @@ RUN python3 -m pip install wheel
 RUN git clone https://github.com/hat/pyShelf.git /usr/src/app/
 RUN python3 -m pip install -r /usr/src/app/requirements.txt
 EXPOSE 8000
-#CMD ["bin/bash"]
 
 WORKDIR /usr/src/app/src/
-#RUN python3 manage.py migrate
-#RUN python3 manage.py migrate interface
+RUN python3 manage.py migrate
+RUN python3 manage.py migrate interface
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
