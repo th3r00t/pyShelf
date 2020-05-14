@@ -14,6 +14,7 @@ services:
     volumes:
       - "${LOCAL_BOOK_DIR}:/usr/src/app/Books"
       - "./cron/root:/etc/crontabs/root"
+      - "./scripts/wait-for-it.sh:/usr/src/app/src/"
     ports:
       - "${PORT}:8000"
     links:
