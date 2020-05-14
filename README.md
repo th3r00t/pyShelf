@@ -7,7 +7,7 @@
 ![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/master/preview_050.png)
 ![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/master/preview_1_050.png)
 
-<p align="center"><b>Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf</b></p>
+<p align="center"><b> <a href="https://discord.gg/H9TbNJS">Discord</a> |  <a href="https://webchat.freenode.net/#pyshelf">IRC</a> freenode.net @ #pyshelf</b></p>
 
 ## Current Features
 * Custom Installer -- pre-req installs work on Arch Based Distros Only
