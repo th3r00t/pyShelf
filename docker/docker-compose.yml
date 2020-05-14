@@ -13,8 +13,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "${LOCAL_BOOK_DIR}:/usr/src/app/Books"
+      - "./cron/root:/etc/crontabs/root"
     ports:
-      - "8088:8000"
+      - "${PORT}:8000"
     links:
       - "db:db"
     depends_on:

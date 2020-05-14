@@ -78,6 +78,16 @@ All configuration is now handled by the installer.
 
 Running via the Django test server might be possible, albeit not recomended.
 
+## Docker
+
+Installation for Docker is handled by docker-compose
+
+It will spin up two containers: one postgres, one for the Django application
+
+Edit [docker/.env](docker.env)
+`sudo docker-compose -f docker/docker-compose.yml --env-file docker/.env build`
+`sudo docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
+
 ### In Progress
 
 #### Organizational tools.
