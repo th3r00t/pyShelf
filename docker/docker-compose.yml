@@ -12,7 +12,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - "${LOCAL_BOOK_DIR}:/Books"
+      - "${LOCAL_BOOK_DIR}:/usr/src/app/Books"
     ports:
       - "8088:8000"
     links:
