@@ -90,6 +90,8 @@ Edit [docker/.env](docker/.env)
 
 `sudo docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
 
+`sudo docker exec -it docker_pyshelf_1 python3 manage.py migrate`
+
 ### In Progress
 
 #### Organizational tools.
