@@ -86,12 +86,9 @@ It will spin up two containers: one postgres, one for the Django application
 
 Edit [docker/.env](docker/.env)
 
+`docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
 
-`sudo docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
-
-`sudo docker exec -it docker_pyshelf_1 python3 manage.py migrate`
-
-'sudo docker exec -it docker_pyshelf_1 python3 manage.py runserver 0.0.0.0:8000'
+`docker exec -it -d docker_pyshelf_1 python3 manage.py migrate`
 
 ### In Progress
 
