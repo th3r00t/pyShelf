@@ -98,6 +98,12 @@ Once the .epub files are in the directory specified in [docker/.env](docker/.env
 
 `cd /usr/src/app/ && python3 importBooks`
 
+### Docker Future Enhancements
+
+- [ ] Change method of importing books ssibly cron or using the Django code
+- [ ] Look into having the migration work without having to manually execute
+
+
 ### In Progress
 
 #### Organizational tools.
