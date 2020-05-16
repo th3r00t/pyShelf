@@ -4,8 +4,8 @@
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/development/preview_050.png)
-![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/development/preview_1_050.png)
+![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/master/preview_050.png)
+![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/master/preview_1_050.png)
 
 <p align="center"><b>Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf</b></p>
 
@@ -77,6 +77,32 @@ _Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf 
 All configuration is now handled by the installer.
 
 Running via the Django test server might be possible, albeit not recomended.
+
+## Docker
+
+Installation for Docker is handled by docker-compose
+
+It will spin up two containers: one postgres, one for the Django application
+
+Edit [docker/.env](docker/.env)
+
+`docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
+
+`docker exec -it -d docker_pyshelf_1 python3 manage.py migrate`
+
+IMPORT BOOKS
+
+Once the .epub files are in the directory specified in [docker/.env](docker/.env)
+
+`docker exec -it docker_pyshelf_1 /bin/bash`
+
+`cd /usr/src/app/ && python3 importBooks`
+
+### Docker Future Enhancements
+
+- [ ] Change method of importing books ssibly cron or using the Django code
+- [ ] Look into having the migration work without having to manually execute
+
 
 ### In Progress
 
