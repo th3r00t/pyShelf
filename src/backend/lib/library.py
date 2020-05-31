@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import json
 import os
 import pathlib
@@ -128,9 +128,9 @@ class Catalogue:
         except KeyError:
             cover_image = None
         title = book.title().decode("utf-8")
-        author = book.author().decode(
-            "utf-8"
-        )  # TODO some files are still passing encoded data for author.
+        author = book.author().decode("utf-8")
+        breakpoint()
+        # TODO some files are still passing encoded data for author.
         return [title, author, cover_image, book.f.name]
 
     def extract_content(self, book_zip, book):
@@ -182,7 +182,8 @@ class Catalogue:
         Gets a list of new files via compare_shelf_current.
         Iterates over list and inserts new books into database.
         """
-        # TODO Refactor metadata extraction into process_book call to more easily handle additional formats
+        # TODO Refactor metadata extraction into process_book \
+        # call to more easily handle additional formats
         book_list = self.compare_shelf_current()
         db = Storage(self.config)
         for book in book_list:
