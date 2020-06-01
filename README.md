@@ -1,15 +1,16 @@
 # pyShelf 0.5.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
-![alt text](./preview_1_050.png)
-![alt text](./preview_050.png)
+<p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
+<p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.
+![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/development/preview_050.png)
+![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/development/preview_1_050.png)
 
-### Join the discussion: Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf
+<p align="center"><b>Discord [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS) | IRC freenode.net @ #pyshelf</b></p>
 
 ## Current Features
-* Custom Installer -- For Arch Based Distros Only
+* Custom Installer -- pre-req installs work on Arch Based Distros Only
 * Recursive Scanning
 * Fast database access
 * Django based frontend
@@ -28,13 +29,12 @@ Having used Calibre for hosting my eBook collection in the past, I found myself 
 
 ## 0.5.0 Patch Notes.
 
-### Additional Dependencies
-* gcc -- This will be installed by the new pre-installer script if its binary
-is not detected at the arch distro default of /usr/bin/gcc
-
-All other distros should install via their systems package manager prior to
+### Pre-req Dependencies
+* gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
+Users on distros other then Arch should install gcc via their systems package manager prior to
 running the installer.
-
+* Python3
+* pip
 ### New Features
 * Collections
 We are now categorizing your ebooks into collections based on the folder
