@@ -28,7 +28,6 @@ class Catalogue:
         self.html_regx = re.compile(r"\.html")
         self.root_dir = config.root
         self.book_folder = config.book_path
-        # self.book_shelf = config.book_shelf
         self.books = None
         self.db_pointer = config.catalogue_db
         self.config = config

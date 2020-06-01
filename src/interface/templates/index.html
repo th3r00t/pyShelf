@@ -17,28 +17,12 @@
 </head>
 
 <body>
+	<input type="hidden" id="_set" name="_set" value="{{ Set }}" />
     <div id="app">
         <div class="app_header">
             <div class="app_hdr">
                 <h1 class="app_hdr shadow">pyShelf {{Version}}</h1>
             </div>
-            <div class="app_slogan">
-                <h3 class="app_slogan shadow">"An elegant tool... for a more civilized age."</h3>
-            </div>
-            <div class="app_subhdr">
-                <a class="discord-button" href="https://discord.gg/H9TbNJS" alt="https://discord.gg/H9TbNJS">
-                    <img src="/static/img/discord_logo_color.png" class="discord-button" />
-                </a>
-                <!-- Place this tag where you want the button to render. -->
-                <a class="github-button" href="https://github.com/th3r00t/pyShelf/fork" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork th3r00t/pyShelf on GitHub">Fork</a>
-                <!-- Place this tag where you want the button to render. -->
-                <a class="github-button" href="https://github.com/th3r00t/pyShelf/issues" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue th3r00t/pyShelf on GitHub">Issue</a>
-                <!--
-                <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
-                <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
-                -->
-            </div>
-            <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
             <div class="nav_left_top">
                 <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/prev_page/{{ Set }}'">
             </div>

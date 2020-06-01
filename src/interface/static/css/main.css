@@ -8,11 +8,12 @@ body {
 
 #app {
     display: grid;
-    grid-template-areas: "app_header"
+    grid-template-areas:
+        "app_header"
         "app_body"
         "app_footer";
-    grid-template-rows: auto auto auto;
-    /*max-height: 100%;*/
+    grid-template-rows: 52px auto auto;
+    /* max-height: 100%; */
 }
 
 .clear {
@@ -24,30 +25,32 @@ body {
     margin: 0px;
     display: grid;
     grid-template-areas:
-        "title slogan subhdr"
-        "nav_left_top nav_center_top nav_right_top";
-    align-items: center;
-    background-color: #2b2b2b;
+        "title nav_left_top nav_center_top nav_right_top";
+    grid-template-columns: 225px auto auto;
     padding: 4px 0px 4px;
     grid-auto-columns: auto;
+    background-color: #2b2b2b;
 }
 
 .nav_left_top {
     grid-area: nav_left_top;
     display: flex;
     justify-content: left;
+    align-items: center;
 }
 
 .nav_center_top {
     grid-area: nav_center_top;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .nav_right_top {
     grid-area: nav_right_top;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .app_hdr {
@@ -225,12 +228,14 @@ body {
     margin: 0px 5px 0px 0px;
     padding-top: 2px;
     padding-bottom: 2px;
+    max-height: 20px;
 }
 
 .nav_search {
     margin: 0px 5px 0px 0px;
     border-radius: 5px;
     border: 1px solid #999;
+    max-height: 17px;
 }
 
 .search {}
