@@ -30,9 +30,9 @@ $(document).ready(function(){
                     $(this).removeAttr("disabled");
             }
     });
-    $('#app').css("height", max_height);
-    $('.nav_l').css("max-height", max_height);
-    $('div.shelf').css("max-height", max_height);
+//    $('#app').css("height", max_height);
+//    $('.nav_l').css("max-height", max_height);
+//   $('div.shelf').css("max-height", max_height);
     $('.nav_link').on('mouseover', function (e){
         var popover_str = $(this).attr('alt');
         x = $(this).offset().left
@@ -50,5 +50,8 @@ $(document).ready(function(){
         $('.popover').css('left', x);
         $('.popover').css('top', y);
         $('.popover').css('display','none');
+    });
+    $('#btn_collections').on('click', function (e){
+        $('.hidden.vert-nav.collections').toggle()
     });
 })

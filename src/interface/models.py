@@ -62,3 +62,40 @@ class Collections(models.Model):
         except Exception as e:
             raise
         return results
+
+
+class Navigation(models.Model):
+    """
+    pyShelfs Navigation Database class
+    :param title: Link Text
+    :param link: Link link :)
+    :param category: Where in the nav tree do I belong
+    :param parent_id: This link is a sub link of link with id of me
+    :param alt: Alternate text of link
+    :param type: Web link, or Socket link which will be expected to act on \
+    the link, and the action defined in socket
+    :param socket: if a Socket link define socket here
+    """
+
+    class Meta:
+        db_table = "navigation"
+
+    def __str__(self):
+        return self.title
+
+    title = models.CharField(max_length=255)
+    link = models.CharField(max_length=255, null=True)
+    category = models.CharField(max_length=255, null=True)
+    parent_id = models.IntegerField(null=True, editable=True)
+    alt = models.CharField(max_length=255, null=True)
+    type = models.IntegerField(null=True)
+    socket = models.CharField(max_length=255, null=False)
+
+    def generic_search(self, query):
+        try:
+            results = Navigation.objects.annotate(
+                search=SearchVector("title", "parent_id", "category"),
+            ).filter(search=query)
+        except Exception as e:
+            raise
+        return results

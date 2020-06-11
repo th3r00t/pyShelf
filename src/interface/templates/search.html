@@ -16,48 +16,44 @@
 </head>
 <body>
     <div id="app">
-        <div class="app_header" >
-        <div class="app_hdr">
-            <h1 class="app_hdr shadow">pyShelf {{Version}}</h1>
-        </div>
-        <div class="app_slogan">
-                <h3 class="app_slogan shadow">"An elegant tool... for a more civilized age."</h3>
-        </div>
-        <div class="app_subhdr">
-                <a class="discord-button" href="https://discord.gg/H9TbNJS" alt="https://discord.gg/H9TbNJS">
-                        <img src="/static/img/discord_logo_color.png" class="discord-button"/>
-                </a>
-                <!-- Place this tag where you want the button to render. -->
-                <a class="github-button" href="https://github.com/th3r00t/pyShelf/fork" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork th3r00t/pyShelf on GitHub">Fork</a>
-                <!-- Place this tag where you want the button to render. -->
-<a class="github-button" href="https://github.com/th3r00t/pyShelf/issues" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue th3r00t/pyShelf on GitHub">Issue</a>
-                <!--
-                <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
-                <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
-                -->
-        </div>
-            <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
-            <div class="nav_left_top">
-                    <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/search/{{ Query }}/{{ Set|add:"-1" }}'">
-            </div>
-            <div class="nav_center_top">
-                <input class="nav_search" type="text" size="25" value=""><input class="nav_button search_submit" type="submit" value="Search">
-            </div>
-            <div class="nav_right_top">
-                    <input class="nav_button next_page" type="button" value="Next Page >>" onclick="window.location.href = '/search/{{ Query }}/{{ Set|add:"1" }}'">
-            </div>
-        </div>
+        <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
         <div class="app_body" >
             <div class="nav_l">
+                <p class="popover"></p>
                 <ul id="vert-nav">
-                    <li class="vert-nav-item nav_l_hdr">Collections</li>
-                    {% for row in LeftNav %}
-                    <a href="{% url 'show_collection' _collection=row.link _colset=Set%}" class="nav_link" alt="{{row.link}}">
-                        <li class="nav_l_{{row.class}}">
-                            {{ row.string }}
-                        </li>
+                    <li class="vert-nav-item nav_l_hdr">
+                        <h1 class="app_hdr shadow">pyShelf {{Version}}</h1>
+                    </li>
+                    <li class="vert-nav-item nav_l_hdr">
+                        <input class="nav_search" type="text" size="20" value="">
+                    </li>
+                    <li class="vert-nav-item nav_l_hdr">
+                        <input class="nav_button prev_page" type="button" value="<<" onclick="window.location.href = '/prev_page/{{ Set }}'">
+                        <input class="nav_button search_submit" type="submit" value="Search">
+                        <input class="nav_button next_page" type="button" value=">>" onclick="window.location.href = '/next_page/{{ Set }}'">
+                    </li>
+                    <li class="vert-nav-item nav_l_hdr" id="btn_collections">Collections</li>
+                    <ul class="hidden vert-nav collections">
+                    {% for row in LeftNavCollections %}
+                        <a href="{% url 'show_collection' _collection=row.link _colset=Set%}" class="nav_link" alt="{{row.link}}">
+                            <li class="nav_l_{{row.class}}">
+                                {{ row.string }}
+                            </li>
                         </a>
                     {% endfor %}
+                    </ul>
+                    <li class="vert-nav-item nav_l_hdr" id="btn_irc">irc</li>
+                    <a href="irc://freenode.net/pyshelf" class="web_footer_link"><li class="vert-nav-item nav_l_hdr" id="btn_discord">discord</li></a>
+                    <li class="vert-nav-item nav_l_hdr" id="btn_github">github</li>
+                    <li class="vert-nav-item nav_l_hdr" id="btn_irc">irc</li>
+                    <li class="vert-nav-item nav_l_hdr" id="btn_python">
+                        <img src="/static/img/py.png" id="python_logo" />
+                    </li>
+                    <a href="https://www.gnu.org/licenses/gpl-3.0.txt" class="web_footer_link">
+                    <li class="vert-nav-item nav_l_hdr" id="btn_gpl">
+                        <img src="/static/img/gplv3-or-later.png" alt="GPLv3 or later" />
+                    </li>
+                    </a>
                 </ul>
             </div>
                 <div class="shelf">
@@ -72,17 +68,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="app_footer" >
-                    <div class="python_logo" >
-                        <img src="/static/img/py.png" id="python_logo" />
-                    </div>
-                    <div class="copyright">
-                            <a href="https://www.gnu.org/licenses/gpl-3.0.txt" class="web_footer_link"><img src="/static/img/gplv3-or-later.png" alt="GPLv3 or later" /></a>
-                    </div>
-                    <div class="footer_contact">
-                            <p>irc: <a href="irc://freenode.net/pyshelf" class="web_footer_link">#pyshelf</a> on freenode | discord: <a href="https://discord.gg/H9TbNJS" class="web_footer_link">discord.gg/H9TbNJS</a> | web: <a href=http://pyshelf.com class="web_footer_link" alt="pyshelf.com">http://pyshelf.com</a> | source: <a href="https://github.com/th3r00t/pyShelf" class="web_footer_link">github.com/th3r00t/pyShelf</a></p>
-                    </div>
         </div>
     </div>
 </body>

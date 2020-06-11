@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render  # render_to_response
 from django.utils.text import slugify
 
-from .models import Books, Collections
+from .models import Books, Collections, Navigation
 
 config = Config(Path("../"))
 
@@ -26,7 +26,8 @@ def index(request):
             "Books": book_set(20, _set),
             "Set": str(_set),
             "Version": config.VERSION,
-            "LeftNav": menu("collections"),
+            "LeftNavCollections": menu("collections"),
+            "LeftNavMenu0": menu("nav_l_0"),
         },
     )
 
@@ -190,7 +191,21 @@ def hr_name(book):
     return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])
 
 
-def menu(which, _set=1):
+def format_list(list_in):
+    formated_list, formated_list_key, x = [], [], 0
+    for i in list_in:
+        if i.id not in formated_list_key:
+            if x % 2 == 0:
+                c = 0
+            else:
+                c = 1
+            if x <= 10:
+                x += 1
+            else:
+                x = 0
+
+
+def menu(which, _set=1, parent=None):
     if which == "collections":
         collection_list = Collections.objects.all()
         collections, collection_key, x = [], [], 0
@@ -217,3 +232,7 @@ def menu(which, _set=1):
                 )
                 collection_key.append(i.collection)
         return collections
+    elif which == "nav_lvl_0":
+        navigation_list = Navigation.objects.all()
+        breakpoint()
+        return navigation_list
