@@ -44,6 +44,7 @@ def show_collection(request, _collection, _colset):
             "Books": collection(_collection, _set),
             "Set": str(_set),
             "Version": config.VERSION,
+            "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
     )
@@ -64,6 +65,7 @@ def next_page(request, bookset):
             "Books": book_set(None, _set),
             "Set": str(_set),
             "Version": config.VERSION,
+            "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
     )
@@ -88,6 +90,7 @@ def prev_page(request, bookset):
             "Books": book_set(None, _set),
             "Set": str(_set),
             "Version": config.VERSION,
+            "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
     )
@@ -118,6 +121,7 @@ def search(request, query=None, _set=1, _limit=None):
             "Set": _set,
             "len_results": search_len,
             "Version": config.VERSION,
+            "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
     )

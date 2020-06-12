@@ -94,8 +94,9 @@ body {
     font-family: 'Gruppo', cursive;
     font-size: 15px;
     /*! max-height: 500px; */
-    overflow-y: scroll;
+    overflow-y: auto;
     /*! padding: 0px 10px; */
+    margin: 0px;
 }
 
 .popover{
@@ -114,7 +115,7 @@ body {
 }
 .nav_l_hdr {
     /*! text-align: center; */
-    padding: 1px;
+    padding: 0px 5px;
     background-color: #9e9e9e;
     border-bottom: 2px solid #dadada;
     color: black;
@@ -126,18 +127,20 @@ body {
     /*! padding: 5px; */
     /*! text-align: center; */
     border-bottom: 1px solid #dadada;
+    padding: 0px 0px 0px 10px;
 }
 
 .nav_l_1 {
     /*! padding: 5px; */
     /*! text-align: center; */
     border-bottom: 1px solid #dadada;
+    padding: 0px 0px 0px 10px;
 }
 .nav_link {}
 #vert-nav {
     list-style: None;
     padding: 0px;
-    margin: 10px 0px;
+    margin: 0px;
     /*! border-left: 5px solid #292f35; */
     /*! border-right: 5px solid #292f35; */
 }
@@ -277,11 +280,9 @@ p {
 }
 
 #book_shelf {
-    display: grid;
-    grid-template-columns: 21% 21% 21% 21%;
     list-style-type: none;
     font-family: 'Audiowide', cursive;
-    font-size: 25px;
+    font-size: 15px;
     padding: 0;
     margin: 0px;
     min-width: 99vw;
@@ -289,22 +290,24 @@ p {
 
 .shelf_item {
     display: grid;
-    background-color: burlywood;
+    grid-template-columns: 100px auto;
+    grid-template-areas: "thumb details";
     margin: 0 10px 10px 10px;
-    max-width: 20vw;
-    max-height: 70vh;
-    text-align: center;
 }
 
 .book_thumb {
-    width: 20vw;
-    height: 70vh;
+    grid-area: thumb;
+    width: 100px;
 }
 
 a.book_link {
     text-decoration: none;
 }
-
+.book_details {}
+.book_details_list {grid-area: details;list-style-type: none;}
+.book_title {}
+.book_author {}
+.book_controls {}
 a.nav_link {
     text-decoration: none;
     color: #000;
@@ -317,3 +320,4 @@ a.nav_link {
     padding: 0px;
     margin: 0px 0px;
 }
+.btn {cursor:pointer}

@@ -25,7 +25,7 @@
                         <h1 class="app_hdr shadow">pyShelf {{Version}}</h1>
                     </li>
                     <li class="vert-nav-item nav_l_hdr">
-                        <input class="nav_search" type="text" size="20" value="">
+                        <input class="nav_search" type="text" size="19" value="">
                     </li>
                     <li class="vert-nav-item nav_l_hdr">
                         <input class="nav_button prev_page" type="button" value="<<" onclick="window.location.href = '/prev_page/{{ Set }}'">
@@ -36,21 +36,21 @@
                     <ul class="hidden vert-nav collections">
                     {% for row in LeftNavCollections %}
                         <a href="{% url 'show_collection' _collection=row.link _colset=Set%}" class="nav_link" alt="{{row.link}}">
-                            <li class="nav_l_{{row.class}}">
+                            <li class="nav_l_{{row.class}} btn">
                                 {{ row.string }}
                             </li>
                         </a>
                     {% endfor %}
                     </ul>
-                    <li class="vert-nav-item nav_l_hdr" id="btn_irc">irc</li>
+                    <li class="vert-nav-item nav_l_hdr btn" id="btn_irc">irc</li>
                     <a href="irc://freenode.net/pyshelf" class="web_footer_link"><li class="vert-nav-item nav_l_hdr" id="btn_discord">discord</li></a>
-                    <li class="vert-nav-item nav_l_hdr" id="btn_github">github</li>
-                    <li class="vert-nav-item nav_l_hdr" id="btn_irc">irc</li>
-                    <li class="vert-nav-item nav_l_hdr" id="btn_python">
+                    <li class="vert-nav-item nav_l_hdr btn" id="btn_github">github</li>
+                    <li class="vert-nav-item nav_l_hdr btn" id="btn_irc">irc</li>
+                    <li class="vert-nav-item nav_l_hdr btn" id="btn_python">
                         <img src="/static/img/py.png" id="python_logo" />
                     </li>
                     <a href="https://www.gnu.org/licenses/gpl-3.0.txt" class="web_footer_link">
-                    <li class="vert-nav-item nav_l_hdr" id="btn_gpl">
+                    <li class="vert-nav-item nav_l_hdr btn" id="btn_gpl">
                         <img src="/static/img/gplv3-or-later.png" alt="GPLv3 or later" />
                     </li>
                     </a>
