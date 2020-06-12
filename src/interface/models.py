@@ -29,6 +29,11 @@ class Books(models.Model):
     pages = models.IntegerField(null=True)
     progress = models.IntegerField(null=True)
     file_name = models.CharField(max_length=255, null=False)
+    description = models.TextField(null=True)
+    publisher = models.CharField(max_length=266, null=True)
+    date = models.DateField(null=True)
+    rights = models.CharField(max_length=255, null=True)
+    tags = models.CharField(max_length=255, null=True)
 
     def generic_search(self, query):
         try:
@@ -96,6 +101,66 @@ class Navigation(models.Model):
             results = Navigation.objects.annotate(
                 search=SearchVector("title", "parent_id", "category"),
             ).filter(search=query)
+        except Exception as e:
+            raise
+        return results
+
+
+class Users(models.Model):
+    """
+    pyShelfs User Database class
+    :param uname: User Name
+    :param fname: First Name
+    :param lname: Last Name
+    :param email: User Email Address
+    :param password: User Password
+    :param ulvl: User Level
+    """
+
+    class Meta:
+        db_table = "users"
+
+    def __str__(self):
+        return self.title
+
+    uname = models.CharField(max_length=255)
+    fname = models.CharField(max_length=255, null=True)
+    lname = models.CharField(max_length=255, null=True)
+    email = models.CharField(max_length=255, null=True, editable=True)
+    password = models.CharField(max_length=255, null=True)
+    ulvl = models.IntegerField(null=True)
+
+    def generic_search(self, query):
+        try:
+            results = Users.objects.annotate(
+                search=SearchVector("uname", "email", "lname"),
+            ).filter(search=query)
+        except Exception as e:
+            raise
+        return results
+
+
+class Favorites(models.Model):
+    """
+    pyShelfs User Database class
+    :param uname: User Name
+    :param fname: First Name
+    """
+
+    class Meta:
+        db_table = "favorites"
+
+    def __str__(self):
+        return self.title
+
+    favorite = models.ManyToManyField(Books)
+    uname = models.ManyToManyField(Users)
+
+    def generic_search(self, query):
+        try:
+            results = Favorites.objects.annotate(search=SearchVector("uname"),).filter(
+                search=query
+            )
         except Exception as e:
             raise
         return results

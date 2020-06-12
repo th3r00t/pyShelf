@@ -115,7 +115,23 @@ class Catalogue:
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
                 cover = DuckDuckGo().image_result(title)
-            book_details = [title, author, cover, book["path"]]
+            description = soup.find("dc:description")
+            identifier = soup.find("dc:identifier")
+            publisher = soup.find("dc:identifier")
+            date = soup.find("dc:date")
+            rights = soup.find("dc:rights")
+            breakpoint()
+            book_details = [
+                title,
+                author,
+                cover,
+                book["path"],
+                description,
+                identifier,
+                publisher,
+                date,
+                rights,
+            ]
         return book_details
 
     @staticmethod
@@ -128,7 +144,6 @@ class Catalogue:
             cover_image = None
         title = book.title().decode("utf-8")
         author = book.author().decode("utf-8")
-        breakpoint()
         # TODO some files are still passing encoded data for author.
         return [title, author, cover_image, book.f.name]
 
