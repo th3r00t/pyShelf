@@ -120,6 +120,7 @@ class Catalogue:
             publisher = soup.find("dc:identifier")
             date = soup.find("dc:date")
             rights = soup.find("dc:rights")
+            tags = soup.find_all("dc:subject")
             breakpoint()
             book_details = [
                 title,
@@ -131,6 +132,7 @@ class Catalogue:
                 publisher,
                 date,
                 rights,
+                tags
             ]
         return book_details
 
