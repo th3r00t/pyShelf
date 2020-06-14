@@ -115,13 +115,26 @@ class Catalogue:
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
                 cover = DuckDuckGo().image_result(title)
-            description = soup.find("dc:description")
-            identifier = soup.find("dc:identifier")
-            publisher = soup.find("dc:identifier")
-            date = soup.find("dc:date")
-            rights = soup.find("dc:rights")
-            tags = soup.find_all("dc:subject")
+            try: description = self.stripTags(soup.find("dc:description").text)
+            except AttributeError: description = None
+            try: identifier = self.stripTags(soup.find("dc:identifier").text)
+            except  AttributeError: identifier = None
+            try: publisher = self.stripTags(soup.find("dc:publisher").text)
+            except AttributeError: publisher = None
+            try: date = self.stripTags(soup.find("dc:date").text)
+            except AttributeError: date = None
+            try: rights = self.stripTags(soup.find("dc:rights").text)
+            except AttributeError: rights = None
+            try: tags = self.stripTags(soup.find_all("dc:subject").text)
+            except AttributeError: tags = None
+            ftags = None
             breakpoint()
+            if tags is not None:
+                for tag in tags:
+                    if ftags is None:
+                        ftags = tag
+                    else:
+                        ftags = ftags+","+tag
             book_details = [
                 title,
                 author,
@@ -132,9 +145,14 @@ class Catalogue:
                 publisher,
                 date,
                 rights,
-                tags
+                ftags
             ]
         return book_details
+
+    @staticmethod
+    def stripTags(source):
+        p = re.compile(r'<.*?>')
+        return p.sub('', source)
 
     @staticmethod
     def extract_metadata_mobi(book):
