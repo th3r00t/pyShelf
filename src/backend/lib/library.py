@@ -115,26 +115,37 @@ class Catalogue:
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
                 cover = DuckDuckGo().image_result(title)
-            try: description = self.stripTags(soup.find("dc:description").text)
-            except AttributeError: description = None
-            try: identifier = self.stripTags(soup.find("dc:identifier").text)
-            except  AttributeError: identifier = None
-            try: publisher = self.stripTags(soup.find("dc:publisher").text)
-            except AttributeError: publisher = None
-            try: date = self.stripTags(soup.find("dc:date").text)
-            except AttributeError: date = None
-            try: rights = self.stripTags(soup.find("dc:rights").text)
-            except AttributeError: rights = None
-            try: tags = self.stripTags(soup.find_all("dc:subject").text)
-            except AttributeError: tags = None
+            try:
+                description = self.stripTags(soup.find("dc:description").text)
+            except AttributeError:
+                description = None
+            try:
+                identifier = self.stripTags(soup.find("dc:identifier").text)
+            except AttributeError:
+                identifier = None
+            try:
+                publisher = self.stripTags(soup.find("dc:publisher").text)
+            except AttributeError:
+                publisher = None
+            try:
+                date = self.stripTags(soup.find("dc:date").text)
+            except AttributeError:
+                date = None
+            try:
+                rights = self.stripTags(soup.find("dc:rights").text)
+            except AttributeError:
+                rights = None
+            try:
+                tags = soup.find_all("dc:subject")
+            except AttributeError:
+                tags = None
             ftags = None
-            breakpoint()
             if tags is not None:
                 for tag in tags:
                     if ftags is None:
-                        ftags = tag
+                        ftags = tag.text
                     else:
-                        ftags = ftags+","+tag
+                        ftags = ftags + "," + tag.text
             book_details = [
                 title,
                 author,
@@ -145,14 +156,14 @@ class Catalogue:
                 publisher,
                 date,
                 rights,
-                ftags
+                ftags,
             ]
         return book_details
 
     @staticmethod
     def stripTags(source):
-        p = re.compile(r'<.*?>')
-        return p.sub('', source)
+        p = re.compile(r"<.*?>")
+        return p.sub("", source)
 
     @staticmethod
     def extract_metadata_mobi(book):
