@@ -30,6 +30,7 @@ class Books(models.Model):
     progress = models.IntegerField(null=True)
     file_name = models.CharField(max_length=255, null=False)
     description = models.TextField(null=True)
+    identifier = models.CharField(max_length=255, null=True)
     publisher = models.CharField(max_length=266, null=True)
     date = models.DateField(null=True)
     rights = models.CharField(max_length=255, null=True)

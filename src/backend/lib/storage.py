@@ -53,7 +53,7 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, publisher, date, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s);"
+        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, date, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s, %s);"
         try:
             try:
                 cover_image = book[2].data
@@ -64,16 +64,16 @@ class Storage:
             self.cursor.execute(
                 q,
                 (
-                    book[0],
-                    book[1],
+                    book[0],  # title
+                    book[1],  # author
                     cover_image,
-                    book[3],
-                    book[4],
-                    book[5],
-                    book[6],
-                    book[7],
-                    book[8],
-                    book[9],
+                    book[3],  # file
+                    book[4],  # descr
+                    book[5],  # ident
+                    book[6],  # publisher
+                    book[7],  # date
+                    book[8],  # rights
+                    book[9],  # tags
                 ),
             )
             return True
