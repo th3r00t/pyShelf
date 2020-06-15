@@ -175,8 +175,24 @@ class Catalogue:
             cover_image = None
         title = book.title().decode("utf-8")
         author = book.author().decode("utf-8")
-        # TODO some files are still passing encoded data for author.
-        return [title, author, cover_image, book.f.name]
+        description = None
+        identifier = None
+        publisher = None
+        date = None
+        rights = None
+        ftags = None
+        return [
+            title,
+            author,
+            cover_image,
+            book.f.name,
+            description,
+            identifier,
+            publisher,
+            date,
+            rights,
+            ftags,
+        ]
 
     def extract_content(self, book_zip, book):
         """

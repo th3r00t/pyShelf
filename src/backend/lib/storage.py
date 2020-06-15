@@ -78,6 +78,9 @@ class Storage:
             )
             return True
         except Exception as e:
+            if int(e.pgcode) == 22007:
+                book[7] = psycopg2.Date(int(book[7]), 1, 1)
+                self.insert_book(book)
             print(e)
             return False
 
