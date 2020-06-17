@@ -53,7 +53,7 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q = "INSERT INTO books (title, author, cover, progress, file_name, pages) values (%s, %s, %s, 0, %s, 0);"
+        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, date, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s, %s);"
         try:
             try:
                 cover_image = book[2].data
@@ -61,9 +61,26 @@ class Storage:
                 cover_image = book[2]
             if not book[2]:  # If cover image is missing unset entry
                 cover_image = None
-            self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
+            self.cursor.execute(
+                q,
+                (
+                    book[0],  # title
+                    book[1],  # author
+                    cover_image,
+                    book[3],  # file
+                    book[4],  # descr
+                    book[5],  # ident
+                    book[6],  # publisher
+                    book[7],  # date
+                    book[8],  # rights
+                    book[9],  # tags
+                ),
+            )
             return True
         except Exception as e:
+            if int(e.pgcode) == 22007:
+                book[7] = psycopg2.Date(int(book[7]), 1, 1)
+                self.insert_book(book)
             print(e)
             return False
 

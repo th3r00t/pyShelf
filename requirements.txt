@@ -17,3 +17,4 @@ psycopg2-binary
 prompt_toolkit
 psutil
 pyfiglet
+mobi-python
