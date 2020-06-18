@@ -165,8 +165,7 @@ class Catalogue:
         p = re.compile(r"<.*?>")
         return p.sub("", source)
 
-    @staticmethod
-    def extract_metadata_mobi(book):
+    def extract_metadata_mobi(self, book):
         book = Mobi(book)
         book.parse()
         try:
@@ -175,12 +174,31 @@ class Catalogue:
             cover_image = None
         title = book.title().decode("utf-8")
         author = book.author().decode("utf-8")
-        description = None
-        identifier = None
-        publisher = None
+        book_config = book.config
+        try:
+            description = self.stripTags(book_config['exth']['records'][103].decode("utf-8"))
+        except KeyError:
+            description = None
+        try:
+            identifier = book_config['exth']['records'][104].decode("utf-8")
+        except KeyError:
+            identifier = None
+        try:
+            publisher = book_config['exth']['records'][101].decode("utf-8")
+        except KeyError:
+            publisher = None
         date = None
         rights = None
-        ftags = None
+        try:
+            ftags = book_config['exth']['records'][105].decode("utf-8")
+            if ":" in ftags:
+                ftags = ftags.replace(":", ",")
+            elif ";" in ftags:
+                ftags = ftags.replace(";", ",")
+            elif re.search(r"\s", ftags):  # Must be final assignment to avoid spliting on multiple delimeters
+                ftags = ftags.replace(" ", ",")
+        except KeyError:
+            ftags = None
         return [
             title,
             author,

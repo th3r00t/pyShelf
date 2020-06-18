@@ -53,7 +53,7 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, date, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s, %s);"
+        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s);"
         try:
             try:
                 cover_image = book[2].data
@@ -71,18 +71,17 @@ class Storage:
                     book[4],  # descr
                     book[5],  # ident
                     book[6],  # publisher
-                    book[7],  # date
+                    # book[7],  # date  # TODO: set import time
                     book[8],  # rights
                     book[9],  # tags
                 ),
             )
             return True
         except Exception as e:
-            if int(e.pgcode) == 22007:
+            if e.pgcode == '22007':  # psycopg2's error code for invalid date
                 book[7] = psycopg2.Date(int(book[7]), 1, 1)
                 self.insert_book(book)
-            print(e)
-            return False
+            raise e
 
     def book_paths_list(self):
         """
