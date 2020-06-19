@@ -7,10 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/all-fa.css" />
     <title>pyShelf E-Book Server</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gruppo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="/static/js/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
@@ -71,35 +73,46 @@
                     <ul id="book_shelf">
                         {% for book in Books %}
                             <li class="shelf_item">
-                                        <img alt="cover missing" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" />
-                                        <ul class="book_details_list">
-                                            <li class="book_title">{{ book.title }}</li>
-                                            <li class="book_author">{{ book.author }}</li>
-                                                {% if book.description|length >= 300 %}
-                                                    {% make_description_obj book.description as descr_obj %}
-                                                        <li class="book_description">{{ descr_obj }}</li>
-                                                {% else %}
-                                                    <li class="book_description">{{ book.description }}</li>
-                                                {% endif %}
-                                            <li class="book_tags">Tags: {{ book.tags }}</li>
-                                            <li class="book_controls">
-
-                                                    <span class="favorite-button controls">
-                                                       <a href="{% url 'favorite' pk=book.pk %}" class="book_link"> <img src="/static/img/icons/ico-thumb-up.png" class="icon" />Like</a>
-                                                    </span>
-
-
-                                                    <span class="download-button controls">
-                                                        <a href="{% url 'download' pk=book.pk %}" class="book_link"><img src="/static/img/icons/ico-dlbook.png" class="icon" />Download </a>
-                                                    </span>
-
-
-                                                    <span class="share-button controls">
-                                                        <a href="{% url 'share' pk=book.pk %}" class="book_link"><img src="/static/img/icons/ico-detective.png" class="icon" />Share</a>
-                                                    </span>
-
+                                <img alt="cover missing" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" />
+                                <ul class="book_details_list">
+                                    <li class="book_title">{{ book.title }}</li>
+                                    <li class="book_author">{{ book.author }}</li>
+                                        {% if book.description|length >= 225 %}
+                                            {% make_description_obj book.description as descr_obj %}
+                                                <li class="book_description">{{ descr_obj }}</li>
+                                        {% elif book.description == None %}
+                                            <li class="book_description">
+                                                <div class="inline_sys_message">
+                                                    We were unable to find a description in this books metadata.
+                                                    <br />Have some <i class="fas fa-drumstick-bite"></i> instead?
+                                                </div>
                                             </li>
-                                        </ul>
+                                        {% else %}
+                                            <li class="book_description">{{ book.description }}</li>
+                                        {% endif %}
+                                    <li class="book_tags">Tags: {{ book.tags }}</li>
+                                    <li class="book_controls">
+
+                                            <span class="favorite-button controls">
+                                               <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
+                                            </span>
+
+
+                                            <span class="download-button controls">
+                                                <a href="{% url 'download' pk=book.pk %}" class="book_link"><i class="fas fa-book icon"></i></a>
+                                            </span>
+
+
+                                            <span class="share-button controls">
+                                                <a href="{% url 'share' pk=book.pk %}" class="book_link"><i class="fas fa-share icon"></i></a>
+                                            </span>
+
+                                            <span class="info-button controls">
+                                                <a href="{% url 'info' pk=book.pk %}" class="book_link"><i class="fas fa-info icon"></i></a>
+                                            </span>
+
+                                    </li>
+                                </ul>
                             </li>
                         {% endfor %}
                     </ul>

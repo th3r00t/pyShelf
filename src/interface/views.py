@@ -210,6 +210,19 @@ def share(request, pk):
     )
     response["Content-Disposition"] = "attachment; filename=%s" % _fn
     return response
+
+def info(request, pk):
+    """
+    Share book by primary key
+    """
+    _book = Books.objects.all().filter(pk=pk)[0]
+    _fn = hr_name(_book)
+    response = HttpResponse(
+        open(os.path.abspath(_book.file_name), "rb"), content_type="application/zip"
+    )
+    response["Content-Disposition"] = "attachment; filename=%s" % _fn
+    return response
+
 def hr_name(book):
     """
     Nicer file names

@@ -15,5 +15,5 @@ def bin_2_img(_bin):
 @register.simple_tag(name='make_description_obj')
 def make_description_obj(description):
     if description is not None:
-        return description[0:300]+"..."
+        return description[0:225]+"..."
     else: return None
