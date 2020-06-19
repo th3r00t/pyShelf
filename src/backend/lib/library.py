@@ -195,8 +195,8 @@ class Catalogue:
                 ftags = ftags.replace(":", ",")
             elif ";" in ftags:
                 ftags = ftags.replace(";", ",")
-            elif re.search(r"\s", ftags):  # Must be final assignment to avoid spliting on multiple delimeters
-                ftags = ftags.replace(" ", ",")
+            # elif re.search(r"\s", ftags):  # Must be final assignment to avoid spliting on multiple delimeters
+            #    ftags = ftags.replace(" ", ",")
         except KeyError:
             ftags = None
         return [

@@ -22,6 +22,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
     path("download/<pk>", views.download, name="download"),
+    path("favorite/<pk>", views.favorite, name="favorite"),
+    path("share/<pk>", views.share, name="share"),
     path("prev_page/<bookset>", views.prev_page, name="prev_page"),
     path("next_page/<bookset>", views.next_page, name="next_page"),
     path("search/", views.search, name="search"),

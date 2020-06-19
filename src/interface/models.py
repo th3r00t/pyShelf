@@ -39,7 +39,7 @@ class Books(models.Model):
     def generic_search(self, query):
         try:
             results = Books.objects.annotate(
-                search=SearchVector("title", "file_name", "author"),
+                search=SearchVector("title", "file_name", "author","tags"),
             ).filter(search=query)
         except Exception as e:
             raise

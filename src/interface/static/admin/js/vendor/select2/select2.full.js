@@ -1480,7 +1480,7 @@ S2.define('select2/selection/base',[
       window.setTimeout(function () {
         self.$selection.focus();
       }, 0);
-
+    
       self._detachCloseHandler(container);
     });
 
@@ -1917,7 +1917,7 @@ S2.define('select2/selection/allowClear',[
       return;
     }
 
-    var removeAll = this.options.get('translations').get('removeAllItems');
+    var removeAll = this.options.get('translations').get('removeAllItems');   
 
     var $remove = $(
       '<span class="select2-selection__clear" title="' + removeAll() +'">' +

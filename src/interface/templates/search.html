@@ -60,11 +60,29 @@
                         <div class="search_details">
                                 Your search for {{ Query }} returned {{ len_results }} results
                         </div>
-                <div class="shelf_contents" >
+                <div class="shelf_conten<div class="shelf_contents">
                     <ul id="book_shelf">
-                    {% for book in Books %}
-                    <a href="{% url 'download' pk=book.pk %}" class="book_link"><li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb"/> </li></a>
-                    {% endfor %}
+                        {% for book in Books %}
+                            <li class="shelf_item">
+                                        <img alt="cover missing" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" />
+                                        <ul class="book_details_list">
+                                            <li class="book_title">{{ book.title }}</li>
+                                            <li class="book_author">{{ book.author }}</li>
+                                                {% if book.description|length >= 300 %}
+                                                    {% make_description_obj book.description as descr_obj %}
+                                                        <li class="book_description">{{ descr_obj }}</li>
+                                                {% else %}
+                                                    <li class="book_description">{{ book.description }}</li>
+                                                {% endif %}
+                                            <li class="book_tags">Tags: {{ book.tags }}</li>
+                                            <li class="book_controls">
+                                                fav
+                                                <a href="{% url 'download' pk=book.pk %}" class="book_link">download</a>
+                                                share
+                                            </li>
+                                        </ul>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
