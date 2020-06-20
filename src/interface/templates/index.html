@@ -73,7 +73,7 @@
                     <ul id="book_shelf">
                         {% for book in Books %}
                             <li class="shelf_item">
-                                <img alt="cover missing" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" />
+                                <img alt="cover missing" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" onerror="this.src='/static/img/pysBook.png'"/>
                                 <ul class="book_details_list">
                                     <li class="book_title">{{ book.title }}</li>
                                     <li class="book_author">{{ book.author }}</li>

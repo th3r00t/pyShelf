@@ -144,7 +144,7 @@ body {
     /*! border-left: 5px solid #292f35; */
     /*! border-right: 5px solid #292f35; */
     /* border-right: 1px solid; */
-    background: linear-gradient(to right, #333 51%, #7d7a7ad6 181%);
+    background: linear-gradient(to right, #333 51%, #7d7a7aed 181%);
 }
 
 .vert-nav-item {}
