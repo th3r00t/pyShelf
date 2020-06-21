@@ -26,6 +26,8 @@ class Catalogue:
         self.opf_regx = re.compile(r"\.opf")
         self.cover_regx = re.compile(r"\.jpg|\.jpeg|\.png|\.bmp|\.gif")
         self.html_regx = re.compile(r"\.html")
+        self.title_sanitization_regx = re.compile(r"^(Book )+[0-9]*")
+        self.title_sanitization_lvl2_regx = re.compile(r"^(Book )+[0-9]*\W+(-)")
         self.root_dir = config.root
         self.book_folder = config.book_path
         self.books = None
@@ -69,6 +71,7 @@ class Catalogue:
         """
 
     def process_by_filetype(self, book):
+        print(str(book), end='\r', flush=True)
         if book.endswith(".epub"):
             epub = self.process_epub(book)
             return self.extract_metadata_epub(epub)
@@ -107,6 +110,12 @@ class Catalogue:
                 title = book["path"].split("/")[-1].rsplit(".", 1)[0]
             else:
                 title = title.contents[0]
+            if re.match(self.title_sanitization_regx, title):
+                breakpoint()
+                if re.match(self.title_sanitization_lvl2_regx, title):
+                    title = re.split(r"-+\W", title)[1]
+                else: title = re.split(self.title_sanitization_regx, title)[2]
+
             author = soup.find("dc:creator")
             if author is not None:
                 author = author.contents[0]
