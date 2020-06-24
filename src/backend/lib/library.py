@@ -111,7 +111,6 @@ class Catalogue:
             else:
                 title = title.contents[0]
             if re.match(self.title_sanitization_regx, title):
-                breakpoint()
                 if re.match(self.title_sanitization_lvl2_regx, title):
                     title = re.split(r"-+\W", title)[1]
                 else: title = re.split(self.title_sanitization_regx, title)[2]

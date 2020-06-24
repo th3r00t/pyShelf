@@ -28,9 +28,11 @@ def index(request):
             "Version": config.VERSION,
             "LeftNavCollections": menu("collections"),
             "LeftNavMenu0": menu("nav_l_0"),
+            "BookStats": Books.objects.all().count,
+            "CollectionStats": Collections.objects.all().count
+            
         },
     )
-
 
 def show_collection(request, _collection, _colset):
     try:
@@ -48,7 +50,6 @@ def show_collection(request, _collection, _colset):
             "LeftNav": menu("collections"),
         },
     )
-
 
 def next_page(request, bookset):
     """
@@ -69,7 +70,6 @@ def next_page(request, bookset):
             "LeftNav": menu("collections"),
         },
     )
-
 
 def prev_page(request, bookset):
     """
@@ -94,7 +94,6 @@ def prev_page(request, bookset):
             "LeftNav": menu("collections"),
         },
     )
-
 
 def search(request, query=None, _set=1, _limit=None):
     """
@@ -126,7 +125,6 @@ def search(request, query=None, _set=1, _limit=None):
         },
     )
 
-
 def book_set(_limit=None, _set=1):
     """
     Get books results by set #
@@ -137,7 +135,6 @@ def book_set(_limit=None, _set=1):
     _set_min = _set_max - _limit
     books = Books.objects.all()[_set_min:_set_max]
     return books
-
 
 def collection(_collection, _set, _limit=None):
     """
@@ -153,7 +150,6 @@ def collection(_collection, _set, _limit=None):
     for c in _collections:
         _books.append(c.book_id_id)
     return Books.objects.filter(id__in=_books)
-
 
 def book_set_as_dict(_limit=None, _set=1):
     if _limit is None:
@@ -173,7 +169,6 @@ def book_set_as_dict(_limit=None, _set=1):
             "pk": book.pk,
         }
     return json.dumps(_set)
-
 
 def download(request, pk):
     """
@@ -229,7 +224,6 @@ def hr_name(book):
     """
     return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])
 
-
 def format_list(list_in):
     formated_list, formated_list_key, x = [], [], 0
     for i in list_in:
@@ -242,7 +236,6 @@ def format_list(list_in):
                 x += 1
             else:
                 x = 0
-
 
 def menu(which, _set=1, parent=None):
     if which == "collections":

@@ -45,7 +45,6 @@ class Books(models.Model):
             raise
         return results
 
-
 class Collections(models.Model):
     class Meta:
         db_table = "collections"
