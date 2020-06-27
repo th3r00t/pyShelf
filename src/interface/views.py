@@ -8,12 +8,14 @@ from django.db import models
 from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render  # render_to_response
 from django.utils.text import slugify
+import json
+import jsonpickle
 
 from .models import Books, Collections, Navigation
 
 config = Config(Path("../"))
 
-
+collections = Collections.objects.all()
 def index(request):
     """
     Return template index
@@ -29,8 +31,8 @@ def index(request):
             "LeftNavCollections": menu("collections"),
             "LeftNavMenu0": menu("nav_l_0"),
             "BookStats": Books.objects.all().count,
-            "CollectionStats": Collections.objects.all().count
-            
+            "CollectionStats": Collections.objects.all().count,
+            "CollectionObject": collections_list()
         },
     )
 
@@ -48,6 +50,7 @@ def show_collection(request, _collection, _colset):
             "Version": config.VERSION,
             "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
+            "Collections": collections_list()
         },
     )
 
@@ -239,8 +242,8 @@ def format_list(list_in):
 
 def menu(which, _set=1, parent=None):
     if which == "collections":
-        collection_list = Collections.objects.all()
-        collections, collection_key, x = [], [], 0
+        collection_list = collections
+        _collections, collection_key, x = [], [], 0
         for i in collection_list:
             if i.collection not in collection_key:
                 # Using c as the alternating row identifier
@@ -259,12 +262,19 @@ def menu(which, _set=1, parent=None):
                 else:
                     collection_string = i.collection
 
-                collections.append(
+                _collections.append(
                     {"string": collection_string, "link": i.collection, "class": c}
                 )
                 collection_key.append(i.collection)
-        return collections
+        return _collections
     elif which == "nav_lvl_0":
         navigation_list = Navigation.objects.all()
         breakpoint()
         return navigation_list
+
+def collections_list():
+    collection_key = []
+    for i in collections:
+        if i.collection not in collection_key:
+            collection_key.append(i.collection)
+    return json.dumps(list(set(collection_key)))

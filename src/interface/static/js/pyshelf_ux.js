@@ -12,7 +12,7 @@ $(document).ready(function(){
     var scr_height = window.outerHeight;
     var scr_width = window.outerWidth;
     var hdr_height = $('.app_hdr').height(); // Get our header height
-    var ftr_height = $('.app_footer').height(); // Get our footer height
+        var ftr_height = $('.app_footer').height(); // Get our footer height
     var nav_width = $('.nav_l').width(); // Get the width of our nav items
     var cmp_height = window.screen.availHeight;
     var max_height = win_height - (hdr_height + ftr_height) - (scr_height - win_height); // Set our available height

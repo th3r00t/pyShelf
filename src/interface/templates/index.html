@@ -11,13 +11,13 @@
     <link type="text/css" rel="stylesheet" href="/static/css/all-fa.css" />
     <title>pyShelf E-Book Server</title>
     <link href="https://fonts.googleapis.com/css?family=Audiowide&family=Montserrat:wght@300&family=Gruppo&family=Cinzel+Decorative&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Gruppo&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <script src="/static/js/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var collections={{ CollectionObject|safe }};
+    </script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@
             </div>
             <div id="horiz_nav_main">
                 <!--<i class="fas fa-chevron-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>-->
-                {{ BookStats }} books | {{ CollectionStats }} collections
+                {{ BookStats }} books | <script type="text/javascript">document.write(collections.length)</script> collections
                 <!--<i class="fas fa-chevron-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>-->
                 <!--<input class="nav_button search_submit" type="submit" value="Search">-->
             </div>

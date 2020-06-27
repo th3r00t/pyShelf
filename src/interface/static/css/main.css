@@ -264,7 +264,7 @@ body {
   display: flex;
   grid-area: horiz_nav_main;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 5px 5px 0px 5px;
   min-width: max-content;
   color: deepskyblue;
