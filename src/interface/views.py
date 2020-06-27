@@ -9,7 +9,6 @@ from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render  # render_to_response
 from django.utils.text import slugify
 import json
-import jsonpickle
 
 from .models import Books, Collections, Navigation
 
