@@ -1,7 +1,7 @@
-$ui-color-1: #ffffffc7;
+$ui-color-1: #fefefeb3; //UI border active button Font Color
 $ui-color-2: #282828;
 $ui-color-3: #676767;
-$ui-font-color-1: #000000;
+$ui-font-color-1: #000000; //Active button
 $ui-font-color-2: #ffffff;
 $ui-shelf-item-color: #0000006e;
 $ui-background-img: url(/static/img/bookshelf.jpg);
@@ -324,7 +324,14 @@ body {
     text-align: center;
     font-size: medium;
 }
-.ui_btn_w_icon{background-color: $ui-color-1;/* border-radius: 5px; */padding: 0px 5px;font-size: small;display: flex;justify-content: center;align-items: center;/* min-width: 55px; */}
+.ui_btn_w_icon{
+    background-color: $ui-color-1;
+    /* border-radius: 5px; */
+    padding: 0px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;/* min-width: 55px; */
+}
 .ui_icon_notxt{
     margin: 0px 5px 0px 0px;
 }
@@ -333,12 +340,12 @@ body {
     display: flex;
     background-color: #00000045;
     padding: 0px;
-    margin: 0px auto;
+    margin: 0px auto 0px 5px;
 }
 .active_tab{
-    background-color: $ui-color-1 !important;
-    color: $ui-font-color-1 !important;
-    border-bottom: 1px solid $ui-font-color-1 !important;
+    background-color: $ui-color-2 !important;
+    color: $ui-font-color-2 !important;
+    border-bottom: 1px solid $ui-font-color-2 !important;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -351,8 +358,8 @@ body {
     padding: 0px 0px 0px 5px;
     font-size: medium;
     border-bottom: 1px solid;
-    background-color: $ui-color-2;
-    color: $ui-font-color-2;
+    background-color: $ui-color-1;
+    color: $ui-font-color-1;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
@@ -377,7 +384,7 @@ body {
     padding-inline-start: 0px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    min-width: 1645px;
+    // min-width: 1645px;
     /* position: fixed; */
 }
 .shelf_contents {

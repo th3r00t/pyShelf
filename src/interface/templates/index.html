@@ -27,26 +27,24 @@
             <div id="horiz_nav_hdr">
                 <h1 class="app_hdr" id="hdr_branding">pyShelf {{Version}}</h1>
                 <div class="hdr_nav" id="hdr_nav_center">
-                    <input class="nav_search input_box" type="text" size="50" value="search by Title, Author, Tags, or Collections">
+                    <input class="nav_search input_box" type="text" size="40" value="search by Title, Author, Tags, or Collections">
                     <div class="ui_btn_w_icon"><i class="fas fa-search search_submit search_button" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>search</div>
                     <ul id="tab_nav_menu">
                         <li class="nav_menu_tab active_tab"><i class="fas fa-home"></i>&nbsp;Home</li>
                         <li class="nav_menu_tab"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
                         <li class="nav_menu_tab"><i class="fas fa-star"></i>&nbsp;Favorites</li>
-                        <li class="nav_menu_tab"><i class="fas fa-question-circle"></i>&nbsp;Help</li>
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
-                </div>
-                <div class="hdr_nav" id="hdr_nav_right">
-                    <i class="fas fa-user ui_icon_notxt"></i>
-                    <input id="username" class="nav_login input_box" type="text" size="8" value="Username">
-                    <input id="password" class="nav_login input_box" type="text" size="8" value="Password">
-                </div>
-            </div>
-            <div id="horiz_nav_main">
+                        <li class="nav_menu_tab"> <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Login</li>
+                </div> 
+            </div> 
+            <div id="horiz_nav_main"> 
                 <!--<i class="fas fa-chevron-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>-->
                 {{ BookStats }} books | <script type="text/javascript">document.write(collections.length)</script> collections
                 <!--<i class="fas fa-chevron-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>-->
-                <!--<input class="nav_button search_submit" type="submit" value="Search">-->
+                <div class="hdr_nav" id="hdr_nav_right"> 
+                    <input id="username" class="nav_login input_box" type="text" size="8" value="Username"> 
+                    <input id="password" class="nav_login input_box" type="text" size="8" value="Password"> 
+                </div> 
             </div>
         </ul>
         <div class="app_body">

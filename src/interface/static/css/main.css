@@ -58,7 +58,7 @@ body {
   font-size: 17px;
   text-align: center;
   padding: 0px 0px 0px 0px;
-  color: #ffffffc7;
+  color: #fefefeb3;
 }
 
 .shadow {
@@ -227,7 +227,7 @@ body {
 .nav_search {
   /* margin: 0px 5px 0px 0px; */
   /* border-radius: 5px; */
-  border: 1px solid #ffffffc7;
+  border: 1px solid #fefefeb3;
   /* max-height: 17px; */
   /* padding: 0px 5px; */
   /* margin-left: 0px; */
@@ -252,19 +252,21 @@ body {
 #horiz_nav_hdr {
   display: grid;
   grid-area: horiz_nav_hdr;
-  grid-template-areas: "left_col middle_col right_col";
+  grid-template-areas:
+    "left_col middle_col";
   grid-template-columns: max-content auto max-content;
   padding: 0px 5px 0px;
 }
 
 #horiz_nav_main {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   grid-area: horiz_nav_main;
   align-items: center;
   justify-content: center;
   padding: 5px 5px 0px 5px;
   min-width: max-content;
-  color: #ffffffc7;
+  color: #fefefeb3;
   font-size: smaller;
 }
 
@@ -281,30 +283,29 @@ body {
 
 #hdr_nav_right {
   grid-area: right_col;
-  color: #ffffffc7;
+  color: #fefefeb3;
   display: flex;
   align-items: center;
 }
 
 .nav_icon {
   font-size: larger;
-  color: #ffffffc7;
+  color: #fefefeb3;
 }
 
 .input_box {
-  border: 1px solid #ffffffc7;
+  border: 1px solid #fefefeb3;
   background-color: #0000006e;
-  color: #ffffffc7;
+  color: #fefefeb3;
   padding: 0px 5px;
   text-align: center;
   font-size: medium;
 }
 
 .ui_btn_w_icon {
-  background-color: #ffffffc7;
+  background-color: #fefefeb3;
   /* border-radius: 5px; */
   padding: 0px 5px;
-  font-size: small;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -320,13 +321,13 @@ body {
   display: flex;
   background-color: #00000045;
   padding: 0px;
-  margin: 0px auto;
+  margin: 0px auto 0px 5px;
 }
 
 .active_tab {
-  background-color: #ffffffc7 !important;
-  color: #000000 !important;
-  border-bottom: 1px solid #000000 !important;
+  background-color: #282828 !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #ffffff !important;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -340,8 +341,8 @@ body {
   padding: 0px 0px 0px 5px;
   font-size: medium;
   border-bottom: 1px solid;
-  background-color: #282828;
-  color: #ffffff;
+  background-color: #fefefeb3;
+  color: #000000;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -366,7 +367,6 @@ body {
   padding-inline-start: 0px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  min-width: 1645px;
   /* position: fixed; */
 }
 
@@ -414,8 +414,7 @@ p {
   backdrop-filter: blur(10px);
   display: grid;
   grid-template-columns: 1fr 5fr;
-  grid-template-areas:
-    "thumb details";
+  grid-template-areas: "thumb details";
   /* grid-template-rows: auto; */
   margin: 0 10px 25px 10px;
   border: 0px solid #ffffff2e;
@@ -480,7 +479,7 @@ a.book_link {
   grid-area: book_tags;
   font-size: small;
   padding: 0px 5px 0px;
-  color: #ffffffc7;
+  color: #fefefeb3;
   font-style: italic;
   font-size: xx-small;
   margin-bottom: 5px;
