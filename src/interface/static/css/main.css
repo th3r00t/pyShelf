@@ -1,18 +1,18 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #FFF;
+  background-color: #676767;
+  background-image: url(/static/img/bookshelf.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   color: #000;
 }
 
 #app {
   display: grid;
   grid-template-areas: "nav" "main";
-  background-image: url(/static/img/fractal-bg-dark.png);
-  background-size: cover;
-  background-repeat: no-repeat;
   /* background-origin: unset; */
-  grid-row-gap: 20px;
+  margin: 10px auto;
 }
 
 .clear {
@@ -20,7 +20,6 @@ body {
 }
 
 .app_header {
-  grid-area: app_header;
   margin: 0px;
   display: grid;
   grid-template-areas: "title nav_left_top nav_center_top nav_right_top";
@@ -59,7 +58,7 @@ body {
   font-size: 17px;
   text-align: center;
   padding: 0px 0px 0px 0px;
-  color: deepskyblue;
+  color: #ffffffc7;
 }
 
 .shadow {
@@ -88,8 +87,6 @@ body {
   /* grid-template-rows: auto; */
   grid-template-areas: "nav_l shelf";
   grid-template-columns: min-content auto;
-  background-color: white;
-  background-image: url(/static/img/fractal-bg-dark.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -230,7 +227,7 @@ body {
 .nav_search {
   /* margin: 0px 5px 0px 0px; */
   /* border-radius: 5px; */
-  border: 1px solid deepskyblue;
+  border: 1px solid #ffffffc7;
   /* max-height: 17px; */
   /* padding: 0px 5px; */
   /* margin-left: 0px; */
@@ -264,15 +261,16 @@ body {
   display: flex;
   grid-area: horiz_nav_main;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
   padding: 5px 5px 0px 5px;
   min-width: max-content;
-  color: deepskyblue;
+  color: #ffffffc7;
   font-size: smaller;
 }
 
 #hdr_branding {
   grid-area: left_col;
+  display: none;
 }
 
 #hdr_nav_center {
@@ -283,26 +281,27 @@ body {
 
 #hdr_nav_right {
   grid-area: right_col;
-  color: deepskyblue;
+  color: #ffffffc7;
   display: flex;
   align-items: center;
 }
 
 .nav_icon {
   font-size: larger;
-  color: deepskyblue;
+  color: #ffffffc7;
 }
 
 .input_box {
-  border: 1px solid deepskyblue;
-  background-color: #f0ffff00;
-  color: deepskyblue;
+  border: 1px solid #ffffffc7;
+  background-color: #0000006e;
+  color: #ffffffc7;
   padding: 0px 5px;
   text-align: center;
+  font-size: medium;
 }
 
 .ui_btn_w_icon {
-  background-color: deepskyblue;
+  background-color: #ffffffc7;
   /* border-radius: 5px; */
   padding: 0px 5px;
   font-size: small;
@@ -320,28 +319,31 @@ body {
   list-style-type: none;
   display: flex;
   background-color: #00000045;
-  padding: 0px 5px 0px 5px;
-  margin: 0px auto -1px 0px;
+  padding: 0px;
+  margin: 0px auto;
 }
 
 .active_tab {
-  background-color: deepskyblue;
-  color: black !important;
-  border-bottom: 1px solid black !important;
-  /* border-right: 1px dashed white; */
+  background-color: #ffffffc7 !important;
+  color: #000000 !important;
+  border-bottom: 1px solid #000000 !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .nav_menu_tab {
-  min-width: 5vw;
+  min-width: 8vw;
   margin: 0px auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 0px 0px 0px 5px;
-  font-size: smaller;
+  font-size: medium;
   border-bottom: 1px solid;
-  color: deepskyblue;
-  cursor: pointer;
+  background-color: #282828;
+  color: #ffffff;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .search_button {
@@ -354,9 +356,7 @@ body {
 
 #shelf_nav {
   display: grid;
-  grid-template-areas:
-    "horiz_nav_hdr"
-    "horiz_nav_main";
+  grid-template-areas: "horiz_nav_hdr" "horiz_nav_main";
   grid-area: nav;
   list-style-type: none;
   /* background-color: #6767677a; */
@@ -366,7 +366,7 @@ body {
   padding-inline-start: 0px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  /* min-width: 1645px; */
+  min-width: 1645px;
   /* position: fixed; */
 }
 
@@ -409,10 +409,13 @@ p {
 }
 
 .shelf_item {
-  background-color: #ffffff2e;
+  background-color: #0000006e;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   display: grid;
   grid-template-columns: 1fr 5fr;
-  grid-template-areas: "thumb details";
+  grid-template-areas:
+    "thumb details";
   /* grid-template-rows: auto; */
   margin: 0 10px 25px 10px;
   border: 0px solid #ffffff2e;
@@ -450,9 +453,10 @@ a.book_link {
   /* justify-content: center; */
   align-items: center;
   /* text-align: center; */
-  font-family: "Ubuntu Mono", monospace;
+  font-family: "Ubuntu", monospace;
   font-size: medium;
   padding: 0px 5px 0px;
+  margin: 5px 0px 0px 0px;
   /* background-color: #676767; */
 }
 
@@ -460,7 +464,7 @@ a.book_link {
   grid-area: book_author;
   font-family: serif;
   font-style: oblique;
-  font-size: medium;
+  font-size: small;
   padding: 0px 5px 0px;
   margin: 0px 0px 0px 5px;
 }
@@ -476,7 +480,7 @@ a.book_link {
   grid-area: book_tags;
   font-size: small;
   padding: 0px 5px 0px;
-  color: deepskyblue;
+  color: #ffffffc7;
   font-style: italic;
   font-size: xx-small;
   margin-bottom: 5px;

@@ -1,4 +1,38 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1366px) {
+    #vert-nav{
+        display: none;
+    } 
+    .book_description{
+        font-size: xx-small;
+    }
+    #shelf_nav{
+        min-width: auto;
+    }
+    .nav_menu_tab{
+        font-size: small;
+    }
+    .shelf_item{
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    #vert-nav{
+        display: none;
+    } 
+    .book_description{
+        font-size: xx-small;
+    }
+    #shelf_nav{
+        min-width: auto;
+    }
+    .nav_menu_tab{
+        font-size: small;
+    }
+    .shelf_item{
+        max-width: min-content;
+    }
+}
+@media only screen and (max-width: 400px) {
     .vert-nav{
         list-style: None;
         padding: 0px;
@@ -8,7 +42,7 @@
     .vert-nav-item {}
 
     #vert-nav {
-        display: initial;
+        display: none;
         list-style: None;
         padding: 0px 0px 0px 0px;
         margin: 0px;
@@ -16,5 +50,25 @@
         /*! border-right: 5px solid #292f35; */
         /* border-right: 1px solid; */
         background: linear-gradient(to right, #333 51%, #7d7a7aed 181%);
+    }
+    #shelf_nav {
+        min-width: auto;
+    }
+    .shelf_item {
+        grid-template-areas:
+            "thumb details";
+        max-width: initial;
+        min-width: -webkit-fill-available;
+        margin: 0px 0px 40px auto;
+    }
+    .book_thumb {
+        max-width: -webkit-fill-available;
+    }
+    .app_body{
+        margin: 0px 50px;
+    }
+    #book_shelf{
+        display: grid;
+        grid-template-columns: auto auto;
     }
 }

@@ -1,9 +1,17 @@
-$ui-color-1: deepskyblue;
-$ui-background-img: url(/static/img/fractal-bg-dark.png);
+$ui-color-1: #ffffffc7;
+$ui-color-2: #282828;
+$ui-color-3: #676767;
+$ui-font-color-1: #000000;
+$ui-font-color-2: #ffffff;
+$ui-shelf-item-color: #0000006e;
+$ui-background-img: url(/static/img/bookshelf.jpg);
 body {
     margin: 0px;
     padding: 0px;
-    background-color: #FFF;
+    background-color: $ui-color-3;
+    background-image: $ui-background-img;
+    background-size: cover;
+    background-repeat: no-repeat;
     color: #000;
 }
 
@@ -12,11 +20,10 @@ body {
     grid-template-areas:
         "nav"
         "main";
-    background-image: $ui-background-img;
-    background-size: cover;
-    background-repeat: no-repeat;
+    //background-image: $ui-background-img;
     /* background-origin: unset; */
-    grid-row-gap: 20px;
+//    grid-row-gap: 20px;
+    margin: 10px auto;
 }
 
 .clear {
@@ -24,7 +31,7 @@ body {
 }
 
 .app_header {
-    grid-area: app_header;
+    //grid-area: a#282828;
     margin: 0px;
     display: grid;
     grid-template-areas:
@@ -94,8 +101,8 @@ body {
     grid-template-areas:
         "nav_l shelf";
     grid-template-columns: min-content auto;
-    background-color: white;
-    background-image: $ui-background-img;
+    //background-color: white;
+    //background-image: $ui-background-img;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -289,6 +296,7 @@ body {
 }
 #hdr_branding{
     grid-area: left_col;
+    display: none;
 }
 #hdr_nav_center{
     display: flex;
@@ -310,10 +318,11 @@ body {
 }
 .input_box{
     border: 1px solid $ui-color-1;
-    background-color: #f0ffff00;
+    background-color: $ui-shelf-item-color;
     color: $ui-color-1;
     padding: 0px 5px;
     text-align: center;
+    font-size: medium;
 }
 .ui_btn_w_icon{background-color: $ui-color-1;/* border-radius: 5px; */padding: 0px 5px;font-size: small;display: flex;justify-content: center;align-items: center;/* min-width: 55px; */}
 .ui_icon_notxt{
@@ -327,9 +336,11 @@ body {
     margin: 0px auto;
 }
 .active_tab{
-    background-color: $ui-color-1;
-    color: black !important;
-    border-bottom: 1px solid black !important;
+    background-color: $ui-color-1 !important;
+    color: $ui-font-color-1 !important;
+    border-bottom: 1px solid $ui-font-color-1 !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 .nav_menu_tab{
     min-width: 8vw;
@@ -338,9 +349,12 @@ body {
     align-items: center;
     justify-content: flex-start;
     padding: 0px 0px 0px 5px;
-    font-size: smaller;
+    font-size: medium;
     border-bottom: 1px solid;
-    color: $ui-color-1;
+    background-color: $ui-color-2;
+    color: $ui-font-color-2;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 .search_button{
     /* color: aliceblue; */
@@ -406,7 +420,9 @@ p {
 }
 
 .shelf_item {
-    background-color: #ffffff2e;
+    background-color: $ui-shelf-item-color;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     display: grid;
     grid-template-columns: 1fr 5fr;
     grid-template-areas:
@@ -452,16 +468,17 @@ a.book_link {
     /* justify-content: center; */
     align-items: center;
     /* text-align: center; */
-    font-family: 'Ubuntu Mono', monospace;
+    font-family: 'Ubuntu', monospace;
     font-size: medium;
     padding: 0px 5px 0px;
+    margin: 5px 0px 0px 0px;
     /* background-color: #676767; */
 }
 .book_author {
     grid-area: book_author;
     font-family: serif;
     font-style: oblique;
-    font-size: medium;
+    font-size: small;
     padding: 0px 5px 0px;
     margin: 0px 0px 0px 5px;
 }
