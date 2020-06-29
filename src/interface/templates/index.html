@@ -17,6 +17,7 @@
     <script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
     <script type="text/javascript">
         var collections={{ CollectionObject|safe }};
+        //document.write(collections.length) collections
     </script>
 </head>
 
@@ -35,8 +36,6 @@
             <div id="horiz_nav_hdr">
                 <h1 class="app_hdr" id="hdr_branding">pyShelf {{Version}}</h1>
                 <div class="hdr_nav" id="hdr_nav_center">
-                    <input class="nav_search input_box" type="text" size="40" value="search by Title, Author, Tags, or Collections">
-                    <div class="ui_btn_w_icon"><i class="fas fa-search search_submit search_button" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>search</div>
                     <ul id="tab_nav_menu">
                         <li class="nav_menu_tab active_tab"><i class="fas fa-home"></i>&nbsp;Home</li>
                         <li class="nav_menu_tab"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
@@ -46,11 +45,26 @@
                 </div> 
             </div> 
             <div id="horiz_nav_main"> 
-                <!--<i class="fas fa-chevron-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>-->
-                <div class="horiz_nav_stats">
-                    {{ BookStats }} books | <script type="text/javascript">document.write(collections.length)</script> collections
+                <div id="horiz_nav_left">
+                    <i class="fas fa-arrow-circle-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>
+                    <i class="fas fa-sort nav_icon"></i>
+                    <select id = "sortlist">
+                        <option value = "1">Title</option>
+                        <option value = "2">Author</option>
+                        <option value = "3">Collection</option>
+                        <option value = "4">Tags</option>
+                    </select>
                 </div>
-                <!--<i class="fas fa-chevron-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>-->
+                <div id="horiz_nav_center">
+                    <i class="fas fa-sort-alpha-down nav_icon"></i>
+                    <i class="fas fa-sort-alpha-up nav_icon"></i>
+                    <input class="nav_search input_box" type="text" size="40" value="search by Title, Author, Tags, or Collections">
+                    <i class="fas fa-search search_submit search_button" onclick="window.location.href = '/prev_page/{{ Set }}'">search</i>
+                </div>
+                <div class="horiz_nav_stats">
+                    <i class="fas fa-book nav_icon"></i>&nbsp;1-20 of {{ BookStats }}&nbsp;
+                    <i class="fas fa-arrow-circle-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>
+                </div>
             </div>
         </ul>
         <div class="app_body">

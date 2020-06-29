@@ -4,7 +4,8 @@ $ui-color-3: #676767;
 $ui-font-color-1: #000000; //Active button
 $ui-font-color-2: #ffffff;
 $ui-shelf-item-color: #0000006e;
-$ui-background-img: url(/static/img/bookshelf.jpg);
+//$ui-background-img: url(/static/img/bookshelf.jpg);
+$ui-background-img: url(/static/img/blue-background.jpg);
 body {
     margin: 0px;
     padding: 0px;
@@ -265,6 +266,8 @@ body {
     /* margin-left: 0px; */
     /* background-color: #f0ffff00; */
     /* color: $ui-color-1; */
+    border-top: 0px !important;
+    border-bottom: 0px !important;
 }
 
 .search {}
@@ -286,16 +289,26 @@ body {
 }
 #horiz_nav_hdr{
     display: grid;
+    justify-content: end;
     grid-area: horiz_nav_hdr;
     grid-template-areas:
         "left_col middle_col right_col";
     grid-template-columns: max-content auto max-content;
     padding: 0px;
 }
+#horiz_nav_right {
+    grid-area: horiz_nav_right;
+}
+#horiz_nav_center {
+    grid-area: horiz_nav_center;
+}
+#horiz_nav_left {
+    grid-area:horiz_nav_left;
+}
 #horiz_nav_main{
     display: grid;
-    grid-template-areas: "horiz_nav_left horiz_nav_right";
-    grid-template-columns: 7fr auto;
+    grid-template-areas: "horiz_nav_left horiz_nav_center horiz_nav_right";
+    grid-template-columns: 1fr 3fr 1fr;
     background-color: $ui-color-2;
     grid-area: horiz_nav_main;
     padding: 1px 0px 1px 5px;
@@ -303,6 +316,8 @@ body {
     color: $ui-color-1;
     font-size: smaller;
     border-bottom: 1px solid $ui-color-1;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 #hdr_branding{
     grid-area: left_col;
@@ -321,13 +336,15 @@ body {
     align-items: center;
 }
 .horiz_nav_stats{
-    display: grid;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 #username{}
 #password{}
 .nav_login{}
 .nav_icon{
-    font-size: larger;
+    //font-size: larger;
     color: $ui-color-1;
 }
 .input_box{
@@ -393,8 +410,7 @@ body {
         "horiz_nav_main";
     grid-area: nav;
     list-style-type: none;
-    background-color: #000000;
-    margin: 0px auto 10px auto;
+    margin: 0px auto 20px auto;
     padding: 0px;
     padding-inline-start: 0px;
 }

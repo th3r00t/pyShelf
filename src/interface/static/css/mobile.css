@@ -31,6 +31,12 @@
     .shelf_item{
         max-width: min-content;
     }
+    .nav_search{
+        display: none !important;
+    }
+    #horiz_nav_main{
+        grid-template-columns: auto;
+    }
 }
 @media only screen and (max-width: 400px) {
     .vert-nav{

@@ -2,7 +2,7 @@ body {
   margin: 0px;
   padding: 0px;
   background-color: #676767;
-  background-image: url(/static/img/bookshelf.jpg);
+  background-image: url(/static/img/blue-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   color: #000;
@@ -243,6 +243,8 @@ body {
   /* margin-left: 0px; */
   /* background-color: #f0ffff00; */
   /* color: $ui-color-1; */
+  border-top: 0px !important;
+  border-bottom: 0px !important;
 }
 
 .search_details {
@@ -261,16 +263,29 @@ body {
 
 #horiz_nav_hdr {
   display: grid;
+  justify-content: end;
   grid-area: horiz_nav_hdr;
   grid-template-areas: "left_col middle_col right_col";
   grid-template-columns: max-content auto max-content;
   padding: 0px;
 }
 
+#horiz_nav_right {
+  grid-area: horiz_nav_right;
+}
+
+#horiz_nav_center {
+  grid-area: horiz_nav_center;
+}
+
+#horiz_nav_left {
+  grid-area: horiz_nav_left;
+}
+
 #horiz_nav_main {
   display: grid;
-  grid-template-areas: "horiz_nav_left horiz_nav_right";
-  grid-template-columns: 7fr auto;
+  grid-template-areas: "horiz_nav_left horiz_nav_center horiz_nav_right";
+  grid-template-columns: 1fr 3fr 1fr;
   background-color: #282828;
   grid-area: horiz_nav_main;
   padding: 1px 0px 1px 5px;
@@ -278,6 +293,8 @@ body {
   color: #fefefeb3;
   font-size: smaller;
   border-bottom: 1px solid #fefefeb3;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #hdr_branding {
@@ -300,11 +317,12 @@ body {
 }
 
 .horiz_nav_stats {
-  display: grid;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .nav_icon {
-  font-size: larger;
   color: #fefefeb3;
 }
 
@@ -380,8 +398,7 @@ body {
   grid-template-areas: "horiz_nav_hdr" "horiz_nav_main";
   grid-area: nav;
   list-style-type: none;
-  background-color: #000000;
-  margin: 0px auto 10px auto;
+  margin: 0px auto 20px auto;
   padding: 0px;
   padding-inline-start: 0px;
 }

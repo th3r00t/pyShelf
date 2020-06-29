@@ -18,6 +18,8 @@ collections = Collections.objects.all()
 def index(request):
     """
     Return template index
+    TODO: revise the way sets are handled so that they can be used uniformly in js
+    for ui page displays
     """
     _set = 1
     return render(
@@ -49,7 +51,11 @@ def show_collection(request, _collection, _colset):
             "Version": config.VERSION,
             "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
-            "Collections": collections_list()
+            "Collections": collections_list(),
+            "LeftNavMenu0": menu("nav_l_0"),
+            "BookStats": Books.objects.all().count,
+            "CollectionStats": Collections.objects.all().count,
+            "CollectionObject": collections_list()
         },
     )
 
@@ -68,6 +74,13 @@ def next_page(request, bookset):
             "Books": book_set(None, _set),
             "Set": str(_set),
             "Version": config.VERSION,
+            "LeftNavCollections": menu("collections"),
+            "LeftNav": menu("collections"),
+            "Collections": collections_list(),
+            "LeftNavMenu0": menu("nav_l_0"),
+            "BookStats": Books.objects.all().count,
+            "CollectionStats": Collections.objects.all().count,
+            "CollectionObject": collections_list(),
             "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
@@ -92,6 +105,13 @@ def prev_page(request, bookset):
             "Books": book_set(None, _set),
             "Set": str(_set),
             "Version": config.VERSION,
+            "LeftNavCollections": menu("collections"),
+            "LeftNav": menu("collections"),
+            "Collections": collections_list(),
+            "LeftNavMenu0": menu("nav_l_0"),
+            "BookStats": Books.objects.all().count,
+            "CollectionStats": Collections.objects.all().count,
+            "CollectionObject": collections_list(),
             "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
