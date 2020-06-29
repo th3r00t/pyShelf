@@ -71,4 +71,7 @@ $(document).ready(function(){
            $(this).attr("value", p_string);
         }
     });
+    $('#btn_login').on('click', function(){
+        $('#hdr_nav_login').toggle();
+    });
 });

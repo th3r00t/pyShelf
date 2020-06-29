@@ -14,7 +14,15 @@ body {
     background-repeat: no-repeat;
     color: #000;
 }
-
+#pop_over_0{
+    display: none;
+    position: fixed;
+    top: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #000000;
+    z-index: 100;
+}
 #app {
     display: grid;
     grid-template-areas:
@@ -282,17 +290,19 @@ body {
     grid-template-areas:
         "left_col middle_col right_col";
     grid-template-columns: max-content auto max-content;
-    padding: 0px 5px 0px;
+    padding: 0px;
 }
 #horiz_nav_main{
-    display: flex;
+    display: grid;
+    grid-template-areas: "horiz_nav_left horiz_nav_right";
+    grid-template-columns: 7fr auto;
+    background-color: $ui-color-2;
     grid-area: horiz_nav_main;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 5px 0px 5px;
+    padding: 1px 0px 1px 5px;
     min-width: max-content;
     color: $ui-color-1;
     font-size: smaller;
+    border-bottom: 1px solid $ui-color-1;
 }
 #hdr_branding{
     grid-area: left_col;
@@ -301,13 +311,17 @@ body {
 #hdr_nav_center{
     display: flex;
     grid-area: middle_col;
-    margin: 0px 0px 0px 10px;
+    margin: 0px;
 }
-#hdr_nav_right{
-    grid-area: right_col;
+#hdr_nav_login{
+    display: none;
+    grid-template-columns: auto;
+    grid-area: horiz_nav_right;
     color: $ui-color-1;
-    display: flex;
     align-items: center;
+}
+.horiz_nav_stats{
+    display: grid;
 }
 #username{}
 #password{}
@@ -324,6 +338,7 @@ body {
     text-align: center;
     font-size: medium;
 }
+.noborder {border: 0px !important;}
 .ui_btn_w_icon{
     background-color: $ui-color-1;
     /* border-radius: 5px; */
@@ -340,7 +355,8 @@ body {
     display: flex;
     background-color: #00000045;
     padding: 0px;
-    margin: 0px auto 0px 5px;
+    margin: 0px auto 0px 1px;
+    cursor: pointer;
 }
 .active_tab{
     background-color: $ui-color-2 !important;
@@ -350,8 +366,8 @@ body {
     backdrop-filter: blur(10px);
 }
 .nav_menu_tab{
-    min-width: 8vw;
-    margin: 0px auto;
+    min-width: 5vw;
+    margin: 0px 1px 0px 1px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -377,15 +393,10 @@ body {
         "horiz_nav_main";
     grid-area: nav;
     list-style-type: none;
-    /* background-color: #6767677a; */
-    margin: 0px auto;
-    padding: 5px 0px 5px 0px;
-    /* position: fixed; */
+    background-color: #000000;
+    margin: 0px auto 10px auto;
+    padding: 0px;
     padding-inline-start: 0px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    // min-width: 1645px;
-    /* position: fixed; */
 }
 .shelf_contents {
     grid-area: shelf_main;

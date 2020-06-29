@@ -22,6 +22,14 @@
 
 <body>
 	<input type="hidden" id="_set" name="_set" value="{{ Set }}" />
+    <div id="pop_over_0">
+        <!-- Login Form -->
+        <div class="hdr_nav" id="hdr_nav_login"> 
+            <input id="username" class="nav_login input_box noborder" type="text" size="8" value="Username"> 
+            <input id="password" class="nav_login input_box noborder" type="text" size="8" value="Password"> 
+        </div> 
+        <!-- End Login Form -->
+    </div>
     <div id="app">
         <ul id="shelf_nav">
             <div id="horiz_nav_hdr">
@@ -34,52 +42,18 @@
                         <li class="nav_menu_tab"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
                         <li class="nav_menu_tab"><i class="fas fa-star"></i>&nbsp;Favorites</li>
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
-                        <li class="nav_menu_tab"> <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Login</li>
+                        <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Login</li>
                 </div> 
             </div> 
             <div id="horiz_nav_main"> 
                 <!--<i class="fas fa-chevron-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>-->
-                {{ BookStats }} books | <script type="text/javascript">document.write(collections.length)</script> collections
+                <div class="horiz_nav_stats">
+                    {{ BookStats }} books | <script type="text/javascript">document.write(collections.length)</script> collections
+                </div>
                 <!--<i class="fas fa-chevron-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>-->
-                <div class="hdr_nav" id="hdr_nav_right"> 
-                    <input id="username" class="nav_login input_box" type="text" size="8" value="Username"> 
-                    <input id="password" class="nav_login input_box" type="text" size="8" value="Password"> 
-                </div> 
             </div>
         </ul>
         <div class="app_body">
-            <div class="nav_l">
-                <p class="popover"></p>
-                <ul id="vert-nav">
-                    <li class="vert-nav-item nav_l_hdr">
-                        <h1 class="app_hdr">pyShelf {{Version}}</h1>
-                    </li>
-                    <li class="vert-nav-item nav_l_hdr">
-                        <input class="nav_search" type="text" size="10" value="">
-                    </li>
-                    <li class="vert-nav-item nav_l_hdr btn" id="btn_collections">Collections</li>
-                    <ul class="hidden vert-nav collections">
-                    {% for row in LeftNavCollections %}
-                        <a href="{% url 'show_collection' _collection=row.link _colset=Set%}" class="nav_link" alt="{{row.link}}">
-                            <li class="nav_l_{{row.class}} btn">
-                                {{ row.string }}
-                            </li>
-                        </a>
-                    {% endfor %}
-                    </ul>
-                    <ul class="vert-nav dynnav">
-                        {% if LeftNavMenu0 %}
-                            {% for row in LeftNavMenu0 %}
-                                <a href="{{ row.link }}"><li class="vert-nav-item nav_l_hdr btn">{{ row.title }}</li></a>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
-                    <li class="vert-nav-item nav_l_hdr btn" id="btn_pyshelf">pyshelf.com</li>
-                    <a href="irc://freenode.net/pyshelf" class="web_footer_link"><li class="vert-nav-item nav_l_hdr" id="btn_discord">discord</li></a>
-                    <li class="vert-nav-item nav_l_hdr btn" id="btn_github">github</li>
-                    <li class="vert-nav-item nav_l_hdr btn" id="btn_irc">irc</li>
-                </ul>
-            </div>
             <div class="shelf">
                 <div class="shelf_contents">
                     <ul id="book_shelf">
@@ -104,25 +78,18 @@
                                         {% endif %}
                                     <li class="book_tags">Tags: {{ book.tags }}</li>
                                     <li class="book_controls">
-
                                             <span class="favorite-button controls">
                                                <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
                                             </span>
-
-
                                             <span class="download-button controls">
                                                 <a href="{% url 'download' pk=book.pk %}" class="book_link"><i class="fas fa-book icon"></i></a>
                                             </span>
-
-
                                             <span class="share-button controls">
                                                 <a href="{% url 'share' pk=book.pk %}" class="book_link"><i class="fas fa-share icon"></i></a>
                                             </span>
-
                                             <span class="info-button controls">
                                                 <a href="{% url 'info' pk=book.pk %}" class="book_link"><i class="fas fa-info icon"></i></a>
                                             </span>
-
                                     </li>
                                 </ul>
                             </li>
