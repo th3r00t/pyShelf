@@ -21,7 +21,7 @@ def index(request, query=None, _set=1, _limit=None, _order='title'):
     """
     Return template index
     """
-    _payload = payload(query, _set, _limit, _order)
+    _payload = payload(request, query, _set, _limit, _order)
     return render(
         request,
         "index.html",
@@ -304,7 +304,7 @@ def collections_list():
             collection_key.append(i.collection)
     return json.dumps(list(set(collection_key)))
 
-def payload(query, _set, _limit, _order):
+def payload(request, query, _set, _limit, _order):
     """
     Return formatted data to template
     # TODO hook into payload and provide handling of next,prev, & search combos
@@ -315,11 +315,18 @@ def payload(query, _set, _limit, _order):
     _set_max = int(_set) * _limit
     _set_min = _set_max - _limit
     _now_showing = "%s of %s"%(_set_min, _set_max)
-   
+     
     if query: 
-        _results = Books().generic_search(query)
-        _r_len = _results.count()
-        _r, _search = _results[_set_min:_set_max], query
+        if query != request.session.get('cached_query'):
+            breakpoint()
+            ses_query = request.session['cached_query'] = query
+            ses_results = request.session['cached_results'] = Books().generic_search(query)
+            _r_len = ses_results.count()
+            _r, _search = ses_results[_set_min:_set_max], request.session.get('cached_query')
+        elif query == request.session.get('cached_query'):
+            _r, _search = request.session['cached_results'].order_by(_order)[_set_min:_set_max], request.session['cached_query']
+    elif request.session['cached_query']:
+        _r,_search = request.session['cached_results'].order_by(_order)[_set_min:_set_max], request.session['cached_query']
     else: _r, _r_len, _search = book_set(_order, _limit, _set), None, None
     
     _bookstats, _collectionstats, _collectionobject = \

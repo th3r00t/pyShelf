@@ -101,6 +101,10 @@ DATABASES = {
         "PASSWORD": CONFIG.password,
     }
 }
+# Session
+# Uncomment below to enable sessions management by a memcache server
+# https://docs.djangoproject.com/en/3.0/topics/http/sessions/
+# SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
