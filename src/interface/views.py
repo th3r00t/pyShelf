@@ -307,7 +307,6 @@ def collections_list():
 def payload(request, query, _set, _limit, _order):
     """
     Return formatted data to template
-    # TODO hook into payload and provide handling of next,prev, & search combos
     """
     _set = int(_set)
     if _set < 1: _set = 1
@@ -319,14 +318,24 @@ def payload(request, query, _set, _limit, _order):
     if query: 
         if query != request.session.get('cached_query'):
             breakpoint()
-            ses_query = request.session['cached_query'] = query
-            ses_results = request.session['cached_results'] = Books().generic_search(query)
-            _r_len = ses_results.count()
-            _r, _search = ses_results[_set_min:_set_max], request.session.get('cached_query')
+            request.session['cached_query'] = query
+            request.session['cached_results'] = Books().generic_search(query)
+            _r, _r_len, _search = \
+                request.session.get('cached_results')[_set_min:_set_max],\
+                request.session.get('cached_results').count(),\
+                request.session.get('cached_query')
         elif query == request.session.get('cached_query'):
-            _r, _search = request.session['cached_results'].order_by(_order)[_set_min:_set_max], request.session['cached_query']
+            _r, _r_len, _search = \
+                request.session.get('cached_results').order_by(_order)[_set_min:_set_max],\
+                request.session.get('cached_results').count(),\
+                request.session.get('cached_query')
+
     elif request.session['cached_query']:
-        _r,_search = request.session['cached_results'].order_by(_order)[_set_min:_set_max], request.session['cached_query']
+        _r, _r_len, _search = \
+            request.session.get('cached_results').order_by(_order)[_set_min:_set_max],\
+            request.session.get('cached_results').count(),\
+            request.session.get('cached_query')
+
     else: _r, _r_len, _search = book_set(_order, _limit, _set), None, None
     
     _bookstats, _collectionstats, _collectionobject = \
