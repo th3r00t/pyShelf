@@ -74,4 +74,10 @@ $(document).ready(function(){
     $('#btn_login').on('click', function(){
         $('#hdr_nav_login').toggle();
     });
+    $('#sortlist').change(function () {
+        var optionSelected = $(this).find("option:selected");
+        var valueSelected  = optionSelected.val();
+        var textSelected   = optionSelected.text();
+        window.location.href=valueSelected
+    });
 });

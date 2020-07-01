@@ -15,26 +15,17 @@ from .models import Books, Collections, Navigation
 config = Config(Path("../"))
 
 collections = Collections.objects.all()
-def index(request):
+
+
+def index(request, query=None, _set=1, _limit=None, _order='title'):
     """
     Return template index
-    TODO: revise the way sets are handled so that they can be used uniformly in js
-    for ui page displays
     """
-    _set = 1
+    _payload = payload(query, _set, _limit, _order)
     return render(
         request,
         "index.html",
-        {
-            "Books": book_set(20, _set),
-            "Set": str(_set),
-            "Version": config.VERSION,
-            "LeftNavCollections": menu("collections"),
-            "LeftNavMenu0": menu("nav_l_0"),
-            "BookStats": Books.objects.all().count,
-            "CollectionStats": Collections.objects.all().count,
-            "CollectionObject": collections_list()
-        },
+        _payload
     )
 
 def show_collection(request, _collection, _colset):
@@ -69,7 +60,8 @@ def next_page(request, bookset):
         _set = 1
     return render(
         request,
-        "index.html",
+        """
+        index.html",
         {
             "Books": book_set(None, _set),
             "Set": str(_set),
@@ -84,6 +76,7 @@ def next_page(request, bookset):
             "LeftNavCollections": menu("collections"),
             "LeftNav": menu("collections"),
         },
+        """
     )
 
 def prev_page(request, bookset):
@@ -123,7 +116,20 @@ def search(request, query=None, _set=1, _limit=None):
     """
     _set = int(_set)
     if query is None:
-        return render(request, "index.html", {"Books": None, "Version": config.VERSION})
+        return render(
+            request,
+            "index.html",
+            {
+                "Books": book_set(20, _set),
+                "Set": str(_set),
+                "Version": config.VERSION,
+                "LeftNavCollections": menu("collections"),
+                "LeftNavMenu0": menu("nav_l_0"),
+                "BookStats": Books.objects.all().count,
+                "CollectionStats": Collections.objects.all().count,
+                "CollectionObject": collections_list()
+            }
+        )
     if _limit is None:
         _limit = 20  ## TODO set to user defaults
     if _set < 1:
@@ -147,7 +153,7 @@ def search(request, query=None, _set=1, _limit=None):
         },
     )
 
-def book_set(_limit=None, _set=1):
+def book_set(_order, _limit=None, _set=1):
     """
     Get books results by set #
     """
@@ -155,7 +161,7 @@ def book_set(_limit=None, _set=1):
         _limit = 20  # TODO default from user choice
     _set_max = int(_set) * _limit
     _set_min = _set_max - _limit
-    books = Books.objects.all()[_set_min:_set_max]
+    books = Books.objects.all().order_by(_order)[_set_min:_set_max]
     return books
 
 def collection(_collection, _set, _limit=None):
@@ -297,3 +303,44 @@ def collections_list():
         if i.collection not in collection_key:
             collection_key.append(i.collection)
     return json.dumps(list(set(collection_key)))
+
+def payload(query, _set, _limit, _order):
+    """
+    Return formatted data to template
+    # TODO hook into payload and provide handling of next,prev, & search combos
+    """
+    _set = int(_set)
+    if _set < 1: _set = 1
+    if _limit is None: _limit = 20
+    _set_max = int(_set) * _limit
+    _set_min = _set_max - _limit
+    _now_showing = "%s of %s"%(_set_min, _set_max)
+   
+    if query: 
+        _results = Books().generic_search(query)
+        _r_len = _results.count()
+        _r, _search = _results[_set_min:_set_max], query
+    else: _r, _r_len, _search = book_set(_order, _limit, _set), None, None
+    
+    _bookstats, _collectionstats, _collectionobject = \
+        Books.objects.all().count, Collections.objects.all().count, \
+        collections_list()
+    
+    if (_r_len): _btotal = _r_len 
+    else: _btotal = _bookstats
+    
+    return {
+        "Books": _r,
+        "Set": str(_set),
+        "Version": config.VERSION,
+        "LeftNavCollections": menu("collections"),
+        "LeftNavMenu0": menu("nav_l_0"),
+        "BookStats": _btotal,
+        "CollectionStats": _collectionstats,
+        "CollectionObject": _collectionobject,
+        "NowShowing": _now_showing,
+        "PostedSearch": _search,
+        "SearchLen": _r_len,
+        "Order": _order
+    }
+

@@ -21,20 +21,17 @@ from interface import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
+    path("sort/<_order>", views.index, name="index"),
     path("download/<pk>", views.download, name="download"),
     path("favorite/<pk>", views.favorite, name="favorite"),
     path("share/<pk>", views.share, name="share"),
     path("share/<pk>", views.info, name="info"),
     path("prev_page/<bookset>", views.prev_page, name="prev_page"),
     path("next_page/<bookset>", views.next_page, name="next_page"),
-    path("search/", views.search, name="search"),
-    path("search/<query>", views.search, name="search"),
-    path("search/<query>/<_set>", views.search, name="search"),
-    path(
-        "show_collection/<_collection>/<_colset>",
-        views.show_collection,
-        name="show_collection",
-    ),
+    path("search/", views.index, name="search"),
+    path("search/<query>", views.index, name="search"),
+    path("search/<query>/<_set>", views.index, name="search"),
+    path("show_collection/<_collection>/<_colset>", views.show_collection, name="show_collection",),
 ]
 if settings.DEBUG:
     import debug_toolbar
