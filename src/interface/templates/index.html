@@ -49,12 +49,13 @@
             <div id="horiz_nav_main"> 
                 <div    id="horiz_nav_left">
                     <i class="fas fa-arrow-circle-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>
-                    <i class="fas fa-sort nav_icon"></i>
+                    &nbsp;sort <i class="fas fa-sort nav_icon"></i>
                     <select id = "sortlist">
+                        <option valie = "" id="empty-sort"></option>
                         <option value = "sort/title" id="title-sort">Title</option>
                         <option value = "sort/author" id="author-sort">Author</option>
                         <option value = "sort/collections" id="collection-sort">Collection</option>
-                        <option value = "sort/tag" id="tag-sort">Tags</option>
+                        <option value = "sort/tags" id="tags-sort">Tags</option>
                     </select>
                 </div>
                 <div id="horiz_nav_center">
@@ -64,7 +65,7 @@
                     <i class="fas fa-search search_submit search_button" onclick="window.location.href = '/prev_page/{{ Set }}'">search</i>
                 </div>
                 <div class="horiz_nav_stats">
-                    <i class="fas fa-book nav_icon"></i>&nbsp;1-20 of {{ BookStats }}&nbsp;
+                    <i class="fas fa-book nav_icon"></i>&nbsp;{{ NowShowing }} of {{ BookStats }}&nbsp;
                     <i class="fas fa-arrow-circle-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>
                 </div>
             </div>

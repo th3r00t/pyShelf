@@ -78,6 +78,6 @@ $(document).ready(function(){
         var optionSelected = $(this).find("option:selected");
         var valueSelected  = optionSelected.val();
         var textSelected   = optionSelected.text();
-        window.location.href=valueSelected
+        window.location.href="/"+valueSelected
     });
 });

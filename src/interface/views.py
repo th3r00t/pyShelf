@@ -50,7 +50,7 @@ def show_collection(request, _collection, _colset):
         },
     )
 
-def next_page(request, bookset):
+def next_page(request, bookset, query=None, _limit=None, _order='title'):
     """
     Goto next page in bookset
     """
@@ -58,28 +58,14 @@ def next_page(request, bookset):
         _set = int(bookset) + 1
     except Exception:
         _set = 1
+    _payload = payload(request, query, _set, _limit, _order)
     return render(
         request,
-        """
-        index.html",
-        {
-            "Books": book_set(None, _set),
-            "Set": str(_set),
-            "Version": config.VERSION,
-            "LeftNavCollections": menu("collections"),
-            "LeftNav": menu("collections"),
-            "Collections": collections_list(),
-            "LeftNavMenu0": menu("nav_l_0"),
-            "BookStats": Books.objects.all().count,
-            "CollectionStats": Collections.objects.all().count,
-            "CollectionObject": collections_list(),
-            "LeftNavCollections": menu("collections"),
-            "LeftNav": menu("collections"),
-        },
-        """
+        "index.html",
+        _payload,
     )
 
-def prev_page(request, bookset):
+def prev_page(request, bookset, query=None, _limit=None, _order='title'):
     """
     Goto previous page in bookset
     """
@@ -91,66 +77,11 @@ def prev_page(request, bookset):
             _set = int(bookset) - 1
         except Exception:
             _set = 1
+    _payload = payload(request, query, _set, _limit, _order)
     return render(
         request,
         "index.html",
-        {
-            "Books": book_set(None, _set),
-            "Set": str(_set),
-            "Version": config.VERSION,
-            "LeftNavCollections": menu("collections"),
-            "LeftNav": menu("collections"),
-            "Collections": collections_list(),
-            "LeftNavMenu0": menu("nav_l_0"),
-            "BookStats": Books.objects.all().count,
-            "CollectionStats": Collections.objects.all().count,
-            "CollectionObject": collections_list(),
-            "LeftNavCollections": menu("collections"),
-            "LeftNav": menu("collections"),
-        },
-    )
-
-def search(request, query=None, _set=1, _limit=None):
-    """
-    Call generic search and return rendered results
-    """
-    _set = int(_set)
-    if query is None:
-        return render(
-            request,
-            "index.html",
-            {
-                "Books": book_set(20, _set),
-                "Set": str(_set),
-                "Version": config.VERSION,
-                "LeftNavCollections": menu("collections"),
-                "LeftNavMenu0": menu("nav_l_0"),
-                "BookStats": Books.objects.all().count,
-                "CollectionStats": Collections.objects.all().count,
-                "CollectionObject": collections_list()
-            }
-        )
-    if _limit is None:
-        _limit = 20  ## TODO set to user defaults
-    if _set < 1:
-        _set = 1
-    _set_max = int(_set) * _limit
-    _set_min = _set_max - _limit
-    search = Books().generic_search(query)
-    search_len = search.count()
-    _r = search[_set_min:_set_max]
-    return render(
-        request,
-        "search.html",
-        {
-            "Books": _r,
-            "Query": query,
-            "Set": _set,
-            "len_results": search_len,
-            "Version": config.VERSION,
-            "LeftNavCollections": menu("collections"),
-            "LeftNav": menu("collections"),
-        },
+        _payload,
     )
 
 def book_set(_order, _limit=None, _set=1):
@@ -313,30 +244,30 @@ def payload(request, query, _set, _limit, _order):
     if _limit is None: _limit = 20
     _set_max = int(_set) * _limit
     _set_min = _set_max - _limit
-    _now_showing = "%s of %s"%(_set_min, _set_max)
+    _now_showing = "%s-%s"%(_set_min, _set_max)
      
     if query: 
         if query != request.session.get('cached_query'):
-            breakpoint()
             request.session['cached_query'] = query
-            request.session['cached_results'] = Books().generic_search(query)
-            _r, _r_len, _search = \
-                request.session.get('cached_results')[_set_min:_set_max],\
-                request.session.get('cached_results').count(),\
-                request.session.get('cached_query')
+            _results = Books().generic_search(query)
+            _r, _r_len = \
+                _results[_set_min:_set_max],\
+                _results.count()
         elif query == request.session.get('cached_query'):
-            _r, _r_len, _search = \
-                request.session.get('cached_results').order_by(_order)[_set_min:_set_max],\
-                request.session.get('cached_results').count(),\
-                request.session.get('cached_query')
+            _results = Books().generic_search(query)
+            _r, _r_len = \
+                _results.order_by(_order)[_set_min:_set_max],\
+                _results.count()
 
-    elif request.session['cached_query']:
-        _r, _r_len, _search = \
-            request.session.get('cached_results').order_by(_order)[_set_min:_set_max],\
-            request.session.get('cached_results').count(),\
-            request.session.get('cached_query')
-
-    else: _r, _r_len, _search = book_set(_order, _limit, _set), None, None
+    else:
+        try:
+            query = request.session['cached_query']
+            _results = Books().generic_search(query)
+            _r, _r_len = \
+                _results.order_by(_order)[_set_min:_set_max],\
+                _results.count()
+        except KeyError:
+            _r, _r_len, _search = book_set(_order, _limit, _set), None, None
     
     _bookstats, _collectionstats, _collectionobject = \
         Books.objects.all().count, Collections.objects.all().count, \
@@ -355,7 +286,7 @@ def payload(request, query, _set, _limit, _order):
         "CollectionStats": _collectionstats,
         "CollectionObject": _collectionobject,
         "NowShowing": _now_showing,
-        "PostedSearch": _search,
+        "PostedSearch": query,
         "SearchLen": _r_len,
         "Order": _order
     }
