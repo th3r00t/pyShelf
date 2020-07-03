@@ -1,16 +1,19 @@
-# pyShelf 0.5.0
+# pyShelf 0.6.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/master/preview_050.png)
-![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/master/preview_1_050.png)
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/pyshelf_frontend_0_2_0.png)
 
-<p align="center"><b> <a href="https://discord.gg/H9TbNJS">Discord</a> |  <a href="https://webchat.freenode.net/#pyshelf">IRC</a> freenode.net @ #pyshelf</b></p>
 
+
+### You dont need a X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
+<i>Other solutiions require you to have access to an X server to at the very least generate your book database, pyShelf doesnt.We aim to provide a fully featured ebook server with minimal requirements, and no reliance on X whatsoever.</i>
+
+Follow or influence development @ <p align="center"><b> <a href="https://discord.gg/H9TbNJS">Discord</a> |  <a href="https://webchat.freenode.net/#pyshelf">IRC</a> freenode.net @ #pyshelf</b></p>
 ## Current Features
-* Custom Installer -- pre-req installs work on Arch Based Distros Only
+* Custom Installer works only on Arch Based Distros
 * Recursive Scanning
 * Fast database access
 * Django based frontend
@@ -20,6 +23,7 @@
 
 ## Currently Supported Formats
 * epub
+* mobi
 
 ## Installation Example
 <a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
@@ -27,29 +31,52 @@
 ## Further Installation & Support Information
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
-## 0.5.0 Patch Notes.
-
+## 0.6.0 Patch Notes.
+# New Features
+* .mobi Yep mobis are now a thing!
+* Result set ordering
+    * You can now choose to order your results:
+        * Title
+        * Author
+        * Categories
+        * & Tags
+* Reworked UI/UX
+    * More intuitive, less intrusive, & stays out of the way. <i>caveat: I need to rework the placement of the next & previous page controls. While they do remain usable, I intend to have them follow the users</i>
+        position on the page in future releases.
+    * Added the following new controls
+        * Sort
+        * Ascending / Descending result set
+        * Display of the result set count, and your current position in the set.
+        * A pop over layer to hold things like
+            * [ ] User login
+            * [ ] Control panel
+            * [ ] Book details
+            * Whatever else :)
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/navbar.png)
 ### Pre-req Dependencies
 * gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
 Users on distros other then Arch should install gcc via their systems package manager prior to
 running the installer.
 * Python3
 * pip
-### New Features
-* Collections
-We are now categorizing your ebooks into collections based on the folder
-structure used to store them. Any folder after the root book folder is now
-considered as a collection.
-#### books/forgotten realms/ -> Forgotten Realms Collection.
-#### books/Dune/Prelude To Dune -> Dune, & Preluse To Dune Collections.
 
-In addition to the work on the collection system, a good deal of time was spent
-on the installer, and the concept of having an installer in the first place.
-
-I mainly wanted to make this project for Network Administrators, and other home
+# Installation
+This project is currently targeted towards Network Administrators, and other home
 enthusiasts whom I assume will know how to setup a Django app, and a
-Postgres server. Beyond that theres nothing the user has to do to make the
-system work...
+Postgres server.
+
+Once your environment is ready very little is required to get the system up and running
+* From the main directory
+    * setup configurations as discussed in [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
+    * `pip install -r requirments.txt`
+    * `cd src`
+    * `python manage.py migrate`
+    * `cd ..`
+    * `./importbooks`
+    * `./makecollections`
+* Browse to the site as defined in your apache | nginx config
+
+## Included installer
 
 The installer will only run correctly on arch based distros. This could be
 easily rectified to include other package managers, Members of the community
@@ -60,6 +87,9 @@ There is some support for detection of the aptitude package manager
 installation already present in the source now, however it is not complete and
 should not be relied upon to be present in future releases unless completed by
 a member of the community,
+
+The installer will walk you through all the configurations required by pyShelf to
+run if you are running on Arch linux.
 
 ## Development
 
@@ -90,7 +120,7 @@ Running via the Django test server might be possible, albeit not recomended.
 #### Improved cover image storage, and acquisition.
 #### OPDS Support
 #### Support for other formats
-- [ ] .mobi
+- [x] .mobi
 - [ ] .pdf
 - [ ] .cbz
 - [ ] .zip (Zipped book folders, is this a new idea? (Consider storing your library folders zipped and retrieving a book on demand))
