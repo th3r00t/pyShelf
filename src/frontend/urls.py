@@ -21,6 +21,7 @@ from interface import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
+    path("/<query>", views.index, name="index"),
     path("sort/<_order>", views.index, name="index"),
     path("download/<pk>", views.download, name="download"),
     path("favorite/<pk>", views.favorite, name="favorite"),

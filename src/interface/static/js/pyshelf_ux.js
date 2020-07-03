@@ -80,4 +80,11 @@ $(document).ready(function(){
         var textSelected   = optionSelected.text();
         window.location.href="/"+valueSelected
     });
+    $('#btn-home').on("click", function(){
+        console.log('Home Pressed');
+        _location = $(this).attr('data-location');
+        $('#_order').val(null);
+        $('#_search').val(null);
+        window.location.href=_location;
+    });
 });

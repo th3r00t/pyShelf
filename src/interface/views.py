@@ -239,13 +239,13 @@ def payload(request, query, _set, _limit, _order):
     """
     Return formatted data to template
     """
+    breakpoint()
     _set = int(_set)
     if _set < 1: _set = 1
     if _limit is None: _limit = 20
     _set_max = int(_set) * _limit
     _set_min = _set_max - _limit
     _now_showing = "%s-%s"%(_set_min, _set_max)
-     
     if query: 
         if query != request.session.get('cached_query'):
             request.session['cached_query'] = query
