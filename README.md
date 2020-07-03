@@ -4,7 +4,7 @@
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/pyshelf_frontend_0_2_0.png)
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/newui/pyshelf_frontend_0_2_0.png)
 
 
 
@@ -52,7 +52,7 @@ Follow or influence development @ <p align="center"><b> <a href="https://discord
             * [ ] Control panel
             * [ ] Book details
             * Whatever else :)
-![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/navbar.png)
+![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/newui/navbar.png)
 ### Pre-req Dependencies
 * gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
 Users on distros other then Arch should install gcc via their systems package manager prior to
