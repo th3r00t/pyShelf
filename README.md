@@ -25,11 +25,6 @@ Follow or influence development @ <p align="center"><b> <a href="https://discord
 * epub
 * mobi
 
-## Installation Example
-<a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
-
-## Further Installation & Support Information
-* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ## 0.6.0 Patch Notes.
 # New Features
@@ -80,6 +75,7 @@ Once your environment is ready very little is required to get the system up and 
 * Browse to the site as defined in your apache | nginx config
 
 ## Included installer
+<a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
 
 The installer will only run correctly on arch based distros. This could be
 easily rectified to include other package managers, Members of the community
@@ -93,6 +89,9 @@ a member of the community,
 
 The installer will walk you through all the configurations required by pyShelf to
 run if you are running on Arch linux.
+
+## Further Installation & Support Information
+* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ## Development
 
