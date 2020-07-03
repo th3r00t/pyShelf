@@ -4,7 +4,7 @@
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/newui/pyshelf_frontend_0_2_0.png)
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/newui/src/interface/static/img/pyShelf_frontend_0_2_0.png)
 
 
 
@@ -43,16 +43,19 @@ Follow or influence development @ <p align="center"><b> <a href="https://discord
 * Reworked UI/UX
     * More intuitive, less intrusive, & stays out of the way. <i>caveat: I need to rework the placement of the next & previous page controls. While they do remain usable, I intend to have them follow the users</i>
         position on the page in future releases.
-    * Added the following new controls
-        * Sort
-        * Ascending / Descending result set
-        * Display of the result set count, and your current position in the set.
-        * A pop over layer to hold things like
-            * [ ] User login
-            * [ ] Control panel
-            * [ ] Book details
-            * Whatever else :)
-![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/newui/navbar.png)
+
+![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/newui/src/interface/static/img/navbar.png)
+
+* New controls
+    * Sort
+    * Ascending / Descending result set
+    * Display of the result set count, and your current position in the set.
+    * A pop over layer to hold things like
+        * [ ] User login
+        * [ ] Control panel
+        * [ ] Book details
+        * Whatever else :)
+
 ### Pre-req Dependencies
 * gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
 Users on distros other then Arch should install gcc via their systems package manager prior to
