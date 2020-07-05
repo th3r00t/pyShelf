@@ -39,7 +39,7 @@
                 <h1 class="app_hdr" id="hdr_branding">pyShelf {{Version}}</h1>
                 <div class="hdr_nav" id="hdr_nav_center">
                     <ul id="tab_nav_menu">
-                        <li class="nav_menu_tab active_tab" id="btn-home" data-location="/?query=0"><i class="fas fa-home"></i>&nbsp;Home</li>
+                        <li class="nav_menu_tab active_tab" id="btn-home" data-location="/home"><i class="fas fa-home"></i>&nbsp;Home</li>
                         <li class="nav_menu_tab"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
                         <li class="nav_menu_tab"><i class="fas fa-star"></i>&nbsp;Favorites</li>
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
@@ -48,7 +48,7 @@
             </div> 
             <div id="horiz_nav_main"> 
                 <div    id="horiz_nav_left">
-                    <i class="fas fa-arrow-circle-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>
+                    <i class="fas fa-arrow-circle-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}/{{ Order }}'"></i>
                     &nbsp;sort <i class="fas fa-sort nav_icon"></i>
                     <select id = "sortlist">
                         <option valie = "" id="empty-sort"></option>
@@ -62,11 +62,11 @@
                     <i class="fas fa-sort-alpha-down nav_icon"></i>
                     <i class="fas fa-sort-alpha-up nav_icon"></i>
                     <input class="nav_search input_box" type="text" size="40" value="search by Title, Author, Tags, or Collections">
-                    <i class="fas fa-search search_submit search_button" onclick="window.location.href = '/prev_page/{{ Set }}'">search</i>
+                    <i class="fas fa-search search_submit search_button" id="search_string" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>
                 </div>
                 <div class="horiz_nav_stats">
                     <i class="fas fa-book nav_icon"></i>&nbsp;{{ NowShowing }} of {{ BookStats }}&nbsp;
-                    <i class="fas fa-arrow-circle-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}'"></i>
+                    <i class="fas fa-arrow-circle-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}/{{ Order }}'"></i>
                 </div>
             </div>
         </ul>

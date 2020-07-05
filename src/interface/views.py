@@ -28,6 +28,16 @@ def index(request, query=None, _set=1, _limit=None, _order='title'):
         _payload
     )
 
+def home(request, query=None, _set=1, _limit=None, _order='title'):
+    """
+    Reset Search Queries & Return Home
+    """
+    _payload = payload(request, query, _set, _limit, _order, reset='1')
+    return render(
+        request,
+        "index.html",
+        _payload
+    )
 def show_collection(request, _collection, _colset):
     try:
         _set = int(_colset) + 1
@@ -225,7 +235,6 @@ def menu(which, _set=1, parent=None):
         return _collections
     elif which == "nav_lvl_0":
         navigation_list = Navigation.objects.all()
-        breakpoint()
         return navigation_list
 
 def collections_list():
@@ -235,39 +244,49 @@ def collections_list():
             collection_key.append(i.collection)
     return json.dumps(list(set(collection_key)))
 
-def payload(request, query, _set, _limit, _order):
+def payload(request, query, _set, _limit, _order, **kwargs):
     """
     Return formatted data to template
     """
-    breakpoint()
-    _set = int(_set)
-    if _set < 1: _set = 1
-    if _limit is None: _limit = 20
-    _set_max = int(_set) * _limit
-    _set_min = _set_max - _limit
-    _now_showing = "%s-%s"%(_set_min, _set_max)
-    if query: 
-        if query != request.session.get('cached_query'):
+    try:
+        if kwargs['reset']:
             request.session['cached_query'] = query
-            _results = Books().generic_search(query)
-            _r, _r_len = \
-                _results[_set_min:_set_max],\
-                _results.count()
-        elif query == request.session.get('cached_query'):
-            _results = Books().generic_search(query)
-            _r, _r_len = \
-                _results.order_by(_order)[_set_min:_set_max],\
-                _results.count()
-
-    else:
-        try:
-            query = request.session['cached_query']
-            _results = Books().generic_search(query)
-            _r, _r_len = \
-                _results.order_by(_order)[_set_min:_set_max],\
-                _results.count()
-        except KeyError:
+            if _set < 1: _set = 1
+            if _limit is None: _limit = 20
+            _set_max = int(_set) * _limit
+            _set_min = _set_max - _limit
+            _now_showing = "%s-%s"%(_set_min, _set_max)
             _r, _r_len, _search = book_set(_order, _limit, _set), None, None
+    except KeyError:
+        _set = int(_set)
+        if _set < 1: _set = 1
+        if _limit is None: _limit = 20
+        _set_max = int(_set) * _limit
+        _set_min = _set_max - _limit
+        _now_showing = "%s-%s"%(_set_min, _set_max)
+        if query: 
+            if query != request.session.get('cached_query'):
+                request.session['cached_query'] = query
+                _results = Books().generic_search(query)
+                _r, _r_len = \
+                    _results[_set_min:_set_max],\
+                    _results.count()
+            elif query == request.session.get('cached_query'):
+                _results = Books().generic_search(query)
+                _r, _r_len = \
+                    _results.order_by(_order)[_set_min:_set_max],\
+                    _results.count()
+
+        else:
+            try:
+                query = request.session['cached_query']
+                if query == None: raise KeyError
+                _results = Books().generic_search(query)
+                _r, _r_len = \
+                    _results.order_by(_order)[_set_min:_set_max],\
+                    _results.count()
+            except KeyError:
+                _r, _r_len, _search = book_set(_order, _limit, _set), None, None
     
     _bookstats, _collectionstats, _collectionobject = \
         Books.objects.all().count, Collections.objects.all().count, \

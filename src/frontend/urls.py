@@ -21,7 +21,7 @@ from interface import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
-    path("/<query>", views.index, name="index"),
+    path("home", views.home, name="index"),
     path("sort/<_order>", views.index, name="index"),
     path("download/<pk>", views.download, name="download"),
     path("favorite/<pk>", views.favorite, name="favorite"),
@@ -29,6 +29,8 @@ urlpatterns = [
     path("share/<pk>", views.info, name="info"),
     path("prev_page/<bookset>", views.prev_page, name="prev_page"),
     path("next_page/<bookset>", views.next_page, name="next_page"),
+    path("prev_page/<bookset>/<_order>", views.prev_page, name="prev_page"),
+    path("next_page/<bookset>/<_order>", views.next_page, name="next_page"),
     path("search/", views.index, name="search"),
     path("search/<query>", views.index, name="search"),
     path("search/<query>/<_set>", views.index, name="search"),

@@ -81,10 +81,8 @@ $(document).ready(function(){
         window.location.href="/"+valueSelected
     });
     $('#btn-home').on("click", function(){
-        console.log('Home Pressed');
         _location = $(this).attr('data-location');
-        $('#_order').val(null);
-        $('#_search').val(null);
         window.location.href=_location;
     });
+    $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>")
 });
