@@ -18,3 +18,5 @@ prompt_toolkit
 psutil
 pyfiglet
 mobi-python
+pudb
+jsonpickle

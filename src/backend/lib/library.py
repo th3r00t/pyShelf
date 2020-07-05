@@ -26,9 +26,10 @@ class Catalogue:
         self.opf_regx = re.compile(r"\.opf")
         self.cover_regx = re.compile(r"\.jpg|\.jpeg|\.png|\.bmp|\.gif")
         self.html_regx = re.compile(r"\.html")
+        self.title_sanitization_regx = re.compile(r"^(Book )+[0-9]*")
+        self.title_sanitization_lvl2_regx = re.compile(r"^(Book )+[0-9]*\W+(-)")
         self.root_dir = config.root
         self.book_folder = config.book_path
-        # self.book_shelf = config.book_shelf
         self.books = None
         self.db_pointer = config.catalogue_db
         self.config = config
@@ -70,6 +71,7 @@ class Catalogue:
         """
 
     def process_by_filetype(self, book):
+        print(str(book), end='\r', flush=True)
         if book.endswith(".epub"):
             epub = self.process_epub(book)
             return self.extract_metadata_epub(epub)
@@ -108,6 +110,11 @@ class Catalogue:
                 title = book["path"].split("/")[-1].rsplit(".", 1)[0]
             else:
                 title = title.contents[0]
+            if re.match(self.title_sanitization_regx, title):
+                if re.match(self.title_sanitization_lvl2_regx, title):
+                    title = re.split(r"-+\W", title)[1]
+                else: title = re.split(self.title_sanitization_regx, title)[2]
+
             author = soup.find("dc:creator")
             if author is not None:
                 author = author.contents[0]
@@ -116,11 +123,57 @@ class Catalogue:
             except IndexError:
                 # cover = self.extract_cover_html(book_zip, book)
                 cover = DuckDuckGo().image_result(title)
-            book_details = [title, author, cover, book["path"]]
+            try:
+                description = self.stripTags(soup.find("dc:description").text)
+            except AttributeError:
+                description = None
+            try:
+                identifier = self.stripTags(soup.find("dc:identifier").text)
+            except AttributeError:
+                identifier = None
+            try:
+                publisher = self.stripTags(soup.find("dc:publisher").text)
+            except AttributeError:
+                publisher = None
+            try:
+                date = self.stripTags(soup.find("dc:date").text)
+            except AttributeError:
+                date = None
+            try:
+                rights = self.stripTags(soup.find("dc:rights").text)
+            except AttributeError:
+                rights = None
+            try:
+                tags = soup.find_all("dc:subject")
+            except AttributeError:
+                tags = None
+            ftags = None
+            if tags is not None:
+                for tag in tags:
+                    if ftags is None:
+                        ftags = tag.text
+                    else:
+                        ftags = ftags + "," + tag.text
+            book_details = [
+                title,
+                author,
+                cover,
+                book["path"],
+                description,
+                identifier,
+                publisher,
+                date,
+                rights,
+                ftags,
+            ]
         return book_details
 
     @staticmethod
-    def extract_metadata_mobi(book):
+    def stripTags(source):
+        p = re.compile(r"<.*?>")
+        return p.sub("", source)
+
+    def extract_metadata_mobi(self, book):
         book = Mobi(book)
         book.parse()
         try:
@@ -129,9 +182,43 @@ class Catalogue:
             cover_image = None
         title = book.title().decode("utf-8")
         author = book.author().decode("utf-8")
-        breakpoint()
-        # TODO some files are still passing encoded data for author.
-        return [title, author, cover_image, book.f.name]
+        book_config = book.config
+        try:
+            description = self.stripTags(book_config['exth']['records'][103].decode("utf-8"))
+        except KeyError:
+            description = None
+        try:
+            identifier = book_config['exth']['records'][104].decode("utf-8")
+        except KeyError:
+            identifier = None
+        try:
+            publisher = book_config['exth']['records'][101].decode("utf-8")
+        except KeyError:
+            publisher = None
+        date = None
+        rights = None
+        try:
+            ftags = book_config['exth']['records'][105].decode("utf-8")
+            if ":" in ftags:
+                ftags = ftags.replace(":", ",")
+            elif ";" in ftags:
+                ftags = ftags.replace(";", ",")
+            # elif re.search(r"\s", ftags):  # Must be final assignment to avoid spliting on multiple delimeters
+            #    ftags = ftags.replace(" ", ",")
+        except KeyError:
+            ftags = None
+        return [
+            title,
+            author,
+            cover_image,
+            book.f.name,
+            description,
+            identifier,
+            publisher,
+            date,
+            rights,
+            ftags,
+        ]
 
     def extract_content(self, book_zip, book):
         """
