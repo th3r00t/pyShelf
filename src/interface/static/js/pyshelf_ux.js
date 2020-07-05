@@ -85,10 +85,16 @@ $(document).ready(function(){
         window.location.href=_location;
     });
     $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>")
-    if (win_width >= 1024)
-        $('.search_string').attr('size', 20)
-        $('.search_string').val("Search")
-    if (win_width >= 425)
-        $('.search_string').attr('size', 10)
-        $('.search_string').val("Search")
+    resize_search();
+    $(window).resize(resize_search(win_width));
 });
+function resize_search(win_width){
+    if (win_width <= 1025){
+        $('.search_string').attr('size', 20);
+        $('.search_string').val("Search");
+    }
+    if (win_width <= 426){
+        $('.search_string').attr('size', 10);
+        $('.search_string').val("Search");
+    }
+}
