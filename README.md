@@ -4,8 +4,7 @@
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/newui/src/interface/static/img/pyShelf_frontend_0_2_0.png)
-
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/pyShelf_frontend_0_2_0.png)
 
 
 ### You dont need a X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
@@ -39,7 +38,7 @@ Follow or influence development @ <p align="center"><b> <a href="https://discord
     * More intuitive, less intrusive, & stays out of the way. <i>caveat: I need to rework the placement of the next & previous page controls. While they do remain usable, I intend to have them follow the users</i>
         position on the page in future releases.
 
-![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/newui/src/interface/static/img/navbar.png)
+![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/navbar.png)
 
 * New controls
     * Sort
@@ -50,6 +49,11 @@ Follow or influence development @ <p align="center"><b> <a href="https://discord
         * [ ] Control panel
         * [ ] Book details
         * Whatever else :)
+## Installation Example
+<a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
+
+## Further Installation & Support Information
+* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ### Pre-req Dependencies
 * gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
