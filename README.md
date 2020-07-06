@@ -22,7 +22,7 @@
 
 | Branch | Support | Feature set |
 | --- | --- | --- |
-| <b>Master<b> | Officialy Supported | Most stable branch, may be behind in the core feature set |
+| <b>Master<b> | Bugs get priority | Most stable branch, may be behind in the core feature set |
  | <b>Development</b>| Please report all bugs | Most active branch, this branch is a rolling release, containing the latest features. There will be bugs here hopefully nothing service killing |
  | <b>Others</b> | Here there be dragons | These branches are used for day to day development, nothing here should be considered stable.
 
