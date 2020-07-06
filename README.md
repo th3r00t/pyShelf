@@ -5,10 +5,8 @@
 
 
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
-
-![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/master/preview_050.png)
-![pyShelf 0.5.0 Collection 2](https://github.com/th3r00t/pyShelf/raw/master/preview_1_050.png)
-
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/pyShelf_frontend_0_2_0.png)
+<p align="center"><i>Screenshot is from v0.6.0 on the development branch</i>
 <p align="center"><b> <a href="https://discord.gg/H9TbNJS">Discord</a> |  <a href="https://webchat.freenode.net/#pyshelf">IRC</a> freenode.net @ #pyshelf</b></p>
 
 ## Current Features
