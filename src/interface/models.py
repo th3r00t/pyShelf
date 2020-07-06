@@ -22,19 +22,20 @@ class Books(models.Model):
     def __str__(self):
         return self.title
 
-    title = models.CharField(max_length=255)
+    title = models.TextField(max_length=None)
     author = models.CharField(max_length=255, null=True)
-    categories = models.CharField(max_length=255, null=True)
+    categories = models.TextField(max_length=None, null=True)
     cover = models.BinaryField(null=True, editable=True)
     pages = models.IntegerField(null=True)
     progress = models.IntegerField(null=True)
-    file_name = models.CharField(max_length=255, null=False)
+    file_name = models.TextField(max_length=None, null=False)
+    date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(null=True)
     identifier = models.CharField(max_length=255, null=True)
-    publisher = models.CharField(max_length=266, null=True)
+    publisher = models.TextField(max_length=None, null=True)
     date = models.DateField(null=True)
     rights = models.CharField(max_length=255, null=True)
-    tags = models.CharField(max_length=255, null=True)
+    tags = models.TextField(max_length=None, null=True)
 
     def generic_search(self, query):
         try:
@@ -67,7 +68,6 @@ class Collections(models.Model):
         except Exception as e:
             raise
         return results
-
 
 class Navigation(models.Model):
     """
@@ -105,7 +105,6 @@ class Navigation(models.Model):
             raise
         return results
 
-
 class Users(models.Model):
     """
     pyShelfs User Database class
@@ -138,7 +137,6 @@ class Users(models.Model):
         except Exception as e:
             raise
         return results
-
 
 class Favorites(models.Model):
     """

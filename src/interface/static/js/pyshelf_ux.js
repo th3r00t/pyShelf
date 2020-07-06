@@ -84,6 +84,9 @@ $(document).ready(function(){
         _location = $(this).attr('data-location');
         window.location.href=_location;
     });
+    $('#flip_sort').on("click", function(){
+        window.location.href="/flip_sort/"+$("#_order").val()
+    });
     $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>")
     resize_search();
     $(window).resize(resize_search(win_width));

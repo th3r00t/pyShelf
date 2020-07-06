@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import re
-
+import datetime
 import psycopg2
 
 
@@ -53,7 +53,7 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s);"
+        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, date, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s, %s);"
         try:
             try:
                 cover_image = book[2].data
@@ -71,7 +71,7 @@ class Storage:
                     book[4],  # descr
                     book[5],  # ident
                     book[6],  # publisher
-                    # book[7],  # date  # TODO: set import time
+                    datetime.datetime.now(), 
                     book[8],  # rights
                     book[9],  # tags
                 ),
@@ -114,6 +114,7 @@ class Storage:
         return True
 
     def make_collections(self):
+        breakpoint()
         _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
         _q = "SELECT id,file_name FROM books"
         self.cursor.execute(_q)

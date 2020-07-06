@@ -28,6 +28,7 @@ class Catalogue:
         self.html_regx = re.compile(r"\.html")
         self.title_sanitization_regx = re.compile(r"^(Book )+[0-9]*")
         self.title_sanitization_lvl2_regx = re.compile(r"^(Book )+[0-9]*\W+(-)")
+        self.title_sanitization_dirs_regx = re.compile(r"/")
         self.root_dir = config.root
         self.book_folder = config.book_path
         self.books = None
