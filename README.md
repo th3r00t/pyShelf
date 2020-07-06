@@ -2,6 +2,8 @@
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
+
+
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
 ![pyShelf 0.5.0 Collection 1](https://github.com/th3r00t/pyShelf/raw/master/preview_050.png)
@@ -18,8 +20,15 @@
 * Ebook Downloading
 * Collections
 
+| Branch | Support | Feature set |
+| --- | --- | --- |
+| <b>Master<b> | Officialy Supported | Most stable branch, may be behind in the core feature set |
+ | <b>Development</b>| Please report all bugs | Most active branch, this branch is a rolling release, containing the latest features. There will be bugs here hopefully nothing service killing |
+ | <b>Others</b> | Here there be dragons | These branches are used for day to day development, nothing here should be considered stable.
+
 ## Currently Supported Formats
 * epub
+* <i>development branch has mobi support!</i>
 
 ## Installation Example
 <a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
