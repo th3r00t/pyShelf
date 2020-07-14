@@ -59,9 +59,11 @@
                     </select>
                 </div>
                 <div id="horiz_nav_center">
-                    <i class="fas fa-sort-alpha-down nav_icon"></i>
-                    <i class="fas fa-sort-alpha-up nav_icon"></i>
-                    <input class="nav_search input_box" type="text" size="40" value="search by Title, Author, Tags, or Collections">
+                    <div id="flip_sort" class="btn">
+                        <i class="fas fa-sort-alpha-down nav_icon"></i>
+                        <i class="fas fa-sort-alpha-up nav_icon"></i>
+                    </div>
+                    <input class="nav_search input_box search_string" type="text" size="40" value="search by Title, Author, Tags, or Collections">
                     <i class="fas fa-search search_submit search_button" id="search_string" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>
                 </div>
                 <div class="horiz_nav_stats">

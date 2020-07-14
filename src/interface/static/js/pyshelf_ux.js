@@ -8,7 +8,7 @@ $(document).ready(function(){
     /* Initialize ui variables */
     var outstream = []; // put customlog messages here
     var win_height = window.innerHeight; // Get the displays height
-    var win_width = window.innwerWidth; // Get the displays width
+    var win_width = window.innerWidth; // Get the displays width
     var scr_height = window.outerHeight;
     var scr_width = window.outerWidth;
     var hdr_height = $('.app_hdr').height(); // Get our header height
@@ -84,5 +84,20 @@ $(document).ready(function(){
         _location = $(this).attr('data-location');
         window.location.href=_location;
     });
+    $('#flip_sort').on("click", function(){
+        window.location.href="/flip_sort/"+$("#_order").val()
+    });
     $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>")
+    resize_search();
+    $(window).resize(resize_search(win_width));
 });
+function resize_search(win_width){
+    if (win_width <= 1025){
+        $('.search_string').attr('size', 20);
+        $('.search_string').val("Search");
+    }
+    if (win_width <= 426){
+        $('.search_string').attr('size', 10);
+        $('.search_string').val("Search");
+    }
+}

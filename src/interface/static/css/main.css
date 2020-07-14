@@ -349,6 +349,11 @@ body {
   /* min-width: 55px; */
 }
 
+#flip_sort {
+  margin: 0px;
+  display: inline-flex;
+}
+
 .ui_icon_notxt {
   margin: 0px 5px 0px 0px;
 }

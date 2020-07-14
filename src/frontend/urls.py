@@ -23,6 +23,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("home", views.home, name="index"),
     path("sort/<_order>", views.index, name="index"),
+    path("flip_sort/<_order>", views.flip_sort, name="index"),
     path("download/<pk>", views.download, name="download"),
     path("favorite/<pk>", views.favorite, name="favorite"),
     path("share/<pk>", views.share, name="share"),

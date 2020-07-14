@@ -60,6 +60,19 @@ def show_collection(request, _collection, _colset):
         },
     )
 
+def flip_sort(request, bookset=1, query=None, _limit=None, _order='title'):
+    """
+    Goto next page in bookset
+    """
+    try: _set = int(bookset)
+    except Exception: _set = 1
+    _payload = payload(request, query, _set, _limit, _order, flip_sort=True)
+    return render(
+        request,
+        "index.html",
+        _payload,
+    )
+
 def next_page(request, bookset, query=None, _limit=None, _order='title'):
     """
     Goto next page in bookset
@@ -94,7 +107,7 @@ def prev_page(request, bookset, query=None, _limit=None, _order='title'):
         _payload,
     )
 
-def book_set(_order, _limit=None, _set=1):
+def book_set(_order, _limit=None, _set=1, _flip=False):
     """
     Get books results by set #
     """
@@ -102,7 +115,10 @@ def book_set(_order, _limit=None, _set=1):
         _limit = 20  # TODO default from user choice
     _set_max = int(_set) * _limit
     _set_min = _set_max - _limit
-    books = Books.objects.all().order_by(_order)[_set_min:_set_max]
+    if _flip:
+        books = Books.objects.all().order_by(_order).reverse()[_set_min:_set_max]
+    else: 
+        books = Books.objects.all().order_by(_order)[_set_min:_set_max]
     return books
 
 def collection(_collection, _set, _limit=None):
@@ -247,7 +263,15 @@ def collections_list():
 def payload(request, query, _set, _limit, _order, **kwargs):
     """
     Return formatted data to template
+    : notes : This is the least pythonic function I have ever written, but its
+    still beautiful
     """
+    try: request.session['ascending']
+    except KeyError: request.session['ascending'] = bool
+    try:
+        if kwargs['flip_sort']:
+            request.session['ascending'] = not request.session['ascending']
+    except KeyError: pass
     try:
         if kwargs['reset']:
             request.session['cached_query'] = query
@@ -256,7 +280,10 @@ def payload(request, query, _set, _limit, _order, **kwargs):
             _set_max = int(_set) * _limit
             _set_min = _set_max - _limit
             _now_showing = "%s-%s"%(_set_min, _set_max)
-            _r, _r_len, _search = book_set(_order, _limit, _set), None, None
+            if request.session['ascending']:
+                _r = book_set(_order, _limit, _set)
+            else: _r = book_set(_order, _limit, _set, True)
+            _r_len, _search = None, None
     except KeyError:
         _set = int(_set)
         if _set < 1: _set = 1
@@ -267,26 +294,34 @@ def payload(request, query, _set, _limit, _order, **kwargs):
         if query: 
             if query != request.session.get('cached_query'):
                 request.session['cached_query'] = query
-                _results = Books().generic_search(query)
+                if request.session['ascending']:
+                    _results = Books().generic_search(query)
+                else: _results = Books().generic_search(query).reverse()
                 _r, _r_len = \
                     _results[_set_min:_set_max],\
                     _results.count()
             elif query == request.session.get('cached_query'):
-                _results = Books().generic_search(query)
+                if request.session['ascending']:
+                    _results = Books().generic_search(query)
+                else: _results = Books().generic_search(query).reverse()
                 _r, _r_len = \
                     _results.order_by(_order)[_set_min:_set_max],\
                     _results.count()
-
         else:
             try:
                 query = request.session['cached_query']
                 if query == None: raise KeyError
-                _results = Books().generic_search(query)
+                if request.session['ascending']:
+                    _results = Books().generic_search(query)
+                else: _results = Books().generic_search(query).reverse()
                 _r, _r_len = \
                     _results.order_by(_order)[_set_min:_set_max],\
                     _results.count()
             except KeyError:
-                _r, _r_len, _search = book_set(_order, _limit, _set), None, None
+                if request.session['ascending']:
+                    _r = book_set(_order, _limit, _set)
+                else: _r = book_set(_order, _limit, _set, True)
+                _r_len, _search = None, None
     
     _bookstats, _collectionstats, _collectionobject = \
         Books.objects.all().count, Collections.objects.all().count, \
