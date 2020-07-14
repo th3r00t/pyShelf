@@ -21,3 +21,10 @@ services:
       - "${PORT}:8000"
     depends_on:
       - db
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.20.20.0/24
