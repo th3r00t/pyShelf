@@ -15,6 +15,6 @@ EXPOSE 8000
 
 WORKDIR /usr/src/app/src/
 #RUN ../docker/scripts/wait-for-it.sh db:5432
-#RUN python3 manage.py migrate
+RUN python3 manage.py migrate
 #RUN python3 manage.py migrate interface
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

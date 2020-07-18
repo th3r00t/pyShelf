@@ -90,6 +90,8 @@ Edit [docker/.env](docker/.env)
 
 `docker exec -it -d docker_pyshelf_1 python3 manage.py migrate`
 
+`docker exec -it -d docker_pyshelf_1 python3 manage.py runserver 0.0.0.0:8000`
+
 IMPORT BOOKS
 
 Once the .epub files are in the directory specified in [docker/.env](docker/.env)
