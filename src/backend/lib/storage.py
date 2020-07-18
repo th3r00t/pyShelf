@@ -114,7 +114,6 @@ class Storage:
         return True
 
     def make_collections(self):
-        breakpoint()
         _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
         _q = "SELECT id,file_name FROM books"
         self.cursor.execute(_q)
@@ -123,8 +122,11 @@ class Storage:
             path = self.config.book_path + "/"
             _collections = []
             _pathing = book[1].split(path)[1].split("/")
-            _pathing.pop(0)
-            _pathing.pop(-1)
+            try:
+                _pathing.pop(0)
+                _pathing.pop(-1)
+            except IndexError:
+                continue
             for _p in _pathing:
                 _s = _p.replace("'", "")
                 _x = re.sub(_title_regx, "", _s)
