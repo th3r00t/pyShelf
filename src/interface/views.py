@@ -1,4 +1,3 @@
-import json
 import os
 from base64 import b64decode, b64encode
 from pathlib import Path
@@ -6,10 +5,11 @@ from pathlib import Path
 from backend.lib.config import Config
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render  # render_to_response
+from django.shortcuts import HttpResponse, render, redirect # render_to_response
 from django.utils.text import slugify
+from django.contrib.auth import login, authenticate, logout
 import json
-
+from .forms import SignUpForm, UserLoginForm
 from .models import Books, Collections, Navigation
 
 config = Config(Path("../"))
@@ -28,6 +28,38 @@ def index(request, query=None, _set=1, _limit=None, _order='title'):
         _payload
     )
 
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+def userlogin(request):
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None: return redirect('home')
+    else: form = UserLoginForm()
+    return render(request, 'login.html', {'form': form})
+
+
+def userlogout(request):
+    logout(request)
+    return render(request, 'login.html', {'form': UserLoginForm()})
+
+
 def home(request, query=None, _set=1, _limit=None, _order='title'):
     """
     Reset Search Queries & Return Home
@@ -38,6 +70,8 @@ def home(request, query=None, _set=1, _limit=None, _order='title'):
         "index.html",
         _payload
     )
+
+
 def show_collection(request, _collection, _colset):
     try:
         _set = int(_colset) + 1
@@ -60,6 +94,7 @@ def show_collection(request, _collection, _colset):
         },
     )
 
+
 def flip_sort(request, bookset=1, query=None, _limit=None, _order='title'):
     """
     Goto next page in bookset
@@ -72,6 +107,7 @@ def flip_sort(request, bookset=1, query=None, _limit=None, _order='title'):
         "index.html",
         _payload,
     )
+
 
 def next_page(request, bookset, query=None, _limit=None, _order='title'):
     """
@@ -87,6 +123,7 @@ def next_page(request, bookset, query=None, _limit=None, _order='title'):
         "index.html",
         _payload,
     )
+
 
 def prev_page(request, bookset, query=None, _limit=None, _order='title'):
     """
@@ -107,6 +144,7 @@ def prev_page(request, bookset, query=None, _limit=None, _order='title'):
         _payload,
     )
 
+
 def book_set(_order, _limit=None, _set=1, _flip=False):
     """
     Get books results by set #
@@ -120,6 +158,7 @@ def book_set(_order, _limit=None, _set=1, _flip=False):
     else: 
         books = Books.objects.all().order_by(_order)[_set_min:_set_max]
     return books
+
 
 def collection(_collection, _set, _limit=None):
     """
@@ -135,6 +174,7 @@ def collection(_collection, _set, _limit=None):
     for c in _collections:
         _books.append(c.book_id_id)
     return Books.objects.filter(id__in=_books)
+
 
 def book_set_as_dict(_limit=None, _set=1):
     if _limit is None:
@@ -155,6 +195,7 @@ def book_set_as_dict(_limit=None, _set=1):
         }
     return json.dumps(_set)
 
+
 def download(request, pk):
     """
     Download book by primary key
@@ -166,6 +207,7 @@ def download(request, pk):
     )
     response["Content-Disposition"] = "attachment; filename=%s" % _fn
     return response
+
 
 def favorite(request, pk):
     """
@@ -179,6 +221,7 @@ def favorite(request, pk):
     response["Content-Disposition"] = "attachment; filename=%s" % _fn
     return response
 
+
 def share(request, pk):
     """
     Share book by primary key
@@ -190,6 +233,7 @@ def share(request, pk):
     )
     response["Content-Disposition"] = "attachment; filename=%s" % _fn
     return response
+
 
 def info(request, pk):
     """
@@ -203,11 +247,13 @@ def info(request, pk):
     response["Content-Disposition"] = "attachment; filename=%s" % _fn
     return response
 
+
 def hr_name(book):
     """
     Nicer file names
     """
     return "{0}{1}".format(slugify(book.title), os.path.splitext(book.file_name)[1])
+
 
 def format_list(list_in):
     formated_list, formated_list_key, x = [], [], 0
@@ -221,6 +267,7 @@ def format_list(list_in):
                 x += 1
             else:
                 x = 0
+
 
 def menu(which, _set=1, parent=None):
     if which == "collections":
@@ -253,12 +300,14 @@ def menu(which, _set=1, parent=None):
         navigation_list = Navigation.objects.all()
         return navigation_list
 
+
 def collections_list():
     collection_key = []
     for i in collections:
         if i.collection not in collection_key:
             collection_key.append(i.collection)
     return json.dumps(list(set(collection_key)))
+
 
 def payload(request, query, _set, _limit, _order, **kwargs):
     """
@@ -267,7 +316,7 @@ def payload(request, query, _set, _limit, _order, **kwargs):
     still beautiful
     """
     try: request.session['ascending']
-    except KeyError: request.session['ascending'] = bool
+    except KeyError: request.session['ascending'] = True
     try:
         if kwargs['flip_sort']:
             request.session['ascending'] = not request.session['ascending']
@@ -309,7 +358,7 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                     _results.count()
         else:
             try:
-                query = request.session['cached_query']
+                query = request.session['cached_query']  # Is there a cached query?
                 if query == None: raise KeyError
                 if request.session['ascending']:
                     _results = Books().generic_search(query)
@@ -324,11 +373,10 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                 _r_len, _search = None, None
     
     _bookstats, _collectionstats, _collectionobject = \
-        Books.objects.all().count, Collections.objects.all().count, \
+        Books.objects.all().count(), Collections.objects.all().count(), \
         collections_list()
-    
-    if (_r_len): _btotal = _r_len 
-    else: _btotal = _bookstats
+    if (_r_len): _btotal = str(_r_len)
+    else: _btotal = str(_bookstats)
     
     return {
         "Books": _r,
