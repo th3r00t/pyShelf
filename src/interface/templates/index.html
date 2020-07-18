@@ -27,10 +27,10 @@
 	<input type="hidden" id="_order" name="_order" value="{{ Order }}" />
     <div id="pop_over_0">
         <!-- Login Form -->
-        <div class="hdr_nav" id="hdr_nav_login"> 
-            <input id="username" class="nav_login input_box noborder" type="text" size="8" value="Username"> 
-            <input id="password" class="nav_login input_box noborder" type="text" size="8" value="Password"> 
-        </div> 
+        <div class="hdr_nav" id="hdr_nav_login">
+            <input id="username" class="nav_login input_box noborder" type="text" size="8" value="Username">
+            <input id="password" class="nav_login input_box noborder" type="text" size="8" value="Password">
+        </div>
         <!-- End Login Form -->
     </div>
     <div id="app">
@@ -44,9 +44,9 @@
                         <li class="nav_menu_tab"><i class="fas fa-star"></i>&nbsp;Favorites</li>
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
                         <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Login</li>
-                </div> 
-            </div> 
-            <div id="horiz_nav_main"> 
+                </div>
+            </div>
+            <div id="horiz_nav_main">
                 <div    id="horiz_nav_left">
                     <i class="fas fa-arrow-circle-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}/{{ Order }}'"></i>
                     &nbsp;sort <i class="fas fa-sort nav_icon"></i>
@@ -88,7 +88,7 @@
                                         {% elif book.description == None %}
                                             <li class="book_description">
                                                 <div class="inline_sys_message">
-                                                    We were unable to find a description in this books metadata.
+                                                    We were unable to find a description.
                                                     <br />Have some <i class="fas fa-drumstick-bite"></i> instead?
                                                 </div>
                                             </li>
