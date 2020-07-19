@@ -1,5 +1,7 @@
 from django.contrib.postgres.search import SearchVector
 from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -40,11 +42,12 @@ class Books(models.Model):
     def generic_search(self, query):
         try:
             results = Books.objects.annotate(
-                search=SearchVector("title", "file_name", "author","tags"),
+                search=SearchVector("title", "file_name", "author", "tags"),
             ).filter(search=query)
         except Exception as e:
             raise
         return results
+
 
 class Collections(models.Model):
     class Meta:
@@ -68,6 +71,7 @@ class Collections(models.Model):
         except Exception as e:
             raise
         return results
+
 
 class Navigation(models.Model):
     """
@@ -105,38 +109,6 @@ class Navigation(models.Model):
             raise
         return results
 
-class Users(models.Model):
-    """
-    pyShelfs User Database class
-    :param uname: User Name
-    :param fname: First Name
-    :param lname: Last Name
-    :param email: User Email Address
-    :param password: User Password
-    :param ulvl: User Level
-    """
-
-    class Meta:
-        db_table = "users"
-
-    def __str__(self):
-        return self.title
-
-    uname = models.CharField(max_length=255)
-    fname = models.CharField(max_length=255, null=True)
-    lname = models.CharField(max_length=255, null=True)
-    email = models.CharField(max_length=255, null=True, editable=True)
-    password = models.CharField(max_length=255, null=True)
-    ulvl = models.IntegerField(null=True)
-
-    def generic_search(self, query):
-        try:
-            results = Users.objects.annotate(
-                search=SearchVector("uname", "email", "lname"),
-            ).filter(search=query)
-        except Exception as e:
-            raise
-        return results
 
 class Favorites(models.Model):
     """
@@ -152,7 +124,7 @@ class Favorites(models.Model):
         return self.title
 
     favorite = models.ManyToManyField(Books)
-    uname = models.ManyToManyField(Users)
+    uname = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
     def generic_search(self, query):
         try:
@@ -162,3 +134,11 @@ class Favorites(models.Model):
         except Exception as e:
             raise
         return results
+
+
+class CustomUser(AbstractUser):
+    facebook = models.CharField(max_length=255, null=True)
+    twitter = models.CharField(max_length=255, null=True)
+    ulvl = models.IntegerField(default=1)
+    sponsorid = models.IntegerField(null=True)
+    matrixid = models.CharField(max_length=255, null=True)
