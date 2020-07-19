@@ -26,12 +26,6 @@
 	<input type="hidden" id="_search" name="_search" value="{{ PostedSearch }}" />
 	<input type="hidden" id="_order" name="_order" value="{{ Order }}" />
     <div id="pop_over_0">
-        <!-- Login Form -->
-        <div class="hdr_nav" id="hdr_nav_login">
-            <input id="username" class="nav_login input_box noborder" type="text" size="8" value="Username">
-            <input id="password" class="nav_login input_box noborder" type="text" size="8" value="Password">
-        </div>
-        <!-- End Login Form -->
     </div>
     <div id="app">
         <ul id="shelf_nav">
@@ -43,7 +37,13 @@
                         <li class="nav_menu_tab"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
                         <li class="nav_menu_tab"><i class="fas fa-star"></i>&nbsp;Favorites</li>
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
-                        <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Login</li>
+                        <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            {% if request.user.is_authenticated %}
+                            <a href='logout' class='nav_link'>&nbsp;{{ request.user }}</a>
+                            {% else %}
+                            <a href="login" class='nav_link'>&nbsp;Login</a>
+                            {% endif %}
+                        </li>
                 </div>
             </div>
             <div id="horiz_nav_main">

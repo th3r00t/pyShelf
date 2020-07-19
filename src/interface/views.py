@@ -8,9 +8,10 @@ from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render, redirect # render_to_response
 from django.utils.text import slugify
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.models import User
 import json
 from .forms import SignUpForm, UserLoginForm
-from .models import Books, Collections, Navigation
+from .models import Books, Collections, Navigation, Favorites
 
 config = Config(Path("../"))
 
@@ -50,14 +51,16 @@ def userlogin(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None: return redirect('home')
-    else: form = UserLoginForm()
+        if user is not None: 
+            login(request, user)
+            return redirect('home')
+    form = UserLoginForm()
     return render(request, 'login.html', {'form': form})
 
 
 def userlogout(request):
     logout(request)
-    return render(request, 'login.html', {'form': UserLoginForm()})
+    return redirect('home')
 
 
 def home(request, query=None, _set=1, _limit=None, _order='title'):
@@ -211,15 +214,10 @@ def download(request, pk):
 
 def favorite(request, pk):
     """
-    Favorite book by primary key
+    Add book to favorites bu primary key
     """
     _book = Books.objects.all().filter(pk=pk)[0]
-    _fn = hr_name(_book)
-    response = HttpResponse(
-        open(os.path.abspath(_book.file_name), "rb"), content_type="application/zip"
-    )
-    response["Content-Disposition"] = "attachment; filename=%s" % _fn
-    return response
+    print(Favorite(book=_book, uname=User))
 
 
 def share(request, pk):
@@ -390,6 +388,6 @@ def payload(request, query, _set, _limit, _order, **kwargs):
         "NowShowing": _now_showing,
         "PostedSearch": query,
         "SearchLen": _r_len,
-        "Order": _order
+        "Order": _order,
     }
 
