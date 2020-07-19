@@ -74,6 +74,9 @@ $(document).ready(function(){
     $('#btn_login').on('click', function(){
         $('#hdr_nav_login').toggle();
     });
+    $('.favorite_action').on('click', toggle_favorite(){
+        
+    });
     $('#sortlist').change(function () {
         var optionSelected = $(this).find("option:selected");
         var valueSelected  = optionSelected.val();
@@ -101,3 +104,8 @@ function resize_search(win_width){
         $('.search_string').val("Search");
     }
 }
+
+function toggle_favorite($(this)){
+   custom_log('Favorite book by _pk'+$(this));
+}
+

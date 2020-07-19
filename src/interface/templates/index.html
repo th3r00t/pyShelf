@@ -97,7 +97,7 @@
                                         {% endif %}
                                     <li class="book_tags">Tags: {{ book.tags }}</li>
                                     <li class="book_controls">
-                                            <span class="favorite-button controls">
+                                            <span class="favorite-button controls favorite_action">
                                                <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
                                             </span>
                                             <span class="download-button controls">

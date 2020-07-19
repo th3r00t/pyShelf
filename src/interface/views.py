@@ -8,10 +8,13 @@ from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render, redirect # render_to_response
 from django.utils.text import slugify
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import auth
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
 import json
 from .forms import SignUpForm, UserLoginForm
-from .models import Books, Collections, Navigation, Favorites
+from .models import Books, Collections, Navigation, Favorites, CustomUser
 
 config = Config(Path("../"))
 
@@ -63,8 +66,8 @@ def userlogout(request):
     return redirect('home')
 
 
-def home(request, query=None, _set=1, _limit=None, _order='title'):
-    """
+def home(request, query=None, _set=1, _limit=None, _order='title'): 
+    """ 
     Reset Search Queries & Return Home
     """
     _payload = payload(request, query, _set, _limit, _order, reset='1')
@@ -203,7 +206,7 @@ def download(request, pk):
     """
     Download book by primary key
     """
-    _book = Books.objects.all().filter(pk=pk)[0]
+    _book = Books.objects.get(pk=pk)
     _fn = hr_name(_book)
     response = HttpResponse(
         open(os.path.abspath(_book.file_name), "rb"), content_type="application/zip"
@@ -216,8 +219,10 @@ def favorite(request, pk):
     """
     Add book to favorites bu primary key
     """
-    _book = Books.objects.all().filter(pk=pk)[0]
-    print(Favorite(book=_book, uname=User))
+    breakpoint()
+    f = Favorites(book=Books.objects.get(pk=pk))
+    f.save
+    return redirect('home')
 
 
 def share(request, pk):

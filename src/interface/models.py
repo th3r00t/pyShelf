@@ -1,7 +1,8 @@
 from django.contrib.postgres.search import SearchVector
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -110,6 +111,14 @@ class Navigation(models.Model):
         return results
 
 
+class CustomUser(AbstractUser):
+    facebook = models.CharField(max_length=255, null=True)
+    twitter = models.CharField(max_length=255, null=True)
+    ulvl = models.IntegerField(default=1)
+    sponsorid = models.IntegerField(null=True)
+    matrixid = models.CharField(max_length=255, null=True)
+
+
 class Favorites(models.Model):
     """
     pyShelfs User Database class
@@ -122,10 +131,9 @@ class Favorites(models.Model):
 
     def __str__(self):
         return self.title
-
-    favorite = models.ManyToManyField(Books)
-    uname = models.ManyToManyField(settings.AUTH_USER_MODEL)
-
+    
+    book = models.ForeignKey(Books.id, on_delete=models.PROTECT)
+    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT) 
     def generic_search(self, query):
         try:
             results = Favorites.objects.annotate(search=SearchVector("uname"),).filter(
@@ -136,9 +144,3 @@ class Favorites(models.Model):
         return results
 
 
-class CustomUser(AbstractUser):
-    facebook = models.CharField(max_length=255, null=True)
-    twitter = models.CharField(max_length=255, null=True)
-    ulvl = models.IntegerField(default=1)
-    sponsorid = models.IntegerField(null=True)
-    matrixid = models.CharField(max_length=255, null=True)
