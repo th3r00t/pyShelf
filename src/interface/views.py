@@ -14,7 +14,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 import json
 from .forms import SignUpForm, UserLoginForm
-from .models import Books, Collections, Navigation, Favorites, CustomUser
+from .models import Books, Collections, Navigation, Favorites, User
 
 config = Config(Path("../"))
 
@@ -51,11 +51,13 @@ def signup(request):
 def userlogin(request):
 
     if request.method == 'POST':
+        breakpoint()
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None: 
             login(request, user)
+            user.save()
             return redirect('home')
     form = UserLoginForm()
     return render(request, 'login.html', {'form': form})
@@ -219,9 +221,9 @@ def favorite(request, pk):
     """
     Add book to favorites bu primary key
     """
-    breakpoint()
     f = Favorites(book=Books.objects.get(pk=pk))
-    f.save
+    f.user = request.user
+    f.save()
     return redirect('home')
 
 

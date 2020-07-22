@@ -111,32 +111,39 @@ class Navigation(models.Model):
         return results
 
 
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     facebook = models.CharField(max_length=255, null=True)
     twitter = models.CharField(max_length=255, null=True)
     ulvl = models.IntegerField(default=1)
     sponsorid = models.IntegerField(null=True)
     matrixid = models.CharField(max_length=255, null=True)
 
+    def __str__(self):
+        return self.username
+
 
 class Favorites(models.Model):
     """
-    pyShelfs User Database class
-    :param uname: User Name
-    :param fname: First Name
+     Favorites Database class
+    :param book: book foreign key
+    :param user: user foreign key
     """
 
     class Meta:
         db_table = "favorites"
 
     def __str__(self):
-        return self.title
-    
-    book = models.ForeignKey(Books.id, on_delete=models.PROTECT)
-    user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT) 
+        pass
+        # return self.book
+ 
+    book = models.ForeignKey(Books, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    ) 
     def generic_search(self, query):
         try:
-            results = Favorites.objects.annotate(search=SearchVector("uname"),).filter(
+            results = Favorites.objects.annotate(search=SearchVector("user"),).filter(
                 search=query
             )
         except Exception as e:

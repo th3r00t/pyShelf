@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Books, Collections, Favorites, Navigation, CustomUser
+from .models import Books, Collections, Favorites, Navigation, User
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 
 
 class CustomUserAdmin(UserAdmin):
-    model = CustomUser
+    model = User
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     list_display = ["email", "username", "facebook", "twitter", "sponsorid", "matrixid"]
@@ -27,4 +27,4 @@ admin.site.register(Books)
 admin.site.register(Collections)
 admin.site.register(Favorites)
 admin.site.register(Navigation)
-admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(User, CustomUserAdmin)
