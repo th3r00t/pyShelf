@@ -74,8 +74,8 @@ $(document).ready(function(){
     $('#btn_login').on('click', function(){
         $('#hdr_nav_login').toggle();
     });
-    $('.favorite_action').on('click', toggle_favorite(){
-        
+    $('.favorite_action').on('click', function(){
+        $(this).toggleClass('favorite');
     });
     $('#sortlist').change(function () {
         var optionSelected = $(this).find("option:selected");
@@ -103,9 +103,5 @@ function resize_search(win_width){
         $('.search_string').attr('size', 10);
         $('.search_string').val("Search");
     }
-}
-
-function toggle_favorite($(this)){
-   custom_log('Favorite book by _pk'+$(this));
 }
 

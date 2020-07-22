@@ -233,11 +233,11 @@ def favorite(request, pk):
     _d = Favorites.objects.filter(user=request.user, book=Books.objects.get(pk=pk))
     if len(_d) == 1:
         _d.delete()
-        return redirect('home')
+        return HttpResponse(status=204)
     _f = Favorites(book=Books.objects.get(pk=pk))
     _f.user = request.user
     _f.save()
-    return redirect('home')
+    return HttpResponse(status=204)
 
 
 def share(request, pk):
