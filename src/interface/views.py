@@ -51,7 +51,6 @@ def signup(request):
 def userlogin(request):
 
     if request.method == 'POST':
-        breakpoint()
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -167,14 +166,14 @@ def book_set(request, _order, _limit=None, _set=1, _flip=False):
         books = Books.objects.all().order_by(_order)[_set_min:_set_max]
     try:
         favorites = Favorites.objects.filter(user=request.user)
-    except Exception as e: breakpoint()
-    for book in books:
-        for favorite in favorites:
-            if book == favorite.book: 
-                book.is_favorite = True
-                break
-            else: book.is_favorite = False
-    return books
+        for book in books:
+            for favorite in favorites:
+                if book == favorite.book: 
+                    book.is_favorite = True
+                    break
+        return books
+    except Exception as e:
+        return books
 
 
 def collection(_collection, _set, _limit=None):

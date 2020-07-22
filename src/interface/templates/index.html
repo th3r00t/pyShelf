@@ -39,9 +39,9 @@
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
                         <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>
                             {% if request.user.is_authenticated %}
-                            <a href='logout' class='nav_link'>&nbsp;{{ request.user }}</a>
+                            <a href='/logout' class='nav_link'>&nbsp;{{ request.user }}</a>
                             {% else %}
-                            <a href="login" class='nav_link'>&nbsp;Login</a>
+                            <a href="/login" class='nav_link'>&nbsp;Login</a>
                             {% endif %}
                         </li>
                 </div>
