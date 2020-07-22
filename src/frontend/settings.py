@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "interface.templatetags",
     "debug_toolbar",
 ]
-AUTH_USER_MODEL = "interface.CustomUser"
+AUTH_USER_MODEL = "interface.User"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

@@ -8,10 +8,13 @@ from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render, redirect # render_to_response
 from django.utils.text import slugify
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import auth
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
 import json
 from .forms import SignUpForm, UserLoginForm
-from .models import Books, Collections, Navigation, Favorites
+from .models import Books, Collections, Navigation, Favorites, User
 
 config = Config(Path("../"))
 
@@ -53,6 +56,7 @@ def userlogin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None: 
             login(request, user)
+            user.save()
             return redirect('home')
     form = UserLoginForm()
     return render(request, 'login.html', {'form': form})
@@ -63,8 +67,8 @@ def userlogout(request):
     return redirect('home')
 
 
-def home(request, query=None, _set=1, _limit=None, _order='title'):
-    """
+def home(request, query=None, _set=1, _limit=None, _order='title'): 
+    """ 
     Reset Search Queries & Return Home
     """
     _payload = payload(request, query, _set, _limit, _order, reset='1')
@@ -148,7 +152,7 @@ def prev_page(request, bookset, query=None, _limit=None, _order='title'):
     )
 
 
-def book_set(_order, _limit=None, _set=1, _flip=False):
+def book_set(request, _order, _limit=None, _set=1, _flip=False):
     """
     Get books results by set #
     """
@@ -160,7 +164,16 @@ def book_set(_order, _limit=None, _set=1, _flip=False):
         books = Books.objects.all().order_by(_order).reverse()[_set_min:_set_max]
     else: 
         books = Books.objects.all().order_by(_order)[_set_min:_set_max]
-    return books
+    try:
+        favorites = Favorites.objects.filter(user=request.user)
+        for book in books:
+            for favorite in favorites:
+                if book == favorite.book: 
+                    book.is_favorite = True
+                    break
+        return books
+    except Exception as e:
+        return books
 
 
 def collection(_collection, _set, _limit=None):
@@ -203,7 +216,7 @@ def download(request, pk):
     """
     Download book by primary key
     """
-    _book = Books.objects.all().filter(pk=pk)[0]
+    _book = Books.objects.get(pk=pk)
     _fn = hr_name(_book)
     response = HttpResponse(
         open(os.path.abspath(_book.file_name), "rb"), content_type="application/zip"
@@ -216,8 +229,14 @@ def favorite(request, pk):
     """
     Add book to favorites bu primary key
     """
-    _book = Books.objects.all().filter(pk=pk)[0]
-    print(Favorite(book=_book, uname=User))
+    _d = Favorites.objects.filter(user=request.user, book=Books.objects.get(pk=pk))
+    if len(_d) == 1:
+        _d.delete()
+        return HttpResponse(status=204)
+    _f = Favorites(book=Books.objects.get(pk=pk))
+    _f.user = request.user
+    _f.save()
+    return HttpResponse(status=204)
 
 
 def share(request, pk):
@@ -328,8 +347,8 @@ def payload(request, query, _set, _limit, _order, **kwargs):
             _set_min = _set_max - _limit
             _now_showing = "%s-%s"%(_set_min, _set_max)
             if request.session['ascending']:
-                _r = book_set(_order, _limit, _set)
-            else: _r = book_set(_order, _limit, _set, True)
+                _r = book_set(request, _order, _limit, _set)
+            else: _r = book_set(request, _order, _limit, _set, True)
             _r_len, _search = None, None
     except KeyError:
         _set = int(_set)
@@ -366,8 +385,8 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                     _results.count()
             except KeyError:
                 if request.session['ascending']:
-                    _r = book_set(_order, _limit, _set)
-                else: _r = book_set(_order, _limit, _set, True)
+                    _r = book_set(request, _order, _limit, _set)
+                else: _r = book_set(request, _order, _limit, _set, True)
                 _r_len, _search = None, None
     
     _bookstats, _collectionstats, _collectionobject = \

@@ -1,7 +1,8 @@
 from django.contrib.postgres.search import SearchVector
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 
@@ -110,25 +111,38 @@ class Navigation(models.Model):
         return results
 
 
+class User(AbstractUser):
+    facebook = models.CharField(max_length=255, null=True)
+    twitter = models.CharField(max_length=255, null=True)
+    ulvl = models.IntegerField(default=1)
+    sponsorid = models.IntegerField(null=True)
+    matrixid = models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return self.username
+
+
 class Favorites(models.Model):
     """
-    pyShelfs User Database class
-    :param uname: User Name
-    :param fname: First Name
+     Favorites Database class
+    :param book: book foreign key
+    :param user: user foreign key
     """
 
     class Meta:
         db_table = "favorites"
 
     def __str__(self):
-        return self.title
-
-    favorite = models.ManyToManyField(Books)
-    uname = models.ManyToManyField(settings.AUTH_USER_MODEL)
-
+        return self.book
+ 
+    book = models.ForeignKey(Books, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    ) 
     def generic_search(self, query):
         try:
-            results = Favorites.objects.annotate(search=SearchVector("uname"),).filter(
+            results = Favorites.objects.annotate(search=SearchVector("user"),).filter(
                 search=query
             )
         except Exception as e:
@@ -136,9 +150,3 @@ class Favorites(models.Model):
         return results
 
 
-class CustomUser(AbstractUser):
-    facebook = models.CharField(max_length=255, null=True)
-    twitter = models.CharField(max_length=255, null=True)
-    ulvl = models.IntegerField(default=1)
-    sponsorid = models.IntegerField(null=True)
-    matrixid = models.CharField(max_length=255, null=True)

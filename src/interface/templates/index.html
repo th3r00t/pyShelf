@@ -39,9 +39,9 @@
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
                         <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>
                             {% if request.user.is_authenticated %}
-                            <a href='logout' class='nav_link'>&nbsp;{{ request.user }}</a>
+                            <a href='/logout' class='nav_link'>&nbsp;{{ request.user }}</a>
                             {% else %}
-                            <a href="login" class='nav_link'>&nbsp;Login</a>
+                            <a href="/login" class='nav_link'>&nbsp;Login</a>
                             {% endif %}
                         </li>
                 </div>
@@ -97,8 +97,12 @@
                                         {% endif %}
                                     <li class="book_tags">Tags: {{ book.tags }}</li>
                                     <li class="book_controls">
-                                            <span class="favorite-button controls">
-                                               <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
+                                            <span class="favorite-button controls favorite_action">
+                                                {% if book.is_favorite %}
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link favorite"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% else %} 
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link not_favorite"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% endif %}
                                             </span>
                                             <span class="download-button controls">
                                                 <a href="{% url 'download' pk=book.pk %}" class="book_link"><i class="fas fa-book icon"></i></a>

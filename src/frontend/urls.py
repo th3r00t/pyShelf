@@ -17,6 +17,8 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.models import User
+from django.shortcuts import HttpResponse
 from interface import views
 
 urlpatterns = [
@@ -26,7 +28,6 @@ urlpatterns = [
     path("sort/<_order>", views.index, name="index"),
     path("flip_sort/<_order>", views.flip_sort, name="index"),
     path("download/<pk>", views.download, name="download"),
-    path("favorite/<pk>", views.favorite, name="favorite"),
     path("share/<pk>", views.share, name="share"),
     path("share/<pk>", views.info, name="info"),
     path("prev_page/<bookset>", views.prev_page, name="prev_page"),
@@ -40,6 +41,7 @@ urlpatterns = [
     path("signup", views.signup, name="signup"),
     path("login", views.userlogin, name="login"),
     path('logout', views.userlogout, name='logout'),
+    path('favorite/<pk>', views.favorite, name='favorite'),
     path(
         'admin/password_reset/',
         auth_views.PasswordResetView.as_view(),
