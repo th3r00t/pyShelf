@@ -153,7 +153,7 @@ def prev_page(request, bookset, query=None, _limit=None, _order='title'):
     )
 
 
-def book_set(_order, _limit=None, _set=1, _flip=False):
+def book_set(request, _order, _limit=None, _set=1, _flip=False):
     """
     Get books results by set #
     """
@@ -165,6 +165,15 @@ def book_set(_order, _limit=None, _set=1, _flip=False):
         books = Books.objects.all().order_by(_order).reverse()[_set_min:_set_max]
     else: 
         books = Books.objects.all().order_by(_order)[_set_min:_set_max]
+    try:
+        favorites = Favorites.objects.filter(user=request.user)
+    except Exception as e: breakpoint()
+    for book in books:
+        for favorite in favorites:
+            if book == favorite.book: 
+                book.is_favorite = True
+                break
+            else: book.is_favorite = False
     return books
 
 
@@ -221,9 +230,13 @@ def favorite(request, pk):
     """
     Add book to favorites bu primary key
     """
-    f = Favorites(book=Books.objects.get(pk=pk))
-    f.user = request.user
-    f.save()
+    _d = Favorites.objects.filter(user=request.user, book=Books.objects.get(pk=pk))
+    if len(_d) == 1:
+        _d.delete()
+        return redirect('home')
+    _f = Favorites(book=Books.objects.get(pk=pk))
+    _f.user = request.user
+    _f.save()
     return redirect('home')
 
 
@@ -335,8 +348,8 @@ def payload(request, query, _set, _limit, _order, **kwargs):
             _set_min = _set_max - _limit
             _now_showing = "%s-%s"%(_set_min, _set_max)
             if request.session['ascending']:
-                _r = book_set(_order, _limit, _set)
-            else: _r = book_set(_order, _limit, _set, True)
+                _r = book_set(request, _order, _limit, _set)
+            else: _r = book_set(request, _order, _limit, _set, True)
             _r_len, _search = None, None
     except KeyError:
         _set = int(_set)
@@ -373,8 +386,8 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                     _results.count()
             except KeyError:
                 if request.session['ascending']:
-                    _r = book_set(_order, _limit, _set)
-                else: _r = book_set(_order, _limit, _set, True)
+                    _r = book_set(request, _order, _limit, _set)
+                else: _r = book_set(request, _order, _limit, _set, True)
                 _r_len, _search = None, None
     
     _bookstats, _collectionstats, _collectionobject = \

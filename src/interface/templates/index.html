@@ -98,7 +98,11 @@
                                     <li class="book_tags">Tags: {{ book.tags }}</li>
                                     <li class="book_controls">
                                             <span class="favorite-button controls favorite_action">
-                                               <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% if book.is_favorite %}
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link favorite"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% else %} 
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link not_favorite"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% endif %}
                                             </span>
                                             <span class="download-button controls">
                                                 <a href="{% url 'download' pk=book.pk %}" class="book_link"><i class="fas fa-book icon"></i></a>
