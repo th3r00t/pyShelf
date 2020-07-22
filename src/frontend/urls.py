@@ -42,6 +42,9 @@ urlpatterns = [
     path("login", views.userlogin, name="login"),
     path('logout', views.userlogout, name='logout'),
     path('favorite/<pk>', views.favorite, name='favorite'),
+    path('favorites', views.favorites, name='favorites'),
+    path('favorites/<bookset>', views.favorites, name='favorites'),
+    path('favorites/<bookset>/<query>', views.favorites, name='favorites'),
     path(
         'admin/password_reset/',
         auth_views.PasswordResetView.as_view(),

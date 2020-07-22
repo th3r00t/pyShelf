@@ -133,7 +133,7 @@ class Favorites(models.Model):
         db_table = "favorites"
 
     def __str__(self):
-        return self.book
+        return str(self.book)
  
     book = models.ForeignKey(Books, on_delete=models.CASCADE)
     user = models.ForeignKey(

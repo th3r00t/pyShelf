@@ -35,7 +35,7 @@
                     <ul id="tab_nav_menu">
                         <li class="nav_menu_tab active_tab" id="btn-home" data-location="/home"><i class="fas fa-home"></i>&nbsp;Home</li>
                         <li class="nav_menu_tab"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
-                        <li class="nav_menu_tab"><i class="fas fa-star"></i>&nbsp;Favorites</li>
+                        <li class="nav_menu_tab"><i class="fas fa-star"></i><a href="/favorites" class="nav_link">&nbsp;Favorites,</a></li>
                         <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
                         <li class="nav_menu_tab" id="btn_login"> <i class="fa fa-user-circle" aria-hidden="true"></i>
                             {% if request.user.is_authenticated %}
@@ -101,7 +101,7 @@
                                                 {% if book.is_favorite %}
                                                     <a href="{% url 'favorite' pk=book.pk %}" class="book_link favorite"><i class="fas fa-thumbs-up icon"></i></a>
                                                 {% else %} 
-                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link not_favorite"><i class="fas fa-thumbs-up icon"></i></a>
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
                                                 {% endif %}
                                             </span>
                                             <span class="download-button controls">
