@@ -33,9 +33,6 @@ $(document).ready(function(){
                     $(this).removeAttr("disabled");
             }
     });
-//    $('#app').css("height", max_height);
-//    $('.nav_l').css("max-height", max_height);
-//   $('div.shelf').css("max-height", max_height);
     $('.nav_link').on('mouseover', function (e){
         var popover_str = $(this).attr('alt');
         x = $(this).offset().left
@@ -91,8 +88,51 @@ $(document).ready(function(){
         window.location.href="/flip_sort/"+$("#_order").val()
     });
     $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>")
+    
+    $('#pop_over_0').dialog({ autoOpen: false });
     resize_search();
     $(window).resize(resize_search(win_width));
+
+    $('#pop_over_0').on('click', 'div.collection', function(){
+        window.location.href = '/show_collection/'+$(this).attr('data');
+    });
+
+    $('#coll_button').on('click', function(){
+        var isopen = $('#pop_over_0').dialog("isOpen")
+        if (isopen){
+            $('#pop_over_0').dialog("close");
+            return
+        }
+        customlog(['Collections Clicked']);
+        $.ajax({
+            type: "GET", url: "/live", data: {hook: 'collection_listing'},
+            success: function(response){
+                // Set the dialog title
+                $('#pop_over_0').dialog({
+                    title: "Collections",
+                    maxHeight: win_height,
+                    minWidth: $("#horiz_nav_main").width(),
+                    hide: { effect: "blind", duration: 1000 },
+                    show: { effect: "blind", duration: 1000 },
+                    position: { my: "top", at: "bottom", of: $("#horiz_nav_main")
+                    }
+                });
+                // clear and create a new container
+                $('#pop_over_0').html('<div id=collections>');
+                // Populate the container from response.data
+                $.each(response.data, function(index, value){
+                    $('#collections').append("<div class=collection data='"+value+"/"+$('#_set').val()+"'>"+value+"</div>");
+                });
+                // Close the container
+                $('#pop_over').append('</div>');
+                // Now open this dialog
+                $('#pop_over_0').dialog("open");
+            },
+            error: function(response){
+                customlog(["Failure", response]);
+            }
+        })
+    });
 });
 function resize_search(win_width){
     if (win_width <= 1025){
