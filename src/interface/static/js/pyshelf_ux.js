@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$:buffers:bu(document).ready(function(){
     function customlog(outstream) {
         /* Gather my variables and output them */
         for (var i = 0; i < outstream.length; i++){
@@ -110,7 +110,7 @@ $(document).ready(function(){
                 // Set the dialog title
                 $('#pop_over_0').dialog({
                     title: "Collections",
-                    maxHeight: win_height,
+                    maxHeight: (win_height-100),
                     minWidth: $("#horiz_nav_main").width(),
                     hide: { effect: "blind", duration: 1000 },
                     show: { effect: "blind", duration: 1000 },
