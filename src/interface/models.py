@@ -49,13 +49,19 @@ class Books(models.Model):
             raise
         return results
 
+    def search_by_collection(self, query):
+        try:
+            return Books.objects.filter(categories=query)
+        except Exception as e:
+            raise
+
 
 class Collections(models.Model):
     class Meta:
         db_table = "collections"
 
     def __str__(self):
-        return self.collection
+        return self.collection.__str__()
 
     collection = models.CharField(max_length=255)
     book_id = models.ForeignKey(Books, on_delete=models.PROTECT)
@@ -65,13 +71,38 @@ class Collections(models.Model):
         return reverse("model-detail-view", args=[str(self.id)])
 
     def generic_search(self, query):
+        books =[]
         try:
-            results = Books.objects.annotate(search=SearchVector("collection"),).filter(
+            #results = Collections.objects.all().filter(
+            #    collection=query
+            #)
+            results = Collections.objects.prefetch_related('book_id').annotate(search=SearchVector("collection"), ).filter(
                 search=query
             )
         except Exception as e:
             raise
-        return results
+        _results = results.values('book_id')
+        for r in results:
+            books.append(
+                {
+                    "pk": r.book_id.id,
+                    "title": r.book_id.title,
+                    "author": r.book_id.author,
+                    "categories": r.book_id.categories,
+                    "cover": r.book_id.cover,
+                    "pages": r.book_id.pages,
+                    "progress": r.book_id.progress,
+                    "file_name": r.book_id.file_name,
+                    "date": r.book_id.date,
+                    "description": r.book_id.description,
+                    "identifier": r.book_id.identifier,
+                    "publisher": r.book_id.publisher,
+                    "date": r.book_id.date,
+                    "rights": r.book_id.rights,
+                    "tags": r.book_id.tags
+                }
+            )
+        return books
 
 
 class Navigation(models.Model):
@@ -135,16 +166,12 @@ class Favorites(models.Model):
     def __str__(self):
         return str(self.book)
  
-    book = models.ForeignKey(Books, on_delete=models.CASCADE)
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    ) 
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
     def generic_search(self, query):
         try:
-            results = Favorites.objects.annotate(search=SearchVector("user"),).filter(
-                search=query
-            )
+            results = Favorites.objects.annotate(search=SearchVector("user"),).filter(search=query)
         except Exception as e:
             raise
         return results
