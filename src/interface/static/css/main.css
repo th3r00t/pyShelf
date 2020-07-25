@@ -8,16 +8,6 @@ body {
   color: #000;
 }
 
-#pop_over_0 {
-  display: none;
-  position: fixed;
-  top: 0px;
-  min-width: 100%;
-  min-height: 100%;
-  background-color: #000000;
-  z-index: 100;
-}
-
 #app {
   display: grid;
   grid-template-areas: "nav" "main";
