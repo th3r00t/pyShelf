@@ -7,84 +7,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/mobile.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/all-fa.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.min.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.structure.min.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/jquery-ui.theme.min.css" />
+    <link type="text/css" rel="stylesheet" href="/static/css/theme.css" />
     <title>pyShelf E-Book Server</title>
-    <link href="https://fonts.googleapis.com/css?family=Audiowide&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Gruppo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gruppo&family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
     <script src="/static/js/jquery-3.4.1.min.js" type="text/javascript"></script>
-    <script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
+    <script src="/static/js/jquery-ui.min.js" type="text/javascript"></script>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="/static/js/pyshelf_ux.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var collections={{ CollectionObject|safe }};
+        //document.write(collections.length) //collections
+    </script>
 </head>
 
 <body>
+	<input type="hidden" id="_set" name="_set" value="{{ Set }}" />
+	<input type="hidden" id="_search" name="_search" value="{{ PostedSearch }}" />
+	<input type="hidden" id="_order" name="_order" value="{{ Order }}" />
+    <div id="pop_over_0" class="center">
+    </div>
     <div id="app">
-        <div class="app_header">
-            <div class="app_hdr">
-                <h1 class="app_hdr shadow">pyShelf {{Version}}</h1>
-            </div>
-            <div class="app_slogan">
-                <h3 class="app_slogan shadow">"An elegant tool... for a more civilized age."</h3>
-            </div>
-            <div class="app_subhdr">
-                <a class="discord-button" href="https://discord.gg/H9TbNJS" alt="https://discord.gg/H9TbNJS">
-                    <img src="/static/img/discord_logo_color.png" class="discord-button" />
-                </a>
-                <!-- Place this tag where you want the button to render. -->
-                <a class="github-button" href="https://github.com/th3r00t/pyShelf/fork" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork th3r00t/pyShelf on GitHub">Fork</a>
-                <!-- Place this tag where you want the button to render. -->
-                <a class="github-button" href="https://github.com/th3r00t/pyShelf/issues" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue th3r00t/pyShelf on GitHub">Issue</a>
-                <!--
-                <img src="/static/img/open-source-175x29.png" class="hdr_badge" /><br />
-                <img src="/static/img/gpl-125x28.png" class="hdr_badge" />
-                -->
-            </div>
-            <input type="hidden" id="_set" name="_set" value="{{ Set }}" />
-            <div class="nav_left_top">
-                <input class="nav_button prev_page" type="button" value="<< Prev Page" onclick="window.location.href = '/prev_page/{{ Set }}'">
-            </div>
-            <div class="nav_center_top">
-                <input class="nav_search" type="text" size="25" value=""><input class="nav_button search_submit" type="submit" value="Search">
-            </div>
-            <div class="nav_right_top">
-                <input class="nav_button next_page" type="button" value="Next Page >>" onclick="window.location.href = '/next_page/{{ Set }}'">
-            </div>
-        </div>
-        <div class="app_body">
-            <div class="nav_l">
-                <p class="popover"></p>
-                <ul id="vert-nav">
-                    <li class="vert-nav-item nav_l_hdr">Collections</li>
-                    {% for row in LeftNav %}
-                    <a href="{% url 'show_collection' _collection=row.link _colset=Set%}" class="nav_link" alt="{{row.link}}">
-                        <li class="nav_l_{{row.class}}">
-                            {{ row.string }}
+        <ul id="shelf_nav">
+            <div id="horiz_nav_hdr">
+                <h1 class="app_hdr" id="hdr_branding">pyShelf {{Version}}</h1>
+                <div class="hdr_nav" id="hdr_nav_center">
+                    <ul id="tab_nav_menu">
+                        <li class="nav_menu_tab active_tab" id="btn-home" data-location="/home"><i class="fas fa-home"></i>&nbsp;Home</li>
+                        <li class="nav_menu_tab" id="coll_button"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
+                        <li class="nav_menu_tab"><i class="fas fa-star"></i><a href="/favorites" class="nav_link">&nbsp;Favorites,</a></li>
+                        <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
+
+                        {% if request.user.is_authenticated %}
+                        <li class="nav_menu_tab" id="btn_logout"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{ request.user }}
+                            <!--<a href='/logout' class='nav_link'>&nbsp;{{ request.user }}</a>-->
                         </li>
-                        </a>
-                    {% endfor %}
-                </ul>
+                        {% else %}
+                        <li class="nav_menu_tab" id="btn_login"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;Login
+                            <!--<a href="/login" class='nav_link'>&nbsp;Login</a>-->
+                        </li>
+                        {% endif %}
+
+                </div>
             </div>
+            <div id="horiz_nav_main">
+                <div    id="horiz_nav_left">
+                    <i class="fas fa-arrow-circle-left nav_icon prev_page" onclick="window.location.href = '/prev_page/{{ Set }}/{{ Order }}'"></i>
+                    &nbsp;sort <i class="fas fa-sort nav_icon"></i>
+                    <select id = "sortlist">
+                        <option valie = "" id="empty-sort"></option>
+                        <option value = "sort/title" id="title-sort">Title</option>
+                        <option value = "sort/author" id="author-sort">Author</option>
+                        <option value = "sort/collections" id="collection-sort">Collection</option>
+                        <option value = "sort/tags" id="tags-sort">Tags</option>
+                        <option value = "sort/date" id="tags-sort">Date Added</option>
+                    </select>
+                </div>
+                <div id="horiz_nav_center">
+                    <div id="flip_sort" class="btn">
+                        <i class="fas fa-sort-alpha-down nav_icon"></i>
+                        <i class="fas fa-sort-alpha-up nav_icon"></i>
+                    </div>
+                    <input class="nav_search input_box search_string" type="text" size="40" value="search by Title, Author, Tags, or Collections">
+                    <i class="fas fa-search search_submit search_button" id="search_string" onclick="window.location.href = '/prev_page/{{ Set }}'"></i>
+                </div>
+                <div class="horiz_nav_stats">
+                    <i class="fas fa-book nav_icon"></i>&nbsp;{{ NowShowing }} of {{ BookStats }}&nbsp;
+                    <i class="fas fa-arrow-circle-right nav_icon next_page" onclick="window.location.href = '/next_page/{{ Set }}/{{ Order }}'"></i>
+                </div>
+            </div>
+        </ul>
+        <div class="app_body">
             <div class="shelf">
                 <div class="shelf_contents">
                     <ul id="book_shelf">
                         {% for book in Books %}
-                        <a href="{% url 'download' pk=book.pk %}" class="book_link">
-                            <li class="shelf_item"><img alt="{{ book.title }}" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" /> </li>
-                        </a>
+                            <li class="shelf_item">
+                                <img alt="cover missing" src="data:image;base64,{{ book.cover | bin_2_img }}" class="book_thumb" onerror="this.src='/static/img/pysBook.png'"/>
+                                <ul class="book_details_list">
+                                    <li class="book_title">{{ book.title }}</li>
+                                    <li class="book_author">{{ book.author }}</li>
+                                        {% if book.description|length >= 225 %}
+                                            {% make_description_obj book.description as descr_obj %}
+                                                <li class="book_description">{{ descr_obj }}</li>
+                                        {% elif book.description == None %}
+                                            <li class="book_description">
+                                                <div class="inline_sys_message">
+                                                    We were unable to find a description.
+                                                    <br />Have some <i class="fas fa-drumstick-bite"></i> instead?
+                                                </div>
+                                            </li>
+                                        {% else %}
+                                            <li class="book_description">{{ book.description }}</li>
+                                        {% endif %}
+                                    <li class="book_tags">Tags: {{ book.tags }}</li>
+                                    <li class="book_controls">
+                                            <span class="favorite-button controls favorite_action">
+                                                {% if book.is_favorite %}
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link favorite"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% else %} 
+                                                    <a href="{% url 'favorite' pk=book.pk %}" class="book_link"><i class="fas fa-thumbs-up icon"></i></a>
+                                                {% endif %}
+                                            </span>
+                                            <span class="download-button controls">
+                                                <a href="{% url 'download' pk=book.pk %}" class="book_link"><i class="fas fa-book icon"></i></a>
+                                            </span>
+                                            <span class="share-button controls">
+                                                <a href="{% url 'share' pk=book.pk %}" class="book_link"><i class="fas fa-share icon"></i></a>
+                                            </span>
+                                            <span class="info-button controls">
+                                                <a href="{% url 'info' pk=book.pk %}" class="book_link"><i class="fas fa-info icon"></i></a>
+                                            </span>
+                                    </li>
+                                </ul>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
-            </div>
-        </div>
-        <div class="app_footer">
-            <div class="python_logo">
-                <img src="/static/img/py.png" id="python_logo" />
-            </div>
-            <div class="copyright">
-                <a href="https://www.gnu.org/licenses/gpl-3.0.txt" class="web_footer_link"><img src="/static/img/gplv3-or-later.png" alt="GPLv3 or later" /></a>
-            </div>
-            <div class="footer_contact">
-
-                <p>irc: <a href="irc://freenode.net/pyshelf" class="web_footer_link">#pyshelf</a> on freenode | discord: <a href="https://discord.gg/H9TbNJS" class="web_footer_link">discord.gg/H9TbNJS</a> | web: <a href=http://pyshelf.com class="web_footer_link" alt="pyshelf.com">http://pyshelf.com</a> | source: <a href="https://github.com/th3r00t/pyShelf" class="web_footer_link">github.com/th3r00t/pyShelf</a></p>
             </div>
         </div>
     </div>

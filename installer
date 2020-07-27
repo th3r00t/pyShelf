@@ -1,4 +1,4 @@
-#!python
+#!/usr/bin/ env python
 import json
 import os
 import pathlib
@@ -304,8 +304,8 @@ if RequiredServices().db_server_found(req) is False:
             if r["name"] == "PASSWORD":
                 sql_pass = r["answer"]
 
-        # sql_user = config["USER"]
-        sql_user = "pyshelf"
+        sql_user = config["USER"]
+        # sql_user = "pyshelf"
         db_name = "pyshelf"
         psql_cmd = (
             "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; \
@@ -333,6 +333,11 @@ if RequiredServices().db_server_found(req) is False:
             psql_cmd,
         ]
     else:
+        for r in install_answers:
+            if r["name"] == "PASSWORD":
+                sql_pass = r["answer"]
+        sql_user = config["USER"]
+        db_name = "pyshelf"
         psql_cmd = (
             "CREATE DATABASE %s; CREATE USER %s WITH PASSWORD '%s'; \
                     GRANT ALL PRIVILEGES ON DATABASE %s TO %s;"

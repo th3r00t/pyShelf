@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     "interface",
     "interface.templatetags",
     "debug_toolbar",
+    "widget_tweaks"
 ]
-
+AUTH_USER_MODEL = "interface.User"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -103,6 +104,10 @@ DATABASES = {
         "PORT": CONFIG.db_port,
     }
 }
+# Session
+# Uncomment below to enable sessions management by a memcache server
+# https://docs.djangoproject.com/en/3.0/topics/http/sessions/
+# SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -133,6 +138,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+LOGIN_REDIRECT_URL = 'home'
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "interface/static/")
