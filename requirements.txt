@@ -20,3 +20,4 @@ pyfiglet
 mobi-python
 pudb
 jsonpickle
+django-widget-tweaks

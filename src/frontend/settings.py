@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "interface",
     "interface.templatetags",
     "debug_toolbar",
+    "widget_tweaks"
 ]
 AUTH_USER_MODEL = "interface.User"
 MIDDLEWARE = [
@@ -99,6 +100,8 @@ DATABASES = {
         "NAME": CONFIG.catalogue_db,
         "USER": "pyshelf",
         "PASSWORD": CONFIG.password,
+        "HOST": CONFIG.db_host,
+        "PORT": CONFIG.db_port,
     }
 }
 # Session

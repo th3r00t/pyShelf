@@ -16,6 +16,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 import json
 from .forms import SignUpForm, UserLoginForm
 from .models import Books, Collections, Navigation, Favorites, User
+from django.template.loader import render_to_string
 
 config = Config(Path("../"))
 
@@ -109,7 +110,7 @@ def show_collection(request, query, _set, _limit=None, _order='title', **kwargs)
     _set_min = _set_max - _limit  #  Subtract limiter to get bottom limit
     _now_showing = "%s-%s"%(_set_min, _set_max)  # Set the set count
     if query:  # Are we sending a query?
-        if query != request.session.get('cached_query'):  # Is it differnt to the last query?
+        if query != request.session.get('cached_query'):  # Is it different to the last query?
             request.session['cached_query'] = query  # Set the session data to track the query
             if request.session['ascending']:
                 _r = _results = Collections().generic_search(query)  # Get the query, or in reverse below
@@ -388,6 +389,10 @@ def live(request, **kwargs):
         return JsonResponse({"data": collections}, status=200)
     elif hook == "book_details":
         return JsonResponse({"data": Books.objects.get(pk=kwargs['pk'])}, status=200)
+    elif hook == "register":
+        html = render_to_string('signup.html', {'form': SignUpForm}, request)
+        html += render_to_string('login.html', {'form': UserLoginForm}, request)
+        return JsonResponse({"data": html})
     else: return JsonResponse(err_txt, status=404)
 
     return JsonResponse({"data": "Response sent"}, status=200)

@@ -1,23 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {{ field.errors }}
-            {{ field.label_tag }} {{ field }}
-            {% if field.help_text %}
-            <p class="help">{{ field.help_text|safe }}</p>
-            {% endif %}
+{% load widget_tweaks %}
+<div class="col-auto gx-5">
+    <div class="row flex-row align-items-center justify-content-center">
+        <div class="col text-left bs-form-hdr">
+            <h4 style="margin: 5px 0px 5px 0px"><i class="fas fa-book"></i><small class="text-muted">&nbsp;Login</small></h4>
         </div>
-    {% endfor %}
-    <button type="submit">Login</button>
-</form>
-</body>
-</html>
+    </div>
+    <div class="row flex-row form-body">
+        <form method="post" action="/login">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row row-cols-2">
+                    <div class="col">
+                        {{ field|add_class:"registration-field"|attr:"size=15" }}
+                    </div>
+                    <div class="col">
+                        {% if field.help_text %}
+                        <p class="help"> {{ field.help_text|safe }}</p>
+                        {% endif %}
+                        {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row text-center">
+                <div class="col">
+                    <button type="submit" class="btn-sm btn-secondary register-btn">Login</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
