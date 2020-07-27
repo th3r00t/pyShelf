@@ -2,6 +2,7 @@ books/*
 *.epub
 *.idea
 *.pyc
+.svn/
 app/content.opf
 .vscode
 fontend/db.sqlite3
