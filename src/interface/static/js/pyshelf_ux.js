@@ -1,4 +1,4 @@
-$:buffers:bu(document).ready(function(){
+$(document).ready(function(){
     function customlog(outstream) {
         /* Gather my variables and output them */
         for (var i = 0; i < outstream.length; i++){
@@ -70,7 +70,7 @@ $:buffers:bu(document).ready(function(){
     });
     $('#btn_login').on('click', function(){
         $('#hdr_nav_login').toggle();
-    });
+    })
     $('.favorite_action').on('click', function(){
         $(this).children('a').toggleClass('favorite');
     });
@@ -96,7 +96,47 @@ $:buffers:bu(document).ready(function(){
     $('#pop_over_0').on('click', 'div.collection', function(){
         window.location.href = '/show_collection/'+$(this).attr('data');
     });
-
+    $('#btn_login').on('click', function() {
+        var isopen = $('#pop_over_0').dialog("isOpen")
+        if (isopen) {
+            $('#pop_over_0').dialog("close");
+            return
+        }
+        customlog(['Login Clicked']);
+        $.ajax({
+            type: "GET", url: "/live", data: {hook: 'register'},
+            success: function (response) {
+                // Set the dialog title
+                $('#pop_over_0').dialog({
+                    title: "User Controls",
+                    maxHeight: (win_height - 100),
+                    minWidth: $("#horiz_nav_main").width(),
+                    hide: {effect: "blind", duration: 1000},
+                    show: {effect: "blind", duration: 1000},
+                    position: {
+                        my: "top", at: "bottom", of: $("#horiz_nav_main")
+                    }
+                });
+                // clear and create a new container
+                $('#pop_over_0').html('<div id=usercp class="mx-auto">');
+                // Populate the container from response.data
+                $('#usercp').append('<div class="row" id="usercp-inner">');
+                $('#usercp-inner').append(response.data);
+                $('#usercp-inner').append('</div>');
+                $('#usercp').append('</div>');
+                // Close the container
+                $('#pop_over').append('</div>');
+                // Now open this dialog
+                $('#pop_over_0').dialog("open");
+            },
+            error: function (response) {
+                customlog(["Failure", response]);
+            }
+        });
+    });
+    $('#btn_logout').on('click', function() {
+        window.location.href = '/logout';
+    });
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen")
         if (isopen){

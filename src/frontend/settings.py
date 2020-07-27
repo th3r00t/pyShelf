@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "interface",
     "interface.templatetags",
     "debug_toolbar",
+    "widget_tweaks"
 ]
 AUTH_USER_MODEL = "interface.User"
 MIDDLEWARE = [

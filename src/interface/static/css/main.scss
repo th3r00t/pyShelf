@@ -1,3 +1,4 @@
+@import "../scss/bootstrap";
 $ui-color-1: #fefefeb3; //UI border active button Font Color
 $ui-color-2: #282828;
 $ui-color-3: #676767;
@@ -304,6 +305,7 @@ body {
 }
 #horiz_nav_left {
     grid-area:horiz_nav_left;
+    align-self: center;
 }
 #horiz_nav_main{
     display: grid;
@@ -576,3 +578,43 @@ a.nav_link {
     display: none;
 }
 .btn {cursor:pointer}
+
+#single_page_app{
+    margin: 10px 0px;
+    padding: 0px;
+    background-color: $ui-color-3;
+    background-image: $ui-background-img;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #000;
+}
+.bs-form-hdr{
+    background-color: $gray-800;
+    color: $gray-100;
+    padding: 0px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.bs-form-subhdr{
+    background-color: $gray-300;
+    margin: 0px 0px 10px !important;
+}
+.register-btn{
+    margin: 10px;
+}
+.form-body{
+    border-left: 1px solid $gray-800;
+    border-right: 1px solid $gray-800;
+    border-bottom: 1px solid $gray-800;
+    padding: 10px 0px 0px;
+}
+.ui-dialog .ui-dialog-titlebar {
+    padding: 0px 0px 0px 5px !important;
+}
+.registration-field{
+    color: $green-400;
+}
+.center{
+    width: fit-content !important;
+    margin: auto;
+}
