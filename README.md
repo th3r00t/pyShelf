@@ -114,6 +114,34 @@ All configuration is now handled by the installer.
 
 Running via the Django test server might be possible, albeit not recomended.
 
+## Docker
+
+Installation for Docker is handled by docker-compose
+
+It will spin up two containers: one postgres, one for the Django application
+
+Edit [docker/.env](docker/.env)
+
+`docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
+
+`docker exec -it -d docker_pyshelf_1 python3 manage.py migrate`
+
+`docker exec -it -d docker_pyshelf_1 python3 manage.py runserver 0.0.0.0:8000`
+
+IMPORT BOOKS
+
+Once the .epub files are in the directory specified in [docker/.env](docker/.env)
+
+`docker exec -it docker_pyshelf_1 /bin/bash`
+
+`cd /usr/src/app/ && python3 importBooks`
+
+### Docker Future Enhancements
+
+- [ ] Change method of importing books ssibly cron or using the Django code
+- [ ] Look into having the migration work without having to manually execute
+
+
 ### In Progress
 
 #### Organizational tools.

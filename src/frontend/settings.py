@@ -100,6 +100,8 @@ DATABASES = {
         "NAME": CONFIG.catalogue_db,
         "USER": "pyshelf",
         "PASSWORD": CONFIG.password,
+        "HOST": CONFIG.db_host,
+        "PORT": CONFIG.db_port,
     }
 }
 # Session
