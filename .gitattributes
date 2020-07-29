@@ -1,2 +1,6 @@
-* linguist-vendored
-*.py linguist-vendored=false
+docs/* linguist-documentation
+src/interface/static/debug_toolbar linguist-vendored
+src/interface/static/webfonts linguist-vendored
+src/interface/static/js/bootstrap* linguist-vendored
+src/interface/static/js/jquery* linguist-vendored
+docker/* linguist-vendored
