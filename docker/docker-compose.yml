@@ -12,12 +12,12 @@ services:
 
     pyshelf:
         build:
-            context: .
-            dockerfile: Dockerfile
+            context: ..
+            dockerfile: ./docker/Dockerfile
         ports: 
             - "8080:8000"
         volumes:
-            - "./books:/books"
+            - "../books:/books"
         depends_on:
             - db
 

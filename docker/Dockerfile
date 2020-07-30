@@ -10,8 +10,8 @@ COPY . /pyshelf
 WORKDIR /pyshelf/
 RUN python3 -m pip install -r requirements.txt
 
-COPY ./uwsgi_params /etc/nginx/uwsgi_params
-COPY ./pyshelf_nginx.conf /etc/nginx/sites-available/pyshelf_nginx.conf
+# COPY ../uwsgi_params /etc/nginx/uwsgi_params
+COPY ./docker/pyshelf_nginx.conf /etc/nginx/sites-available/pyshelf_nginx.conf
 RUN ln -s /etc/nginx/sites-available/pyshelf_nginx.conf /etc/nginx/sites-enabled/
 
 WORKDIR /pyshelf/
