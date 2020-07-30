@@ -1,20 +1,27 @@
-FROM archlinux:latest
-RUN pacman -Syy
-RUN pacman -Syu --noconfirm
-RUN pacman -S --noconfirm python python-pip git postgresql sudo gcc
-RUN sudo -u postgres initdb --locale=en_US.UTF-8 -E UTF8 -D /var/lib/postgres/data
-RUN useradd pyshelf && chpasswd pyshelf:pyshelf
-#RUN mkdir -p /srv/Books && mkdir -p /srv/http && mkdir -p /srv/logs/ && mkdir -p /run/postgresql && \
-#    touch /srv/logs/pgsql.log && chown postgres.postgres /run/postgresql && \
-#    chown http.pyshelf /srv/Books && chown http.pyshelf /srv/http && chown postgres.postgres /srv/logs/pgsql.log
-VOLUME /srv/Books ./Books
-VOLUME /srv/http .
-VOLUME /srv/logs ./logs
-VOLUME /var/lib/postgres/data ./pgdata
-RUN sudo -u postgres pg_ctl -D /var/lib/postgres/data -l /srv/logs/pgsql.log start
-RUN sudo -u postgres psql -f create_db.sql
-ENV PYTHONUNBUFFERED=1
-WORKDIR /srv/http
-RUN pip install -r requirements.txt
-EXPOSE 80 8000
-CMD ["sh", "-c","/srv/http/entry.sh"]
+FROM ubuntu
+
+EXPOSE 8000
+
+RUN apt-get update -y
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3 python3-dev python3-pip python3-venv nginx-full
+
+COPY . /pyshelf
+
+WORKDIR /pyshelf/
+RUN python3 -m pip install -r requirements.txt
+
+COPY ./uwsgi_params /etc/nginx/uwsgi_params
+COPY ./pyshelf_nginx.conf /etc/nginx/sites-available/pyshelf_nginx.conf
+RUN ln -s /etc/nginx/sites-available/pyshelf_nginx.conf /etc/nginx/sites-enabled/
+
+WORKDIR /pyshelf/
+ENTRYPOINT cd src/ \
+            && python3 manage.py makemigrations \
+            && python3 manage.py makemigrations interface \
+            && python3 manage.py migrate \
+            && python3 manage.py migrate interface \
+            && cd .. \
+            && python3 importBooks \
+            && python3 makeCollections \
+            && nginx -g "daemon on;" \
+            && uwsgi --ini uwsgi.ini
