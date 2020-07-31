@@ -8,8 +8,5 @@
     "USER": "pyshelf",
     "PASSWORD": "pyshelf",
     "BOOKSHELF": "data/shelf.json",
-    "ALLOWED_HOSTS": "*",
-    "hostname": "localhost",
-    "webport": "8000",
-    "wsgiport": "8001"
+    "ALLOWED_HOSTS": "*"
 }
