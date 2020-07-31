@@ -83,3 +83,4 @@ Please contact us using any of the options below for support. Please be prepared
 ### Live Support Options
 * Discord: [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS)
 * IRC: [irc.freenode.net/pyShelf](irc://freenode.net/pyshelf)
+* Matrix.org: [#irc_#pyshelf:pyshelf.com](https://app.element.io/#/room/#irc_#pyshelf:pyshelf.com)

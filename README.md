@@ -7,26 +7,34 @@
 ![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/pyShelf_frontend_0_2_0.png)
 
 
-### You dont need a X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
-<i>Other solutiions require you to have access to an X server to at the very least generate your book database, pyShelf doesnt.We aim to provide a fully featured ebook server with minimal requirements, and no reliance on X whatsoever.</i>
+### You dont need an X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
 
-Follow or influence development @ <p align="center"><b> <a href="https://discord.gg/H9TbNJS">Discord</a> |  <a href="https://webchat.freenode.net/#pyshelf">IRC</a> freenode.net @ #pyshelf</b></p>
+_Other solutiions require you to have access to an X server to at the very least generate your book database, pyShelf doesnt.We aim to provide a fully featured ebook server with minimal requirements, and no reliance on X whatsoever._
+
+Follow or influence development @ <p align="center"><b>
+    <a href="https://discord.gg/H9TbNJS">Discord</a>
+    | <a href="https://webchat.freenode.net/#pyshelf">IRC</a>
+    | <a href="https://app.element.io/#/room/#irc_#pyshelf:pyshelf.com">Matrix.org</a>
+</b></p>
+
 ## Current Features
-* Custom Installer works only on Arch Based Distros
+
 * Recursive Scanning
 * Fast database access
-* Django based frontend
+* [Django](https://www.djangoproject.com/) based frontend
 * Basic seaching via a SearchVector of author, title, & file_name fields.
 * Ebook Downloading
 * Collections
 
 ## Currently Supported Formats
+
 * epub
 * mobi
 
-
 ## 0.6.0 Patch Notes.
+
 # New Features
+
 * .mobi Yep mobis are now a thing!
 * Result set ordering
     * You can now choose to order your results:
@@ -49,28 +57,31 @@ Follow or influence development @ <p align="center"><b> <a href="https://discord
         * [ ] Control panel
         * [ ] Book details
         * Whatever else :)
+
 ## Installation Example
+
 <a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
 
 ## Further Installation & Support Information
+
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ### Pre-req Dependencies
-* gcc -- This will be installed by the new pre-installer script if its binary is not detected at /usr/bin/gcc
-Users on distros other then Arch should install gcc via their systems package manager prior to
-running the installer.
-* Python3
+
+* gcc
+* python3
 * pip
 
 # Installation
-This project is currently targeted towards Network Administrators, and other home
-enthusiasts whom I assume will know how to setup a Django app, and a
-Postgres server.
 
-Once your environment is ready very little is required to get the system up and running
+This project is currently targeted towards Network Administrators, and other home
+enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a
+[PostgreSQL](https://www.postgresql.org/) server.
+
+Once your environment is ready very little is required to get the system up and running:
 * From the main directory
     * setup configurations as discussed in [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
-    * `pip install -r requirments.txt`
+    * `pip install -r requirements.txt`
     * `cd src`
     * `python manage.py migrate`
     * `cd ..`
@@ -78,23 +89,8 @@ Once your environment is ready very little is required to get the system up and 
     * `./makecollections`
 * Browse to the site as defined in your apache | nginx config
 
-## Included installer
-<a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
+## Installation & Support Information
 
-The installer will only run correctly on arch based distros. This could be
-easily rectified to include other package managers, Members of the community
-are welcome to dig into the installer source and patch in support
-for other package managers.
-
-There is some support for detection of the aptitude package manager
-installation already present in the source now, however it is not complete and
-should not be relied upon to be present in future releases unless completed by
-a member of the community,
-
-The installer will walk you through all the configurations required by pyShelf to
-run if you are running on Arch linux.
-
-## Further Installation & Support Information
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 ## Development
@@ -110,56 +106,72 @@ _Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf 
 
 ## Configuration
 
-All configuration is now handled by the installer.
-
-Running via the Django test server might be possible, albeit not recomended.
+Running via the [Django](https://www.djangoproject.com/) test server might be possible, albeit not recomended.
 
 ## Docker
 
-Installation for Docker is handled by docker-compose
+The official Docker image for pyShelf is [`raelonmasters/pyshelf`](https://hub.docker.com/r/raelonmasters/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. Here is an example `docker-compose.yml`:
 
-It will spin up two containers: one postgres, one for the Django application
+```
+version: "3.7"
 
-Edit [docker/.env](docker/.env)
+services:
+    db:
+        image: "postgres"
+        environment:
+            - "POSTGRES_PASSWORD=pyshelf"
+            - "POSTGRES_USER=pyshelf"
+            - "POSTGRES_DB=pyshelf"
+        volumes:
+            - "pgdata:/var/lib/postgresql/data/"
 
-`docker-compose -f docker/docker-compose.yml --env-file=docker/.env up -d`
+    pyshelf:
+        image: "raelonmasters/pyshelf"
+        ports: 
+            - "8080:8000"
+        volumes:
+            - "${LOCAL_BOOK_DIR}:/books"
+        depends_on:
+            - db
 
-`docker exec -it -d docker_pyshelf_1 python3 manage.py migrate`
+volumes:
+    pgdata:
+```
 
-`docker exec -it -d docker_pyshelf_1 python3 manage.py runserver 0.0.0.0:8000`
+You'll also need a `.env` file wich sets the `LOCAL_BOOK_DIR` variable, for example:
 
-IMPORT BOOKS
+```
+LOCAL_BOOK_DIR=/home/someone/books
+```
 
-Once the .epub files are in the directory specified in [docker/.env](docker/.env)
+The Docker image is still new, so there could still be some issues and missing features. Feel free to create a bug-issue when you encounter a bug. Development of the Docker image is discussed in https://github.com/th3r00t/pyShelf/pull/53 . Currently the database needs to be [PostgreSQL](https://www.postgresql.org/) with the account details shown in the example `docker-compose.yml` .
 
-`docker exec -it docker_pyshelf_1 /bin/bash`
+## In Progress
 
-`cd /usr/src/app/ && python3 importBooks`
+### Organizational tools.
 
-### Docker Future Enhancements
-
-- [ ] Change method of importing books ssibly cron or using the Django code
-- [ ] Look into having the migration work without having to manually execute
-
-
-### In Progress
-
-#### Organizational tools.
 - [x] Automated Collections
 - [ ] Manual Collections
 - [ ] Books Removal
 - [ ] Access Restrictions
 - [ ] Metadata Manipulation
 - [ ] Others?
-#### Improved cover image storage, and acquisition.
-#### OPDS Support
-#### Support for other formats
+
+### Improved cover image storage, and acquisition.
+
+### OPDS Support
+
+### Support for other formats
+
 - [x] .mobi
 - [ ] .pdf
 - [ ] .cbz
 - [ ] .zip (Zipped book folders, is this a new idea? (Consider storing your library folders zipped and retrieving a book on demand))
 
-### Future Goals
-#### Terminal Backend for catalogue maintenance
-#### Calculate page count from total characters
+## Future Goals
+
+### Terminal Backend for catalogue maintenance
+
+### Calculate page count from total characters
+
   * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
