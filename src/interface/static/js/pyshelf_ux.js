@@ -18,7 +18,7 @@ $(document).ready(function(){
     var max_height = win_height - (hdr_height + ftr_height) - (scr_height - win_height); // Set our available height
     var u_string = "Username";
     var p_string = "Password";
-    var s_string = "search by Title, Author, Tags, or Collections"
+    var s_string = "search by Title, Author, Tags, or Collections";
     customlog([cmp_height]);
     $(".search_submit").click(function(){
             var query = $('.nav_search').val();
@@ -35,8 +35,8 @@ $(document).ready(function(){
     });
     $('.nav_link').on('mouseover', function (e){
         var popover_str = $(this).attr('alt');
-        x = $(this).offset().left
-        y = $(this).offset().top
+        x = $(this).offset().left;
+        y = $(this).offset().to;
         $('.popover').html(popover_str);
         $('.popover').css('left', x+nav_width);
         $('.popover').css('top', y);
@@ -44,15 +44,15 @@ $(document).ready(function(){
     });
     $('.nav_link').on('mouseout', function (e){
         var popover_str = $(this).attr('alt');
-        x = $(this).offset().left
-        y = $(this).offset().top
+        x = $(this).offset().left;
+        y = $(this).offset().top;
         $('.popover').html(popover_str);
         $('.popover').css('left', x);
         $('.popover').css('top', y);
         $('.popover').css('display','none');
     });
     $('#btn_collections').on('click', function (e){
-        $('.hidden.vert-nav.collections').toggle()
+        $('.hidden.vert-nav.collections').toggle();
     });
     $('.input_box').on('click', function(){
         $(this).attr("value","");
@@ -78,16 +78,16 @@ $(document).ready(function(){
         var optionSelected = $(this).find("option:selected");
         var valueSelected  = optionSelected.val();
         var textSelected   = optionSelected.text();
-        window.location.href="/"+valueSelected
+        window.location.href="/"+valueSelected;
     });
     $('#btn-home').on("click", function(){
         _location = $(this).attr('data-location');
         window.location.href=_location;
     });
     $('#flip_sort').on("click", function(){
-        window.location.href="/flip_sort/"+$("#_order").val()
+        window.location.href="/flip_sort/"+$("#_order").val();
     });
-    $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>")
+    $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>");
     
     $('#pop_over_0').dialog({ autoOpen: false });
     resize_search();
@@ -97,10 +97,10 @@ $(document).ready(function(){
         window.location.href = '/show_collection/'+$(this).attr('data');
     });
     $('#btn_login').on('click', function() {
-        var isopen = $('#pop_over_0').dialog("isOpen")
+        var isopen = $('#pop_over_0').dialog("isOpen");
         if (isopen) {
             $('#pop_over_0').dialog("close");
-            return
+            return;
         }
         customlog(['Login Clicked']);
         $.ajax({
@@ -138,10 +138,10 @@ $(document).ready(function(){
         window.location.href = '/logout';
     });
     $('#coll_button').on('click', function(){
-        var isopen = $('#pop_over_0').dialog("isOpen")
+        var isopen = $('#pop_over_0').dialog("isOpen");
         if (isopen){
             $('#pop_over_0').dialog("close");
-            return
+            return;
         }
         customlog(['Collections Clicked']);
         $.ajax({
@@ -171,7 +171,43 @@ $(document).ready(function(){
             error: function(response){
                 customlog(["Failure", response]);
             }
-        })
+        });
+    });
+    $('.info-button').on('click', function(){
+        var isopen = $('#pop_over_0').dialog("isOpen");
+        if (isopen){
+            $('#pop_over_0').dialog("close");
+            return;
+        }
+        customlog(['Book Details Clicked', $(this).attr('data')]);
+        $.ajax({
+            type: "GET", url: "/live", data: {hook: 'details', pk:$(this).attr('data')},
+            success: function(response){
+                // Set the dialog title
+                $('#pop_over_0').dialog({
+                    title: "Collections",
+                    maxHeight: (win_height-100),
+                    minWidth: $("#horiz_nav_main").width(),
+                    hide: { effect: "blind", duration: 1000 },
+                    show: { effect: "blind", duration: 1000 },
+                    position: { my: "top", at: "bottom", of: $("#horiz_nav_main")
+                    }
+                });
+                // clear and create a new container
+                $('#pop_over_0').html('<div id=collections>');
+                // Populate the container from response.data
+                $.each(response.data, function(index, value){
+                    $('#collections').append("<div class=collection data='"+value+"/"+$('#_set').val()+"'>"+value+"</div>");
+                });
+                // Close the container
+                $('#pop_over').append('</div>');
+                // Now open this dialog
+                $('#pop_over_0').dialog("open");
+            },
+            error: function(response){
+                customlog(["Failure", response]);
+            }
+        });
     });
 });
 function resize_search(win_width){

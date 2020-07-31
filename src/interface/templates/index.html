@@ -120,8 +120,8 @@
                                             <span class="share-button controls">
                                                 <a href="{% url 'share' pk=book.pk %}" class="book_link"><i class="fas fa-share icon"></i></a>
                                             </span>
-                                            <span class="info-button controls">
-                                                <a href="{% url 'info' pk=book.pk %}" class="book_link"><i class="fas fa-info icon"></i></a>
+                                            <span class="info-button controls" data="{{ book.pk }}">
+                                                <i class="fas fa-info icon"></i>
                                             </span>
                                     </li>
                                 </ul>
