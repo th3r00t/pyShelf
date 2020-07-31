@@ -110,7 +110,7 @@ Running via the [Django](https://www.djangoproject.com/) test server might be po
 
 ## Docker
 
-The official Docker image for pyShelf is [`raelonmasters/pyshelf`](https://hub.docker.com/r/raelonmasters/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. Here is an example `docker-compose.yml`:
+The official Docker image for pyShelf is [`pyshelf/pyshelf`](https://hub.docker.com/r/pyshelf/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. Here is an example `docker-compose.yml`:
 
 ```
 version: "3.7"
@@ -126,7 +126,7 @@ services:
             - "pgdata:/var/lib/postgresql/data/"
 
     pyshelf:
-        image: "raelonmasters/pyshelf"
+        image: "pyshelf/pyshelf"
         ports: 
             - "8080:8000"
         volumes:
