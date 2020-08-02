@@ -1,22 +1,22 @@
+import json
 import os
 from base64 import b64decode, b64encode
 from pathlib import Path
 
 from backend.lib.config import Config
+from django.conf import settings
+from django.contrib import auth
+from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth.models import User
 from django.db import models
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render, redirect # render_to_response
-from django.utils.text import slugify
-from django.contrib.auth import login, authenticate, logout
-from django.contrib import auth
-from django.contrib.auth.models import User
-from django.conf import settings
-from django.contrib.auth import get_user_model
-from django.utils.datastructures import MultiValueDictKeyError
-import json
-from .forms import SignUpForm, UserLoginForm
-from .models import Books, Collections, Navigation, Favorites, User
+from django.shortcuts import HttpResponse, redirect, render  # render_to_response
 from django.template.loader import render_to_string
+from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.text import slugify
+
+from .forms import SignUpForm, UserLoginForm
+from .models import Books, Collections, Favorites, Navigation, User
 
 config = Config(Path("../"))
 
@@ -380,6 +380,12 @@ def collections_list():
 
 
 def live(request, **kwargs):
+    """
+    Respond to live requests. Primarily used as a response object for Ajax calls
+    :param GET['hook']: collection_listing, book_details, register
+    :param kwargs['pk']: Primary key of requested object
+    :return: JsonResponse Object, status response code
+    """
     err_txt = {"err": "There is no responder for your request"}
     try: hook = request.GET['hook']
     except MultiValueDictKeyError as e: return JsonResponse(err_txt, status=404)
@@ -387,8 +393,11 @@ def live(request, **kwargs):
     if hook == "collection_listing":
         collections = collections_list()
         return JsonResponse({"data": collections}, status=200)
-    elif hook == "book_details":
-        return JsonResponse({"data": Books.objects.get(pk=kwargs['pk'])}, status=200)
+    elif hook == "details":
+        try: _pk = request.GET['pk']
+        except KeyError as e: return False
+        book = book_details(Books.objects.get(pk=_pk))
+        return JsonResponse({"data": book}, status=200)
     elif hook == "register":
         html = render_to_string('signup.html', {'form': SignUpForm}, request)
         html += render_to_string('login.html', {'form': UserLoginForm}, request)
@@ -397,7 +406,15 @@ def live(request, **kwargs):
 
     return JsonResponse({"data": "Response sent"}, status=200)
 
-
+def book_details(book):
+    return {
+        'title': book.title,
+        'author': book.author,
+        'description': book.description,
+        'tags': book.tags,
+        'rights': book.rights,
+        'pk': book.id
+    }
 def payload(request, query, _set, _limit, _order, **kwargs):
     """
     Return formatted data to template
@@ -445,10 +462,10 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                 _r, _r_len = \
                     _results.order_by(_order)[_set_min:_set_max],\
                     _results.count()
-        else:
+        else:  # No new query was passed
             try:
                 query = request.session['cached_query']  # Is there a cached query?
-                if query == None: raise KeyError
+                if query == None: raise KeyError  # No cached query exists jump to KeyError
                 if request.session['ascending']:
                     _results = Books().generic_search(query)
                 else: _results = Books().generic_search(query).reverse()
@@ -464,7 +481,7 @@ def payload(request, query, _set, _limit, _order, **kwargs):
     _bookstats = Books.objects.all().count()
     if (_r_len): _btotal = str(_r_len)
     else: _btotal = str(_bookstats)
-    
+    # Format the payload and return it to the view
     return {
         "Books": _r,
         "Set": str(_set),
@@ -479,4 +496,3 @@ def payload(request, query, _set, _limit, _order, **kwargs):
         "SearchLen": _r_len,
         "Order": _order,
     }
-
