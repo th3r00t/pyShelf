@@ -22,7 +22,6 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-# Register your models here.
 admin.site.register(Books)
 admin.site.register(Collections)
 admin.site.register(Favorites)

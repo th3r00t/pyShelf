@@ -15,17 +15,17 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
-from django.urls import include, path, re_path
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.shortcuts import HttpResponse
+from django.urls import include, path, re_path
 from interface import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
     path("home", views.home, name="home"),
-    re_path("^live", views.live, name="liverequest"),
+    re_path("^live$", views.live, name="live"),
     path("sort/<_order>", views.index, name="index"),
     path("flip_sort/<_order>", views.flip_sort, name="index"),
     path("download/<pk>", views.download, name="download"),

@@ -393,8 +393,11 @@ def live(request, **kwargs):
     if hook == "collection_listing":
         collections = collections_list()
         return JsonResponse({"data": collections}, status=200)
-    elif hook == "book_details":
-        return JsonResponse({"data": Books.objects.get(pk=kwargs['pk'])}, status=200)
+    elif hook == "details":
+        try: _pk = request.GET['pk']
+        except KeyError as e: return False
+        book = book_details(Books.objects.get(pk=_pk))
+        return JsonResponse({"data": book}, status=200)
     elif hook == "register":
         html = render_to_string('signup.html', {'form': SignUpForm}, request)
         html += render_to_string('login.html', {'form': UserLoginForm}, request)
@@ -403,7 +406,15 @@ def live(request, **kwargs):
 
     return JsonResponse({"data": "Response sent"}, status=200)
 
-
+def book_details(book):
+    return {
+        'title': book.title,
+        'author': book.author,
+        'description': book.description,
+        'tags': book.tags,
+        'rights': book.rights,
+        'pk': book.id
+    }
 def payload(request, query, _set, _limit, _order, **kwargs):
     """
     Return formatted data to template

@@ -185,20 +185,26 @@ $(document).ready(function(){
             success: function(response){
                 // Set the dialog title
                 $('#pop_over_0').dialog({
-                    title: "Collections",
+                    title: response.data['title'],
                     maxHeight: (win_height-100),
                     minWidth: $("#horiz_nav_main").width(),
                     hide: { effect: "blind", duration: 1000 },
                     show: { effect: "blind", duration: 1000 },
-                    position: { my: "top", at: "bottom", of: $("#horiz_nav_main")
+                    position: { my: "center center", at: "center center", of: window
                     }
                 });
                 // clear and create a new container
-                $('#pop_over_0').html('<div id=collections>');
+                $('#pop_over_0').html('<div id=book_expanded>');
                 // Populate the container from response.data
-                $.each(response.data, function(index, value){
-                    $('#collections').append("<div class=collection data='"+value+"/"+$('#_set').val()+"'>"+value+"</div>");
-                });
+                $('#book_expanded').append('<div class=row><div class="col-auto">Title</div><div class="col-auto text-muted">'+response.data['title']+'</div></div>')
+                $('#book_expanded').append('<div class=row><div class="col-auto">Author</div><div class="col-auto text-muted">'+response.data['author']+'</div></div>')
+                if (response.data['description']!== null){
+                    $('#book_expanded').append('<div class=row><div class="col-auto">Expanded Description</div><div class="col-auto text-muted">'+response.data['description']+'</div></div>')
+
+                }
+                if (response.data['tags'] !== null){
+                    $('#book_expanded').append('<div class=row><div class="col-auto">Tags</div><div class="col-auto text-muted">'+response.data['tags']+'</div></div>')
+                }
                 // Close the container
                 $('#pop_over').append('</div>');
                 // Now open this dialog

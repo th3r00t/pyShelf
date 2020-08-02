@@ -17,6 +17,7 @@ class Config:
         """
         _cp = pathlib.Path.joinpath(root, self._fp)
         _data = self.open_file(_cp)
+        breakpoint()
         self.book_path = _data["BOOKPATH"]
         self.TITLE = _data["TITLE"]
         self.VERSION = _data["VERSION"]
@@ -36,6 +37,7 @@ class Config:
         self.allowed_hosts = _data["ALLOWED_HOSTS"]
         self.db_user = _data["USER"]
         self.db_pass = _data["PASSWORD"]
+        self.SECRET = _data["SECRET"]
 
     def open_file(self, _cp):
         """
