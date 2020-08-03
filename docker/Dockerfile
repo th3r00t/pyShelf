@@ -20,7 +20,7 @@ ENTRYPOINT cd src/ \
             && python3 manage.py migrate \
             && python3 manage.py migrate interface \
             && cd .. \
+            && python3 configure \
             && python3 importBooks \
-            && python3 makeCollections \
             && nginx -g "daemon on;" \
             && uwsgi --ini uwsgi.ini
