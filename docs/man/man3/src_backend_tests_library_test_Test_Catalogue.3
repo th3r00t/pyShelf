@@ -1,4 +1,4 @@
-.TH "src.backend.tests.library_test.Test_Catalogue" 3 "Sun Feb 2 2020" "Version 0.4.1" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.TH "src.backend.tests.library_test.Test_Catalogue" 3 "Mon Aug 3 2020" "Version 0.6.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -21,7 +21,13 @@ Inherits \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
 .RI "def \fBscan_folder\fP (self, _path=None)"
 .br
 .ti -1c
-.RI "def \fBextract_metadata\fP (self, book)"
+.RI "def \fBprocess_by_filetype\fP (self, book)"
+.br
+.ti -1c
+.RI "def \fBextract_metadata_epub\fP (self, book)"
+.br
+.ti -1c
+.RI "def \fBextract_metadata_mobi\fP (self, book)"
 .br
 .ti -1c
 .RI "def \fBextract_content\fP (self, book_zip, book)"
@@ -43,7 +49,10 @@ Inherits \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
 
 .in +1c
 .ti -1c
-.RI "def \fBprocess_book\fP (book)"
+.RI "def \fBprocess_epub\fP (book)"
+.br
+.ti -1c
+.RI "def \fBstripTags\fP (source)"
 .br
 .in -1c
 .SS "Public Attributes"
@@ -65,6 +74,15 @@ Inherits \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
 .RI "\fBhtml_regx\fP"
 .br
 .ti -1c
+.RI "\fBtitle_sanitization_regx\fP"
+.br
+.ti -1c
+.RI "\fBtitle_sanitization_lvl2_regx\fP"
+.br
+.ti -1c
+.RI "\fBtitle_sanitization_dirs_regx\fP"
+.br
+.ti -1c
 .RI "\fBroot_dir\fP"
 .br
 .ti -1c
@@ -81,9 +99,9 @@ Inherits \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
 .br
 .in -1c
 .SH "Detailed Description"
-.PP
+.PP 
 .SH "Member Function Documentation"
-.PP
+.PP 
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.compare_shelf_current ( self)\fC [inherited]\fP"
 
 .PP
@@ -92,7 +110,7 @@ Calls storage system, gets list of books stored and compares against files on di
 
 .fi
 .PP
-
+ 
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_content ( self,  book_zip,  book)\fC [inherited]\fP"
 
 .PP
@@ -101,7 +119,7 @@ Opens epub as zip file filters then stores as list any files matching opf_regx
 
 .fi
 .PP
-
+ 
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_cover_html ( self,  book_zip,  book)\fC [inherited]\fP"
 
 .PP
@@ -110,7 +128,7 @@ Opens epub as zip file filters then stores as list any files matching html_regx
 
 .fi
 .PP
-
+ 
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_cover_image ( self,  book_zip,  book)\fC [inherited]\fP"
 
 .PP
@@ -119,8 +137,8 @@ Opens epub as zip file filters then stores as list any files matching cover_regx
 
 .fi
 .PP
-
-.SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_metadata ( self,  book)\fC [inherited]\fP"
+ 
+.SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.extract_metadata_epub ( self,  book)\fC [inherited]\fP"
 
 .PP
 .nf
@@ -130,7 +148,7 @@ book['files'] == list of files from self.process_book(book)
 
 .fi
 .PP
-
+ 
 .SS "def src\&.backend\&.tests\&.library_test\&.Test_Catalogue\&.filter_books ( self)"
 
 .PP
@@ -142,7 +160,7 @@ Proceeds to call process_book
 
 .fi
 .PP
-
+ 
 .PP
 Reimplemented from \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.import_books ( self,  list = \fCNone\fP)\fC [inherited]\fP"
@@ -155,15 +173,15 @@ Iterates over list and inserts new books into database.
 
 .fi
 .PP
-
-.SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.process_book ( book)\fC [static]\fP, \fC [inherited]\fP"
+ 
+.SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.process_epub ( book)\fC [static]\fP, \fC [inherited]\fP"
 
 .PP
 .nf
 Return dictionary of epub file contents
 .fi
 .PP
-
+ 
 .SS "def src\&.backend\&.lib\&.library\&.Catalogue\&.scan_folder ( self,  _path = \fCNone\fP)\fC [inherited]\fP"
 
 .PP
@@ -172,8 +190,8 @@ Scan folder by _path, allows recurisive scanning
 
 .fi
 .PP
-
+ 
 
 .SH "Author"
-.PP
+.PP 
 Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

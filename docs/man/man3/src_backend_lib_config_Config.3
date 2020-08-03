@@ -1,4 +1,4 @@
-.TH "src.backend.lib.config.Config" 3 "Sun Feb 2 2020" "Version 0.4.1" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.TH "src.backend.lib.config.Config" 3 "Mon Aug 3 2020" "Version 0.6.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -16,6 +16,9 @@ Inherited by \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
 .br
 .ti -1c
 .RI "def \fBopen_file\fP (self, _cp)"
+.br
+.ti -1c
+.RI "def \fBdjango_secret\fP (self, _data)"
 .br
 .in -1c
 .SS "Public Attributes"
@@ -66,9 +69,12 @@ Inherited by \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
 .ti -1c
 .RI "\fBdb_pass\fP"
 .br
+.ti -1c
+.RI "\fBSECRET\fP"
+.br
 .in -1c
 .SH "Detailed Description"
-.PP
+.PP 
 
 .PP
 .nf
@@ -76,9 +82,9 @@ Main System Configuration
 
 .fi
 .PP
-
+ 
 .SH "Constructor & Destructor Documentation"
-.PP
+.PP 
 .SS "def src\&.backend\&.lib\&.config\&.Config\&.__init__ ( self,  root)"
 
 .PP
@@ -87,9 +93,9 @@ Initialize main configuration options
 
 .fi
 .PP
-
+ 
 .SH "Member Function Documentation"
-.PP
+.PP 
 .SS "def src\&.backend\&.lib\&.config\&.Config\&.open_file ( self,  _cp)"
 
 .PP
@@ -98,10 +104,10 @@ Opens config.json and reads in configuration options
 
 .fi
 .PP
-
+ 
 .PP
 Reimplemented in \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
 
 .SH "Author"
-.PP
+.PP 
 Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.
