@@ -20,11 +20,12 @@ Follow or influence development @ <p align="center"><b>
 ## Current Features
 
 * Recursive Scanning
-* Fast database access
+* Library Stored in PostgreSql database
 * [Django](https://www.djangoproject.com/) based frontend
 * Basic seaching via a SearchVector of author, title, & file_name fields.
 * Ebook Downloading
 * Collections
+* User System
 
 ## Currently Supported Formats
 
@@ -35,7 +36,7 @@ Follow or influence development @ <p align="center"><b>
 
 # New Features
 
-* .mobi Yep mobis are now a thing!
+* .mobi Support 
 * Result set ordering
     * You can now choose to order your results:
         * Title
@@ -53,16 +54,15 @@ Follow or influence development @ <p align="center"><b>
     * Ascending / Descending result set
     * Display of the result set count, and your current position in the set.
     * A pop over layer to hold things like
-        * [ ] User login
-        * [ ] Control panel
-        * [ ] Book details
-        * Whatever else :)
+        * [x] User login & Registration
+        * [x] Control panel
+        * [x] Book details
 
 ## Installation Example
 
 <a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
 
-## Further Installation & Support Information
+## Installation & Support Information
 
 * [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
@@ -74,24 +74,25 @@ Follow or influence development @ <p align="center"><b>
 
 # Installation
 
-This project is currently targeted towards Network Administrators, and other home
-enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a
+This project is targeted towards Network Administrators, and home enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a
 [PostgreSQL](https://www.postgresql.org/) server.
 
 Once your environment is ready very little is required to get the system up and running:
 * From the main directory
     * setup configurations as discussed in [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
-    * `pip install -r requirements.txt`
-    * `cd src`
-    * `python manage.py migrate`
-    * `cd ..`
-    * `./importbooks`
-    * `./makecollections`
-* Browse to the site as defined in your apache | nginx config
-
-## Installation & Support Information
-
-* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
+    * Run the following commands
+`
+pip install -r requirements.txt
+cd src
+python manage.py makemigrations
+python manage.py makemigration interface
+python manage.py migrate
+python manage.py migrate interface
+cd ..
+./configure
+./importBooks
+`
+Browse to the site as defined in your apache | nginx config
 
 ## Development
 

@@ -45,3 +45,7 @@ class Config:
         with open(str(_cp), "r") as read_file:
             data = json.load(read_file)
         return data
+
+    def django_secret(self, _data):
+        pass
+
