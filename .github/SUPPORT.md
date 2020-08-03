@@ -68,6 +68,8 @@ socket=127.0.0.1:8001
 
 Now you may restart your webserver to apply the changes, and then either run `uwsgi -i uwsgi.ini` fron the project root, or restart your uwsgi service.
 
+### Set Djangos Secret Key
+* Run `./configure` in your project root
 ### Import your books
 * Run `./importBooks` in your project root
 
