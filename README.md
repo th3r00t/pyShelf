@@ -20,7 +20,7 @@ Follow or influence development @ <p align="center"><b>
 ## Current Features
 
 * Recursive Scanning
-* Library Stored in PostgreSql database
+* PostgreSql Library
 * [Django](https://www.djangoproject.com/) based frontend
 * Basic seaching via a SearchVector of author, title, & file_name fields.
 * Ebook Downloading
@@ -58,13 +58,11 @@ Follow or influence development @ <p align="center"><b>
         * [x] Control panel
         * [x] Book details
 
-## Installation Example
-
-<a href="https://vimeo.com/382292764" target="_blank">pyShelf Installation Video</a>
-
 ## Installation & Support Information
 
-* [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
+# Installation
+
+This project is targeted towards Network Administrators, and home enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a [PostgreSQL](https://www.postgresql.org/) server. For those unfamiliar with the required setup please see the docker section below.
 
 ### Pre-req Dependencies
 
@@ -72,40 +70,31 @@ Follow or influence development @ <p align="center"><b>
 * python3
 * pip
 
-# Installation
-
-This project is targeted towards Network Administrators, and home enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a
-[PostgreSQL](https://www.postgresql.org/) server.
+setup configurations as discussed in [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
 
 Once your environment is ready very little is required to get the system up and running:
-* From the main directory
-    * setup configurations as discussed in [SUPPORT.md](https://github.com/th3r00t/pyShelf/blob/development/.github/SUPPORT.md)
-    * Run the following commands
-`
-pip install -r requirements.txt
-cd src
-python manage.py makemigrations
-python manage.py makemigration interface
-python manage.py migrate
-python manage.py migrate interface
-cd ..
-./configure
-./importBooks
-`
+
+From the main directory
+
+`pip install -r requirements.txt`
+
+`cd src`
+
+`python manage.py makemigrations`
+
+`python manage.py makemigration interface`
+
+`python manage.py migrate`
+
+`python manage.py migrate interface`
+
+`cd ..`
+
+`./configure`
+
+`./importBooks`
+
 Browse to the site as defined in your apache | nginx config
-
-## Development
-
-* [`pre-commit`](https://pre-commit.com/)
-_Before developing, run `pre-commit install` See the [documentation](https://pre-commit.com/) for more information._
-
-* ['Doxygen'](http://www.doxygen.nl/)
-_Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting._
-
-* ['sem-ver'](https://semver.org)
-_Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly._
-
-## Configuration
 
 Running via the [Django](https://www.djangoproject.com/) test server might be possible, albeit not recomended.
 
@@ -173,6 +162,11 @@ The Docker image is still new, so there could still be some issues and missing f
 
 ### Terminal Backend for catalogue maintenance
 
-### Calculate page count from total characters
+## Development
 
-  * (Thanks to @Fireblend for the idea) https://github.com/th3r00t/pyShelf/issues/3
+* [`pre-commit`](https://pre-commit.com/)
+_Before developing, run `pre-commit install` See the [documentation](https://pre-commit.com/) for more information._
+* ['Doxygen'](http://www.doxygen.nl/)
+_Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting._
+* ['sem-ver'](https://semver.org)
+_Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly._
