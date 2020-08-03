@@ -17,7 +17,6 @@ class Config:
         """
         _cp = pathlib.Path.joinpath(root, self._fp)
         _data = self.open_file(_cp)
-        breakpoint()
         self.book_path = _data["BOOKPATH"]
         self.TITLE = _data["TITLE"]
         self.VERSION = _data["VERSION"]

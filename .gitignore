@@ -130,6 +130,8 @@ config.backup.json
 uwsgi.ini
 installer.log
 pyshelf_nginx.conf
+!docker/pyshelf_nginx.conf
+.env
 tags
 TAGS
 config.json
