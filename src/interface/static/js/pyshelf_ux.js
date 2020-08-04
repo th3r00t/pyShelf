@@ -88,11 +88,7 @@ $(document).ready(function(){
         window.location.href="/flip_sort/"+$("#_order").val();
     });
     $('#search_string').html("<i> "+$('#_search').val().substr(0,15)+"</i>");
-    
     $('#pop_over_0').dialog({ autoOpen: false });
-    resize_search();
-    $(window).resize(resize_search(win_width));
-
     $('#pop_over_0').on('click', 'div.collection', function(){
         window.location.href = '/show_collection/'+$(this).attr('data');
     });
@@ -102,7 +98,6 @@ $(document).ready(function(){
             $('#pop_over_0').dialog("close");
             return;
         }
-        customlog(['Login Clicked']);
         $.ajax({
             type: "GET", url: "/live", data: {hook: 'register'},
             success: function (response) {
@@ -135,8 +130,42 @@ $(document).ready(function(){
         });
     });
     $('#btn_logout').on('click', function() {
-        window.location.href = '/logout';
+       //window.location.href = '/logout';
+        var isopen = $('#pop_over_0').dialog("isOpen");
+        if (isopen) {
+            $('#pop_over_0').dialog("close");
+            return;
+        }
+        $('#pop_over_0').dialog({
+            title: "User Controls",
+            maxHeight: (win_height - 100),
+            minWidth: $("#horiz_nav_main").width(),
+            hide: {effect: "blind", duration: 1000},
+            show: {effect: "blind", duration: 1000},
+            position: {
+                my: "top", at: "bottom", of: $("#horiz_nav_main")
+            }
+        });
+        // clear and create a new container
+        $('#pop_over_0').html('<div id=usercp class="mx-auto">');
+        // Populate the container from response.data
+        $('#usercp').append('<div class="row" id="usercp-inner">');
+        $('#usercp-inner').append(
+            '<div class="col-auto" id="usercp-col1">' +
+            '<button type="submit" class="btn-sm btn-secondary import-btn"><i class="fas fa-file-import"></i>&nbsp; Import Books</button>' +
+            '</div>' +
+            '<div class="col-auto" id="usercp-col2">' +
+            '<button type="submit" class="btn-sm btn-secondary logout-btn"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</button>' +
+            '</div>'
+        );
+        $('#usercp-inner').append('</div>');
+        $('#usercp').append('</div>');
+        // Close the container
+        $('#pop_over').append('</div>');
+        // Now open this dialog
+        $('#pop_over_0').dialog("open");
     });
+    $('.logout-btn').on('click', function(){window.location.href = '/logout'});
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen");
         if (isopen){
@@ -215,6 +244,8 @@ $(document).ready(function(){
             }
         });
     });
+    resize_search();
+    $(window).resize(resize_search(win_width));
 });
 function resize_search(win_width){
     if (win_width <= 1025){

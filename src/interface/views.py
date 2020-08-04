@@ -402,6 +402,8 @@ def live(request, **kwargs):
         html = render_to_string('signup.html', {'form': SignUpForm}, request)
         html += render_to_string('login.html', {'form': UserLoginForm}, request)
         return JsonResponse({"data": html})
+    elif hook == "update_books":
+        print("Update Books")
     else: return JsonResponse(err_txt, status=404)
 
     return JsonResponse({"data": "Response sent"}, status=200)
