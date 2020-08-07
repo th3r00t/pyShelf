@@ -51,6 +51,7 @@ class Catalogue:
                 self.file_list.append(self.scan_folder(_path))
             else:
                 self.file_list.append(_path)
+        print(_path+"\n")
 
     def filter_books(self):
         """
@@ -264,18 +265,24 @@ class Catalogue:
         c = set.difference(a, b)
         return c
 
-    def import_books(self, list=None):
+    def import_books(self, list=None, **kwargs):
         """
         Main entry point for import operations.
         Gets a list of new files via compare_shelf_current.
         Iterates over list and inserts new books into database.
         """
-        # TODO Refactor metadata extraction into process_book \
-        # call to more easily handle additional formats
+        try:
+            fsocket = kwargs['socket']
+        except KeyError:
+            fsocket = '/dev/null'
         book_list = self.compare_shelf_current()
         db = Storage(self.config)
         for book in book_list:
             book = self.process_by_filetype(book)
+            with open(fsocket, 'w') as _socket:
+                _socket.write(book[0])
+            _socket.close()
+            breakpoint()
             db.insert_book(book)
         inserted = db.commit()
         if inserted is not True:

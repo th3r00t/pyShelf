@@ -21,17 +21,17 @@ $(document).ready(function(){
     var s_string = "search by Title, Author, Tags, or Collections";
     customlog([cmp_height]);
     $(".search_submit").click(function(){
-            var query = $('.nav_search').val();
-            console.log(query);
-            window.location.href = '/search/'+query;
+        var query = $('.nav_search').val();
+        console.log(query);
+        window.location.href = '/search/'+query;
     });
     $('.nav_search').on('keypress', function (e) {
-            if(e.which === 13){
-                    $(this).attr("disabled", "disabled");
-                    var query = $('.nav_search').val();
-                    window.location.href = '/search/'+query;
-                    $(this).removeAttr("disabled");
-            }
+        if(e.which === 13){
+            $(this).attr("disabled", "disabled");
+            var query = $('.nav_search').val();
+            window.location.href = '/search/'+query;
+            $(this).removeAttr("disabled");
+        }
     });
     $('.nav_link').on('mouseover', function (e){
         var popover_str = $(this).attr('alt');
@@ -59,13 +59,13 @@ $(document).ready(function(){
     });
     $('.input_box').focusout(function(){
         if ($(this).hasClass('nav_search') && $(this).val() == "") {
-           $(this).attr("value", s_string);
+            $(this).attr("value", s_string);
         }
         if ($(this).attr("id") == "username" && $(this).val() == "") {
-           $(this).attr("value", u_string);
+            $(this).attr("value", u_string);
         }
         if ($(this).attr("id") == "password" && $(this).val() == "") {
-           $(this).attr("value", p_string);
+            $(this).attr("value", p_string);
         }
     });
     $('#btn_login').on('click', function(){
@@ -130,7 +130,7 @@ $(document).ready(function(){
         });
     });
     $('#btn_logout').on('click', function() {
-       //window.location.href = '/logout';
+        //window.location.href = '/logout';
         var isopen = $('#pop_over_0').dialog("isOpen");
         if (isopen) {
             $('#pop_over_0').dialog("close");
@@ -165,7 +165,39 @@ $(document).ready(function(){
         // Now open this dialog
         $('#pop_over_0').dialog("open");
     });
-    $('.logout-btn').on('click', function(){window.location.href = '/logout'});
+    $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
+    $(document).on('click', '.import-btn', function(){
+        $.ajax({
+            type: "GET", url: "/live", data: {hook: 'import_books'},
+            success: function (response) {
+                // Set the dialog title
+                $('#pop_over_0').dialog({
+                    title: "User Controls",
+                    maxHeight: (win_height - 100),
+                    minWidth: $("#horiz_nav_main").width(),
+                    hide: {effect: "blind", duration: 1000},
+                    show: {effect: "blind", duration: 1000},
+                    position: {
+                        my: "top", at: "bottom", of: $("#horiz_nav_main")
+                    }
+                });
+                // clear and create a new container
+                $('#pop_over_0').html('<div id=usercp class="mx-auto">');
+                // Populate the container from response.data
+                $('#usercp').append('<div class="row" id="usercp-inner">');
+                $('#usercp-inner').append(response.data);
+                $('#usercp-inner').append('</div>');
+                $('#usercp').append('</div>');
+                // Close the container
+                $('#pop_over').append('</div>');
+                // Now open this dialog
+                $('#pop_over_0').dialog("open");
+            },
+            error: function (response) {
+                customlog(["Failure", response]);
+            }
+        });
+    });
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen");
         if (isopen){

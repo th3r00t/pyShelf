@@ -1,12 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import os
 import time
-
+import asyncio
+import websockets
 from .config import Config
 from .storage import Storage
-
-# config = Config()
-# Storage = Storage()
 
 
 class InitFiles:
@@ -34,51 +32,24 @@ class InitFiles:
             f.close()
 
 
-class BookDisplay:
-    """All functions related to displaying book information in the HTML UI"""
+class Server:
+    """
+    Main Server Container
+    :TODO: Document this
+    """
 
-    def __init__(self, **kwargs):
-        """
-        Initialize class variables
-        :return: None
-        """
-        self.books_per_page = None
-        self.current_page = 0
-        self.thumbnail_size = [200, 300]
-        self.thumbnail_scale = 1
-        self.total_pages = None
+    def __init__(self):
+        self.loop = asyncio.get_event_loop()
+        self.instance = None
+
+    async def entrypoint(self, websocket, path):
+        _str = await websocket.recv()
+        greeting = f"{_str}"
+        await websocket.send(greeting)
+
+    async def start(self):
         try:
-            self.screen_size = kwargs["screen_size"]
+            self.instance = await websockets.serve(self.entrypoint, "localhost", 1337)
+            return True
         except Exception:
-            self.screen_size = [900, 600]
-
-    def nextPage(self):
-        """
-        ## TODO Remove me
-        Goto next book page
-        :return: new current_page
-        """
-        self.current_page += 1
-        return self.current_page
-
-    def previousPage(self):
-        """
-        ## TODO Remove me
-        Goto previous book page
-        :return: new current_page
-        """
-        self.current_page -= 1
-        return self.current_page
-
-    def booksPerPage(self, screen_size):
-        """
-        ## TODO Remove me
-        Set books per page
-        :param screen_size: Array containing x,y pixel sizes
-        :return: self.books_per_page
-        """
-        x = (self.thumbnail_size[0] * self.thumbnail_scale) + 10
-        y = (self.thumbnail_size[1] * self.thumbnail_scale) + 10
-        self.books_per_page = int(self.screen_size[0] // x) * int(
-            self.screen_size[1] // y
-        )
+            raise
