@@ -7,7 +7,6 @@ from base64 import b64decode, b64encode
 from pathlib import Path
 
 from backend.lib.config import Config
-from backend.lib.hooks import ACatalogue
 
 from django.conf import settings
 from django.contrib import auth

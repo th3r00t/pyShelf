@@ -29,6 +29,7 @@ django-widget-tweaks = "*"
 Pillow = "*"
 Django = "*"
 uWSGI = "*"
+pudb = "*"
 
 [requires]
 python_version = "3.8"
