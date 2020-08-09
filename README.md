@@ -78,6 +78,8 @@ From the main directory
 
 `pip install -r requirements.txt`
 
+`./configure`
+
 `cd src`
 
 `python manage.py makemigrations`
@@ -90,9 +92,9 @@ From the main directory
 
 `cd ..`
 
-`./configure`
-
 `./importBooks`
+
+`uwsgi --ini uwsgi.ini`
 
 Browse to the site as defined in your apache | nginx config
 
@@ -113,7 +115,7 @@ services:
             - "POSTGRES_USER=pyshelf"
             - "POSTGRES_DB=pyshelf"
         volumes:
-            - "pgdata:/var/lib/postgresql/data/"
+            - "db_data:/var/lib/postgresql/data/"
 
     pyshelf:
         image: "pyshelf/pyshelf"
@@ -125,7 +127,7 @@ services:
             - db
 
 volumes:
-    pgdata:
+    db_data:
 ```
 
 You'll also need a `.env` file wich sets the `LOCAL_BOOK_DIR` variable, for example:
@@ -134,7 +136,7 @@ You'll also need a `.env` file wich sets the `LOCAL_BOOK_DIR` variable, for exam
 LOCAL_BOOK_DIR=/home/someone/books
 ```
 
-The Docker image is still new, so there could still be some issues and missing features. Feel free to create a bug-issue when you encounter a bug. Development of the Docker image is discussed in https://github.com/th3r00t/pyShelf/pull/53 . Currently the database needs to be [PostgreSQL](https://www.postgresql.org/) with the account details shown in the example `docker-compose.yml` .
+The Docker image is still new, so there could still be some issues and missing features. Feel free to create a bug-issue when you encounter a bug. Development of the Docker image is discussed in https://github.com/th3r00t/pyShelf/pull/53 . Currently the database needs to be [PostgreSQL](https://www.postgresql.org/) with the account details shown in the example `docker-compose.yml`. It should become db agnostic in the future.
 
 ## In Progress
 
