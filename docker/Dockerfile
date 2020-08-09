@@ -5,7 +5,7 @@
 
 # Use the following commands to build and push the docker image to Dockerhub:
 #
-#   docker build -t pyshelf/pyshelf -f .\docker\Dockerfile .
+#   docker build -t pyshelf/pyshelf -f ./docker/Dockerfile .
 #   docker login
 #   docker push pyshelf/pyshelf
 
