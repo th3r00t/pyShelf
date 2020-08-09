@@ -37,6 +37,7 @@ class Config:
         self.db_user = _data["USER"]
         self.db_pass = _data["PASSWORD"]
         self.SECRET = _data["SECRET"]
+        self.debug_build_mode = (_data["SECRET"].casefold() == "debug")
 
     def open_file(self, _cp):
         """

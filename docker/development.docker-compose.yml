@@ -6,7 +6,7 @@ version: "3.7"
 
 # For development, use the following command in the root folder:
 #    
-#   docker-compose -f .\docker\development.docker-compose.yml up --build
+#   docker-compose -f ./docker/development.docker-compose.yml up --build
 
 services:
     db:
