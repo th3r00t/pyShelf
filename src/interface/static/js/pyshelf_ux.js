@@ -172,8 +172,8 @@ $(document).ready(function(){
     });
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
     $(document).on('click', '.import-btn', function(){
-        let socket = PyshelfServer(server);
-        ping(socket);
+        let connection = PyshelfServer(server);
+        //ping(socket);
     });
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen");
@@ -271,9 +271,9 @@ function resize_search(win_width){
 function OpenSocket(address) {
     return new Promise(resolve => {
         const connection = new WebSocket(address);
-        connection.onconnect = function(e){
-            
-            ping(connection);
+        connection.onopen = function(e){
+            console.log('--[ Connection Established ]')
+            ping(connection)
         };
         connection.onmessage = function(rcvd){
             sock_rx(rcvd) 
@@ -283,9 +283,7 @@ function OpenSocket(address) {
 }
 async function PyshelfServer(address){
     console.log("--[ Starting Connection ]")
-    connection = await OpenSocket(address);
-    console.log('--[ Connection Established ]')
-    return connection
+    return await OpenSocket(address)
 }
 function sock_rx(rcvd) {
     if (rcvd.data == 'pong') { pong(rcvd.data) }
@@ -297,8 +295,9 @@ function sock_status(connection) {
     return [buffered, ready];
 }
 function ping(connection) {
-    connection.send('ping')
+    connection.send('ping');
+    console.log("[ping]>>");
 }
 function pong(rcvd) {
-    console.log("<<["+rcvd.data+"] "+rcvd.data)
+    console.log("<<["+rcvd+"]")
 }

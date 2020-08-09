@@ -21,8 +21,11 @@ async def echo(websocket, path):
             tx = pong(message)
         await websocket.send(tx)
 
+
 def pong(message):
+    print('Ping Received')
     return "pong"
+
 
 start_server = websockets.serve(echo, "127.0.0.1", 1337)
 
