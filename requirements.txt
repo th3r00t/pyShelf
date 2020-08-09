@@ -21,3 +21,4 @@ mobi-python
 uwsgi
 jsonpickle
 django-widget-tweaks
+pudb
