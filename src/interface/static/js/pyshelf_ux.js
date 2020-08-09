@@ -172,7 +172,7 @@ $(document).ready(function(){
     });
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
     $(document).on('click', '.import-btn', function(){
-        let socket = PyshelfSocket(server);
+        let socket = PyshelfServer(server);
         ping(socket);
     });
     $('#coll_button').on('click', function(){
@@ -268,27 +268,36 @@ function resize_search(win_width){
     }
 }
 
-function PyshelfSocket(address) {
-    const connection = new WebSocket(address);
-    connection.onconnect = function(e){
-       ping(connection);
-    };
-    connection.onmessage = function(rcvd){
-       sock_rx(rcvd) 
-    };
-    return connection;
+function OpenSocket(address) {
+    return new Promise(resolve => {
+        const connection = new WebSocket(address);
+        connection.onconnect = function(e){
+            
+            ping(connection);
+        };
+        connection.onmessage = function(rcvd){
+            sock_rx(rcvd) 
+        };
+        resolve(connection);
+    });
+}
+async function PyshelfServer(address){
+    console.log("--[ Starting Connection ]")
+    connection = await OpenSocket(address);
+    console.log('--[ Connection Established ]')
+    return connection
 }
 function sock_rx(rcvd) {
     if (rcvd.data == 'pong') { pong(rcvd.data) }
     else { console.log("<<[rx] :"+rcvd.data) }
 }
-function sock_status(sock) {
-    let buffered = sock.connection.bufferedAmmount;
-    let ready = sock.connection.readyState;
+function sock_status(connection) {
+    let buffered = connection.bufferedAmmount;
+    let ready = connection.readyState;
     return [buffered, ready];
 }
-function ping(sock) {
-    sock.send('ping')
+function ping(connection) {
+    connection.send('ping')
 }
 function pong(rcvd) {
     console.log("<<["+rcvd.data+"] "+rcvd.data)
