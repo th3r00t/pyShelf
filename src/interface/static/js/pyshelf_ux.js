@@ -171,9 +171,8 @@ $(document).ready(function(){
         $('#pop_over_0').dialog("open");
     });
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
-    $(document).on('click', '.import-btn', function(){
-        let connection = PyshelfServer(server);
-        //ping(socket);
+    $(document).on('click', '.import-btn', async function(){
+        let connection = await ImportBooks(server);
     });
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen");
@@ -281,13 +280,30 @@ function OpenSocket(address) {
         resolve(connection);
     });
 }
+
+function ImportBooks(address) {
+    return new Promise(resolve => {
+        const connection = new WebSocket(address);
+        connection.onopen = function(e){
+            sock_tx(connection,'importBooks')
+        };
+        connection.onmessage = function(rcvd){
+            sock_rx(rcvd)
+        };
+        resolve(connection);
+    });
+}
+
 async function PyshelfServer(address){
     console.log("--[ Starting Connection ]")
     return await OpenSocket(address)
 }
 function sock_rx(rcvd) {
-    if (rcvd.data == 'pong') { pong(rcvd.data) }
+    if (rcvd.data == 'pong') { pong(rcvd) }
     else { console.log("<<[rx] :"+rcvd.data) }
+}
+function sock_tx(connection, msg) {
+   connection.send(msg);
 }
 function sock_status(connection) {
     let buffered = connection.bufferedAmmount;

@@ -19,6 +19,9 @@ async def echo(websocket, path):
         elif message == "ping":
             print("<<[{}]".format(message))
             tx = pong(message)
+        elif message == "importBooks":
+            print("<<[{} cmd rcvd]\n Starting import".format(message))
+            tx = "Starting Import . . ."
         await websocket.send(tx)
 
 
