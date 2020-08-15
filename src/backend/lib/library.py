@@ -13,7 +13,6 @@ from .api_hooks import DuckDuckGo
 from .config import Config
 from .storage import Storage
 
-# config = Config()
 
 
 class Catalogue:
@@ -51,6 +50,7 @@ class Catalogue:
                 self.file_list.append(self.scan_folder(_path))
             else:
                 self.file_list.append(_path)
+        self.config.logger.info(_path)
         print(_path+"\n")
 
     def filter_books(self):
@@ -73,6 +73,7 @@ class Catalogue:
         """
 
     def process_by_filetype(self, book):
+        
         print(str(book), end='\r', flush=True)
         if book.endswith(".epub"):
             epub = self.process_epub(book)
@@ -282,7 +283,6 @@ class Catalogue:
             with open(fsocket, 'w') as _socket:
                 _socket.write(book[0])
             _socket.close()
-            breakpoint()
             db.insert_book(book)
         inserted = db.commit()
         if inserted is not True:

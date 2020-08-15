@@ -30,6 +30,7 @@ Pillow = "*"
 Django = "*"
 uWSGI = "*"
 pudb = "*"
+loguru = "*"
 
 [requires]
 python_version = "3.8"

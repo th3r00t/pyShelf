@@ -173,6 +173,17 @@ $(document).ready(function(){
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
     $(document).on('click', '.import-btn', async function(){
         let connection = await ImportBooks(server);
+        popover.html('<div id="psout" class="container">');
+        let psout = $('#psout')
+        psout.append('<div class="rox"><div class="col import_status">Importing Books</div></div>')
+        psout.append('<div class="row import_progress"></div>')
+        let i_container = $('.import_progress')
+        i_container.append('<div class="col progress_container"><div class="progressbar"></div>');
+        $('.progressbar').progressbar({
+            classes: {"ui-progressbar": "highlight"},
+            value: false
+        });
+        $(".progressbar").append("</div>")
     });
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen");
@@ -300,6 +311,11 @@ async function PyshelfServer(address){
 }
 function sock_rx(rcvd) {
     if (rcvd.data == 'pong') { pong(rcvd) }
+    else if (rcvd.data == 'complete') {
+        $('.progressbar').progressbar("option", "value", "True");
+        $('.import_status').html('Import Complete')
+        console.log(rcvd.data)
+    }
     else { console.log("<<[rx] :"+rcvd.data) }
 }
 function sock_tx(connection, msg) {

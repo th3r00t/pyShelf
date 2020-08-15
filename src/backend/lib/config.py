@@ -1,7 +1,6 @@
 import json
-import os
 import pathlib
-import sys
+from loguru import logger
 
 
 class Config:
@@ -17,6 +16,8 @@ class Config:
         """
         _cp = pathlib.Path.joinpath(root, self._fp)
         _data = self.open_file(_cp)
+        self.root = root
+        self.logger = self.get_logger()
         self.book_path = _data["BOOKPATH"]
         self.TITLE = _data["TITLE"]
         self.VERSION = _data["VERSION"]
@@ -30,7 +31,6 @@ class Config:
         self.file_array = [
             self.book_shelf,
         ]
-        self.root = root
         self.auto_scan = True
 
         self.allowed_hosts = _data["ALLOWED_HOSTS"]
@@ -38,7 +38,13 @@ class Config:
         self.db_pass = _data["PASSWORD"]
         self.SECRET = _data["SECRET"]
 
-    def open_file(self, _cp):
+    def get_logger(self):
+        _logger = logger
+        _logger.add(pathlib.PurePath(self.root, 'data','pyShelf_{time}.log'), rotation="10 MB", loop=None)
+        return _logger
+
+    @staticmethod
+    def open_file(_cp):
         """
         Opens config.json and reads in configuration options
         """
@@ -48,4 +54,3 @@ class Config:
 
     def django_secret(self, _data):
         pass
-
