@@ -6,13 +6,11 @@ import re
 import zipfile
 
 from bs4 import BeautifulSoup
-
 from mobi import Mobi
 
 from .api_hooks import DuckDuckGo
 from .config import Config
 from .storage import Storage
-
 
 
 class Catalogue:
@@ -50,8 +48,6 @@ class Catalogue:
                 self.file_list.append(self.scan_folder(_path))
             else:
                 self.file_list.append(_path)
-        self.config.logger.info(_path)
-        print(_path+"\n")
 
     def filter_books(self):
         """
@@ -65,7 +61,7 @@ class Catalogue:
         try:
             self.books = list(filter(regx.search, filter(None, self.file_list)))
         except TypeError as e:
-            print(e)
+            self.config.logger.error(e)
         """
         for book in self.books:
             self._book_list_expanded[book] = self.process_by_filetype(book)
@@ -73,8 +69,6 @@ class Catalogue:
         """
 
     def process_by_filetype(self, book):
-        
-        print(str(book), end='\r', flush=True)
         if book.endswith(".epub"):
             epub = self.process_epub(book)
             return self.extract_metadata_epub(epub)
@@ -210,6 +204,7 @@ class Catalogue:
             #    ftags = ftags.replace(" ", ",")
         except KeyError:
             ftags = None
+
         return [
             title,
             author,
@@ -286,7 +281,6 @@ class Catalogue:
             db.insert_book(book)
         inserted = db.commit()
         if inserted is not True:
-            print(inserted)
-            if input("Continue ? y/n") == "y":
-                pass
+            self.config.logger.error("Failed storing {} in database".format(str(book)))
+            pass
         db.close()

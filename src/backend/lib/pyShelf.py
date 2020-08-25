@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
+import asyncio
 import os
 import time
-import asyncio
+
 import websockets
+
 from .config import Config
 from .storage import Storage
 
@@ -11,16 +13,11 @@ class InitFiles:
     """First run file creation operations"""
 
     def __init__(self, file_array):
-        print("Checking for program files")
         for _pointer in file_array:
             time.sleep(1)
             if not os.path.isfile(_pointer):
                 self.CreateFile(_pointer)
-                print("%s created" % _pointer)
-            else:
-                print("%s present" % _pointer)
         time.sleep(1)
-        print("File check complete.")
 
     def CreateFile(self, _pointer):
         """

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 import asyncio
-import websockets
 import sys
 from pathlib import Path
-from loguru import logger
-from src.backend.lib.config import Config
-from src.backend.pyShelf_ScanLibrary import execute_scan
-from src.backend.pyShelf_MakeCollections import MakeCollections
 
+import websockets
+from loguru import logger
+
+from src.backend.lib.config import Config
+from src.backend.pyShelf_MakeCollections import MakeCollections
+from src.backend.pyShelf_ScanLibrary import execute_scan
 
 root = Path.cwd()
 config = Config(root)
@@ -18,34 +19,27 @@ tx = None
 
 
 async def runImport():
-    execute_scan(PRG_PATH)
-    MakeCollections(PRG_PATH)
+    execute_scan(PRG_PATH, config=config)
+    MakeCollections(PRG_PATH, config=config)
     return "Import Complete"
 
 
 async def socketio(websocket, path):
     async for message in websocket:
-        if message == "import":
-            print("message from Con1 >> {}".format(message))
-            tx = "ack->{}".format(message)
-        elif message == "Connection 2":
-            print("message from Con2 >> {}".format(message))
-            tx = "ack->{}".format(message)
-        elif message == "ping":
-            print("<<[{}]".format(message))
+        if message == "ping":
+            config.logger.info("<< Ping")
             tx = pong(message)
         elif message == "importBooks":
-            print("<<[{} cmd rcvd]\n Starting import".format(message))
+            config.logger.info("Starting Import")
             tx = "Starting Import . . ."
             await websocket.send(tx)
             await runImport()
             tx = "complete"
-
         await websocket.send(tx)
 
 
 def pong(message):
-    print('Ping Received')
+    config.logger.info(">> Pong")
     return "pong"
 
 
