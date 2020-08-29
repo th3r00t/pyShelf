@@ -172,6 +172,14 @@ $(document).ready(function(){
     });
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
     $(document).on('click', '.import-btn', async function(){
+        $.ajax({
+            type: "GET", url: "/live", data: {hook: 'import_books'},
+            success: function (response) {
+            },
+            error: function (response) {
+                customlog(["Failure", response]);
+            }
+        });
         let connection = await ImportBooks(server);
         popover.html('<div id="psout" class="container">');
         let psout = $('#psout')
@@ -286,7 +294,7 @@ function OpenSocket(address) {
             ping(connection)
         };
         connection.onmessage = function(rcvd){
-            sock_rx(rcvd) 
+            sock_rx(rcvd)
         };
         resolve(connection);
     });

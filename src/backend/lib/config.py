@@ -1,5 +1,6 @@
 import json
 import pathlib
+import re
 
 from loguru import logger
 
@@ -14,10 +15,10 @@ class Config:
         """
         Initialize main configuration options
         """
+        self.root = root
         self._fp = "config.json"
         self._cp = pathlib.Path.joinpath(root, self._fp)
         self._data = self.open_file()
-        self.root = root
         self.logger = self.get_logger()
         self.book_path = self._data["BOOKPATH"]
         self.TITLE = self._data["TITLE"]
@@ -52,6 +53,11 @@ class Config:
         with open(str(self._cp), "r") as read_file:
             data = json.load(read_file)
         return data
+
+    def path(self):
+        rstr = "pyShelf/src"
+        r = re.template(rstr)
+        _pathre = re.match("pyShelf/src")
 
     def django_secret(self):
         pass

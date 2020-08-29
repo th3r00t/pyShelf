@@ -1,13 +1,14 @@
+import asyncio
 import json
 import os
+import socket
+import threading
 import time
-import asyncio
-
 from base64 import b64decode, b64encode
 from pathlib import Path
 
 from backend.lib.config import Config
-
+from backend.lib.pyShelf import Server
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth import authenticate, get_user_model, login, logout
@@ -23,7 +24,7 @@ from .forms import SignUpForm, UserLoginForm
 from .models import Books, Collections, Favorites, Navigation, User
 
 config = Config(Path("../"))
-
+server = None
 
 
 def index(request, query=None, _set=1, _limit=None, _order='title'):
@@ -76,7 +77,7 @@ def userlogin(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None: 
+        if user is not None:
             login(request, user)
             user.save()
             return redirect('home')
@@ -89,8 +90,8 @@ def userlogout(request):
     return redirect('home')
 
 
-def home(request, query=None, _set=1, _limit=None, _order='title'): 
-    """ 
+def home(request, query=None, _set=1, _limit=None, _order='title'):
+    """
     Reset Search Queries & Return Home
     """
     _payload = payload(request, query, _set, _limit, _order, reset=True)
@@ -148,7 +149,7 @@ def show_collection(request, query, _set, _limit=None, _order='title', **kwargs)
     _bookstats = len(Collections().generic_search(query))
     if (_r_len): _btotal = str(_r_len)
     else: _btotal = str(_bookstats)
-    
+
     return render(
        request,
        "index.html",
@@ -235,7 +236,7 @@ def book_set(request, _order, _limit=None, _set=1, _flip=False, **kwargs):
     _set_min = _set_max - _limit
     if _flip:
         books = BookObject.order_by(_order).reverse()[_set_min:_set_max]
-    else: 
+    else:
         books = BookObject.order_by(_order)[_set_min:_set_max]
     return mark_favorites(request, books)
 
@@ -410,14 +411,28 @@ def live(request, **kwargs):
         return JsonResponse({"data": html})
 
     elif hook == "import_books":
+        """TODO: Spawn websocket server"""
         breakpoint()
-        filename = "../data/{}-{}.sock".format(request.user.username, time.strftime("%H:%M:%S"))
-        catalogue = ACatalogue()
-        async def responder(socket):
-            await catalogue.import_books(socket=socket)
-            return JsonResponse({"data": filename})
-        asyncio.run(responder(filename))
-        
+        ###################################################
+        # async def responder(socket):                    #
+        #     await catalogue.import_books(socket=socket) #
+        #     return JsonResponse({"data": None})         #
+        #     pass                                        #
+        # asyncio.run(responder(None))                    #
+        ###################################################
+        def test_connection(host):
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.connect(host)
+                s.sendall(b"ping")
+                data = s.recv(1024)
+            return data
+        _host = ("127.0.0.1", 1337)
+        try:
+            _server_response = test_connection(_host)
+        except ConnectionRefusedError as e:
+            config.logger.info(e)
+            if e.errno == 111:
+                request.server = Server(Path.absolute(Path.cwd().parent)).start()
 
     else: return JsonResponse(err_txt, status=404)
 
@@ -494,7 +509,7 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                     _r = book_set(request, _order, _limit, _set, False, **kwargs)
                 else: _r = book_set(request, _order, _limit, _set, True, **kwargs)
                 _r_len, _search = None, None
-    
+
     _bookstats = Books.objects.all().count()
     if (_r_len): _btotal = str(_r_len)
     else: _btotal = str(_bookstats)
@@ -513,3 +528,6 @@ def payload(request, query, _set, _limit, _order, **kwargs):
         "SearchLen": _r_len,
         "Order": _order,
     }
+
+def start_server(request, **kwargs):
+   pass
