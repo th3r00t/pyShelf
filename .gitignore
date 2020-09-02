@@ -11,6 +11,7 @@ GRTAGS
 GTAGS
 data/shelf.json
 package-lock.json
+Pipfile.lock
 .#*
 frontend/interface/migrations/*
 src/backend/data/*.json

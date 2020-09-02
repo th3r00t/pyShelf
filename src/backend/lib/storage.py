@@ -1,6 +1,7 @@
 #!/usr/bin/python
-import re
 import datetime
+import re
+
 import psycopg2
 
 
@@ -34,7 +35,7 @@ class Storage:
                     set_perms.cursor.execute(_q)
                     set_perms.close()
                 except Exception as e:
-                    print(e)
+                    self.config.logger.error(e)
                     set_perms.close()
 
     def create_tables(self):
@@ -71,11 +72,12 @@ class Storage:
                     book[4],  # descr
                     book[5],  # ident
                     book[6],  # publisher
-                    datetime.datetime.now(), 
+                    datetime.datetime.now(),
                     book[8],  # rights
                     book[9],  # tags
                 ),
             )
+            self.config.logger.info(book[0])
             return True
         except Exception as e:
             if e.pgcode == '22007':  # psycopg2's error code for invalid date
@@ -92,7 +94,7 @@ class Storage:
         try:
             x = self.cursor.fetchall()
         except psycopg2.Error as e:
-            print(e)
+            self.config.logger.error(e)
             x = []
         return x
 
@@ -146,8 +148,9 @@ class Storage:
                             (collection, book_id_id) VALUES ('%s',%s)"""
                             % (_s, book[0])
                         )
+                        self.config.logger.info("Collection {} Added".format(_s))
                 except Exception as e:
-                    print(e)
+                    self.config.logger.error(e)
                 _collections.append(_p)
         self.db.commit()
         self.close()

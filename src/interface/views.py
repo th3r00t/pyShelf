@@ -1,9 +1,15 @@
+import asyncio
 import json
 import os
+import socket
+import threading
+import time
 from base64 import b64decode, b64encode
 from pathlib import Path
 
+import websockets
 from backend.lib.config import Config
+from backend.lib.pyShelf import Server
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth import authenticate, get_user_model, login, logout
@@ -19,7 +25,7 @@ from .forms import SignUpForm, UserLoginForm
 from .models import Books, Collections, Favorites, Navigation, User
 
 config = Config(Path("../"))
-
+server = None
 
 
 def index(request, query=None, _set=1, _limit=None, _order='title'):
@@ -72,7 +78,7 @@ def userlogin(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None: 
+        if user is not None:
             login(request, user)
             user.save()
             return redirect('home')
@@ -85,8 +91,8 @@ def userlogout(request):
     return redirect('home')
 
 
-def home(request, query=None, _set=1, _limit=None, _order='title'): 
-    """ 
+def home(request, query=None, _set=1, _limit=None, _order='title'):
+    """
     Reset Search Queries & Return Home
     """
     _payload = payload(request, query, _set, _limit, _order, reset=True)
@@ -144,7 +150,7 @@ def show_collection(request, query, _set, _limit=None, _order='title', **kwargs)
     _bookstats = len(Collections().generic_search(query))
     if (_r_len): _btotal = str(_r_len)
     else: _btotal = str(_bookstats)
-    
+
     return render(
        request,
        "index.html",
@@ -231,7 +237,7 @@ def book_set(request, _order, _limit=None, _set=1, _flip=False, **kwargs):
     _set_min = _set_max - _limit
     if _flip:
         books = BookObject.order_by(_order).reverse()[_set_min:_set_max]
-    else: 
+    else:
         books = BookObject.order_by(_order)[_set_min:_set_max]
     return mark_favorites(request, books)
 
@@ -379,7 +385,7 @@ def collections_list():
     return list(set(collection_key))
 
 
-def live(request, **kwargs):
+async def live(request, **kwargs):
     """
     Respond to live requests. Primarily used as a response object for Ajax calls
     :param GET['hook']: collection_listing, book_details, register
@@ -393,18 +399,65 @@ def live(request, **kwargs):
     if hook == "collection_listing":
         collections = collections_list()
         return JsonResponse({"data": collections}, status=200)
+
     elif hook == "details":
         try: _pk = request.GET['pk']
         except KeyError as e: return False
         book = book_details(Books.objects.get(pk=_pk))
         return JsonResponse({"data": book}, status=200)
+
     elif hook == "register":
         html = render_to_string('signup.html', {'form': SignUpForm}, request)
         html += render_to_string('login.html', {'form': UserLoginForm}, request)
         return JsonResponse({"data": html})
+
+    elif hook == "import_books":
+        _test_count = 0
+        await Server(Path.absolute(Path.cwd().parent)).start()
+        await asyncio.sleep(1)
+
+        async def test_connection(host, counter):
+            async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
+                await _s.send("ping")
+                data = await _s.recv()
+                counter = counter + 1
+                if data == "pong":
+                    return True
+                else:
+                    return False
+
+        async def runImport(host):
+            async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
+                await _s.send("importBooks")
+                data = await _s.recv()
+                if data == "complete":
+                    return JsonResponse({"data": data})
+                else:
+                    return False
+
+        _host = ("127.0.0.1", 1337)
+        _test_count = 0
+        try:
+            if await test_connection(_host, _test_count):
+                config.logger.info("Connection Successful")
+                await runImport(_host)
+                return JsonResponse({"data": "Response sent"}, status=200)
+        except ConnectionRefusedError as e:
+            config.logger.info(e)
+            if e.errno == 111:
+                await Server(Path.absolute(Path.cwd().parent)).start()
+                if await test_connection(_host, _test_count):
+                    return JsonResponse({"data": "Response sent"}, status=200)
+                elif not await test_connection(_host, _test_count) & _test_count >=4:
+                    await Server(Path.absolute(Path.cwd().parent)).start()
+                    await test_connection(_host, _test_count)
+                else:
+                    return JsonResponse({"data": "Websocket Failed Testing"}, status=401)
+
     else: return JsonResponse(err_txt, status=404)
 
     return JsonResponse({"data": "Response sent"}, status=200)
+
 
 def book_details(book):
     return {
@@ -477,7 +530,7 @@ def payload(request, query, _set, _limit, _order, **kwargs):
                     _r = book_set(request, _order, _limit, _set, False, **kwargs)
                 else: _r = book_set(request, _order, _limit, _set, True, **kwargs)
                 _r_len, _search = None, None
-    
+
     _bookstats = Books.objects.all().count()
     if (_r_len): _btotal = str(_r_len)
     else: _btotal = str(_bookstats)
@@ -496,3 +549,6 @@ def payload(request, query, _set, _limit, _order, **kwargs):
         "SearchLen": _r_len,
         "Order": _order,
     }
+
+def start_server(request, **kwargs):
+   pass

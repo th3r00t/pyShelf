@@ -621,3 +621,11 @@ a.nav_link {
 .collection{
     cursor: pointer;
 }
+.progressbar{
+    ui-progressbar: "ui-corner-all";
+    ui-progressbar-complete: "ui-corner-right";
+    ui-progressbar-value: "ui-corner-left";
+}
+.progress_container{
+    min-width: 300px !important;
+}

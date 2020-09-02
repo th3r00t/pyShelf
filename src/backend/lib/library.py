@@ -6,14 +6,11 @@ import re
 import zipfile
 
 from bs4 import BeautifulSoup
-
 from mobi import Mobi
 
 from .api_hooks import DuckDuckGo
 from .config import Config
 from .storage import Storage
-
-# config = Config()
 
 
 class Catalogue:
@@ -64,7 +61,7 @@ class Catalogue:
         try:
             self.books = list(filter(regx.search, filter(None, self.file_list)))
         except TypeError as e:
-            print(e)
+            self.config.logger.error(e)
         """
         for book in self.books:
             self._book_list_expanded[book] = self.process_by_filetype(book)
@@ -72,7 +69,6 @@ class Catalogue:
         """
 
     def process_by_filetype(self, book):
-        print(str(book), end='\r', flush=True)
         if book.endswith(".epub"):
             epub = self.process_epub(book)
             return self.extract_metadata_epub(epub)
@@ -208,6 +204,7 @@ class Catalogue:
             #    ftags = ftags.replace(" ", ",")
         except KeyError:
             ftags = None
+
         return [
             title,
             author,
@@ -264,22 +261,26 @@ class Catalogue:
         c = set.difference(a, b)
         return c
 
-    def import_books(self, list=None):
+    def import_books(self, list=None, **kwargs):
         """
         Main entry point for import operations.
         Gets a list of new files via compare_shelf_current.
         Iterates over list and inserts new books into database.
         """
-        # TODO Refactor metadata extraction into process_book \
-        # call to more easily handle additional formats
+        try:
+            fsocket = kwargs['socket']
+        except KeyError:
+            fsocket = '/dev/null'
         book_list = self.compare_shelf_current()
         db = Storage(self.config)
         for book in book_list:
             book = self.process_by_filetype(book)
+            with open(fsocket, 'w') as _socket:
+                _socket.write(book[0])
+            _socket.close()
             db.insert_book(book)
         inserted = db.commit()
         if inserted is not True:
-            print(inserted)
-            if input("Continue ? y/n") == "y":
-                pass
+            self.config.logger.error("Failed storing {} in database".format(str(book)))
+            pass
         db.close()
