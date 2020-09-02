@@ -19,7 +19,8 @@ class Config:
         self._fp = "config.json"
         self._cp = pathlib.Path.joinpath(root, self._fp)
         self._data = self.open_file()
-        self.logger = self.get_logger()
+        try: self.logger
+        except AttributeError: self.logger = self.get_logger()
         self.book_path = self._data["BOOKPATH"]
         self.TITLE = self._data["TITLE"]
         self.VERSION = self._data["VERSION"]
@@ -30,11 +31,8 @@ class Config:
         self.password = self._data["PASSWORD"]
         self.db_host = self._data["DB_HOST"]
         self.db_port = self._data["DB_PORT"]
-        self.file_array = [
-            self.book_shelf,
-        ]
+        self.file_array = [self.book_shelf]
         self.auto_scan = True
-
         self.allowed_hosts = self._data["ALLOWED_HOSTS"]
         self.db_user = self._data["USER"]
         self.db_pass = self._data["PASSWORD"]
@@ -42,8 +40,8 @@ class Config:
 
     def get_logger(self):
         _logger = logger
-        _logger.add(pathlib.PurePath(self.root, 'data','pyShelf_{time}.log'),
-                    rotation="10 MB", enqueue=True, colorize=True)
+        _logger.add(pathlib.PurePath(self.root, 'data','{time}.log'),
+                    rotation="2 MB", enqueue=True, colorize=True)
         return _logger
 
     def open_file(self):

@@ -7,6 +7,7 @@ import time
 from base64 import b64decode, b64encode
 from pathlib import Path
 
+import websockets
 from backend.lib.config import Config
 from backend.lib.pyShelf import Server
 from django.conf import settings
@@ -384,7 +385,7 @@ def collections_list():
     return list(set(collection_key))
 
 
-def live(request, **kwargs):
+async def live(request, **kwargs):
     """
     Respond to live requests. Primarily used as a response object for Ajax calls
     :param GET['hook']: collection_listing, book_details, register
@@ -411,32 +412,52 @@ def live(request, **kwargs):
         return JsonResponse({"data": html})
 
     elif hook == "import_books":
-        """TODO: Spawn websocket server"""
-        breakpoint()
-        ###################################################
-        # async def responder(socket):                    #
-        #     await catalogue.import_books(socket=socket) #
-        #     return JsonResponse({"data": None})         #
-        #     pass                                        #
-        # asyncio.run(responder(None))                    #
-        ###################################################
-        def test_connection(host):
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.connect(host)
-                s.sendall(b"ping")
-                data = s.recv(1024)
-            return data
+        _test_count = 0
+        await Server(Path.absolute(Path.cwd().parent)).start()
+        await asyncio.sleep(1)
+
+        async def test_connection(host, counter):
+            async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
+                await _s.send("ping")
+                data = await _s.recv()
+                counter = counter + 1
+                if data == "pong":
+                    return True
+                else:
+                    return False
+
+        async def runImport(host):
+            async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
+                await _s.send("importBooks")
+                data = await _s.recv()
+                if data == "complete":
+                    return JsonResponse({"data": data})
+                else:
+                    return False
+
         _host = ("127.0.0.1", 1337)
+        _test_count = 0
         try:
-            _server_response = test_connection(_host)
+            if await test_connection(_host, _test_count):
+                config.logger.info("Connection Successful")
+                await runImport(_host)
+                return JsonResponse({"data": "Response sent"}, status=200)
         except ConnectionRefusedError as e:
             config.logger.info(e)
             if e.errno == 111:
-                request.server = Server(Path.absolute(Path.cwd().parent)).start()
+                await Server(Path.absolute(Path.cwd().parent)).start()
+                if await test_connection(_host, _test_count):
+                    return JsonResponse({"data": "Response sent"}, status=200)
+                elif not await test_connection(_host, _test_count) & _test_count >=4:
+                    await Server(Path.absolute(Path.cwd().parent)).start()
+                    await test_connection(_host, _test_count)
+                else:
+                    return JsonResponse({"data": "Websocket Failed Testing"}, status=401)
 
     else: return JsonResponse(err_txt, status=404)
 
     return JsonResponse({"data": "Response sent"}, status=200)
+
 
 def book_details(book):
     return {

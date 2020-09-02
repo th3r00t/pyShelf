@@ -1,3 +1,13 @@
+
+async function WebSocketInterface(host) {
+    let socket = new WebSocket(host)
+    socket.onopen = function(e) { console.log('Connected') }
+    socket.onmessage = function (rcvd){
+        rx_msg(rcvd.data)
+    }}
+async function rx_msg(rcvd) { console.log('msg :: '+rcvd) }
+async function tx_msg(socket, msg) { socket.send(msg) }
+
 $(document).ready(function(){
     function customlog(outstream) {
         /* Gather my variables and output them */
@@ -171,16 +181,9 @@ $(document).ready(function(){
         $('#pop_over_0').dialog("open");
     });
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
+
+    //Web Socket Call
     $(document).on('click', '.import-btn', async function(){
-        $.ajax({
-            type: "GET", url: "/live", data: {hook: 'import_books'},
-            success: function (response) {
-            },
-            error: function (response) {
-                customlog(["Failure", response]);
-            }
-        });
-        let connection = await ImportBooks(server);
         popover.html('<div id="psout" class="container">');
         let psout = $('#psout')
         psout.append('<div class="rox"><div class="col import_status">Importing Books</div></div>')
@@ -192,6 +195,16 @@ $(document).ready(function(){
             value: false
         });
         $(".progressbar").append("</div>")
+        $.ajax({
+            type: "GET", url: "/live", data: {hook: 'import_books'},
+            success: async function (response,sock) {
+                customlog(["Backend Reports websocket server READY"])
+                $('.progressbar').progressbar({ value: true })
+            },
+            error: function (response) {
+                customlog(["Failure", response.data]);
+            }
+        });
     });
     $('#coll_button').on('click', function(){
         var isopen = $('#pop_over_0').dialog("isOpen");
@@ -284,60 +297,4 @@ function resize_search(win_width){
         $('.search_string').attr('size', 10);
         $('.search_string').val("Search");
     }
-}
-
-function OpenSocket(address) {
-    return new Promise(resolve => {
-        const connection = new WebSocket(address);
-        connection.onopen = function(e){
-            console.log('--[ Connection Established ]')
-            ping(connection)
-        };
-        connection.onmessage = function(rcvd){
-            sock_rx(rcvd)
-        };
-        resolve(connection);
-    });
-}
-
-function ImportBooks(address) {
-    return new Promise(resolve => {
-        const connection = new WebSocket(address);
-        connection.onopen = function(e){
-            sock_tx(connection,'importBooks')
-        };
-        connection.onmessage = function(rcvd){
-            sock_rx(rcvd)
-        };
-        resolve(connection);
-    });
-}
-
-async function PyshelfServer(address){
-    console.log("--[ Starting Connection ]")
-    return await OpenSocket(address)
-}
-function sock_rx(rcvd) {
-    if (rcvd.data == 'pong') { pong(rcvd) }
-    else if (rcvd.data == 'complete') {
-        $('.progressbar').progressbar("option", "value", "True");
-        $('.import_status').html('Import Complete')
-        console.log(rcvd.data)
-    }
-    else { console.log("<<[rx] :"+rcvd.data) }
-}
-function sock_tx(connection, msg) {
-   connection.send(msg);
-}
-function sock_status(connection) {
-    let buffered = connection.bufferedAmmount;
-    let ready = connection.readyState;
-    return [buffered, ready];
-}
-function ping(connection) {
-    connection.send('ping');
-    console.log("[ping]>>");
-}
-function pong(rcvd) {
-    console.log("<<["+rcvd+"]")
 }

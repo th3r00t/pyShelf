@@ -36,14 +36,21 @@ class Server:
     :TODO: Document this
     """
 
-    async def __init__(self, root):
+    def __init__(self, root):
         self.root = root
+        self.host = ("127.0.0.1", 1337)
         self.config = Config(self.root)
-        self.instance = None
-        self.serve = await websockets.serve(socketio, "127.0.0.1", 1337)
+        self.loop = None
+        self.serve = None
 
     async def __aexit__(self, *args, **kwargs):
         await self.serve.__aexit__(*args, **kwargs)
+
+    async def initialize_server(self):
+        self.config.logger.info("INITIALIZE")
+        self.serve = await websockets.serve(self.socketio, self.host[0], self.host[1])
+        await asyncio.sleep(.01)
+        self.config.logger.info("Server Initialization Complete")
 
     async def runImport(self):
         _start_time = time.time()
@@ -55,21 +62,29 @@ class Server:
         _total_time = round(time.time() - _start_time)
 
     async def socketio(self, websocket, path):
+        self.config.logger.info("Listener Starting")
         async for message in websocket:
             if message == "ping":
-                config.logger.info("<< Ping")
+                self.config.logger.info("<< Ping")
                 tx = self.pong()
             elif message == "importBooks":
-                config.logger.info("Starting Import")
+                self.config.logger.info("Starting Import")
                 tx = "Starting Import . . ."
                 await websocket.send(tx)
-                await runImport()
+                await asyncio.sleep(0.01)
+                await self.runImport()
+                await asyncio.sleep(0.01)
                 tx = "complete"
+            else:
+                self.config.logger.info("Unhandled Message Rcvd :: {}".format(message))
             await websocket.send(tx)
 
     def pong(self):
         self.config.logger.info(">> Pong")
         return "pong"
 
-    def start(self):
-        asyncio.get_event_loop().run_until_complete(self.serve)
+    async def start(self):
+        self.loop = asyncio.get_running_loop()
+        self.loop.set_debug(True)
+        await websockets.serve(self.socketio, self.host[0], self.host[1])
+        await asyncio.sleep(1)

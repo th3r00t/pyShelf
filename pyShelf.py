@@ -4,7 +4,6 @@ import sys
 from pathlib import Path
 
 import websockets
-from loguru import logger
 
 from src.backend.lib.config import Config
 from src.backend.pyShelf_MakeCollections import MakeCollections
@@ -26,6 +25,7 @@ async def runImport():
 
 async def socketio(websocket, path):
     async for message in websocket:
+        config.logger.info("Message Processing")
         if message == "ping":
             config.logger.info("<< Ping")
             tx = pong(message)
