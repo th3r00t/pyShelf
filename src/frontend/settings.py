@@ -32,8 +32,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = CONFIG.SECRET
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = TEMPLATE_DEBUG = True
+DEBUG = TEMPLATE_DEBUG = CONFIG.debug_build_mode
 if DEBUG is True:
+    print("DEBUG build mode is ON")
     from pudb.remote import set_trace
 ALLOWED_HOSTS = CONFIG.allowed_hosts
 
