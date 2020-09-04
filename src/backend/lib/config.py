@@ -37,11 +37,11 @@ class Config:
         self.db_user = self._data["USER"]
         self.db_pass = self._data["PASSWORD"]
         self.SECRET = self._data["SECRET"]
-        self.debug_build_mode = (_data["BUILD_MODE"].casefold() == "debug")
+        self.debug_build_mode = (self._data["BUILD_MODE"].casefold() == "debug")
         
     def get_logger(self):
         _logger = logger
-        _logger.add(pathlib.PurePath(self.root, 'data','{time}.log'),
+        _logger.add(pathlib.PurePath(self.root, 'data','pyshelf.log'),
                     rotation="2 MB", enqueue=True, colorize=True)
         return _logger
 

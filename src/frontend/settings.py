@@ -14,6 +14,7 @@ import os
 import sys
 from pathlib import Path
 
+sys.path.insert(0, Path.absolute(Path.cwd()))
 from backend.lib.config import Config
 
 CUR_DIR = Path.cwd()
