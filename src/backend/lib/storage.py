@@ -7,16 +7,16 @@ import psycopg2
 
 class Storage:
     """Contains all methods for system storage"""
-
     def __init__(self, config):
         self.sql = config.catalogue_db
         self.user = config.user
         self.password = config.password
         self.db_host = config.db_host
         self.db_port = config.db_port
-        self.db = psycopg2.connect(
-            database=self.sql, user=self.user, password=self.password, host=self.db_host
-        )
+        self.db = psycopg2.connect(database=self.sql,
+                                   user=self.user,
+                                   password=self.password,
+                                   host=self.db_host)
         self.config = config
         self.cursor = self.db.cursor()
 
@@ -77,7 +77,7 @@ class Storage:
                     book[9],  # tags
                 ),
             )
-            self.config.logger.info(book[0])
+            self.config.logger.info(book[0][0:80])
             return True
         except Exception as e:
             if e.pgcode == '22007':  # psycopg2's error code for invalid date
@@ -143,12 +143,11 @@ class Storage:
                 try:
                     self.cursor.execute(_q_x)
                     if len(self.cursor.fetchall()) < 1:
-                        self.cursor.execute(
-                            """INSERT INTO collections\
-                            (collection, book_id_id) VALUES ('%s',%s)"""
-                            % (_s, book[0])
-                        )
-                        self.config.logger.info("Collection {} Added".format(_s))
+                        self.cursor.execute("""INSERT INTO collections\
+                            (collection, book_id_id) VALUES ('%s',%s)""" %
+                                            (_s, book[0]))
+                        self.config.logger.info(
+                            "Collection {} Added".format(_s))
                 except Exception as e:
                     self.config.logger.error(e)
                 _collections.append(_p)
