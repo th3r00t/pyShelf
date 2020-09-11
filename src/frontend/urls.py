@@ -19,6 +19,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from django.shortcuts import HttpResponse
 from django.urls import include, path, re_path
+from django.conf.urls.static import static
 from interface import views
 
 urlpatterns = [
@@ -67,7 +68,7 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(),
         name='password_reset_complete',
     ),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     import debug_toolbar
 

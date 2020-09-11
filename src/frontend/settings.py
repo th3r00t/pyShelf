@@ -21,11 +21,9 @@ CUR_DIR = Path.cwd()
 PRG_DIR = CUR_DIR.parts[0:-1]
 PRG_DIR = Path(*PRG_DIR)
 
-
 CONFIG = Config(PRG_DIR)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -33,26 +31,26 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = CONFIG.SECRET
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = TEMPLATE_DEBUG = CONFIG.debug_build_mode
+
+BUILD_MODE = CONFIG.build_mode
+if BUILD_MODE == 'debug':
+    DEBUG = TEMPLATE_DEBUG = True
+else:
+    DEBUG = TEMPLATE_DEBUG = False
 if DEBUG is True:
     print("DEBUG build mode is ON")
     from pudb.remote import set_trace
+else:
+    print("Production Mode Set")
 ALLOWED_HOSTS = CONFIG.allowed_hosts
-
 
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "interface",
-    "interface.templatetags",
-    "debug_toolbar",
-    "widget_tweaks"
+    "django.contrib.admin", "django.contrib.auth",
+    "django.contrib.contenttypes", "django.contrib.sessions",
+    "django.contrib.messages", "django.contrib.staticfiles", "interface",
+    "interface.templatetags", "debug_toolbar", "widget_tweaks"
 ]
 AUTH_USER_MODEL = "interface.User"
 MIDDLEWARE = [
@@ -90,9 +88,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "frontend.wsgi.application"
+# WSGI_APPLICATION = "frontend.wsgi.application"
 
-
+WSGI_APPLICATION = 'asgi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
@@ -115,13 +113,22 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -135,7 +142,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

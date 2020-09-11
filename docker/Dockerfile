@@ -12,25 +12,16 @@
 FROM ubuntu
 
 EXPOSE 8000
+EXPOSE 1337
 
 RUN apt-get update -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3 python3-dev python3-pip python3-venv nginx-full
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y cron
-RUN echo "* * * * * cd /pyshelf/ && python3 importBooks >> /var/log/cron.log 2>&1" > import_books_scheduler.cron && crontab import_books_scheduler.cron
-
-COPY ./docker/pyshelf_nginx.conf /etc/nginx/sites-available/pyshelf_nginx.conf
-RUN ln -s /etc/nginx/sites-available/pyshelf_nginx.conf /etc/nginx/sites-enabled/
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3 python3-dev python3-pip python3-venv
 
 COPY . /pyshelf
 COPY ./docker/config.json /pyshelf/config.json
 
 WORKDIR /pyshelf/
 RUN python3 -m pip install -r requirements.txt
+RUN python3 configure
 
-WORKDIR /pyshelf/
-ENTRYPOINT cron start \
-            && python3 configure \
-            # && python3 importBooks \
-            && nginx -g "daemon on;" \
-            && uwsgi --ini uwsgi.ini
+ENTRYPOINT daphne --root-path=/pyshelf/src/interface frontend.asgi:application

@@ -9,8 +9,6 @@ class Config:
     """
     Main System Configuration
     """
-
-
     def __init__(self, root):
         """
         Initialize main configuration options
@@ -19,8 +17,10 @@ class Config:
         self._fp = "config.json"
         self._cp = pathlib.Path.joinpath(root, self._fp)
         self._data = self.open_file()
-        try: self.logger
-        except AttributeError: self.logger = self.get_logger()
+        try:
+            self.logger
+        except AttributeError:
+            self.logger = self.get_logger()
         self.book_path = self._data["BOOKPATH"]
         self.TITLE = self._data["TITLE"]
         self.VERSION = self._data["VERSION"]
@@ -37,12 +37,14 @@ class Config:
         self.db_user = self._data["USER"]
         self.db_pass = self._data["PASSWORD"]
         self.SECRET = self._data["SECRET"]
-        self.debug_build_mode = (self._data["BUILD_MODE"].casefold() == "debug")
-        
+        self.build_mode = self._data["BUILD_MODE"]
+
     def get_logger(self):
         _logger = logger
-        _logger.add(pathlib.PurePath(self.root, 'data','pyshelf.log'),
-                    rotation="2 MB", enqueue=True, colorize=True)
+        _logger.add(pathlib.PurePath(self.root, 'data', 'pyshelf.log'),
+                    rotation="2 MB",
+                    enqueue=True,
+                    colorize=True)
         return _logger
 
     def open_file(self):

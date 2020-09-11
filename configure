@@ -29,10 +29,10 @@ def set_secret(config=load_config()):
 
 def init_django_database():
     cmds = [
-        'python manage.py makemigrations',
-        'python manage.py makemigrations interface',
-        'python manage.py migrate',
-        'python manage.py migrate interface',
+        'python3 manage.py makemigrations',
+        'python3 manage.py makemigrations interface',
+        'python3 manage.py migrate',
+        'python3 manage.py migrate interface',
     ]
     os.chdir("src")
     for cmd in cmds:
