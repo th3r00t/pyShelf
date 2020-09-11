@@ -22,6 +22,6 @@ COPY ./docker/config.json /pyshelf/config.json
 
 WORKDIR /pyshelf/
 RUN python3 -m pip install -r requirements.txt
-RUN python3 configure
 
-ENTRYPOINT daphne --root-path=/pyshelf/src/interface frontend.asgi:application
+ENTRYPOINT python3 configure \
+           daphne --root-path=/pyshelf/src/interface frontend.asgi:application
