@@ -6,6 +6,7 @@ from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 from src.backend.lib.pyShelf import Admin
 
+
 def load_config():
     with open('config.json',"r") as file:
         config = json.load(file)
@@ -27,6 +28,12 @@ def set_secret(config=load_config()):
     else:
         print("Secret already set, skipping.")
 
+def set_book_directory(config=load_config(), *args):
+    if config["BOOKPATH"] == "":
+        try: config["BOOKPATH"] = args[0]
+        except IndexError: config["BOOKPATH"] = input("Input Book Directory ")
+        write_config(config)
+
 def init_django_database():
     cmds = [
         'python3 manage.py makemigrations',
@@ -40,5 +47,6 @@ def init_django_database():
     os.chdir("../")
 
 set_secret()
+set_book_directory()
 init_django_database()
 Admin(Path.cwd()).createsuperuser()

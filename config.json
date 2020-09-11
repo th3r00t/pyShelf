@@ -1,7 +1,7 @@
 {
   "TITLE": "pyShelf E-Book Server",
   "VERSION": "0.6.0",
-  "BOOKPATH": "~/Books",
+  "BOOKPATH": "",
   "DB_HOST": "localhost",
   "DB_PORT": "5432",
   "DATABASE": "pyshelf",
