@@ -24,6 +24,7 @@ services:
             dockerfile: ./docker/Dockerfile
         ports: 
             - "8080:8000"
+            - "1337:1337"
         volumes:
             - "${LOCAL_BOOK_DIR}:/books"
         depends_on:
