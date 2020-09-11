@@ -90,6 +90,7 @@
     margin: 0;
     vertical-align: top;
     font-size: 13px;
+    max-width: 230px;
 }
 
 #changelist #toolbar form #searchbar:focus {
@@ -155,7 +156,6 @@
 
 #changelist-filter ul:last-child {
     border-bottom: none;
-    padding-bottom: none;
 }
 
 #changelist-filter li {
@@ -185,6 +185,12 @@
 #changelist-filter li.selected a:focus,
 #changelist-filter li.selected a:hover {
     color: #036;
+}
+
+#changelist-filter #changelist-filter-clear a {
+    font-size: 13px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eaeaea;
 }
 
 /* DATE DRILLDOWN */
@@ -232,7 +238,6 @@
 }
 
 .paginator a.showall {
-    padding: 0;
     border: none;
     background: none;
     color: #5b80b2;

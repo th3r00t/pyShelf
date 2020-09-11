@@ -31,12 +31,6 @@ RUN python3 -m pip install -r requirements.txt
 WORKDIR /pyshelf/
 ENTRYPOINT cron start \
             && python3 configure \
-            && cd src/ \
-            && python3 manage.py makemigrations \
-            && python3 manage.py makemigrations interface \
-            && python3 manage.py migrate \
-            && python3 manage.py migrate interface \
-            && cd .. \
-            && python3 importBooks \
+            # && python3 importBooks \
             && nginx -g "daemon on;" \
             && uwsgi --ini uwsgi.ini
