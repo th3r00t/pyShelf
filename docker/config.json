@@ -1,1 +1,14 @@
-{"TITLE": "pyShelf E-Book Server", "VERSION": "Docker", "BOOKPATH": "/books", "DB_HOST": "db", "DB_PORT": "5432", "DATABASE": "pyshelf", "USER": "pyshelf", "PASSWORD": "pyshelf", "BOOKSHELF": "data/shelf.json", "ALLOWED_HOSTS": "*", "SECRET": ""}
+{
+  "TITLE": "pyShelf E-Book Server",
+  "VERSION": "0.6.0 Docker",
+  "BOOKPATH": "/books",
+  "DB_HOST": "db",
+  "DB_PORT": "5432",
+  "DATABASE": "pyshelf",
+  "USER": "pyshelf",
+  "PASSWORD": "pyshelf",
+  "BOOKSHELF": "data/shelf.json",
+  "ALLOWED_HOSTS": "*",
+  "SECRET": "",
+  "BUILD_MODE": "production"
+}

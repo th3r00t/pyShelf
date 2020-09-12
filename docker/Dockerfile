@@ -12,15 +12,10 @@
 FROM ubuntu
 
 EXPOSE 8000
+EXPOSE 1337
 
 RUN apt-get update -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3 python3-dev python3-pip python3-venv nginx-full
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y cron
-RUN echo "* * * * * cd /pyshelf/ && python3 importBooks >> /var/log/cron.log 2>&1" > import_books_scheduler.cron && crontab import_books_scheduler.cron
-
-COPY ./docker/pyshelf_nginx.conf /etc/nginx/sites-available/pyshelf_nginx.conf
-RUN ln -s /etc/nginx/sites-available/pyshelf_nginx.conf /etc/nginx/sites-enabled/
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3 python3-dev python3-pip python3-venv
 
 COPY . /pyshelf
 COPY ./docker/config.json /pyshelf/config.json
@@ -28,15 +23,6 @@ COPY ./docker/config.json /pyshelf/config.json
 WORKDIR /pyshelf/
 RUN python3 -m pip install -r requirements.txt
 
-WORKDIR /pyshelf/
-ENTRYPOINT cron start \
-            && python3 configure \
-            && cd src/ \
-            && python3 manage.py makemigrations \
-            && python3 manage.py makemigrations interface \
-            && python3 manage.py migrate \
-            && python3 manage.py migrate interface \
-            && cd .. \
-            && python3 importBooks \
-            && nginx -g "daemon on;" \
-            && uwsgi --ini uwsgi.ini
+ENTRYPOINT python3 configure \
+           && cd src/ \
+           && daphne -b 0.0.0.0 -p 8000 frontend.asgi:application

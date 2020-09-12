@@ -1,13 +1,5 @@
 version: "3.7"
 
-# This file is used to test the Dockerhub image. To host pyShelf yourself for 
-# production, please use the official pyShelf image on 
-# https://hub.docker.com/r/pyshelf/pyshelf
-
-# For development, use the following command in the root folder:
-#    
-#   docker-compose -f ./docker/development.docker-compose.yml up --build
-
 services:
     db:
         image: "postgres"
@@ -19,11 +11,9 @@ services:
             - "db_data:/var/lib/postgresql/data/"
 
     pyshelf:
-        build:
-            context: ..
-            dockerfile: ./docker/Dockerfile
+        image: "pyshelf/pyshelf"
         ports: 
-            - "8080:8000"
+            - "8000:8000"
             - "1337:1337"
         volumes:
             - "${LOCAL_BOOK_DIR}:/books"

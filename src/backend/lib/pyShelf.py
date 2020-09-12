@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
 import asyncio
 import os
-import sys
 import time
-
+import datetime
 import websockets
 
 from .config import Config
 from .library import Catalogue
 from .storage import Storage
+from django.conf import settings
+import psycopg2
+from django.contrib.auth.hashers import make_password
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
 
 
 class InitFiles:
@@ -88,3 +97,29 @@ class Server:
         self.loop.set_debug(True)
         await websockets.serve(self.socketio, self.host[0], self.host[1])
         await asyncio.sleep(1)
+
+
+class Admin:
+
+    def __init__(self, root):
+        self.config = Config(root)
+        self.db = Storage(self.config)
+        settings.configure()
+
+    def createsuperuser(self):
+        self.db.cursor.execute("SELECT * FROM interface_user")
+        _user_list = self.db.cursor.fetchall()
+        if len(_user_list) > 0:
+            return False
+        else:
+            today = datetime.date.today()
+            date = psycopg2.Date(today.year, today.month, today.day)
+            self.db.cursor.execute(
+                'INSERT INTO interface_user (username, password, is_staff, is_active, is_superuser, '
+                'date_joined, first_name, last_name, ulvl, email ) '
+                'VALUES( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                ("pyshelf", make_password("pyshelf"), True, True, True, date, "pyshelf", "default", 1,
+                 "change_or@delete.me"))
+            self.db.commit()
+            self.db.close()
+            return True

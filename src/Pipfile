@@ -26,11 +26,10 @@ pyfiglet = "*"
 mobi-python = "*"
 jsonpickle = "*"
 django-widget-tweaks = "*"
+pudb = "*"
 Pillow = "*"
 Django = "*"
 uWSGI = "*"
-pudb = "*"
-loguru = "*"
 
 [requires]
 python_version = "3.8"

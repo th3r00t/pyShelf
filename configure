@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-
+import os
+import sys
 import json
+from pathlib import Path
 from django.core.management.utils import get_random_secret_key
+from src.backend.lib.pyShelf import Admin
+
 
 def load_config():
     with open('config.json',"r") as file:
@@ -9,17 +13,41 @@ def load_config():
     file.close()
     return config
 
+
 def write_config(config):
     with open('config.json',"w") as file:
         json.dump(config, file)
     file.close()
 
+
 def set_secret(config=load_config()):
     if config["SECRET"] == "":
         config["SECRET"] = get_random_secret_key()
-        write_config(config)
         print(config["SECRET"])
     else:
-        print(config["SECRET"])
+        print("Secret already set, skipping.")
 
-set_secret()
+def set_book_directory(config=load_config(), *args):
+    if config["BOOKPATH"] == "":
+        try: config["BOOKPATH"] = args[0]
+        except IndexError: config["BOOKPATH"] = input("Input Book Directory ")
+
+def init_django_database():
+    cmds = [
+        'python3 manage.py makemigrations',
+        'python3 manage.py makemigrations interface',
+        'python3 manage.py migrate',
+        'python3 manage.py migrate interface',
+    ]
+    os.chdir("src")
+    for cmd in cmds:
+        os.system(cmd)
+    os.chdir("../")
+
+config = load_config()
+
+set_secret(config)
+set_book_directory(config)
+write_config(config)
+init_django_database()
+Admin(Path.cwd()).createsuperuser()

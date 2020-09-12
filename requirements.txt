@@ -24,3 +24,5 @@ django-widget-tweaks
 loguru
 ptvsd
 pudb
+daphne
+whitenoise
