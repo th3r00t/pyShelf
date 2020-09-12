@@ -1,14 +1,1 @@
-{
-  "TITLE": "pyShelf E-Book Server",
-  "VERSION": "0.6.0",
-  "BOOKPATH": "",
-  "DB_HOST": "localhost",
-  "DB_PORT": "5432",
-  "DATABASE": "pyshelf",
-  "USER": "pyshelf",
-  "PASSWORD": "pyshelf",
-  "BOOKSHELF": "data/shelf.json",
-  "ALLOWED_HOSTS": "*",
-  "SECRET": "",
-  "BUILD_MODE": "production"
-}
+{"TITLE": "pyShelf E-Book Server", "VERSION": "0.6.0", "BOOKPATH": "", "DB_HOST": "localhost", "DB_PORT": "5432", "DATABASE": "pyshelf", "USER": "pyshelf", "PASSWORD": "pyshelf", "BOOKSHELF": "data/shelf.json", "ALLOWED_HOSTS": "*", "SECRET": "", "BUILD_MODE": "production"}

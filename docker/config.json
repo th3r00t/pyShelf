@@ -1,6 +1,6 @@
 {
   "TITLE": "pyShelf E-Book Server",
-  "VERSION": "Docker",
+  "VERSION": "0.6.0 Docker",
   "BOOKPATH": "/books",
   "DB_HOST": "db",
   "DB_PORT": "5432",

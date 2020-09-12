@@ -214,7 +214,7 @@ $(document).ready(function(){
         }
         customlog(['Collections Clicked']);
         $.ajax({
-            type: "GET", url: "/live", data: {hook: 'collection_listing'},
+            type: "GET", url: "/menu", data: {hook: 'collection_listing'},
             success: function(response){
                 // Set the dialog title
                 $('#pop_over_0').dialog({
@@ -250,7 +250,7 @@ $(document).ready(function(){
         }
         customlog(['Book Details Clicked', $(this).attr('data')]);
         $.ajax({
-            type: "GET", url: "/live", data: {hook: 'details', pk:$(this).attr('data')},
+            type: "GET", url: "/menu", data: {hook: 'details', pk:$(this).attr('data')},
             success: function(response){
                 // Set the dialog title
                 $('#pop_over_0').dialog({

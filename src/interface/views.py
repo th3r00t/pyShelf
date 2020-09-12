@@ -21,6 +21,8 @@ from django.template.loader import render_to_string
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.text import slugify
 
+from asgiref.sync import sync_to_async
+
 from .forms import SignUpForm, UserLoginForm
 from .models import Books, Collections, Favorites, Navigation, User
 
@@ -350,30 +352,21 @@ def format_list(list_in):
                 x = 0
 
 
-def menu(which, _set=1, parent=None):
-    if which == "collections":
-        _collections_list = Collections.objects.all()
-        _collections, collection_key, x = [], [], 0
-        for i in _collections_list:
-            if i.collection not in collection_key:
-                if x % 2 == 0: c = 0
-                else: c = 1
-                if x <= 10: x = x + 1
-                else: x = 0
-                # TODO trim #'s and symbols from front of collection name
-                if len(i.collection) > 16:
-                    collection_string = i.collection[0:16] + " ..."
-                else:
-                    collection_string = i.collection
+def menu(request):
+    err_txt = {"err": "There is no responder for your request"}
+    try: hook = request.GET['hook']
+    except MultiValueDictKeyError as e: return JsonResponse(err_txt, status=404)
 
-                _collections.append(
-                    {"string": collection_string, "link": i.collection, "class": c}
-                )
-                collection_key.append(i.collection)
-        return _collections
-    elif which == "nav_lvl_0":
-        navigation_list = Navigation.objects.all()
-        return navigation_list
+    if hook == "collection_listing":
+        collections = collections_list()
+        return JsonResponse({"data": collections}, status=200)
+
+    elif hook == "details":
+        try: _pk = request.GET['pk']
+        except KeyError as e: return False
+        book = book_details(Books.objects.get(pk=_pk))
+        return JsonResponse({"data": book}, status=200)
+
 
 
 def collections_list():
@@ -396,17 +389,7 @@ async def live(request, **kwargs):
     try: hook = request.GET['hook']
     except MultiValueDictKeyError as e: return JsonResponse(err_txt, status=404)
 
-    if hook == "collection_listing":
-        collections = collections_list()
-        return JsonResponse({"data": collections}, status=200)
-
-    elif hook == "details":
-        try: _pk = request.GET['pk']
-        except KeyError as e: return False
-        book = book_details(Books.objects.get(pk=_pk))
-        return JsonResponse({"data": book}, status=200)
-
-    elif hook == "register":
+    if hook == "register":
         html = render_to_string('signup.html', {'form': SignUpForm}, request)
         html += render_to_string('login.html', {'form': UserLoginForm}, request)
         return JsonResponse({"data": html})
@@ -414,7 +397,7 @@ async def live(request, **kwargs):
     elif hook == "import_books":
         _test_count = 0
         await Server(Path.absolute(Path.cwd().parent)).start()
-        await asyncio.sleep(1)
+        await asyncio.sleep(0.01)
 
         async def test_connection(host, counter):
             async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
@@ -468,6 +451,7 @@ def book_details(book):
         'rights': book.rights,
         'pk': book.id
     }
+
 def payload(request, query, _set, _limit, _order, **kwargs):
     """
     Return formatted data to template

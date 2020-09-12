@@ -20,6 +20,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import HttpResponse
 from django.urls import include, path, re_path
 from django.conf.urls.static import static
+from asgiref.sync import sync_to_async
 from interface import views
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("home", views.home, name="home"),
     re_path("^live$", views.live, name="live"),
+    re_path("^menu$", views.menu, name="menu"),
     path("sort/<_order>", views.index, name="index"),
     path("flip_sort/<_order>", views.flip_sort, name="index"),
     path("download/<pk>", views.download, name="download"),
