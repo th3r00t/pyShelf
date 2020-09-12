@@ -23,7 +23,6 @@ def write_config(config):
 def set_secret(config=load_config()):
     if config["SECRET"] == "":
         config["SECRET"] = get_random_secret_key()
-        write_config(config)
         print(config["SECRET"])
     else:
         print("Secret already set, skipping.")
@@ -32,7 +31,6 @@ def set_book_directory(config=load_config(), *args):
     if config["BOOKPATH"] == "":
         try: config["BOOKPATH"] = args[0]
         except IndexError: config["BOOKPATH"] = input("Input Book Directory ")
-        write_config(config)
 
 def init_django_database():
     cmds = [
@@ -46,7 +44,10 @@ def init_django_database():
         os.system(cmd)
     os.chdir("../")
 
-set_secret()
-set_book_directory()
+config = load_config()
+
+set_secret(config)
+set_book_directory(config)
+write_config(config)
 init_django_database()
 Admin(Path.cwd()).createsuperuser()
