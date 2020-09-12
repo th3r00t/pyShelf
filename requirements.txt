@@ -25,3 +25,4 @@ loguru
 ptvsd
 pudb
 daphne
+whitenoise

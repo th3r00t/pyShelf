@@ -24,4 +24,5 @@ WORKDIR /pyshelf/
 RUN python3 -m pip install -r requirements.txt
 
 ENTRYPOINT python3 configure \
-           daphne --root-path=/pyshelf/src/interface frontend.asgi:application
+           && cd src/ \
+           && daphne -b 0.0.0.0 -p 8000 frontend.asgi:application

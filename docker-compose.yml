@@ -13,7 +13,7 @@ services:
     pyshelf:
         image: "pyshelf/pyshelf"
         ports: 
-            - "8080:8000"
+            - "8000:8000"
             - "1337:1337"
         volumes:
             - "${LOCAL_BOOK_DIR}:/books"
