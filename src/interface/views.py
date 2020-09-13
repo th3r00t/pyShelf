@@ -395,9 +395,12 @@ async def live(request, **kwargs):
         return JsonResponse({"data": html})
 
     elif hook == "import_books":
+        _host = ("127.0.0.1", 1337)
         _test_count = 0
-        await Server(Path.absolute(Path.cwd().parent)).start()
-        await asyncio.sleep(0.01)
+        ##########################################################
+        # await Server(Path.absolute(Path.cwd().parent)).start() #
+        # await asyncio.sleep(0.01)                              #
+        ##########################################################
 
         async def test_connection(host, counter):
             async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
@@ -410,6 +413,7 @@ async def live(request, **kwargs):
                     return False
 
         async def runImport(host):
+            breakpoint()
             async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
                 await _s.send("importBooks")
                 data = await _s.recv()
@@ -418,18 +422,18 @@ async def live(request, **kwargs):
                 else:
                     return False
 
-        _host = ("127.0.0.1", 1337)
-        _test_count = 0
         try:
             if await test_connection(_host, _test_count):
                 config.logger.info("Connection Successful")
                 await runImport(_host)
                 return JsonResponse({"data": "Response sent"}, status=200)
+
         except ConnectionRefusedError as e:
             config.logger.info(e)
             if e.errno == 111:
                 await Server(Path.absolute(Path.cwd().parent)).start()
                 if await test_connection(_host, _test_count):
+                    await runImport(_host)
                     return JsonResponse({"data": "Response sent"}, status=200)
                 elif not await test_connection(_host, _test_count) & _test_count >=4:
                     await Server(Path.absolute(Path.cwd().parent)).start()
