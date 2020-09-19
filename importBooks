@@ -1,13 +1,13 @@
-#!python
-
+#!/usr/bin/env python
 import pathlib
 import sys
 
 from src.backend.lib.storage import Storage
 from src.backend.pyShelf_ScanLibrary import execute_scan
-
+from src.backend.pyShelf_MakeCollections import MakeCollections
 PRG_PATH = pathlib.Path.cwd()
 LIB_PATH = pathlib.Path.joinpath(PRG_PATH, "src", "backend", "lib")
 sys.path.insert(0, PRG_PATH)
 print("\n")
 execute_scan(PRG_PATH)
+MakeCollections(PRG_PATH)

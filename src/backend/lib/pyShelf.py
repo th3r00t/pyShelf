@@ -1,28 +1,33 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+import asyncio
 import os
 import time
+import datetime
+import websockets
 
 from .config import Config
+from .library import Catalogue
 from .storage import Storage
+from django.conf import settings
+import psycopg2
+from django.contrib.auth.hashers import make_password
 
-# config = Config()
-# Storage = Storage()
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
 
 
 class InitFiles:
     """First run file creation operations"""
-
     def __init__(self, file_array):
-        print("Checking for program files")
         for _pointer in file_array:
             time.sleep(1)
             if not os.path.isfile(_pointer):
                 self.CreateFile(_pointer)
-                print("%s created" % _pointer)
-            else:
-                print("%s present" % _pointer)
         time.sleep(1)
-        print("File check complete.")
 
     def CreateFile(self, _pointer):
         """
@@ -34,51 +39,87 @@ class InitFiles:
             f.close()
 
 
-class BookDisplay:
-    """All functions related to displaying book information in the HTML UI"""
+class Server:
+    """
+    Main Server Container
+    :TODO: Document this
+    """
 
-    def __init__(self, **kwargs):
-        """
-        Initialize class variables
-        :return: None
-        """
-        self.books_per_page = None
-        self.current_page = 0
-        self.thumbnail_size = [200, 300]
-        self.thumbnail_scale = 1
-        self.total_pages = None
-        try:
-            self.screen_size = kwargs["screen_size"]
-        except Exception:
-            self.screen_size = [900, 600]
+    def __init__(self, root):
+        self.root = root
+        self.host = ("127.0.0.1", 1337)
+        self.config = Config(self.root)
+        self.loop = None
+        self.serve = None
 
-    def nextPage(self):
-        """
-        ## TODO Remove me
-        Goto next book page
-        :return: new current_page
-        """
-        self.current_page += 1
-        return self.current_page
+    async def __aexit__(self, *args, **kwargs):
+        await self.serve.__aexit__(*args, **kwargs)
 
-    def previousPage(self):
-        """
-        ## TODO Remove me
-        Goto previous book page
-        :return: new current_page
-        """
-        self.current_page -= 1
-        return self.current_page
+    async def initialize_server(self):
+        self.config.logger.info("INITIALIZE")
+        self.serve = await websockets.serve(self.socketio, self.host[0], self.host[1])
+        await asyncio.sleep(.01)
+        self.config.logger.info("Server Initialization Complete")
 
-    def booksPerPage(self, screen_size):
-        """
-        ## TODO Remove me
-        Set books per page
-        :param screen_size: Array containing x,y pixel sizes
-        :return: self.books_per_page
-        """
-        x = (self.thumbnail_size[0] * self.thumbnail_scale) + 10
-        y = (self.thumbnail_size[1] * self.thumbnail_scale) + 10
-        self.books_per_page = int(self.screen_size[0] // x) * int(
-            self.screen_size[1] // y
-        )
+    async def runImport(self):
+        _start_time = time.time()
+        InitFiles(self.config.file_array)
+        _storage = Storage(self.config)
+        _storage.check_ownership()
+        Catalogue(self.config).import_books()
+        _storage.make_collections()
+        _total_time = round(time.time() - _start_time)
+
+    async def socketio(self, websocket, path):
+        self.config.logger.info("Listener Starting")
+        async for message in websocket:
+            if message == "ping":
+                self.config.logger.info("<< Ping")
+                tx = self.pong()
+            elif message == "importBooks":
+                self.config.logger.info("Starting Import")
+                tx = "Starting Import . . ."
+                await websocket.send(tx)
+                await asyncio.sleep(0.01)
+                await self.runImport()
+                await asyncio.sleep(0.01)
+                tx = "complete"
+            else:
+                self.config.logger.info("Unhandled Message Rcvd :: {}".format(message))
+            await websocket.send(tx)
+
+    def pong(self):
+        self.config.logger.info(">> Pong")
+        return "pong"
+
+    async def start(self):
+        self.loop = asyncio.get_running_loop()
+        self.loop.set_debug(True)
+        await websockets.serve(self.socketio, self.host[0], self.host[1])
+        await asyncio.sleep(1)
+
+
+class Admin:
+
+    def __init__(self, root):
+        self.config = Config(root)
+        self.db = Storage(self.config)
+        settings.configure()
+
+    def createsuperuser(self):
+        self.db.cursor.execute("SELECT * FROM interface_user")
+        _user_list = self.db.cursor.fetchall()
+        if len(_user_list) > 0:
+            return False
+        else:
+            today = datetime.date.today()
+            date = psycopg2.Date(today.year, today.month, today.day)
+            self.db.cursor.execute(
+                'INSERT INTO interface_user (username, password, is_staff, is_active, is_superuser, '
+                'date_joined, first_name, last_name, ulvl, email ) '
+                'VALUES( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                ("pyshelf", make_password("pyshelf"), True, True, True, date, "pyshelf", "default", 1,
+                 "change_or@delete.me"))
+            self.db.commit()
+            self.db.close()
+            return True

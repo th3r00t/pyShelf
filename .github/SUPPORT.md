@@ -68,6 +68,8 @@ socket=127.0.0.1:8001
 
 Now you may restart your webserver to apply the changes, and then either run `uwsgi -i uwsgi.ini` fron the project root, or restart your uwsgi service.
 
+### Set Djangos Secret Key
+* Run `./configure` in your project root
 ### Import your books
 * Run `./importBooks` in your project root
 
@@ -83,3 +85,4 @@ Please contact us using any of the options below for support. Please be prepared
 ### Live Support Options
 * Discord: [https://discord.gg/H9TbNJS](https://discord.gg/H9TbNJS)
 * IRC: [irc.freenode.net/pyShelf](irc://freenode.net/pyshelf)
+* Matrix.org: [#irc_#pyshelf:pyshelf.com](https://app.element.io/#/room/#irc_#pyshelf:pyshelf.com)

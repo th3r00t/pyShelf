@@ -15,24 +15,62 @@ Including another URLconf
 """
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.models import User
+from django.shortcuts import HttpResponse
 from django.urls import include, path, re_path
+from django.conf.urls.static import static
+from asgiref.sync import sync_to_async
 from interface import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
+    path("home", views.home, name="home"),
+    re_path("^live$", views.live, name="live"),
+    re_path("^menu$", views.menu, name="menu"),
+    path("sort/<_order>", views.index, name="index"),
+    path("flip_sort/<_order>", views.flip_sort, name="index"),
     path("download/<pk>", views.download, name="download"),
+    path("share/<pk>", views.share, name="share"),
+    path("share/<pk>", views.info, name="info"),
     path("prev_page/<bookset>", views.prev_page, name="prev_page"),
     path("next_page/<bookset>", views.next_page, name="next_page"),
-    path("search/", views.search, name="search"),
-    path("search/<query>", views.search, name="search"),
-    path("search/<query>/<_set>", views.search, name="search"),
+    path("prev_page/<bookset>/<_order>", views.prev_page, name="prev_page"),
+    path("next_page/<bookset>/<_order>", views.next_page, name="next_page"),
+    path("search/", views.index, name="search"),
+    path("search/<query>", views.index, name="search"),
+    path("search/<query>/<_set>", views.index, name="search"),
+    path("collections", views.collectionspage, name="collections"),
+    path("show_collection/<query>/<_set>", views.show_collection, name="show_collection"),
+    path("signup", views.signup, name="signup"),
+    path("login", views.userlogin, name="login"),
+    path('logout', views.userlogout, name='logout'),
+    path('favorite/<pk>', views.favorite, name='favorite'),
+    path('favorites', views.favorites, name='favorites'),
+    path('favorites/<bookset>', views.favorites, name='favorites'),
+    path('favorites/<bookset>/<query>', views.favorites, name='favorites'),
     path(
-        "show_collection/<_collection>/<_colset>",
-        views.show_collection,
-        name="show_collection",
+        'admin/password_reset/',
+        auth_views.PasswordResetView.as_view(),
+        name='admin_password_reset',
     ),
-]
+    path(
+        'admin/password_reset/done/',
+        auth_views.PasswordResetDoneView.as_view(),
+        name='password_reset_done',
+    ),
+    path(
+        'reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(),
+        name='password_reset_confirm',
+    ),
+    path(
+        'reset/done/',
+        auth_views.PasswordResetCompleteView.as_view(),
+        name='password_reset_complete',
+    ),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 if settings.DEBUG:
     import debug_toolbar
 

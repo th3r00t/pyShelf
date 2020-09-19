@@ -17,3 +17,12 @@ psycopg2-binary
 prompt_toolkit
 psutil
 pyfiglet
+mobi-python
+uwsgi
+jsonpickle
+django-widget-tweaks
+loguru
+ptvsd
+pudb
+daphne
+whitenoise

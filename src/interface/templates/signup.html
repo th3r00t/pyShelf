@@ -1,0 +1,34 @@
+{% load widget_tweaks %}
+<div class="col-auto">
+    <div class="row flex-row align-items-center justify-content-center">
+        <div class="col text-left bs-form-hdr">
+            <h4 style="margin: 5px 0px 5px 0px"><i class="fas fa-book"></i><small class="text-muted">&nbsp;Register</small></h4>
+        </div>
+    </div>
+    <div class="row flex-row form-body">
+        <form method="post" action="/signup">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="row row-cols-2">
+                    <div class="col">
+                        {{ field|add_class:"registration-field"|attr:"size=15" }}
+                    </div>
+                    <div class="col">
+                        {{ field.label }}
+                        {% if field.help_text %}
+                            <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+                <div class="row text-center">
+                    <div class="col">
+                        <button type="submit" class="btn-sm btn-secondary register-btn">Register</button>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>

@@ -2,6 +2,7 @@ books/*
 *.epub
 *.idea
 *.pyc
+.svn/
 app/content.opf
 .vscode
 fontend/db.sqlite3
@@ -9,6 +10,8 @@ GPATH
 GRTAGS
 GTAGS
 data/shelf.json
+package-lock.json
+Pipfile.lock
 .#*
 frontend/interface/migrations/*
 src/backend/data/*.json
@@ -125,10 +128,10 @@ dmypy.json
 # End of https://www.gitignore.io/api/python
 0
 config.backup.json
-create_db.sql
 uwsgi.ini
 installer.log
 pyshelf_nginx.conf
+!docker/pyshelf_nginx.conf
+.env
 tags
 TAGS
-config.json

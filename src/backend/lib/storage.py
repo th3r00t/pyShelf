@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import datetime
 import re
 
 import psycopg2
@@ -6,16 +7,16 @@ import psycopg2
 
 class Storage:
     """Contains all methods for system storage"""
-
     def __init__(self, config):
         self.sql = config.catalogue_db
         self.user = config.user
         self.password = config.password
         self.db_host = config.db_host
         self.db_port = config.db_port
-        self.db = psycopg2.connect(
-            database=self.sql, user=self.user, password=self.password, host=self.db_host
-        )
+        self.db = psycopg2.connect(database=self.sql,
+                                   user=self.user,
+                                   password=self.password,
+                                   host=self.db_host)
         self.config = config
         self.cursor = self.db.cursor()
 
@@ -34,7 +35,7 @@ class Storage:
                     set_perms.cursor.execute(_q)
                     set_perms.close()
                 except Exception as e:
-                    print(e)
+                    self.config.logger.error(e)
                     set_perms.close()
 
     def create_tables(self):
@@ -53,7 +54,7 @@ class Storage:
         Insert book in database
         :returns: True if succeeds False if not
         """
-        q = "INSERT INTO books (title, author, cover, progress, file_name, pages) values (%s, %s, %s, 0, %s, 0);"
+        q = "INSERT INTO books (title, author, cover, progress, file_name, pages, description, identifier, publisher, date, rights, tags) values (%s, %s, %s, 0, %s, 0, %s, %s, %s, %s, %s, %s);"
         try:
             try:
                 cover_image = book[2].data
@@ -61,11 +62,28 @@ class Storage:
                 cover_image = book[2]
             if not book[2]:  # If cover image is missing unset entry
                 cover_image = None
-            self.cursor.execute(q, (book[0], book[1], cover_image, book[3]))
+            self.cursor.execute(
+                q,
+                (
+                    book[0],  # title
+                    book[1],  # author
+                    cover_image,
+                    book[3],  # file
+                    book[4],  # descr
+                    book[5],  # ident
+                    book[6],  # publisher
+                    datetime.datetime.now(),
+                    book[8],  # rights
+                    book[9],  # tags
+                ),
+            )
+            self.config.logger.info(book[0][0:80])
             return True
         except Exception as e:
-            print(e)
-            return False
+            if e.pgcode == '22007':  # psycopg2's error code for invalid date
+                book[7] = psycopg2.Date(int(book[7]), 1, 1)
+                self.insert_book(book)
+            raise e
 
     def book_paths_list(self):
         """
@@ -76,7 +94,7 @@ class Storage:
         try:
             x = self.cursor.fetchall()
         except psycopg2.Error as e:
-            print(e)
+            self.config.logger.error(e)
             x = []
         return x
 
@@ -106,8 +124,11 @@ class Storage:
             path = self.config.book_path + "/"
             _collections = []
             _pathing = book[1].split(path)[1].split("/")
-            _pathing.pop(0)
-            _pathing.pop(-1)
+            try:
+                _pathing.pop(0)
+                _pathing.pop(-1)
+            except IndexError:
+                continue
             for _p in _pathing:
                 _s = _p.replace("'", "")
                 _x = re.sub(_title_regx, "", _s)
@@ -122,13 +143,13 @@ class Storage:
                 try:
                     self.cursor.execute(_q_x)
                     if len(self.cursor.fetchall()) < 1:
-                        self.cursor.execute(
-                            """INSERT INTO collections\
-                            (collection, book_id_id) VALUES ('%s',%s)"""
-                            % (_s, book[0])
-                        )
+                        self.cursor.execute("""INSERT INTO collections\
+                            (collection, book_id_id) VALUES ('%s',%s)""" %
+                                            (_s, book[0]))
+                        self.config.logger.info(
+                            "Collection {} Added".format(_s))
                 except Exception as e:
-                    print(e)
+                    self.config.logger.error(e)
                 _collections.append(_p)
         self.db.commit()
         self.close()

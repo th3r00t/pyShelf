@@ -1,8 +1,8 @@
 import json
 import os
 
-from ..lib.config import Config
-from ..lib.library import Catalogue
+from .lib.config import Config
+from .lib.library import Catalogue
 
 
 class Test_Config(Config):
