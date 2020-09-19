@@ -6,7 +6,7 @@
 
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
-![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/pyShelf_frontend_0_2_0.png)
+![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/master/src/interface/static/img/pyShelf_frontend_0_2_0.png)
 
 ### You dont need an X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
 
@@ -69,7 +69,7 @@ Follow or influence development @ <p align="center"><b>
     * More intuitive, less intrusive, & stays out of the way. <i>caveat: I need to rework the placement of the next & previous page controls. While they do remain usable, I intend to have them follow the users</i>
         position on the page in future releases.
 
-![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/navbar.png)
+![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/master/src/interface/static/img/navbar.png)
 
 * New controls
     * Sort
