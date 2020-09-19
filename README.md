@@ -2,10 +2,11 @@
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
+
+
 <p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
 
 ![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/development/src/interface/static/img/pyShelf_frontend_0_2_0.png)
-
 
 ### You dont need an X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
 
@@ -15,6 +16,7 @@ Follow or influence development @ <p align="center"><b>
     <a href="https://discord.gg/H9TbNJS">Discord</a>
     | <a href="https://webchat.freenode.net/#pyshelf">IRC</a>
 </b></p>
+
 
 ## Current Features
 
@@ -31,6 +33,12 @@ Follow or influence development @ <p align="center"><b>
     * currently only responds to ping, and importBooks, more responders are planned.
 * Full Docker integration.
 * On Demand Importing
+
+| Branch | Support | Feature set |
+| --- | --- | --- |
+| <b>Master<b> | Bugs get priority | Most stable branch, may be behind in the core feature set |
+ | <b>Development</b>| Please report all bugs | Most active branch, this branch is a rolling release, containing the latest features. There will be bugs here hopefully nothing service killing |
+ | <b>Others</b> | Here there be dragons | These branches are used for day to day development, nothing here should be considered stable.
 
 ## Currently Supported Formats
 
