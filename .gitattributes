@@ -1,7 +1,13 @@
 docs/* linguist-documentation
-src/interface/static/debug_toolbar linguist-vendored
-src/interface/static/webfonts linguist-vendored
-src/interface/static/js/bootstrap* linguist-vendored
-src/interface/static/js/jquery* linguist-vendored
-src/interface/static/admin/* linguist-vendored
-docker/* linguist-vendored
+src/backend/*
+src/interface/admin.py
+src/interface/apps.py
+src/interface/forms.py
+src/interface/models.py
+src/interface/tests.py
+src/interfaec/views.py
+src/interface/templates/*
+src/interface/templatetags/*
+src/interace/static/js/pyshelf_ux.js
+src/frontend/urs.py
+src/frontend/settings.py
