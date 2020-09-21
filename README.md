@@ -118,6 +118,9 @@ From the main directory
 
 As of 0.6.0 Django is being served up via Daphne, and the static files are served up via whitenoise.
 
+## Import Books
+The first step is to login, after logging in the button whill show your username, click on it once again, and a new menu will pop up with the option to logout, or import books.
+
 ## In Progress
 
 ### Organizational tools.
