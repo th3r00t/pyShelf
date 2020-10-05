@@ -1,5 +1,6 @@
 docs/* linguist-documentation
 src/backend/*
+src/interace/static/css/* linguist-vendored
 src/interface/admin.py
 src/interface/apps.py
 src/interface/forms.py
