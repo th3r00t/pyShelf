@@ -1,4 +1,4 @@
-# pyShelf 0.6.0
+# pyShelf 0.6.1
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
@@ -44,6 +44,14 @@ Follow or influence development @ <p align="center"><b>
 
 * epub
 * mobi
+* pdf
+
+## 0.6.1 Patch Notes.
+
+* PDF Format
+    * Image & Description acquisition needs work.
+
+# New Features
 
 ## 0.6.0 Patch Notes.
 
@@ -58,7 +66,7 @@ Follow or influence development @ <p align="center"><b>
     * currently only responds to ping, and importBooks, more responders are planned.
 * Full <b>Docker</b> integration.
 * On Demand Importing
-* .mobi Support 
+* .mobi Support
 * Result set ordering
     * You can now choose to order your results:
         * Title
