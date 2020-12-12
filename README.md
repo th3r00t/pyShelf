@@ -48,10 +48,11 @@ Follow or influence development @ <p align="center"><b>
 
 ## 0.6.1 Patch Notes.
 
+# New Features
+
 * PDF Format
     * Image & Description acquisition needs work.
 
-# New Features
 
 ## 0.6.0 Patch Notes.
 
