@@ -1,8 +1,6 @@
 #!/usr/bin/python
-import sys
-
 import requests
-
+import json
 # sys.path.insert(1, 'lib/')
 
 
@@ -33,3 +31,22 @@ class DuckDuckGo:
             return image.raw
         else:
             return False
+
+    def description_result(self, query):
+        _key = "&format=json"
+        try:
+            query = query.string
+        except AttributeError:
+            pass
+        try:
+            _r = json.loads(requests.get(self.url + query + _key).text)
+        except Exception as e:
+            return None
+        if len(_r["Results"]) == 0:
+            return None
+        else:
+            try:
+                return _r["Abstract"]
+            except AttributeError:
+                return None
+            return _r.Results[0]

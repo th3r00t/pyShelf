@@ -1,15 +1,13 @@
 #!/usr/bin/env python
-import json
 import os
-import pathlib
 import re
 import zipfile
+import PyPDF2
 
 from bs4 import BeautifulSoup
 from mobi import Mobi
 
 from .api_hooks import DuckDuckGo
-from .config import Config
 from .storage import Storage
 
 
@@ -57,16 +55,11 @@ class Catalogue:
         :returns self._book_list_expanded: json string containing all book metadata
         """
         self.scan_folder()  # Populate file list
-        regx = re.compile(r"\.epub|\.mobi")
+        regx = re.compile(r"\.epub|\.mobi|\.pdf")
         try:
             self.books = list(filter(regx.search, filter(None, self.file_list)))
         except TypeError as e:
             self.config.logger.error(e)
-        """
-        for book in self.books:
-            self._book_list_expanded[book] = self.process_by_filetype(book)
-        return self._book_list_expanded
-        """
 
     def process_by_filetype(self, book):
         if book.endswith(".epub"):
@@ -74,6 +67,8 @@ class Catalogue:
             return self.extract_metadata_epub(epub)
         elif book.endswith(".mobi"):
             return self.extract_metadata_mobi(book)
+        elif book.endswith(".pdf"):
+            return self.extract_metadata_pdf(book)
 
     @staticmethod
     def process_epub(book):
@@ -164,6 +159,56 @@ class Catalogue:
                 ftags,
             ]
         return book_details
+
+    def extract_metadata_pdf(self, book):
+        """ Return extracted metadata
+        :NOTES: Retrieval of data has been problematic, some pdf's providing
+        reliable titles that corespond with the actual, and others being
+        nonsense.
+        """
+        ddg = DuckDuckGo()
+        try:
+            pdf = PyPDF2.PdfFileReader(book)
+        except Exception:
+            return None
+        try:
+            # Getting odd errors on when attempting to access some pdfs
+            # where they would report as encrypted, when not.
+            info = pdf.getDocumentInfo()
+            if info is None:
+                # check to ensure we actually have a pdf
+                return None
+        except Exception:
+            return None
+        fname = book.__str__()
+        title = book.split("/")[-1].rsplit(".", 1)[0]
+        title = title.replace("_", " ")
+        if info.author is None:
+            author = None
+        else:
+            author = info.author
+        try:
+            cover_image = ddg.image_result(title)
+        except:
+            cover_image = None
+        description = ddg.description_result(title)
+        identifier = None
+        publisher = None
+        date = None
+        rights = None
+        ftags = None
+        return [
+            title,
+            author,
+            cover_image,
+            fname,
+            description,
+            identifier,
+            publisher,
+            date,
+            rights,
+            ftags,
+        ]
 
     @staticmethod
     def stripTags(source):
@@ -276,7 +321,10 @@ class Catalogue:
         for book in book_list:
             book = self.process_by_filetype(book)
             with open(fsocket, 'w') as _socket:
-                _socket.write(book[0])
+                try:
+                    _socket.write(book[0])
+                except TypeError:
+                    continue
             _socket.close()
             db.insert_book(book)
         inserted = db.commit()
