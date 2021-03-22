@@ -10,7 +10,7 @@
 
 ### You dont need an X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
 
-_Other solutiions require you to have access to an X server to at the very least generate your book database, pyShelf doesnt.We aim to provide a fully featured ebook server with minimal requirements, and no reliance on X whatsoever._
+_Other solutions require you to have access to an X server to at the very least generate your book database, pyShelf doesnt. We aim to provide a fully featured ebook server with minimal requirements, and no reliance on X whatsoever._
 
 Follow or influence development @ <p align="center"><b>
     <a href="https://discord.gg/H9TbNJS">Discord</a>
