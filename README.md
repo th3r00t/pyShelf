@@ -4,8 +4,6 @@
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
 
 
-<p align="center"><a href="https://pyshelf.com">https://pyshelf.com</a></p>
-
 ![pyShelf 0.6.0 newui](https://github.com/th3r00t/pyShelf/raw/master/src/interface/static/img/pyShelf_frontend_0_2_0.png)
 
 ### You dont need an X server to host a website, or your Movie & Tv collection, so why should you need one to host ebooks?
