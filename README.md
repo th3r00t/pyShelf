@@ -12,7 +12,6 @@ _Other solutiions require you to have access to an X server to at the very least
 
 Follow or influence development @ <p align="center"><b>
     <a href="https://discord.gg/H9TbNJS">Discord</a>
-    | <a href="https://webchat.freenode.net/#pyshelf">IRC</a>
 </b></p>
 
 
