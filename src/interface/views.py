@@ -413,7 +413,6 @@ async def live(request, **kwargs):
                     return False
 
         async def runImport(host):
-            breakpoint()
             async with websockets.connect(f'ws://{host[0]}:{host[1]}') as _s:
                 await _s.send("importBooks")
                 data = await _s.recv()
