@@ -16,7 +16,6 @@ class DuckDuckGo:
         :param _key: &t=h_&iar=images&iax=images&ia=images&format=json&pretty=1
         """
         _key = "&t=h_&iar=images&iax=images&ia=images&format=json&pretty=1"
-        breakpoint()
         try:
             query = query.string
         except AttributeError:
