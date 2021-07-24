@@ -58,7 +58,7 @@ class Server:
     async def initialize_server(self):
         self.config.logger.info("INITIALIZE")
         self.serve = await websockets.serve(self.socketio, self.host[0], self.host[1])
-        await asyncio.sleep(.01)
+        await asyncio.sleep(.1)
         self.config.logger.info("Server Initialization Complete")
 
     async def runImport(self):
