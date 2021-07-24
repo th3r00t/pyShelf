@@ -20,7 +20,10 @@ class DuckDuckGo:
             query = query.string
         except AttributeError:
             query = query
-        search_result = requests.get(self.url + query + _key)
+        try:
+            search_result = requests.get(self.url + query + _key)
+        except Error as e:
+            return False
         try:
             image_result = search_result.json()["Image"]
         except ValueError:
