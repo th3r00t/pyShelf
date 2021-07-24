@@ -23,7 +23,7 @@ class DuckDuckGo:
             query = query
         try:
             search_result = requests.get(self.url + query + _key)
-        except Error as e:
+        except Exception as e:
             return False
         try:
             image_result = search_result.json()["Image"]
