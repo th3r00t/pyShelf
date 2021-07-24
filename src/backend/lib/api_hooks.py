@@ -9,6 +9,7 @@ class DuckDuckGo:
 
     def __init__(self):
         self.url = "https://api.duckduckgo.com/?q="
+        self.imageurl = "https://duckduckgo.com"
 
     def image_result(self, query):
         """
@@ -26,7 +27,8 @@ class DuckDuckGo:
         except ValueError:
             image_result = ""
         if search_result.status_code == 200 and image_result != "":
-            image = requests.get(search_result.json()["Image"], stream=True)
+            image_result = self.imageurl + image_result
+            image = requests.get(image_result, stream=True)
             image.raw.decode_content = True
             return image.raw
         else:
