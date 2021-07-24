@@ -285,7 +285,7 @@ class Catalogue:
         try:
             cover = book_zip.read(cover.name)
             return cover
-        except KeyError:
+        except Error as e:
             return False
 
     def compare_shelf_current(self):
