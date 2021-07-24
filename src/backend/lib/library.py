@@ -281,8 +281,8 @@ class Catalogue:
         """
         Opens epub as zip file filters then stores as list any files matching cover_regx
         """
-        cover = book_zip.open(list(filter(self.cover_regx.search, book["files"]))[0])
         try:
+            cover = book_zip.open(list(filter(self.cover_regx.search, book["files"]))[0])
             cover = book_zip.read(cover.name)
             return cover
         except Error as e:
