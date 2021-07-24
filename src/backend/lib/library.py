@@ -285,7 +285,7 @@ class Catalogue:
             cover = book_zip.open(list(filter(self.cover_regx.search, book["files"]))[0])
             cover = book_zip.read(cover.name)
             return cover
-        except Error as e:
+        except Exception as e:
             return False
 
     def compare_shelf_current(self):
