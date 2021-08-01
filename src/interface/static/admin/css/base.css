@@ -253,7 +253,7 @@ thead th.required {
 }
 
 tr.alt {
-    background: #f6f6f6;
+    background: #797979;
 }
 
 tr:nth-child(odd), .row-form-errors {
@@ -273,7 +273,7 @@ thead th {
     padding: 5px 10px;
     line-height: normal;
     text-transform: uppercase;
-    background: #f6f6f6;
+    background: #797979;
 }
 
 thead th a:link, thead th a:visited {
@@ -281,7 +281,7 @@ thead th a:link, thead th a:visited {
 }
 
 thead th.sorted {
-    background: #eee;
+    background: #797979;
 }
 
 thead th.sorted .text {
@@ -300,7 +300,7 @@ table thead th .text a {
 }
 
 table thead th .text a:focus, table thead th .text a:hover {
-    background: #eee;
+    background: #797979;
 }
 
 thead th.sorted a.sortremove {
@@ -327,7 +327,7 @@ table thead th.sorted .sortpriority {
     margin-right: 2px;
 }
 
-table thead th.sorted .sortoptions a {
+table thead th.sort79797e.sortoptions a {
     position: relative;
     width: 14px;
     height: 14px;
@@ -424,7 +424,7 @@ select[multiple] {
 /* FORM BUTTONS */
 
 .button, input[type=submit], input[type=button], .submit-row input, a.button {
-    background: #79aec8;
+    background: #888;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -497,7 +497,7 @@ input[type=button][disabled].default {
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: #79aec8;
+    background: #888;
     color: #fff;
 }
 
@@ -608,7 +608,7 @@ td ul.errorlist + input, td ul.errorlist + select, td ul.errorlist + textarea {
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: #79aec8;
+    background: #888;
     padding: 10px 40px;
     border: none;
     font-size: 14px;
@@ -871,14 +871,14 @@ table#change-history tbody th {
 
 #user-tools a:focus, #user-tools a:hover {
     text-decoration: none;
-    border-bottom-color: #79aec8;
-    color: #79aec8;
+    border-bottom-color: #888;
+    color: #888;
 }
 
 /* SIDEBAR */
 
 #content-related {
-    background: #f8f8f8;
+    background: #797979;
 }
 
 #content-related .module {
@@ -887,7 +887,7 @@ table#change-history tbody th {
 
 #content-related h3 {
     font-size: 14px;
-    color: #666;
+    color: #fff;
     padding: 0 16px;
     margin: 0 0 16px;
 }
@@ -918,7 +918,7 @@ table#change-history tbody th {
     margin-bottom: 16px;
     border-bottom: 1px solid #eaeaea;
     font-size: 18px;
-    color: #333;
+    color: #f7f7f7;
 }
 
 .delete-confirmation form input[type="submit"] {
