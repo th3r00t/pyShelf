@@ -13,19 +13,19 @@ body {
     padding: 0;
     font-size: 14px;
     font-family: "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
-    color: #333;
-    background: #fff;
+    color: #fff;
+    background: #282828;
 }
 
 /* LINKS */
 
 a:link, a:visited {
-    color: #447e9b;
+    color: #fff;
     text-decoration: none;
 }
 
 a:focus, a:hover {
-    color: #036;
+    color: #909090;
 }
 
 a:focus {
@@ -237,7 +237,7 @@ tfoot td {
     color: #666;
     padding: 5px 10px;
     font-size: 11px;
-    background: #fff;
+    background: #676767;
     border: none;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
@@ -257,14 +257,14 @@ tr.alt {
 }
 
 tr:nth-child(odd), .row-form-errors {
-    background: #fff;
+    background: #676767;
 }
 
 tr:nth-child(even),
 tr:nth-child(even) .errorlist,
 tr:nth-child(odd) + .row-form-errors,
 tr:nth-child(odd) + .row-form-errors .errorlist {
-    background: #f9f9f9;
+    background: #797979;
 }
 
 /* SORTABLE TABLES */
