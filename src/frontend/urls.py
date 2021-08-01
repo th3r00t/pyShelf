@@ -22,9 +22,10 @@ from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from asgiref.sync import sync_to_async
 from interface import views
+from interface.admin import admin_site
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin_site.urls),
     path("", views.index, name="index"),
     path("home", views.home, name="home"),
     re_path("^live$", views.live, name="live"),

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin import AdminSite
 from django.contrib.auth.admin import UserAdmin
 
 from .models import Books, Collections, Favorites, Navigation, User
@@ -21,9 +22,15 @@ class CustomUserAdmin(UserAdmin):
         (None, {"classes": ("wide",), "fields": ("facebook", "twitter", "sponsorid", "matrixid")},),
     )
 
+class pyShelfAdminSite(AdminSite):
+    site_title = 'pyShelf admin'
+    site_header = 'pyShelf Administration'
+    index_title = 'Site administration'
 
-admin.site.register(Books)
-admin.site.register(Collections)
-admin.site.register(Favorites)
-admin.site.register(Navigation)
-admin.site.register(User, CustomUserAdmin)
+
+admin_site = pyShelfAdminSite(name='pyadmin')
+admin_site.register(Books)
+admin_site.register(Collections)
+admin_site.register(Favorites)
+admin_site.register(Navigation)
+admin_site.register(User, CustomUserAdmin)
