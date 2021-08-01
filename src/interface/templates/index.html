@@ -41,7 +41,7 @@
                         <li class="nav_menu_tab active_tab" id="btn-home" data-location="/home"><i class="fas fa-home"></i>&nbsp;Home</li>
                         <li class="nav_menu_tab" id="coll_button"><i class="fas fa-layer-group"></i>&nbsp;Collections</li>
                         <li class="nav_menu_tab"><i class="fas fa-star"></i><a href="/favorites" class="nav_link">&nbsp;Favorites,</a></li>
-                        <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;Bug report</li>
+                        <li class="nav_menu_tab"><i class="fas fa-bug"></i>&nbsp;<a href="https://github.com/th3r00t/pyShelf/issues" class="nav_link">Bug report</a></li>
 
                         {% if request.user.is_authenticated %}
                         <li class="nav_menu_tab" id="btn_logout"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp;{{ request.user }}
