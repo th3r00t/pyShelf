@@ -24,7 +24,14 @@
     }
 
     .book_details_list {
-        grid-template-rows: 0.5fr 0.5fr 2fr 0.15fr 0.25fr;
+        display: grid;
+        grid-template-areas:
+        "book_title"
+        "book_author"
+        "book_tags"
+        "book_controls";
+        grid-area: details;
+        grid-template-rows: .5fr .5fr .15fr 0.25fr;
     }
 }
 
@@ -44,17 +51,6 @@
     .shelf_item{
         min-width: 100%;
         margin: 0px auto 10px auto;
-    }
-
-    .book_details_list {
-        display: grid;
-        grid-template-areas:
-        "book_title"
-        "book_author"
-        "book_tags"
-        "book_controls";
-        grid-area: details;
-        grid-template-rows: .5fr .5fr .15fr 0.25fr;
     }
     .nav_search{
         /* display: none !important; */
