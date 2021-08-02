@@ -30,13 +30,13 @@ form .form-row p {
 
 label {
     font-weight: normal;
-    color: #666;
+    color: #fff;
     font-size: 13px;
 }
 
 .required label, label.required {
     font-weight: bold;
-    color: #333;
+    color: #999;
 }
 
 /* RADIO BUTTONS */
@@ -250,8 +250,8 @@ fieldset.monospace textarea {
 .submit-row {
     padding: 12px 14px;
     margin: 0 0 20px;
-    background: #f8f8f8;
-    border: 1px solid #eee;
+    background: #888888;
+    border: 1px solid #3f3f3f;
     border-radius: 4px;
     text-align: right;
     overflow: hidden;

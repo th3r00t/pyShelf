@@ -25,7 +25,7 @@ class CustomUserAdmin(UserAdmin):
 class pyShelfAdminSite(AdminSite):
     site_title = 'pyShelf admin'
     site_header = 'pyShelf Administration'
-    index_title = 'Site administration'
+    index_title = 'Library'
 
 
 admin_site = pyShelfAdminSite(name='pyadmin')

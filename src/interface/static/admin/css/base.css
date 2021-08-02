@@ -64,7 +64,7 @@ h1 {
     margin: 0 0 20px;
     font-weight: 300;
     font-size: 20px;
-    color: #666;
+    color: #3f3;
 }
 
 h2 {
@@ -277,7 +277,7 @@ thead th {
 }
 
 thead th a:link, thead th a:visited {
-    color: #666;
+    color: #000;
 }
 
 thead th.sorted {
@@ -471,7 +471,7 @@ input[type=button][disabled].default {
 .module {
     border: none;
     margin-bottom: 30px;
-    background: #fff;
+    background: #363636;
 }
 
 .module p, .module ul, .module h3, .module h4, .module dl, .module pre {
@@ -812,10 +812,12 @@ table#change-history tbody th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px;
-    background: #417690;
-    color: #ffc;
+    padding: 10px 10px;
+    background: #363636;
+    color: #3f3;
     overflow: hidden;
+    border-bottom: #3f3 1px solid;
+    margin-bottom: 5px;
 }
 
 #header a:link, #header a:visited {
@@ -835,11 +837,11 @@ table#change-history tbody th {
     margin: 0 20px 0 0;
     font-weight: 300;
     font-size: 24px;
-    color: #f5dd5d;
+    color: #3f3;
 }
 
 #branding h1, #branding h1 a:link, #branding h1 a:visited {
-    color: #f5dd5d;
+    color: #3f3;
 }
 
 #branding h2 {

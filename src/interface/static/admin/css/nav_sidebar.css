@@ -18,6 +18,7 @@
     font-size: 20px;
     color: #447e9b;
     padding: 0;
+    display: none !important;
 }
 
 [dir="rtl"] .toggle-nav-sidebar {
@@ -37,6 +38,7 @@
     margin-left: -276px;
     border-top: 1px solid transparent;
     border-right: 1px solid #eaeaea;
+    border: 0px;
     background-color: #282828;
     overflow: auto;
 }
@@ -59,7 +61,7 @@
 }
 
 .main.shifted > #nav-sidebar {
-    left: 24px;
+    left: 0px;
     margin-left: 0;
 }
 
