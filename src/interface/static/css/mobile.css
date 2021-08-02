@@ -13,6 +13,19 @@
     }
     .shelf_item{
     }
+    
+    #book_shelf {
+        justify-content: left;
+        flex-direction: column;
+    }
+
+    .book_description {
+        display: none;
+    }
+
+    .book_details_list {
+        grid-template-rows: 0.5fr 0.5fr 2fr 0.15fr 0.25fr;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -29,7 +42,19 @@
         font-size: small;
     }
     .shelf_item{
-        max-width: min-content;
+        min-width: 100%;
+        margin: 0px auto 10px auto;
+    }
+
+    .book_details_list {
+        display: grid;
+        grid-template-areas:
+        "book_title"
+        "book_author"
+        "book_tags"
+        "book_controls";
+        grid-area: details;
+        grid-template-rows: .5fr .5fr .15fr 0.25fr;
     }
     .nav_search{
         /* display: none !important; */
@@ -46,14 +71,6 @@
         list-style: None;
         padding: 0px;
         margin: 0px 0px;
-    }
-    
-    .book_description {
-        display: none;
-    }
-
-    .book_details_list {
-        grid-template-rows: 0.5fr 0.5fr 2fr 0.15fr 0.25fr;
     }
     .vert-nav-item {}
 
