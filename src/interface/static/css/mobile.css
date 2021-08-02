@@ -48,6 +48,13 @@
         margin: 0px 0px;
     }
     
+    .book_description {
+        display: none;
+    }
+
+    .book_details_list {
+        grid-template-rows: 0.5fr 0.5fr 2fr 0.15fr 0.25fr;
+    }
     .vert-nav-item {}
 
     #vert-nav {

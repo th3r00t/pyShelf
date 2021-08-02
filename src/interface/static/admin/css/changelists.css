@@ -312,7 +312,7 @@
 #changelist .actions select {
     vertical-align: top;
     height: 24px;
-    background: none;
+    background: #363636;
     color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -336,14 +336,14 @@
     font-size: 13px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background: #fff;
+    background: #363636;
     box-shadow: 0 -15px 20px -10px rgba(0, 0, 0, 0.15) inset;
     cursor: pointer;
     height: 24px;
     line-height: 1;
     padding: 4px 8px;
     margin: 0;
-    color: #333;
+    color: #fff;
 }
 
 #changelist .actions .button:focus, #changelist .actions .button:hover {
