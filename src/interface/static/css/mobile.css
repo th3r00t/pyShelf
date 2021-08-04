@@ -12,6 +12,7 @@
         font-size: small;
     }
     .shelf_item{
+        width: fit-content;
     }
     
     #book_shelf {
