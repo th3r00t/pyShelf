@@ -145,7 +145,7 @@ The first step is to login, after logging in the button whill show your username
 ### Support for other formats
 
 - [x] .mobi
-- [ ] .pdf
+- [x] .pdf
 - [ ] .cbz
 - [ ] .zip (Zipped book folders, is this a new idea? (Consider storing your library folders zipped and retrieving a book on demand))
 
