@@ -48,7 +48,7 @@ Follow or influence development @ <p align="center"><b>
 # New Features
 
 * Administration System
-
+* PDF Support
 
 ## 0.6.0 Patch Notes.
 

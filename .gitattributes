@@ -1,14 +1,4 @@
-docs/* linguist-documentation
-src/backend/*
-src/interace/static/css/* linguist-vendored
-src/interface/admin.py
-src/interface/apps.py
-src/interface/forms.py
-src/interface/models.py
-src/interface/tests.py
-src/interfaec/views.py
-src/interface/templates/*
-src/interface/templatetags/*
-src/interace/static/js/pyshelf_ux.js
-src/frontend/urs.py
-src/frontend/settings.py
+* linguist-vendored
+*.py linguist-vendored=false
+*.js linguist-vendored=false
+*.html linguist-vendored=false
