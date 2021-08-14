@@ -33,6 +33,7 @@ $(document).ready(function(){
     const navlink = $('.nav_link')
     const inputbox = $('input_box')
     const loginbtn = $('#btn_login')
+    const adminbtn = $('.admin-btn')
     const server = ('ws://127.0.0.1:1337')
     customlog([cmp_height]);
     $(".search_submit").click(function(){
@@ -170,6 +171,9 @@ $(document).ready(function(){
             '<button type="submit" class="btn-sm btn-secondary import-btn"><i class="fas fa-file-import"></i>&nbsp; Import Books</button>' +
             '</div>' +
             '<div class="col-auto" id="usercp-col2">' +
+            '<button type="submit" class="btn-sm btn-secondary admin-btn"><i class="fas fa-sign-out-alt"></i>&nbsp; Admin</button>' +
+            '</div>' +
+            '<div class="col-auto" id="usercp-col3">' +
             '<button type="submit" class="btn-sm btn-secondary logout-btn"><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</button>' +
             '</div>'
         );
@@ -181,6 +185,7 @@ $(document).ready(function(){
         $('#pop_over_0').dialog("open");
     });
     $(document).on('click', '.logout-btn', function(){window.location.href = '/logout'});
+    $(document).on('click', '.admin-btn', function(){window.location.href = '/admin'});
 
     //Web Socket Call
     $(document).on('click', '.import-btn', async function(){
