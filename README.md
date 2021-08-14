@@ -1,4 +1,4 @@
-# pyShelf 0.6.1
+# pyShelf 0.7.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
@@ -43,12 +43,11 @@ Follow or influence development @ <p align="center"><b>
 * mobi
 * pdf
 
-## 0.6.1 Patch Notes.
+## 0.7.0 Patch Notes.
 
 # New Features
 
-* PDF Format
-    * Image & Description acquisition needs work.
+* Administration System
 
 
 ## 0.6.0 Patch Notes.
