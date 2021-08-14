@@ -12,6 +12,27 @@
         font-size: small;
     }
     .shelf_item{
+        width: fit-content;
+    }
+    
+    #book_shelf {
+        justify-content: left;
+        flex-direction: column;
+    }
+
+    .book_description {
+        display: none;
+    }
+
+    .book_details_list {
+        display: grid;
+        grid-template-areas:
+        "book_title"
+        "book_author"
+        "book_tags"
+        "book_controls";
+        grid-area: details;
+        grid-template-rows: .5fr .5fr .15fr 0.25fr;
     }
 }
 
@@ -29,7 +50,8 @@
         font-size: small;
     }
     .shelf_item{
-        max-width: min-content;
+        min-width: 100%;
+        margin: 0px auto 10px auto;
     }
     .nav_search{
         /* display: none !important; */
@@ -47,7 +69,6 @@
         padding: 0px;
         margin: 0px 0px;
     }
-    
     .vert-nav-item {}
 
     #vert-nav {

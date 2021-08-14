@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.admin import AdminSite
 from django.contrib.auth.admin import UserAdmin
 
 from .models import Books, Collections, Favorites, Navigation, User
@@ -22,8 +23,27 @@ class CustomUserAdmin(UserAdmin):
     )
 
 
-admin.site.register(Books)
-admin.site.register(Collections)
-admin.site.register(Favorites)
-admin.site.register(Navigation)
-admin.site.register(User, CustomUserAdmin)
+class pyShelfAdminSite(AdminSite):
+    site_title = 'pyShelf admin'
+    site_header = 'pyShelf Administration'
+    index_title = 'Library'
+     
+
+class BookModelSearch(admin.ModelAdmin):
+    search_fields=('title','author','tags')
+     
+
+class CollectionModelSearch(admin.ModelAdmin):
+    search_fields=('collection',)
+
+
+class FavoritesModelSearch(admin.ModelAdmin):
+    search_fields=('user_id',)
+
+
+admin_site = pyShelfAdminSite(name='pyadmin')
+admin_site.register(Books, BookModelSearch)
+admin_site.register(Collections, CollectionModelSearch)
+admin_site.register(Favorites, FavoritesModelSearch)
+admin_site.register(Navigation)
+admin_site.register(User, CustomUserAdmin)

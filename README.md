@@ -1,4 +1,4 @@
-# pyShelf 0.6.1
+# pyShelf 0.7.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
@@ -14,6 +14,12 @@ Follow or influence development @ <p align="center"><b>
     <a href="https://discord.gg/H9TbNJS">Discord</a>
 </b></p>
 
+## 0.7.0 Patch Notes.
+
+# New Features
+
+* Administration System
+* PDF Support
 
 ## Current Features
 
@@ -42,49 +48,6 @@ Follow or influence development @ <p align="center"><b>
 * epub
 * mobi
 * pdf
-
-## 0.6.1 Patch Notes.
-
-# New Features
-
-* PDF Format
-    * Image & Description acquisition needs work.
-
-
-## 0.6.0 Patch Notes.
-
-# New Features
-
-* Automated Collections
-    * A work in progress, the collections are based on your folder structure.
-* User System
-* Per User Favorites
-* Expanded book information view
-* Websocket server
-    * currently only responds to ping, and importBooks, more responders are planned.
-* Full <b>Docker</b> integration.
-* On Demand Importing
-* .mobi Support
-* Result set ordering
-    * You can now choose to order your results:
-        * Title
-        * Author
-        * Categories
-        * & Tags
-* Reworked UI/UX
-    * More intuitive, less intrusive, & stays out of the way. <i>caveat: I need to rework the placement of the next & previous page controls. While they do remain usable, I intend to have them follow the users</i>
-        position on the page in future releases.
-
-![pyShelf 0.6.0 navbar](https://github.com/th3r00t/pyShelf/raw/master/src/interface/static/img/navbar.png)
-
-* New controls
-    * Sort
-    * Ascending / Descending result set
-    * Display of the result set count, and your current position in the set.
-    * A pop over layer to hold things like
-        * [x] User login & Registration
-        * [x] Control panel
-        * [x] Book details
 
 ## Installation & Support Information
 
@@ -133,7 +96,7 @@ The first step is to login, after logging in the button whill show your username
 
 - [x] Automated Collections
 - [ ] Manual Collections
-- [ ] Books Removal
+- [x] Books Removal
 - [ ] Access Restrictions
 - [ ] Metadata Manipulation
 - [ ] Others?

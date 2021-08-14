@@ -34,13 +34,13 @@
 }
 
 #changelist .toplinks {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #363636;
 }
 
 #changelist .paginator {
     color: #666;
-    border-bottom: 1px solid #eee;
-    background: #fff;
+    border-bottom: 1px solid #363636;
+    background: #191919;
     overflow: hidden;
 }
 
@@ -69,10 +69,10 @@
 
 #changelist #toolbar {
     padding: 8px 10px;
-    margin-bottom: 15px;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    background: #f8f8f8;
+    margin-bottom: 0px;
+    border-top: 1px solid #363636;
+    border-bottom: 1px solid #363636;
+    background: #000;
     color: #666;
 }
 
@@ -127,7 +127,7 @@
     right: 0;
     z-index: 1000;
     width: 240px;
-    background: #f8f8f8;
+    background: #000;
     border-left: none;
     margin: 0;
 }
@@ -151,7 +151,7 @@
 #changelist-filter ul {
     margin: 5px 0;
     padding: 0 15px 15px;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #282828;
 }
 
 #changelist-filter ul:last-child {
@@ -172,9 +172,10 @@
 }
 
 #changelist-filter li.selected {
-    border-left: 5px solid #eaeaea;
+    border-left: 5px solid #797979;
     padding-left: 10px;
     margin-left: -15px;
+    background-color: #282828;
 }
 
 #changelist-filter li.selected a {
@@ -282,11 +283,11 @@
 
 #changelist .actions {
     padding: 10px;
-    background: #fff;
+    background: #191919;
     border-top: none;
     border-bottom: none;
     line-height: 24px;
-    color: #999;
+    color: #fff;
 }
 
 #changelist .actions.selected {
@@ -311,8 +312,8 @@
 #changelist .actions select {
     vertical-align: top;
     height: 24px;
-    background: none;
-    color: #000;
+    background: #363636;
+    color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
@@ -335,14 +336,14 @@
     font-size: 13px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background: #fff;
+    background: #363636;
     box-shadow: 0 -15px 20px -10px rgba(0, 0, 0, 0.15) inset;
     cursor: pointer;
     height: 24px;
     line-height: 1;
     padding: 4px 8px;
     margin: 0;
-    color: #333;
+    color: #fff;
 }
 
 #changelist .actions .button:focus, #changelist .actions .button:hover {

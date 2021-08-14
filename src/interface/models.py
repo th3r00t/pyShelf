@@ -21,6 +21,7 @@ class Books(models.Model):
 
     class Meta:
         db_table = "books"
+        verbose_name_plural = 'Books'
 
     def __str__(self):
         return self.title
@@ -59,6 +60,7 @@ class Books(models.Model):
 class Collections(models.Model):
     class Meta:
         db_table = "collections"
+        verbose_name_plural = 'Collections'
 
     def __str__(self):
         return self.collection.__str__()
@@ -120,6 +122,7 @@ class Navigation(models.Model):
 
     class Meta:
         db_table = "navigation"
+        verbose_name_plural = "Navigation"
 
     def __str__(self):
         return self.title
@@ -162,6 +165,7 @@ class Favorites(models.Model):
 
     class Meta:
         db_table = "favorites"
+        verbose_name_plural = "Favorites"
 
     def __str__(self):
         return str(self.book)
