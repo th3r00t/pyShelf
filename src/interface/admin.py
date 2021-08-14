@@ -22,15 +22,28 @@ class CustomUserAdmin(UserAdmin):
         (None, {"classes": ("wide",), "fields": ("facebook", "twitter", "sponsorid", "matrixid")},),
     )
 
+
 class pyShelfAdminSite(AdminSite):
     site_title = 'pyShelf admin'
     site_header = 'pyShelf Administration'
     index_title = 'Library'
+     
+
+class BookModelSearch(admin.ModelAdmin):
+    search_fields=('title','author','tags')
+     
+
+class CollectionModelSearch(admin.ModelAdmin):
+    search_fields=('collection',)
+
+
+class FavoritesModelSearch(admin.ModelAdmin):
+    search_fields=('user_id',)
 
 
 admin_site = pyShelfAdminSite(name='pyadmin')
-admin_site.register(Books)
-admin_site.register(Collections)
-admin_site.register(Favorites)
+admin_site.register(Books, BookModelSearch)
+admin_site.register(Collections, CollectionModelSearch)
+admin_site.register(Favorites, FavoritesModelSearch)
 admin_site.register(Navigation)
 admin_site.register(User, CustomUserAdmin)
