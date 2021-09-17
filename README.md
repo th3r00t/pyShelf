@@ -13,6 +13,8 @@ _Other solutions require you to have access to an X server to at the very least 
 Follow or influence development @ <p align="center"><b>
     <a href="https://discord.gg/H9TbNJS">Discord</a>
 </b></p>
+## General Notes
+You may need to click import books a second time if your import fails on the first attempt
 
 ## 0.7.0 Patch Notes.
 
