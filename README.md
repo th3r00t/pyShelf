@@ -55,7 +55,7 @@ Follow or influence development @ <p align="center"><b>
 
 ## Docker
 
-The official Docker image for pyShelf is [`pyshelf/pyshelf`](https://hub.docker.com/r/pyshelf/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. An example docker-compose.yml is included in the repo
+The official Docker image for pyShelf is [`pyshelf/pyshelf`](https://hub.docker.com/r/pyshelf/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. An example docker-compose.yml is included in the repo.
 
 You'll need a `.env` file wich sets the `LOCAL_BOOK_DIR` variable, for example:
 
@@ -64,6 +64,8 @@ LOCAL_BOOK_DIR=/home/someone/books
 ```
 
 The Docker image is still new, so there could still be some issues and missing features. Feel free to create a bug-issue when you encounter a bug. Development of the Docker image is discussed in https://github.com/th3r00t/pyShelf/pull/53 . Currently the database needs to be [PostgreSQL](https://www.postgresql.org/) with the account details shown in the example `docker-compose.yml`.
+    
+    Default User/Pass for web interface: pyshelf/pyshelf
 
 ## Self Hosted
 This is targeted towards Network Administrators, and home enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a [PostgreSQL](https://www.postgresql.org/) server. For those unfamiliar with the required setup please use the included docker-compose.yml
