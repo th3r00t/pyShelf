@@ -103,6 +103,7 @@ The first step is to login, after logging in the button whill show your username
 - [x] Books Removal
 - [ ] Access Restrictions
 - [ ] Metadata Manipulation
+- [ ] Ui\Ux Improvements
 - [ ] Others?
 
 ### Improved cover image storage, and acquisition.
