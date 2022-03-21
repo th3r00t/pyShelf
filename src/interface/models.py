@@ -27,7 +27,7 @@ class Books(models.Model):
         return self.title
 
     title = models.TextField(max_length=None)
-    author = models.CharField(max_length=255, null=True)
+    author = models.TextField(max_length=None, null=True)
     categories = models.TextField(max_length=None, null=True)
     cover = models.BinaryField(null=True, editable=True)
     pages = models.IntegerField(null=True)
@@ -35,10 +35,10 @@ class Books(models.Model):
     file_name = models.TextField(max_length=None, null=False)
     date = models.DateTimeField(auto_now_add=True)
     description = models.TextField(null=True)
-    identifier = models.CharField(max_length=255, null=True)
+    identifier = models.TextField(max_length=None, null=True)
     publisher = models.TextField(max_length=None, null=True)
     date = models.DateField(null=True)
-    rights = models.CharField(max_length=255, null=True)
+    rights = models.TextField(max_length=None, null=True)
     tags = models.TextField(max_length=None, null=True)
 
     def generic_search(self, query):
