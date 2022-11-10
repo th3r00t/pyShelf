@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+websockets = "*"
+loguru = "*"
+pypdf2 = "*"
+bs4 = "*"
+mobi = "*"
+mobi-python = "*"
+requests = "*"
+psycopg2-binary = "*"
+django-debug-toolbar = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
