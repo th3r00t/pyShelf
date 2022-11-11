@@ -8,11 +8,11 @@ import psycopg2
 class Storage:
     """Contains all methods for system storage"""
     def __init__(self, config):
-        self.sql = config.catalogue_db
-        self.user = config.user
-        self.password = config.password
-        self.db_host = config.db_host
-        self.db_port = config.db_port
+        self.sql = config["DATABASE"]
+        self.user = config["USER"]
+        self.password = config["PASSWORD"]
+        self.db_host = config["DB_HOST"]
+        self.db_port = config["DB_PORT"]
         self.db = psycopg2.connect(database=self.sql,
                                    user=self.user,
                                    password=self.password,
@@ -46,7 +46,7 @@ class Storage:
         file_name text)"""
         try:
             self.cursor.execute(q_check)
-        except Exception as e:
+        except psycopg2.errors.UndefinedTable:
             self.cursor.execute(q_create)
 
     def insert_book(self, book):

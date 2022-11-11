@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 import os
-import sys
 import json
 from pathlib import Path
 from django.core.management.utils import get_random_secret_key
 from src.backend.lib.pyShelf import Admin
+from src.backend.lib.storage import Storage
 
 
 def load_config():
-    with open('config.json',"r") as file:
+    with open('config.json', "r") as file:
         config = json.load(file)
     file.close()
     return config
 
 
 def write_config(config):
-    with open('config.json',"w") as file:
+    with open('config.json', "w") as file:
         json.dump(config, file)
     file.close()
 
@@ -27,10 +27,14 @@ def set_secret(config=load_config()):
     else:
         print("Secret already set, skipping.")
 
+
 def set_book_directory(config=load_config(), *args):
     if config["BOOKPATH"] == "":
-        try: config["BOOKPATH"] = args[0]
-        except IndexError: config["BOOKPATH"] = input("Input Book Directory ")
+        try:
+            config["BOOKPATH"] = args[0]
+        except IndexError:
+            config["BOOKPATH"] = input("Input Book Directory ")
+
 
 def init_django_database():
     cmds = [
@@ -44,10 +48,15 @@ def init_django_database():
         os.system(cmd)
     os.chdir("../")
 
+
 config = load_config()
 
 set_secret(config)
 set_book_directory(config)
 write_config(config)
-init_django_database()
-Admin(Path.cwd()).createsuperuser()
+# TODO:: Refactor here to enable backend to handle database operations.
+breakpoint
+storage = Storage(config)
+storage.create_tables()
+# init_django_database()
+# Admin(Path.cwd()).createsuperuser()
