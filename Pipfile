@@ -9,11 +9,12 @@ websockets = "*"
 loguru = "*"
 pypdf2 = "*"
 bs4 = "*"
-mobi = "*"
-mobi-python = "*"
 requests = "*"
 psycopg2-binary = "*"
 django-debug-toolbar = "*"
+sqlalchemy = "*"
+mobi-python = "*"
+psycopg = "*"
 
 [dev-packages]
 
