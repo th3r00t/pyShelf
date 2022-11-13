@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
+"""PyShelf Entrypoint."""
 import asyncio
 import sys
 from pathlib import Path
 
-import websockets
+# import websockets
 
 from src.backend.lib.config import Config
 from src.backend.pyShelf_MakeCollections import MakeCollections
@@ -18,18 +19,14 @@ tx = None
 
 
 async def RunImport():
-    """
-    Begin live import of books
-    """
+    """Begin live import of books."""
     execute_scan(PRG_PATH, config=config)
     MakeCollections(PRG_PATH, config=config)
     return "Import Complete"
 
 
 async def socketio(websocket, path):
-    """
-    Web Socket Controller
-    """
+    """Web Socket Controller."""
     async for message in websocket:
         config.logger.info("Message Processing")
         if message == "ping":
@@ -45,14 +42,13 @@ async def socketio(websocket, path):
 
 
 def pong():
-    """
-    Respond to incoming pings
-    """
+    """Respond to incoming pings."""
     config.logger.info(">> Pong")
     return "pong"
 
 
-start_server = websockets.serve(socketio, "127.0.0.1", 1337)
-
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+asyncio.run(RunImport())
+# start_server = websockets.serve(socketio, "127.0.0.1", 1337)
+#
+# asyncio.get_event_loop().run_until_complete(start_server)
+# asyncio.get_event_loop().run_forever()

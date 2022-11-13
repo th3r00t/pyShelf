@@ -2,7 +2,7 @@
 import os
 import json
 from src.backend.lib.storage import Storage
-
+from src.backend.lib.config import Config
 
 def load_config():
     with open('config.json', "r") as file:
@@ -46,13 +46,12 @@ def init_django_database():
     os.chdir("../")
 
 
-config = load_config()
-
-set_secret(config)
-set_book_directory(config)
-write_config(config)
+config_file = load_config()
+config = Config(os.path.split(os.path.realpath(__file__))[0])
+set_secret(config_file)
+set_book_directory(config_file)
+write_config(config_file)
 # TODO:: Refactor here to enable backend to handle database operations.
-breakpoint
 storage = Storage(config)
 storage.create_tables()
 # init_django_database()

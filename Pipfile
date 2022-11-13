@@ -11,9 +11,11 @@ pypdf2 = "*"
 bs4 = "*"
 requests = "*"
 psycopg2-binary = "*"
-sqlalchemy = "*"
 mobi-python = "*"
 psycopg = "*"
+lxml = "*"
+"sqlalchemy.orm" = "*"
+sqlalchemy = "==2.0.0b3"
 
 [dev-packages]
 

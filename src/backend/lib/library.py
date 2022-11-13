@@ -294,14 +294,15 @@ class Catalogue:
         """
         db = Storage(self.config)
         stored = db.book_paths_list()
-        db.close()
+        if not stored:
+            stored = []
         if self.books is None:
             self.filter_books()
         on_disk, in_storage = [], []
         for _x in self.books:
             on_disk.append(_x)
         for _y in stored:
-            in_storage.append(_y[0])
+            in_storage.append(_y)
         a, b, = set(on_disk), set(in_storage)
         c = set.difference(a, b)
         return c
@@ -327,8 +328,3 @@ class Catalogue:
                     continue
             _socket.close()
             db.insert_book(book)
-        inserted = db.commit()
-        if inserted is not True:
-            self.config.logger.error("Failed storing {} in database".format(str(book)))
-            pass
-        db.close()

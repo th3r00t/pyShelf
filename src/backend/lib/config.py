@@ -16,7 +16,10 @@ class Config:
         self.root = root
         env = os.environ.copy()
         self._fp = "config.json"
-        self._cp = pathlib.Path.joinpath(root, self._fp)
+        try:
+            self._cp = pathlib.Path.joinpath(root, self._fp)
+        except AttributeError:
+            self._cp = pathlib.Path(root, self._fp)
         self._data = self.open_file()
         try:
             self.logger
