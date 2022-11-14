@@ -2,8 +2,8 @@
 import os
 import re
 import zipfile
-import PyPDF2
 
+import PyPDF2
 from bs4 import BeautifulSoup
 from mobi import Mobi
 
@@ -105,7 +105,8 @@ class Catalogue:
             if re.match(self.title_sanitization_regx, title):
                 if re.match(self.title_sanitization_lvl2_regx, title):
                     title = re.split(r"-+\W", title)[1]
-                else: title = re.split(self.title_sanitization_regx, title)[2]
+                else:
+                    title = re.split(self.title_sanitization_regx, title)[2]
 
             author = soup.find("dc:creator")
             if author is not None:
@@ -161,7 +162,7 @@ class Catalogue:
         return book_details
 
     def extract_metadata_pdf(self, book):
-        """ Return extracted metadata
+        """Return extracted metadata
         :NOTES: Retrieval of data has been problematic, some pdf's providing
         reliable titles that corespond with the actual, and others being
         nonsense.
@@ -226,21 +227,23 @@ class Catalogue:
         author = book.author().decode("utf-8")
         book_config = book.config
         try:
-            description = self.stripTags(book_config['exth']['records'][103].decode("utf-8"))
+            description = self.stripTags(
+                book_config["exth"]["records"][103].decode("utf-8")
+            )
         except KeyError:
             description = None
         try:
-            identifier = book_config['exth']['records'][104].decode("utf-8")
+            identifier = book_config["exth"]["records"][104].decode("utf-8")
         except KeyError:
             identifier = None
         try:
-            publisher = book_config['exth']['records'][101].decode("utf-8")
+            publisher = book_config["exth"]["records"][101].decode("utf-8")
         except KeyError:
             publisher = None
         date = None
         rights = None
         try:
-            ftags = book_config['exth']['records'][105].decode("utf-8")
+            ftags = book_config["exth"]["records"][105].decode("utf-8")
             if ":" in ftags:
                 ftags = ftags.replace(":", ",")
             elif ";" in ftags:
@@ -282,10 +285,12 @@ class Catalogue:
         Opens epub as zip file filters then stores as list any files matching cover_regx
         """
         try:
-            cover = book_zip.open(list(filter(self.cover_regx.search, book["files"]))[0])
+            cover = book_zip.open(
+                list(filter(self.cover_regx.search, book["files"]))[0]
+            )
             cover = book_zip.read(cover.name)
             return cover
-        except Exception as e:
+        except Exception:
             return False
 
     def compare_shelf_current(self):
@@ -303,7 +308,9 @@ class Catalogue:
             on_disk.append(_x)
         for _y in stored:
             in_storage.append(_y)
-        a, b, = set(on_disk), set(in_storage)
+        a, b, = set(
+            on_disk
+        ), set(in_storage)
         c = set.difference(a, b)
         return c
 
@@ -314,14 +321,14 @@ class Catalogue:
         Iterates over list and inserts new books into database.
         """
         try:
-            fsocket = kwargs['socket']
+            fsocket = kwargs["socket"]
         except KeyError:
-            fsocket = '/dev/null'
+            fsocket = "/dev/null"
         book_list = self.compare_shelf_current()
         db = Storage(self.config)
         for book in book_list:
             book = self.process_by_filetype(book)
-            with open(fsocket, 'w') as _socket:
+            with open(fsocket, "w") as _socket:
                 try:
                     _socket.write(book[0])
                 except TypeError:
