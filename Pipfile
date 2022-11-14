@@ -16,6 +16,8 @@ psycopg = "*"
 lxml = "*"
 "sqlalchemy.orm" = "*"
 sqlalchemy = "==2.0.0b3"
+pre-commit = "*"
+fastapi = {extras = ["all"], version = "*"}
 
 [dev-packages]
 
