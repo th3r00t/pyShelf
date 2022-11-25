@@ -82,18 +82,10 @@ async def main():
     _import_thread = Thread(target=RunImport)
     _import_thread.start()
     _task = await asyncio.create_task(fe_server())
-    breakpoint()
     return [_task, _import_thread]
 
 
 if __name__ == "__main__":
     use_route_names_as_operation_ids(app)
-    try:
-        loop = asyncio.get_running_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-    _main_task = loop.create_task(main())
-    loop.run_until_complete()
-    loop.close()
-    loop.shutdown_default_executor()
-    exit(0)
+    asyncio.run(main())
+    sys.exit(0)
