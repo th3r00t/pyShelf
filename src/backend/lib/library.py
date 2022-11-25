@@ -40,35 +40,41 @@ class Catalogue:
             folder = str(self.root_dir) + "/" + self.book_folder
         else:
             folder = self.book_folder
-        for f in os.listdir(folder):
-            _path = os.path.abspath(folder + "/" + f)
-            if os.path.isdir(_path.strip() + "/"):
-                self.file_list.append(self.scan_folder(_path))
-            else:
-                self.file_list.append(_path)
+        try:
+            for f in os.listdir(folder):
+                _path = os.path.abspath(folder + "/" + f)
+                if os.path.isdir(_path.strip() + "/"):
+                    self.file_list.append(self.scan_folder(_path))
+                else:
+                    self.file_list.append(_path)
+        except FileNotFoundError as fnfe:
+            self.config.logger.error(fnfe)
 
     def filter_books(self):
-        """
-        Calls scan_folder and filters out book files
-        Proceeds to call process_book
+        """Calls scan_folder and filters out book files.
 
-        :returns self._book_list_expanded: json string containing all book metadata
+        :returns self._book_list_expanded: json string containing
+        all book metadata
         """
         self.scan_folder()  # Populate file list
         regx = re.compile(r"\.epub|\.mobi|\.pdf")
         try:
-            self.books = list(filter(regx.search, filter(None, self.file_list)))
-        except TypeError as e:
-            self.config.logger.error(e)
+            self.books = list(filter(
+                regx.search, filter(None, self.file_list)))
+        except TypeError as error:
+            self.config.logger.error(error)
+
 
     def process_by_filetype(self, book):
+        """Determine books filetype and process."""
         if book.endswith(".epub"):
             epub = self.process_epub(book)
             return self.extract_metadata_epub(epub)
-        elif book.endswith(".mobi"):
+        if book.endswith(".mobi"):
             return self.extract_metadata_mobi(book)
-        elif book.endswith(".pdf"):
+        if book.endswith(".pdf"):
             return self.extract_metadata_pdf(book)
+        self.config.logger.error(f"Unknown Filetype {book}")
 
     @staticmethod
     def process_epub(book):

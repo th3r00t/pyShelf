@@ -1,18 +1,15 @@
+"""Pyshelf's Configuration Object."""
 import json
 import pathlib
-import re
 import os
 from loguru import logger
 
 
 class Config:
-    """
-    Main System Configuration
-    """
+    """Main System Configuration."""
+
     def __init__(self, root):
-        """
-        Initialize main configuration options
-        """
+        """Initialize main configuration options."""
         self.root = root
         env = os.environ.copy()
         self._fp = "config.json"
@@ -37,13 +34,15 @@ class Config:
         self.db_port = env.get("DB_PORT", self._data["DB_PORT"])
         self.file_array = [self.book_shelf]
         self.auto_scan = True
-        self.allowed_hosts = env.get("ALLOWED_HOSTS", self._data["ALLOWED_HOSTS"])
+        self.allowed_hosts = env.get("ALLOWED_HOSTS",
+                                     self._data["ALLOWED_HOSTS"])
+        self.db_engine = env.get("DB_ENGINE", self._data["DB_ENGINE"])
         self.db_user = env.get("USER", self._data["USER"])
         self.db_pass = env.get("PASSWORD", self._data["PASSWORD"])
-        self.SECRET = env.get("SECRET", self._data["SECRET"])
         self.build_mode = env.get("BUILD_MODE", self._data["BUILD_MODE"])
 
     def get_logger(self):
+        """Instantiate logging system."""
         _logger = logger
         _logger.add(pathlib.PurePath(self.root, 'data', 'pyshelf.log'),
                     rotation="2 MB",
@@ -52,17 +51,7 @@ class Config:
         return _logger
 
     def open_file(self):
-        """
-        Opens config.json and reads in configuration options
-        """
+        """Open config.json and reads in configuration options."""
         with open(str(self._cp), "r") as read_file:
             data = json.load(read_file)
         return data
-
-    def path(self):
-        rstr = "pyShelf/src"
-        r = re.template(rstr)
-        _pathre = re.match("pyShelf/src")
-
-    def django_secret(self):
-        pass

@@ -1,6 +1,6 @@
-#!/usr/bin/python
+"""Pyshelf's Main Storage Class."""
 import re
-
+import os
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 
@@ -8,27 +8,47 @@ from .models import Book, Collection
 
 
 class Storage:
-    """Contains all methods for system storage"""
+    """Contains all methods for system storage."""
 
     def __init__(self, config):
-        self.sql = config.catalogue_db
-        self.user = config.user
-        self.password = config.password
-        self.db_host = config.db_host
-        self.db_port = config.db_port
-        self.engine = create_engine(
-            f"postgresql://{self.user}:{self.password}@{self.db_host}:{self.db_port}/{self.sql}"
-        )
+        """Initialize storage object."""
         self.config = config
+        self.sql = self.config.catalogue_db
+        self.user = self.config.user
+        self.password = self.config.password
+        self.db_host = self.config.db_host
+        self.db_port = self.config.db_port
+        self.engine = create_engine(self.get_connection_string(),
+                                    pool_pre_ping=True)
+
+    def get_connection_string(self):
+        """Get connection string.
+
+        Engine type references config.json:DB_ENGINE.
+        """
+        if self.config.db_engine == "sqlite":
+            if os.path.exists(f"{self.config.root}/pyshelf.db"):
+                return f"sqlite:////{self.config.root}/pyshelf.db"
+            else:
+                sqlite_file = open(f'{self.config.root}/pyshelf.db', 'w')
+                sqlite_file.close()
+                return f"sqlite://{self.config.root}/pyshelf.db"
+        elif self.config.db_engine == "psql":
+            return f"postgresql://{self.user}:{self.password}\
+            @{self.db_host}:{self.db_port}/{self.sql}"
+        elif self.config.db_engine == "mysql":
+            return f"mysql://{self.user}:{self.password}\
+            @{self.db_host}:{self.db_port}/{self.sql}"
 
     def create_tables(self):
+        """Create table structure."""
         tables = [Book, Collection]
         for table in tables:
             table.metadata.create_all(self.engine)
 
     def insert_book(self, book):
-        """
-        Insert book in database
+        """Insert a new book into the database.
+
         :returns: True if succeeds False if not
         """
         with Session(self.engine) as session:
@@ -61,15 +81,14 @@ class Storage:
                 self.config.logger.error(f"{book[0][0:80]} :: {e}")
 
     def book_paths_list(self):
-        """
-        Get file paths from database for comparison to system files
-        """
+        """Get file paths from database for comparison to system files."""
         session = Session(self.engine)
         _result = session.scalars(select(Book.file_name)).fetchall()
         session.close()
         return _result
 
     def make_collections(self):
+        """Make collections."""
         # TODO: Check this still works with the switch to sqlalchemy
         self.config.logger.info("Making collections.")
         _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
@@ -98,14 +117,17 @@ class Storage:
                     )
                     _sess.close()
                     if _q.fetchone() is None:
-                        _collection = Collection(collection=_s, book_id=book.book_id)
+                        _collection = Collection(
+                            collection=_s, book_id=book.book_id)
                         with Session(self.engine) as _sess:
                             try:
                                 _sess.add(_collection)
                                 _sess.commit()
                                 _sess.close()
-                                self.config.logger.info(f"Collection {_s} added.")
+                                self.config.logger.info(
+                                    f"Collection {_s} added.")
                             except Exception as e:
-                                self.config.logger.error(f"Collection {_s} failed: {e}")
+                                self.config.logger.error(
+                                    f"Collection {_s} failed: {e}")
                     _collections.append(_p)
         self.config.logger.info("Finished making collections.")

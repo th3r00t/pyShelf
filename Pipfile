@@ -18,6 +18,9 @@ lxml = "*"
 sqlalchemy = "==2.0.0b3"
 pre-commit = "*"
 fastapi = {extras = ["all"], version = "*"}
+debugpy = "*"
+pudb = "*"
+jinja2 = "*"
 
 [dev-packages]
 
