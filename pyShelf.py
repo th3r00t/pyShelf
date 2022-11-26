@@ -4,11 +4,10 @@ import asyncio
 import sys
 from pathlib import Path
 from threading import Thread
-
 from src.backend.lib.config import Config
 from src.backend.pyShelf_MakeCollections import MakeCollections
 from src.backend.pyShelf_ScanLibrary import execute_scan
-from src.frontend.lib.frontend import FrontendServer
+from src.frontend.lib.FastAPIServer import FastAPIServer
 # import websockets
 
 
@@ -17,7 +16,8 @@ config = Config(root)
 PRG_PATH = Path.cwd().__str__()
 sys.path.insert(0, PRG_PATH)
 
-def RunImport():
+
+def run_import():
     """Begin live import of books."""
     config.logger.info("Begining book import.")
     execute_scan(PRG_PATH, config=config)
@@ -28,9 +28,9 @@ def RunImport():
 
 async def main():
     """Program entrypoint."""
-    _import_thread = Thread(target=RunImport)
+    _import_thread = Thread(target=run_import)
     _import_thread.start()
-    fe_server = FrontendServer(config)
+    fe_server = FastAPIServer(config)
     _task = await asyncio.create_task(fe_server.run())
     return [_task, _import_thread]
 
