@@ -21,6 +21,7 @@ fastapi = {extras = ["all"], version = "*"}
 debugpy = "*"
 pudb = "*"
 jinja2 = "*"
+libsass = "*"
 
 [dev-packages]
 
