@@ -1,0 +1,34 @@
+{
+  "name": "pyshelf",
+  "version": "0.7.1",
+  "description": "Open Source Content Server",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th3r00t/pyShelf.git"
+  },
+  "keywords": [
+    "ebook",
+    "server",
+    "media",
+    "content",
+    "digital",
+    "opensource",
+    "python"
+  ],
+  "author": "th3r00t",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/th3r00t/pyShelf/issues"
+  },
+  "homepage": "https://github.com/th3r00t/pyShelf#readme",
+  "dependencies": {
+    "bulma": "^0.9.4"
+  }
+}
