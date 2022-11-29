@@ -1,0 +1,60 @@
+<nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://github.com/th3r00t/pyShelf">
+      <img src="{{ url_for('static', path='images/svg/logo-no-background-no-border.svg') }}" width="112" height="28" />
+    </a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="navbarMain" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+      <a class="navbar-item">
+        Ebooks
+      </a>
+      <a class="navbar-item">
+        Comics
+      </a>
+      <a class="navbar-item">
+        Documentation
+      </a>
+      <div class="navbar-item dropdown is-hoverable is-right" id="more-menu">
+          <a class="navbar-link">
+            More
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              About
+            </a>
+            <a class="navbar-item">
+              Logs
+            </a>
+            <a class="navbar-item">
+              Contact
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+              Report an issue
+            </a>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
