@@ -8,7 +8,25 @@ from .models import Book, Collection
 
 
 class Storage:
-    """Contains all methods for system storage."""
+    """Create a new Storage object.
+
+    >>> db = Storage(config)
+
+    Parameters
+    ----------
+    config : Config()
+        Main program configuration.
+
+    Attributes
+    ----------
+    config : Stores configuration
+    sql : Database Name
+    user : Database User Name
+    password : Database Password
+    db_host : Database Host
+    db_port : Database Port
+    engine : sqlalchemy.create_engine(url, executor, kw)
+    """
 
     def __init__(self, config):
         """Initialize storage object."""
@@ -25,6 +43,10 @@ class Storage:
         """Get connection string.
 
         Engine type references config.json:DB_ENGINE.
+
+        Returns
+        -------
+        str : sqlalchemy Connection String
         """
         if self.config.db_engine == "sqlite":
             if os.path.exists(f"{self.config.root}/pyshelf.db"):
@@ -49,7 +71,15 @@ class Storage:
     def insert_book(self, book):
         """Insert a new book into the database.
 
-        :returns: True if succeeds False if not
+        Parameters
+        ----------
+        book: dict()
+            Book object to insert.
+
+        Returns
+        -------
+        bool
+            True on success False on failure
         """
         with Session(self.engine) as session:
             try:
@@ -81,14 +111,22 @@ class Storage:
                 self.config.logger.error(f"{book[0][0:80]} :: {e}")
 
     def book_paths_list(self):
-        """Get file paths from database for comparison to system files."""
+        """Get file paths from database for comparison to system files.
+
+        Returns
+        -------
+        _result : ScalarResult Object
+        """
         session = Session(self.engine)
         _result = session.scalars(select(Book.file_name)).fetchall()
         session.close()
         return _result
 
     def make_collections(self):
-        """Make collections."""
+        """Parse book path's to determine common folder structure.
+
+        Stores collections based on shared paths.
+        """
         # TODO: Check this still works with the switch to sqlalchemy
         self.config.logger.info("Making collections.")
         _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")

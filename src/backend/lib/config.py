@@ -6,7 +6,44 @@ from loguru import logger
 
 
 class Config:
-    """Main System Configuration."""
+    """Main System Configuration.
+
+    >>> config = Config(root)
+
+    Parameters
+    ----------
+    root : File system root of program
+
+    Attributes
+    ----------
+    root : str() stores root.
+    _fp : str() file pointer to main configuration.
+    _cp : Path() object of configuration file.
+    _data : dict() parsed json of _fp.
+    logger : holds logging configuration from get_logger().
+    book_path : directory pointer to main books folder.
+    TITLE : str() Program title.
+    VERSION : str() Program  version.
+    TITLE : str() Combines TITLE & VERSION.
+    book_shelf : Deprecation TODO: Is this still in use?
+    catalogue_db : str() Database Name.
+    user : str() Database user name.
+    password : str() Database password.
+    db_host : str() Database host.
+    db_port : int() Database port.
+    file_array : list() copy of book_shelf TODO: See book_shelf
+    auto_scan: bool() Do we auto scan on launch?
+    allowed_hosts : list() Allowed host list.
+    db_engine : str() Desired database engine type.
+    db_user : str() Database user name. Duplication Warning.
+    db_pass : str() Database password. Duplication Warning.
+    build_mode : str() Production | Development mode.
+
+    Methods
+    -------
+    get_logger : Setup loguru.
+    open_file : Parse configuration file.
+    """
 
     def __init__(self, root):
         """Initialize main configuration options."""
