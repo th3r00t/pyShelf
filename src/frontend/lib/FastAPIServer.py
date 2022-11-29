@@ -12,8 +12,10 @@ templates = Jinja2Templates(directory="src/frontend/templates")
 
 
 class FastAPIServer():
+    """Entry point for FastAPI server."""
 
     def __init__(self, config):
+        """Initialize FastAPIServer object parameters."""
         self.config = config
         app.mount("/static",
                   StaticFiles(directory="src/frontend/static"),
@@ -27,9 +29,8 @@ class FastAPIServer():
         """Compile static files for web frontend."""
         _pyShelf_src = sass.compile(
             filename='src/frontend/static/styles/pyShelf.sass',
-            source_map_filename='src/frontend/node_modules/bulma/bulma.sass',
-            output_style='compressed'
-        )
+            source_map_filename='src/frontend/static/styles/pyShelf.sass',
+            output_style='compressed')
         with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
         _pyShelf.close()
@@ -46,7 +47,12 @@ class FastAPIServer():
         """Home page responder."""
         return templates.TemplateResponse(
             "index.html",
-            {"request": request})
+            {
+                "request": request,
+                "package": {
+                    "test": "This is a test variable"
+                }
+            })
 
     @app.get("/users/me")
     async def about_me(self):
