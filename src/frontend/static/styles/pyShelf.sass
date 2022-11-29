@@ -1,25 +1,41 @@
 @import "../../node_modules/bulma/sass/utilities/mixins.sass"
 $ps-color-primary: #89939E
+$ps-color-primary-trans: rgba(43, 50, 60, 0.64) !important
 $ps-color-secondary: #DEDEDE
 $ps-color-accent: $ps-color-secondary
 $ps-color-background: #000000
-$black: $ps-color-background
-$white: $ps-color-primary
-$link: $ps-color-secondary
+//$black: $ps-color-background
+//$white: $ps-color-primary
+//$link: $ps-color-secondary
 //$primary: $ps-color-primary
 //$link: $ps-color-secondary
 $scheme-main: $black
 $scheme-invert: $white
-$body-background-color: $black-ter
+// $body-background-color: $black-ter
 // Override Main Body Presets
 // $body-background-color: $ps-color-background
 // $text: $ps-color-primary
 
 // Override Navbar Presets
-// $navbar-background-color: $black
+$navbar-background-color: $ps-color-primary-trans
 $navbar-item-color: $white
-$navbar-item-hover-color: $black
-$navbar-item-hover-background-color: $white
+//$navbar-item-hover-color: $ps-color-background !important
+$navbar-item-hover-background-color: $ps-color-secondary
+$navbar-dropdown-background-color: $ps-color-primary-trans
+$navbar-dropdown-item-hover-color: $ps-color-background !important
+//$navbar-dropdown-item-hover-background-color: $background !default
+//$navbar-dropdown-item-active-color: $link !default
+//$navbar-dropdown-item-active-background-color: $background !default
+.center-all
+  align-items: center;
+  justify-content: center;
+
+.bg-image
+  background-image: url(../images/blue-background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
@@ -31,4 +47,6 @@ $navbar-item-hover-background-color: $white
 @import "../../node_modules/bulma/sass/components/navbar.sass";
 @import "../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../node_modules/bulma/sass/layout/section.sass";
+@import "../../node_modules/bulma/sass/layout/section.sass";
+@import "../../node_modules/bulma/sass/layout/footer.sass";
 
