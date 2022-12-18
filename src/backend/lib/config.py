@@ -17,6 +17,7 @@ class Config:
     Attributes
     ----------
     root : str() stores root.
+    config_structure : dict() Default Configuration Structure.
     _fp : str() file pointer to main configuration.
     _cp : Path() object of configuration file.
     _data : dict() parsed json of _fp.
@@ -48,13 +49,32 @@ class Config:
     def __init__(self, root):
         """Initialize main configuration options."""
         self.root = root
+        self.config_structure = {
+            "TITLE": "pyShelf E-Book Server",
+            "VERSION": "0.7.0",
+            "BOOKPATH": "/books",
+            "DB_HOST": "localhost",
+            "DB_PORT": "5432",
+            "DB_ENGINE": "sqlite",
+            "DATABASE": "pyshelf",
+            "USER": "pyshelf",
+            "PASSWORD": "pyshelf",
+            "BOOKSHELF": "data/shelf.json",
+            "ALLOWED_HOSTS": [
+                "localhost",
+                "127.0.0.1",
+                "[::1]",
+                "0.0.0.0"
+            ],
+            "BUILD_MODE": "development"
+        }
         env = os.environ.copy()
         self._fp = "config.json"
         try:
             self._cp = pathlib.Path.joinpath(root, self._fp)
         except AttributeError:
             self._cp = pathlib.Path(root, self._fp)
-        self._data = self.open_file()
+        self._data = self.init_config()
         try:
             self.logger
         except AttributeError:
@@ -77,6 +97,15 @@ class Config:
         self.db_user = env.get("USER", self._data["USER"])
         self.db_pass = env.get("PASSWORD", self._data["PASSWORD"])
         self.build_mode = env.get("BUILD_MODE", self._data["BUILD_MODE"])
+
+    def init_config(self):
+        try:
+            return self.open_file()
+        except FileNotFoundError:
+            with open(self._fp, 'w') as _config_file:
+                json.dump(self.config_structure, _config_file)
+                _config_file.close()
+            return self.open_file()
 
     def get_logger(self):
         """Instantiate logging system."""

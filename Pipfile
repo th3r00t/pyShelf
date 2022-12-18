@@ -22,6 +22,7 @@ debugpy = "*"
 pudb = "*"
 jinja2 = "*"
 libsass = "*"
+nodejs-bin = "*"
 
 [dev-packages]
 

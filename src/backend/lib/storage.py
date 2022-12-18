@@ -49,12 +49,7 @@ class Storage:
         str : sqlalchemy Connection String
         """
         if self.config.db_engine == "sqlite":
-            if os.path.exists(f"{self.config.root}/pyshelf.db"):
-                return f"sqlite:////{self.config.root}/pyshelf.db"
-            else:
-                sqlite_file = open(f'{self.config.root}/pyshelf.db', 'w')
-                sqlite_file.close()
-                return f"sqlite://{self.config.root}/pyshelf.db"
+            return f"sqlite:////{self.config.root}/pyshelf.db"
         elif self.config.db_engine == "psql":
             return f"postgresql://{self.user}:{self.password}\
             @{self.db_host}:{self.db_port}/{self.sql}"
