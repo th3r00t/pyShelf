@@ -18,7 +18,6 @@ sys.path.insert(0, PRG_PATH)
 
 
 def run_import():
-    asdfas
     """Begin live import of books."""
     config.logger.info("Begining book import.")
     execute_scan(PRG_PATH, config=config)
