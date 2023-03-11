@@ -29,9 +29,11 @@
   },
   "homepage": "https://github.com/th3r00t/pyShelf#readme",
   "dependencies": {
-    "bulma": "^0.9.4"
+    "bulma": "^0.9.4",
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "eslint": "^8.28.0"
