@@ -1,6 +1,6 @@
 """Pyshelf's Configuration Object."""
 import json
-import pathlib
+from pathlib import Path, PurePath
 import os
 from loguru import logger
 
@@ -52,7 +52,7 @@ class Config:
         self.config_structure = {
             "TITLE": "pyShelf E-Book Server",
             "VERSION": "0.7.0",
-            "BOOKPATH": "/books",
+            "BOOKPATH": f"{Path.home()}/Books",
             "DB_HOST": "localhost",
             "DB_PORT": "5432",
             "DB_ENGINE": "sqlite",
@@ -71,9 +71,9 @@ class Config:
         env = os.environ.copy()
         self._fp = "config.json"
         try:
-            self._cp = pathlib.Path.joinpath(root, self._fp)
+            self._cp = Path.joinpath(root, self._fp)
         except AttributeError:
-            self._cp = pathlib.Path(root, self._fp)
+            self._cp = Path(root, self._fp)
         self._data = self.init_config()
         try:
             self.logger
@@ -110,7 +110,7 @@ class Config:
     def get_logger(self):
         """Instantiate logging system."""
         _logger = logger
-        _logger.add(pathlib.PurePath(self.root, 'data', 'pyshelf.log'),
+        _logger.add(PurePath(self.root, 'data', 'pyshelf.log'),
                     rotation="2 MB",
                     enqueue=True,
                     colorize=True)
