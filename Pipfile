@@ -23,6 +23,7 @@ pudb = "*"
 jinja2 = "*"
 libsass = "*"
 nodejs-bin = "*"
+npm = "*"
 
 [dev-packages]
 

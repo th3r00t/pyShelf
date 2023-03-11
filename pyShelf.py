@@ -8,6 +8,7 @@ from src.backend.lib.config import Config
 from src.backend.pyShelf_MakeCollections import MakeCollections
 from src.backend.pyShelf_ScanLibrary import execute_scan
 from src.frontend.lib.FastAPIServer import FastAPIServer
+from src.frontend.lib.objects import FastAPIServer
 # import websockets
 
 
