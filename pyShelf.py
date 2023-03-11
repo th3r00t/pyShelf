@@ -5,10 +5,11 @@ import sys
 from pathlib import Path
 from threading import Thread
 from src.backend.lib.config import Config
+from src.backend.lib.storage import Storage
 from src.backend.pyShelf_MakeCollections import MakeCollections
 from src.backend.pyShelf_ScanLibrary import execute_scan
 from src.frontend.lib.FastAPIServer import FastAPIServer
-from src.frontend.lib.objects import FastAPIServer
+from src.frontend.lib.objects import JSInterface
 # import websockets
 
 
@@ -29,6 +30,8 @@ def run_import():
 
 async def main():
     """Program entrypoint."""
+    JSInterface(config=config).install()
+    Storage(config=config).create_tables()
     _import_thread = Thread(target=run_import)
     _import_thread.start()
     fe_server = FastAPIServer(config)
