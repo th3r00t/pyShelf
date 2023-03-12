@@ -165,7 +165,7 @@ class Storage:
                     _collections.append(_p)
         self.config.logger.info("Finished making collections.")
 
-    def get_books(self, collection=None):
+    def get_books(self, collection=None, skip=None, limit=None):
         """Get books from database.
 
         Parameters
@@ -180,11 +180,43 @@ class Storage:
         session = Session(self.engine)
         if collection:
             _result = session.execute(
-                select(Book).join(Collection).where(
-                    Collection.collection == collection
-                )
-            ).all()
+                select(Book).join(Collection)
+                .where(Collection.collection_id == collection)
+                .offset(skip).limit(limit)).all()
         else:
-            _result = session.execute(select(Book)).all()
+            _result = session.execute(
+                    select(Book).offset(skip).limit(limit)).all()
+        session.close()
+        return _result
+
+    def get_book(self, book_id):
+        """Get book from database.
+
+        Parameters
+        ----------
+        book_id : int
+            Book ID to filter by.
+
+        Returns
+        -------
+        _result : ScalarResult Object
+        """
+        session = Session(self.engine)
+        _result = session.execute(select(Book).where(Book.book_id == book_id)).first()
+        session.close()
+        return _result
+
+    def get_collections(self):
+        """Get collections from database.
+
+        Returns
+        -------
+        _result : ScalarResult Object
+        """
+        session = Session(self.engine)
+        _result = session.execute(
+                select(Collection)
+                .join(Book)
+                ).all()
         session.close()
         return _result

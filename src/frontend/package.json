@@ -30,6 +30,7 @@
   "homepage": "https://github.com/th3r00t/pyShelf#readme",
   "dependencies": {
     "bulma": "^0.9.4",
+    "pako": "^2.1.0",
     "typescript": "^4.9.5"
   },
   "devDependencies": {

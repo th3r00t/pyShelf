@@ -24,6 +24,7 @@ jinja2 = "*"
 libsass = "*"
 nodejs-bin = "*"
 npm = "*"
+brotlipy = "*"
 
 [dev-packages]
 ptipython = "*"

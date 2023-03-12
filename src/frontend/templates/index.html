@@ -1,34 +1,32 @@
 <!doctype html>
+{% block javascript %}
+<script type="text/javascript">
+  var books = {{ books|books_tojson }};
+  let inflatedJSON = {};
+  inflatedJSON = JSON.parse(pako.inflate(books, { to: 'string'}));
+</script>
+{% endblock %}
 {% include 'header.html' %}
   {% include 'navigation.html' %}
 <section id="master">
   <div class="container is-dark">
     {% for book in books %}
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="data:;base64,{{ book[0].cover|b64decode }}" alt="{{ book[0].title }}">
-        </figure>
-      </div>
-      <div class="card-content">
-        <div class="media">
-          <div class="media-left">
-            <figure class="image is-48x48">
-              <img src="data:;base64,{{ book[0].cover|b64decode }}" alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="media-content">
-            <p class="title is-4">{{ book[0].title }}</p>
-            <p class="subtitle is-6">{{ book[0].author }}</p>
-          </div>
-        </div>
-        <div class="content">
-          {{ book[0].description }}
-          <br>
-          <time datetime="2016-1-1">{{ book[0].date }}</time>
-        </div>
-      </div>
-    </div>
+	{% set cover = book[0].cover|b64decode %}
+	{% if cover != 'None' %}
+	    <div class="box is-dark book" id="{{book[0].id}}">
+	    <div class="image book-thumbnail">
+		<figure class="image is-4by3">
+		<img src="data:;base64,{{ book[0].cover|b64decode }}" alt="{{ book[0].title }}">
+		</figure>
+	    </div>
+	    </div>
+	    {% else %}
+	    <div class="box is-dark book" id="{{book[0].id}}">
+	      <h3 class="title is-3">{{ book[0].title }}</h3>
+	      <h4 class="subtitle is-4">{{ book[0].author }}</h4>
+	      <p class="content">{{ book[0].description|summarize }}</p>
+	    </div>
+	{% endif %}
     {% endfor %}
   </div>
 </section>

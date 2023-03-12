@@ -1,6 +1,6 @@
 from typing import Optional
 from typing_extensions import Annotated
-from sqlalchemy import func, DateTime, ForeignKey
+from sqlalchemy import func, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 import datetime
 
@@ -11,10 +11,14 @@ timestamp = Annotated[
 
 
 class Base(DeclarativeBase):
+    """Base class for all models."""
+
     pass
 
 
 class Book(Base):
+    """Book model."""
+
     __tablename__ = "books"
 
     book_id: Mapped[int] = mapped_column(primary_key=True, nullable=False)
@@ -33,7 +37,10 @@ class Book(Base):
     publisher: Mapped[Optional[str]]
 
 
+
 class Collection(Base):
+    """Collection model."""
+
     __tablename__ = "collections"
 
     collection: Mapped[str]
