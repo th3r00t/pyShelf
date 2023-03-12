@@ -7,14 +7,22 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="{{ book[0].cover }}" alt="{{ book[0].title }}">
+          {% try %}
+          <img src="data:image/png;base64,{{ book[0].cover|b64decode }}" alt="{{ book[0].title }}">
+          {% except %}
+          <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+          {% endtry %}
         </figure>
       </div>
       <div class="card-content">
         <div class="media">
           <div class="media-left">
             <figure class="image is-48x48">
-              <img src="{{ book.image }}" alt="Placeholder image">
+              {% try %}
+              <img src="data:image/png;base64,{{ book[0].cover|b64decode }}" alt="Placeholder image">
+              {% except %}
+              <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+              {% endtry %}
             </figure>
           </div>
           <div class="media-content">
@@ -28,6 +36,7 @@
           <time datetime="2016-1-1">{{ book[0].date }}</time>
         </div>
       </div>
+    </div>
     {% endfor %}
   </div>
 </section>

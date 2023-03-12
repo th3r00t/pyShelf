@@ -2,6 +2,7 @@
 import uvicorn
 import os
 import sass
+import base64
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.routing import APIRoute
@@ -13,7 +14,9 @@ from ...backend.lib.config import Config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/frontend/templates")
-
+def base64decode(string):
+    return base64.b64decode(string).decode("utf-8")
+templates.env.filters["b64decode"] = base64decode
 
 class FastAPIServer():
     """Entry point for FastAPI server."""
