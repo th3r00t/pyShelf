@@ -26,6 +26,8 @@ nodejs-bin = "*"
 npm = "*"
 
 [dev-packages]
+ptipython = "*"
+chardet = "*"
 
 [requires]
 python_version = "3.11.2"
