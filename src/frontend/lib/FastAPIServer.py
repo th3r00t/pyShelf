@@ -1,11 +1,15 @@
 """pyShelf's main frontend library."""
 import uvicorn
+import os
 import sass
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from ...backend.lib.storage import Storage
+from .objects import JSInterface
+from ...backend.lib.config import Config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/frontend/templates")
@@ -23,6 +27,7 @@ class FastAPIServer():
         self.fe_config = uvicorn.Config(app, port=8080,
                                         log_level="info", reload=True)
         self.fe_server = uvicorn.Server(self.fe_config)
+        self.JSInterface: JSInterface = JSInterface(self.config)
         self.compile_static_files()
 
     def compile_static_files(self):
@@ -34,6 +39,7 @@ class FastAPIServer():
         with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
         _pyShelf.close()
+        self.JSInterface.install()
         return True
 
     def use_route_names_as_operation_ids(self, app: FastAPI) -> None:
@@ -44,15 +50,12 @@ class FastAPIServer():
 
     @app.get("/", response_class=HTMLResponse)
     async def index(request: Request):
+        storage = Storage(Config(os.path.abspath(os.getcwd())))
+        books = storage.get_books()
         """Home page responder."""
-        return templates.TemplateResponse(
-            "index.html",
-            {
-                "request": request,
-                "package": {
-                    "test": "This is a test variable"
-                }
-            })
+        # _books = self.storage.get_books()
+        context = {"request": request, "books": books}
+        return templates.TemplateResponse("index.html", context )
 
     @app.get("/users/me")
     async def about_me(self):

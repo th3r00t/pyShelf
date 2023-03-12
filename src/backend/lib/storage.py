@@ -164,3 +164,27 @@ class Storage:
                                     f"Collection {_s} failed: {e}")
                     _collections.append(_p)
         self.config.logger.info("Finished making collections.")
+
+    def get_books(self, collection=None):
+        """Get books from database.
+
+        Parameters
+        ----------
+        collection : str
+            Collection to filter by.
+
+        Returns
+        -------
+        _result : ScalarResult Object
+        """
+        session = Session(self.engine)
+        if collection:
+            _result = session.execute(
+                select(Book).join(Collection).where(
+                    Collection.collection == collection
+                )
+            ).all()
+        else:
+            _result = session.execute(select(Book)).all()
+        session.close()
+        return _result

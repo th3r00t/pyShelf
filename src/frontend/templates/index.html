@@ -1,7 +1,34 @@
 <!doctype html>
 {% include 'header.html' %}
   {% include 'navigation.html' %}
-      <section id="master">
-        {{ package.test }}
-      </section>
+<section id="master">
+  <div class="container is-dark">
+    {% for book in books %}
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{ book[0].cover }}" alt="{{ book[0].title }}">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="{{ book.image }}" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <p class="title is-4">{{ book[0].title }}</p>
+            <p class="subtitle is-6">{{ book[0].author }}</p>
+          </div>
+        </div>
+        <div class="content">
+          {{ book[0].description }}
+          <br>
+          <time datetime="2016-1-1">{{ book[0].date }}</time>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
 {% include 'footer.html' %}
