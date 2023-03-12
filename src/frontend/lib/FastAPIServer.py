@@ -2,7 +2,7 @@
 import uvicorn
 import os
 import sass
-import base64
+from base64 import b64encode
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.routing import APIRoute
@@ -14,9 +14,20 @@ from ...backend.lib.config import Config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/frontend/templates")
-def base64decode(string):
-    return base64.b64decode(string).decode("utf-8")
+
+
+def base64decode(string) -> str:
+    """Decode a base64 string."""
+    breakpoint()
+    try:
+        result = b64encode(string).decode("utf-8")
+    except Exception:
+        result = "static/images/placeholder.png"
+    return result
+
+
 templates.env.filters["b64decode"] = base64decode
+
 
 class FastAPIServer():
     """Entry point for FastAPI server."""
@@ -58,7 +69,7 @@ class FastAPIServer():
         """Home page responder."""
         # _books = self.storage.get_books()
         context = {"request": request, "books": books}
-        return templates.TemplateResponse("index.html", context )
+        return templates.TemplateResponse("index.html", context)
 
     @app.get("/users/me")
     async def about_me(self):
