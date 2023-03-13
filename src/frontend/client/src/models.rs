@@ -1,22 +1,27 @@
-struct Book {
-    id: u32,
+use bytes::Bytes;
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Book {
+    book_id: i32,
     title: String,
-    author: String,
-    categories: Vec<String>,
-    cover: bytes::Bytes,
-    pages: u32,
-    progress: u32,
+    author: Option<String>,
+    categories: Option<String>,
+    cover: Option<Bytes>,
+    pages: Option<i32>,
+    progress: Option<f32>,
     file_name: String,
-    description: String,
+    description: Option<String>,
     date: String,
-    rights: String,
-    tags: Vec<String>,
-    identifier: String,
-    publisher: String,
+    rights: Option<String>,
+    tags: Option<String>,
+    identifier: Option<String>,
+    publisher: Option<String>,
 }
 
-struct Collection {
-    collection_id: u32,
+pub struct Collection {
+    collection_id: i32,
     collection: String,
     books: Vec<Book>,
 }

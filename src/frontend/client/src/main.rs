@@ -1,11 +1,10 @@
 use yew::prelude::*;
+mod models;
+use models::{Book, Collection};
 
 #[function_component(App)]
 fn app() -> Html {
     html! {
-        // <div>
-        //     <h1>{ "Hello World!" }</h1>
-        // </div>
         <>
             <div>{ "pyShelf V: 0.7.1--dev" }</div>
         </>
