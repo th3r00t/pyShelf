@@ -12,12 +12,24 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 from ...backend.lib.storage import Storage
 from .objects import JSInterface
 from ...backend.lib.config import Config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/frontend/templates")
+origins = [
+    "http://localhost",
+    "http://localhost:8081",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def base64decode(string) -> str:
