@@ -1,0 +1,11 @@
+[[index|Home]] [[TOC]]
+= Book Attachment System =
+== Introduction ==
+
+The Book Attachment System is used for attaching various filetypes to a book.
+This could be helpfull for storing code snippets or notes to technical documents.
+
+
+== State ==
+
+Concept.

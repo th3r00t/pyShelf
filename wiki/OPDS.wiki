@@ -1,0 +1,14 @@
+[[index|Home]] [[TOC]]
+  = Open Public Distribution System =
+== Introduction ==
+
+  [[https://opds-spec.org/]]
+
+  The Open Publication Distribution System (OPDS) Catalog format is a syndication
+  format for electronic publications based on Atom and HTTP. OPDS Catalogs enable
+  the aggregation, distribution, discovery, and acquisition of electronic
+  publications. OPDS Catalogs use existing or emergent open standards and
+  conventions, with a priority on simplicity.
+
+== State ==
+  Concept.

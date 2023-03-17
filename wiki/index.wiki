@@ -1,0 +1,53 @@
+[[TOC]]
+= pyShelf | project:pyshelf =
+
+{{file:../src/frontend/static/images/png/logo-no-background.png}}
+
+Version 0.7.0
+[[License|GPLv3]]
+
+pyShelf is an open source ebook server written in Python.
+It is designed with ease of use in mind.
+
+== Branches ==
+- *Master* is the most stable branch, but may be behind in features.
+- *Dev* is the most active branch, this branch is a rolling release branch.
+- *--** are used for day to day development.
+
+== Formats ==
+
+pyShelf supports the following formats:
+
+  - epub
+  - mobi
+  - pdf
+
+
+== Services ==
+  - Backend
+    - [[Book Scraping System|Book Scraper]]
+    - [[OPDS]]
+  - Filesystem-io
+    - [[Book Attachment System]]
+  - [[Frontend]]
+    - [[REST API|RESTAPI]]
+    - [[Frontend#Dependency Management|Dependency Management]]
+    - [[Frontend#User Management|User Management]]
+    - [[Frontend#User Experience|User Experience]]
+    - [[Frontend#Data Management|Data Management]]
+== TODO ==
+  * [ ] [[Book Scraping System]]  #6bc7b0b2
+  * [ ] [[REST API]]  #f228623c
+  * [ ] [[Frontend]]  #c1681179
+
+== Development ==
+
+pyShelf takes advantage of the following tools:
+
+ [[https://pre-commit.com/|pre-commit]] [[http://www.doxygen.nl/|doxygen]] & 
+ [[https://vimwiki.github.io/|VimWiki]] we also follow 
+ [[https://semver.org|semver]] standards.
+ 
+ Please note that I use task, vimwiki, & taskwiki to manage my projects.
+ Due to this Task entries marked via `* [ ] task` are postfixed with hex color
+ data. Anyone who knows how to fix that I'm all ears :).

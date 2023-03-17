@@ -1,0 +1,2 @@
+  Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
+  - Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.

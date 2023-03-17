@@ -1,0 +1,41 @@
+[[index|Home]] [[TOC]]
+= Frontend Services =
+:frontend:ui:
+
+== Dependency Management ==
+:dependency:
+
+  * [X] npm  #934133e5
+  * [X] sass  #d2441aac
+  * [ ] pip  #cb0fd871
+
+== User Management ==
+:user:
+
+  * [ ] Registration System  #ff651c96
+    * [ ] oauth  #c817c425
+    * [ ] email&password  #42d560fb
+  * [ ] Login(out) System  #c8da03e4
+    * [ ] oauth  #f08099be
+    * [ ] email&password  #0f3f223b
+  * [ ] Reset Password System  #ae3feb3c
+    * [ ] email&password  #8f88c0f0
+  * [ ] User Delete System  #008610a9
+
+== User Experience ==
+:ux:
+
+  * [ ] Favorites  #c9c938f6
+  * [ ] Permissions / Roles  #8bceae4f
+  * [ ] User Profile  #c8e96670
+  * [ ] User Settings  #55667a27
+
+== Data Management ==
+:data:
+
+  * [ ] Book Management System  #543a8aa8
+    * [ ] add  #3ca338a2
+    * [ ] remove  #eabcf39a
+    * [ ] update  #2eac2d91
+    * [ ] access level  #6a214db3
+    * [ ] ownership  #9d9610dc

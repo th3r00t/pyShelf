@@ -1,0 +1,9 @@
+[[index|Home]]
+= REST API |project:pyshelf:restapi =
+
+== Endpoints ==
+* [X] Book /book/id  #405f1aac
+* [X] Books /books  #932fd202
+* [X] Collections /collections  #d4f585b6
+* [ ] User /user/id  #3f538207
+* [ ] Users /users  #c669d926

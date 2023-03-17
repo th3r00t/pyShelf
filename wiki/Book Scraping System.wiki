@@ -1,0 +1,25 @@
+[[index|Home]] [[TOC]]
+= Book Scraping System =
+== Introduction ==
+
+The Book Scraping System is a custom ebook scraper built from the ground up
+for pyShelf. It is designed to be a simple, easy to use, and easy to extend
+system for scraping ebooks from the internet. It is powered by BeutifulSoup.
+
+pyShelf features a recursive scraping algorithm that itterates over all
+sub-folders in your collection.
+
+== Scrapers ==
+  * [X] epub  #75f00edf
+  * [X] mobi  #2fe4b161
+  * [X] pdf  #ffa7e7f0
+  * [ ] cbz  #64b5da95
+
+== Collections ==
+  * [ ] Manual Collections  #2e7e6fcf
+  * [X] Automated Collections  #81db675a
+
+== State ==
+
+Fully functional.
+Awaiting further feature implementation.
