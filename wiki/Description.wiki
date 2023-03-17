@@ -1,4 +1,0 @@
-
-
-= Generated Links =
-  - [[index]]

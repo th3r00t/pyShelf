@@ -1,2 +1,6 @@
-  Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
-  - Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
+[[index|Home]] [[TOC]] [[https://github.com/th3r00t/pyShelf.git|github]]
+== Doxygen ==
+
+Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting.
+Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly.
+

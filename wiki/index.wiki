@@ -1,4 +1,4 @@
-[[TOC]]
+[[TOC]] [[https://github.com/th3r00t/pyShelf.git|github]]
 = pyShelf | project:pyshelf =
 
 {{file:../src/frontend/static/images/png/logo-no-background.png}}

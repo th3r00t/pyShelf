@@ -1,4 +1,4 @@
-[[index|Home]] [[TOC]]
+[[index|Home]] [[TOC]] [[https://github.com/th3r00t/pyShelf.git|github]]
   = Open Public Distribution System =
 == Introduction ==
 

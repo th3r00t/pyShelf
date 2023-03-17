@@ -1,8 +1,7 @@
-[[index|Home]]
+[[index|Home]] [[https://github.com/th3r00t/pyShelf.git|github]]
 = Table Of Contents =
   - [[Book Attachment System]]
   - [[Book Scraping System]]
-  - [[Description]]
   - [[Frontend]]
   - [[License]]
   - [[OPDS]]
