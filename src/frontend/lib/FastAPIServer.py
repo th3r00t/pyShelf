@@ -22,6 +22,8 @@ templates = Jinja2Templates(directory="src/frontend/templates")
 origins = [
     "http://localhost",
     "http://localhost:8081",
+    "http://localhost:8080",
+    "*"
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -60,25 +62,28 @@ def books_tojson(obj) -> dumps:
     """Convert an object to a dictionary."""
     _books: list = []
     for book in obj:
+        convert_none = lambda x: x if x is not None else "None"
         _books.append({
             "book_id": book[0].book_id,
             "title": book[0].title,
             "author": book[0].author,
-            "categories": book[0].categories,
+            "categories": convert_none(book[0].categories),
             "cover": base64decode(book[0].cover),
-            "pages": book[0].pages,
-            "progress": book[0].progress,
+            "pages": convert_none(book[0].pages),
+            "progress": convert_none(book[0].progress),
             "file_name": book[0].file_name,
-            "description": book[0].description,
+            "description": convert_none(book[0].description),
             "date": convertDateTime(book[0].date),
-            "rights": book[0].rights,
-            "tags": book[0].tags,
-            "identifier": book[0].identifier,
-            "publisher": book[0].publisher,
+            "rights": convert_none(book[0].rights),
+            "tags": convert_none(book[0].tags),
+            "identifier": convert_none(book[0].identifier),
+            "publisher": convert_none(book[0].publisher),
         })
     # compressed = gzip.compress(dumps(_books).encode("utf-8"))
     # compressed = gzip.compress(dumps(_books).encode())
-    return dumps(_books)
+    # breakpoint()
+    # return dumps(_books)
+    return _books
 
 
 def book_tojson(book) -> dumps:
@@ -166,6 +171,7 @@ class FastAPIServer():
         headers = {"Accept-Encoding": "gzip"}
         """Home page responder."""
         return JSONResponse(content=books_tojson(books))
+        # return JSONResponse(content=books)
 
     @app.get("/book/{book_id}", response_class=JSONResponse)
     async def book(request: Request, book_id: int):
