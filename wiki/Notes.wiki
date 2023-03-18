@@ -1,0 +1,15 @@
+= ux =
+== Next / React / Material / Typescript ==
+=== Guides ===
+- {{https://nextjs.org/docs/getting-started|Next.js}}
+- {{https://blog.logrocket.com/using-next-js-with-typescript/|Next w/ Typescript}}
+- {{https://react-typescript-cheatsheet.netlify.app/|React Typescript Cheatsheet}}
+- {{https://reactjs.org/docs/hooks-intro.html|React Hooks}}
+- {{https://reactjs.org/docs/hooks-custom.html|React Custom Hooks}}
+- {{https://reactjs.org/docs/hooks-reference.html|React Hooks Reference}}
+- {{https://material-ui.com/|Material UI}}
+- {{https://material-ui.com/guides/typescript/|Material UI w/ Typescript}}
+- {{https://material-ui.com/guides/server-rendering/|Material UI Server Rendering}}
+- {{https://material-ui.com/guides/minimizing-bundle-size/|Material UI Minimizing Bundle Size}}
+- {{https://material-ui.com/guides/composition/|Material UI Composition}}
+- {{https://www.prisma.io/|Prisma}}
