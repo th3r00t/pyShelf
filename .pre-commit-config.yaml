@@ -8,6 +8,8 @@ repos:
     -   id: check-added-large-files
     -   id: check-docstring-first
     -   id: debug-statements
+    -   id: end-of-file-fixer
+    -   id: pretty-format-json
 -   repo: https://github.com/fsouza/autoflake8
     rev: v0.4.0
     hooks:
