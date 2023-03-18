@@ -1,0 +1,231 @@
+.TH "src.backend.lib.config.Config" 3 "Sat Mar 18 2023" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.config.Config
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP (self, root)"
+.br
+.ti -1c
+.RI "def \fBinit_config\fP (self)"
+.br
+.ti -1c
+.RI "def \fBget_logger\fP (self)"
+.br
+.ti -1c
+.RI "def \fBopen_file\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBroot\fP"
+.br
+.ti -1c
+.RI "\fBconfig_structure\fP"
+.br
+.ti -1c
+.RI "\fBlogger\fP"
+.br
+.ti -1c
+.RI "\fBbook_path\fP"
+.br
+.ti -1c
+.RI "\fBTITLE\fP"
+.br
+.ti -1c
+.RI "\fBVERSION\fP"
+.br
+.ti -1c
+.RI "\fBbook_shelf\fP"
+.br
+.ti -1c
+.RI "\fBcatalogue_db\fP"
+.br
+.ti -1c
+.RI "\fBuser\fP"
+.br
+.ti -1c
+.RI "\fBpassword\fP"
+.br
+.ti -1c
+.RI "\fBdb_host\fP"
+.br
+.ti -1c
+.RI "\fBdb_port\fP"
+.br
+.ti -1c
+.RI "\fBfile_array\fP"
+.br
+.ti -1c
+.RI "\fBauto_scan\fP"
+.br
+.ti -1c
+.RI "\fBallowed_hosts\fP"
+.br
+.ti -1c
+.RI "\fBdb_engine\fP"
+.br
+.ti -1c
+.RI "\fBdb_user\fP"
+.br
+.ti -1c
+.RI "\fBdb_pass\fP"
+.br
+.ti -1c
+.RI "\fBbuild_mode\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB_fp\fP"
+.br
+.ti -1c
+.RI "\fB_cp\fP"
+.br
+.ti -1c
+.RI "\fB_data\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+
+.PP
+.nf
+Main System Configuration\&.
+
+>>> config = Config(root)
+
+Parameters
+----------
+root : File system root of program
+
+Attributes
+----------
+root : str() stores root\&.
+config_structure : dict() Default Configuration Structure\&.
+_fp : str() file pointer to main configuration\&.
+_cp : Path() object of configuration file\&.
+_data : dict() parsed json of _fp\&.
+logger : holds logging configuration from get_logger()\&.
+book_path : directory pointer to main books folder\&.
+TITLE : str() Program title\&.
+VERSION : str() Program  version\&.
+TITLE : str() Combines TITLE & VERSION\&.
+book_shelf : Deprecation TODO: Is this still in use?
+catalogue_db : str() Database Name\&.
+user : str() Database user name\&.
+password : str() Database password\&.
+db_host : str() Database host\&.
+db_port : int() Database port\&.
+file_array : list() copy of book_shelf TODO: See book_shelf
+auto_scan: bool() Do we auto scan on launch?
+allowed_hosts : list() Allowed host list\&.
+db_engine : str() Desired database engine type\&.
+db_user : str() Database user name\&. Duplication Warning\&.
+db_pass : str() Database password\&. Duplication Warning\&.
+build_mode : str() Production | Development mode\&.
+
+Methods
+-------
+get_logger : Setup loguru\&.
+open_file : Parse configuration file\&.
+
+.fi
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP
+.SS "def src\&.backend\&.lib\&.config\&.Config\&.__init__ ( self,  root)"
+
+.PP
+.nf
+Initialize main configuration options\&.
+.fi
+.PP
+
+.PP
+Reimplemented in \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
+.SH "Member Function Documentation"
+.PP
+.SS "def src\&.backend\&.lib\&.config\&.Config\&.get_logger ( self)"
+
+.PP
+.nf
+Instantiate logging system\&.
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.config\&.Config\&.init_config ( self)"
+
+.SS "def src\&.backend\&.lib\&.config\&.Config\&.open_file ( self)"
+
+.PP
+.nf
+Open config\&.json and reads in configuration options\&.
+.fi
+.PP
+
+.PP
+Reimplemented in \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
+.SH "Member Data Documentation"
+.PP
+.SS "src\&.backend\&.lib\&.config\&.Config\&._cp\fC [protected]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&._data\fC [protected]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&._fp\fC [protected]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.allowed_hosts"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.auto_scan"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.book_path"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.book_shelf"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.build_mode"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.catalogue_db"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.config_structure"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_engine"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_host"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_pass"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_port"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_user"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.file_array"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.logger"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.password"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.root"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.TITLE"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.user"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.VERSION"
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

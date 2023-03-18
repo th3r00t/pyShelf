@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Namespaces"><param name="Local" value="namespaces.html"><param name="ImageNumber" value="1"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Namespace List"><param name="Local" value="namespaces.html#top"><param name="ImageNumber" value="1"></OBJECT>
+    <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="DataHooks"><param name="Local" value="d7/df9/namespaceDataHooks.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="BookInterface"><param name="Local" value="d9/d71/classDataHooks_1_1BookInterface.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        </UL>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="FastAPIServer"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="FastAPIServer"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a0cf2ca2ef3916ad3969b56a528b3d425"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="compile_static_files"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5349c313c20853f1f7d894532573f897"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="run"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5af42242c4ab4a1ae9251a4a2406c697"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="use_route_names_as_operation_ids"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#ab6eb555c6de0af5a4efe2ce04882f6d8"><param name="ImageNumber" value="11"></OBJECT>
+        </UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="base64decode"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a189ba023c861b3e00b9432b679e6a0aa"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="book_tojson"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a57dbe9eeedbc1c135d3d81cda6dceab0"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="books_tojson"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#aa75759d299983913ba15f5198435606a"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="collections_tojson"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a919f0a47c4009492ae493f74e22b9e08"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="convertDateTime"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#af26d1833d1dd63e3e5be68fb617ca71c"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="summarize"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a6c2e0cf336fd48a0b3d068c891da5f96"><param name="ImageNumber" value="11"></OBJECT>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="objects"><param name="Local" value="df/d4c/namespaceobjects.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="JSInterface"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#a70a8cfac6cd6bd770282d4037134d7fa"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="install"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#ac891591a180bf7da665981abf72762b0"><param name="ImageNumber" value="11"></OBJECT>
+        </UL>
+      </UL>
+    </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Namespace Members"><param name="Local" value="namespacemembers.html"><param name="ImageNumber" value="1"></OBJECT>
+    <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="All"><param name="Local" value="namespacemembers.html#top"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="Functions"><param name="Local" value="namespacemembers_func.html"><param name="ImageNumber" value="11"></OBJECT>
+    </UL>
+  </UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Classes"><param name="Local" value="annotated.html"><param name="ImageNumber" value="1"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Class List"><param name="Local" value="annotated.html#top"><param name="ImageNumber" value="1"></OBJECT>
+    <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="DataHooks"><param name="Local" value="d7/df9/namespaceDataHooks.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="BookInterface"><param name="Local" value="d9/d71/classDataHooks_1_1BookInterface.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        </UL>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="FastAPIServer"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="FastAPIServer"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a0cf2ca2ef3916ad3969b56a528b3d425"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="compile_static_files"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5349c313c20853f1f7d894532573f897"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="run"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5af42242c4ab4a1ae9251a4a2406c697"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="use_route_names_as_operation_ids"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#ab6eb555c6de0af5a4efe2ce04882f6d8"><param name="ImageNumber" value="11"></OBJECT>
+        </UL>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="objects"><param name="Local" value="df/d4c/namespaceobjects.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="JSInterface"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#a70a8cfac6cd6bd770282d4037134d7fa"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="install"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#ac891591a180bf7da665981abf72762b0"><param name="ImageNumber" value="11"></OBJECT>
+        </UL>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="backend"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="lib"><param name="ImageNumber" value="1"></OBJECT>
+          <UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="api_hooks"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="DuckDuckGo"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="image_result"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html#aeba433d4d2462604ddc498aaa22968a3"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="config"><param name="Local" value="d0/d93/namespacesrc_1_1backend_1_1lib_1_1config.html"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Config"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#a282f5cb33ebce51fdefdb20b571b7ee8"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="get_logger"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#acda70b46a22be0435543d5f0aa3aaa60"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="open_file"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#a3cbb2683695096a3b16e371e4ed5d1c5"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="library"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Catalogue"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="compare_shelf_current"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a75b4d33e6dee46d4d18e6623d30f6dd2"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="extract_content"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a0993bce2b4fe64a46d96a5eba1d5af50"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="extract_cover_html"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#abcf0dc2d816393afbfb07ea9f5c152f9"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="extract_cover_image"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#abd1c3b416586faaabb37515705588a89"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="extract_metadata_epub"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a52115c91df4e18f24fd2da9f29ff0a54"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="extract_metadata_pdf"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#ae6a363b1a623bc4540030552aa53a6b6"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="filter_books"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a9dec8499f181aee506861142004d002d"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="import_books"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a8cdd73f80daca2b916ca813f3473915f"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="process_by_filetype"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a84b65fe5bef35dcd0a163c223a95820c"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="scan_folder"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a204c5171b7de8ddd199563fd1b252032"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="models"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Base"><param name="Local" value="d6/d90/classsrc_1_1backend_1_1lib_1_1models_1_1Base.html"><param name="ImageNumber" value="11"></OBJECT>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Book"><param name="Local" value="d6/d4e/classsrc_1_1backend_1_1lib_1_1models_1_1Book.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              </UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Collection"><param name="Local" value="df/d03/classsrc_1_1backend_1_1lib_1_1models_1_1Collection.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="overide"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="ACatalogue"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="import_books"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#ad4f260f1a97999cda3e663890fb4edfb"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="scan_folder"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#a05513be274e038d26b2d385e6e98e918"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="pyShelf"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Admin"><param name="Local" value="d5/d80/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1Admin.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              </UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="InitFiles"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="CreateFile"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html#ab6c693e30b5a121168f831aece10f07e"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Server"><param name="Local" value="d7/db9/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1Server.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="storage"><param name="Local" value="dd/de1/namespacesrc_1_1backend_1_1lib_1_1storage.html"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Storage"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a0ed6b941570b53aa8666104204fdd3b6"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="book_paths_list"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#aa5c8e584946dd5e4ff6e9b1379bc3c6b"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="create_tables"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#ae0fdacb661febbfa3cba95e578ad2112"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="get_book"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a99595430857ac1e6c512edee79e6b6b9"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="get_books"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a9db78285cfaf9aa22a396e0240743629"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="get_collections"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a654a968311aa2041869b3109c27f1935"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="get_connection_string"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a5f2c94ce0ff34168dec0221245be0deb"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="insert_book"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a912a5030c1277bb9b635eb4bb5c97c40"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="make_collections"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#acaf6a7bc446ba9e54f315616a98db7a8"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            </UL>
+          </UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="tests"><param name="ImageNumber" value="1"></OBJECT>
+          <UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="config_test"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="TestConfig"><param name="Local" value="df/d83/classsrc_1_1backend_1_1tests_1_1config__test_1_1TestConfig.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              </UL>
+            </UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="library_test"><param name="ImageNumber" value="1"></OBJECT>
+            <UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Test_Catalogue"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="filter_books"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html#ad708c5a24143ca6fb38733f62396ee21"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="Test_Config"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html#a5a4b3d09c4ca0533571ad25590558042"><param name="ImageNumber" value="11"></OBJECT>
+              <LI><OBJECT type="text/sitemap"><param name="Name" value="open_file"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html#a03e5a6c59bffd93c1e81ddc52a84254f"><param name="ImageNumber" value="11"></OBJECT>
+              </UL>
+            <LI><OBJECT type="text/sitemap"><param name="Name" value="TestCatalogue"><param name="Local" value="d8/d3d/classsrc_1_1backend_1_1tests_1_1library__test_1_1TestCatalogue.html"><param name="ImageNumber" value="1"></OBJECT>
+              <UL>
+              </UL>
+            </UL>
+          </UL>
+        </UL>
+      </UL>
+    </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Class Index"><param name="Local" value="classes.html"><param name="ImageNumber" value="11"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Class Hierarchy"><param name="Local" value="hierarchy.html"><param name="ImageNumber" value="1"></OBJECT>
+    <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.pyShelf.Admin"><param name="Local" value="d5/d80/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1Admin.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="DataHooks.BookInterface"><param name="Local" value="d9/d71/classDataHooks_1_1BookInterface.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.library.Catalogue"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.overide.ACatalogue"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html"><param name="ImageNumber" value="11"></OBJECT>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.tests.library_test.Test_Catalogue"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html"><param name="ImageNumber" value="11"></OBJECT>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.config.Config"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.tests.library_test.Test_Config"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html"><param name="ImageNumber" value="11"></OBJECT>
+      </UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.api_hooks.DuckDuckGo"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="FastAPIServer.FastAPIServer"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.pyShelf.InitFiles"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="objects.JSInterface"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.pyShelf.Server"><param name="Local" value="d7/db9/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1Server.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.storage.Storage"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.tests.library_test.TestCatalogue"><param name="Local" value="d8/d3d/classsrc_1_1backend_1_1tests_1_1library__test_1_1TestCatalogue.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.tests.config_test.TestConfig"><param name="Local" value="df/d83/classsrc_1_1backend_1_1tests_1_1config__test_1_1TestConfig.html"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="DeclarativeBase"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.models.Base"><param name="Local" value="d6/d90/classsrc_1_1backend_1_1lib_1_1models_1_1Base.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.models.Book"><param name="Local" value="d6/d4e/classsrc_1_1backend_1_1lib_1_1models_1_1Book.html"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="src.backend.lib.models.Collection"><param name="Local" value="df/d03/classsrc_1_1backend_1_1lib_1_1models_1_1Collection.html"><param name="ImageNumber" value="11"></OBJECT>
+        </UL>
+      </UL>
+    </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="Class Members"><param name="Local" value="functions.html"><param name="ImageNumber" value="1"></OBJECT>
+    <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="All"><param name="Local" value="functions.html#top"><param name="ImageNumber" value="11"></OBJECT>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="Functions"><param name="Local" value="functions_func.html"><param name="ImageNumber" value="11"></OBJECT>
+    </UL>
+  </UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="Files"><param name="Local" value="files.html"><param name="ImageNumber" value="1"></OBJECT>
+  <UL>
+  <LI><OBJECT type="text/sitemap"><param name="Name" value="File List"><param name="Local" value="files.html#top"><param name="ImageNumber" value="1"></OBJECT>
+    <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Name" value="src"><param name="Local" value="dir_68267d1309a1af8e8297ef4c3efbcdba.html"><param name="ImageNumber" value="1"></OBJECT>
+      <UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="backend"><param name="Local" value="dir_3f615ade772d23cefe5e20dcb18424a2.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="lib"><param name="Local" value="dir_1c7294442ce83d360610449d04c9d7fc.html"><param name="ImageNumber" value="1"></OBJECT>
+          <UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="api_hooks.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="config.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="library.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="models.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="overide.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="pyShelf.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="storage.py"><param name="ImageNumber" value="11"></OBJECT>
+          </UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="tests"><param name="Local" value="dir_9020577e2da81c4cf5a5554c26431f94.html"><param name="ImageNumber" value="1"></OBJECT>
+          <UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="config_test.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="library_test.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="server_test.py"><param name="ImageNumber" value="11"></OBJECT>
+          </UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__.py"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="pyShelf_MakeCollections.py"><param name="ImageNumber" value="11"></OBJECT>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="pyShelf_ScanLibrary.py"><param name="ImageNumber" value="11"></OBJECT>
+        </UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="frontend"><param name="Local" value="dir_8509b06bafa958d2011203a730bf5778.html"><param name="ImageNumber" value="1"></OBJECT>
+        <UL>
+        <LI><OBJECT type="text/sitemap"><param name="Name" value="lib"><param name="Local" value="dir_d6d65651a873fbc3232a07f3f4a594e4.html"><param name="ImageNumber" value="1"></OBJECT>
+          <UL>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="DataHooks.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="FastAPIServer.py"><param name="ImageNumber" value="11"></OBJECT>
+          <LI><OBJECT type="text/sitemap"><param name="Name" value="objects.py"><param name="ImageNumber" value="11"></OBJECT>
+          </UL>
+        </UL>
+      <LI><OBJECT type="text/sitemap"><param name="Name" value="__init__.py"><param name="ImageNumber" value="11"></OBJECT>
+      </UL>
+    </UL>
+  </UL>
+</UL>
+</BODY>
+</HTML>

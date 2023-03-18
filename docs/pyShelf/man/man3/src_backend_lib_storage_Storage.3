@@ -1,0 +1,238 @@
+.TH "src.backend.lib.storage.Storage" 3 "Sat Mar 18 2023" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.storage.Storage
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP (self, config)"
+.br
+.ti -1c
+.RI "def \fBget_connection_string\fP (self)"
+.br
+.ti -1c
+.RI "def \fBcreate_tables\fP (self)"
+.br
+.ti -1c
+.RI "def \fBinsert_book\fP (self, book)"
+.br
+.ti -1c
+.RI "def \fBbook_paths_list\fP (self)"
+.br
+.ti -1c
+.RI "def \fBmake_collections\fP (self)"
+.br
+.ti -1c
+.RI "def \fBget_books\fP (self, collection=None, skip=None, limit=None)"
+.br
+.ti -1c
+.RI "def \fBget_book\fP (self, book_id)"
+.br
+.ti -1c
+.RI "def \fBget_collections\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBconfig\fP"
+.br
+.ti -1c
+.RI "\fBsql\fP"
+.br
+.ti -1c
+.RI "\fBuser\fP"
+.br
+.ti -1c
+.RI "\fBpassword\fP"
+.br
+.ti -1c
+.RI "\fBdb_host\fP"
+.br
+.ti -1c
+.RI "\fBdb_port\fP"
+.br
+.ti -1c
+.RI "\fBengine\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+
+.PP
+.nf
+Create a new Storage object\&.
+
+>>> db = Storage(config)
+
+Parameters
+----------
+config : Config()
+    Main program configuration\&.
+
+Attributes
+----------
+config : Stores configuration
+sql : Database Name
+user : Database User Name
+password : Database Password
+db_host : Database Host
+db_port : Database Port
+engine : sqlalchemy\&.create_engine(url, executor, kw)
+
+.fi
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.__init__ ( self,  config)"
+
+.PP
+.nf
+Initialize storage object\&.
+.fi
+.PP
+
+.SH "Member Function Documentation"
+.PP
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.book_paths_list ( self)"
+
+.PP
+.nf
+Get file paths from database for comparison to system files\&.
+
+Returns
+-------
+_result : ScalarResult Object
+
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.create_tables ( self)"
+
+.PP
+.nf
+Create table structure\&.
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.get_book ( self,  book_id)"
+
+.PP
+.nf
+Get book from database\&.
+
+Parameters
+----------
+book_id : int
+    Book ID to filter by\&.
+
+Returns
+-------
+_result : ScalarResult Object
+
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.get_books ( self,  collection = \fCNone\fP,  skip = \fCNone\fP,  limit = \fCNone\fP)"
+
+.PP
+.nf
+Get books from database\&.
+
+Parameters
+----------
+collection : str
+    Collection to filter by\&.
+
+Returns
+-------
+_result : ScalarResult Object
+
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.get_collections ( self)"
+
+.PP
+.nf
+Get collections from database\&.
+
+Returns
+-------
+_result : ScalarResult Object
+
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.get_connection_string ( self)"
+
+.PP
+.nf
+Get connection string\&.
+
+Engine type references config\&.json:DB_ENGINE\&.
+
+Returns
+-------
+str : sqlalchemy Connection String
+
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.insert_book ( self,  book)"
+
+.PP
+.nf
+Insert a new book into the database\&.
+
+Parameters
+----------
+book: dict()
+    Book object to insert\&.
+
+Returns
+-------
+bool
+    True on success False on failure
+
+.fi
+.PP
+
+.SS "def src\&.backend\&.lib\&.storage\&.Storage\&.make_collections ( self)"
+
+.PP
+.nf
+Parse book path's to determine common folder structure\&.
+
+Stores collections based on shared paths\&.
+
+.fi
+.PP
+
+.SH "Member Data Documentation"
+.PP
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.config"
+
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.db_host"
+
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.db_port"
+
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.engine"
+
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.password"
+
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.sql"
+
+.SS "src\&.backend\&.lib\&.storage\&.Storage\&.user"
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

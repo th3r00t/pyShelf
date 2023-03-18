@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>known</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/2760.html#L49'>known</a>              49 frontend/node_modules/flatted/php/flatted.php     $known = new stdClass;</span>
+<span class='curline'><a href='../S/2760.html#L50'>known</a>              50 frontend/node_modules/flatted/php/flatted.php     $known-&gt;key = array();</span>
+<span class='curline'><a href='../S/2760.html#L51'>known</a>              51 frontend/node_modules/flatted/php/flatted.php     $known-&gt;value = array();</span>
+<span class='curline'><a href='../S/2760.html#L54'>known</a>              54 frontend/node_modules/flatted/php/flatted.php     $i = intval(Flatted::index($known, $input, $value));</span>
+<span class='curline'><a href='../S/2760.html#L56'>known</a>              56 frontend/node_modules/flatted/php/flatted.php       $output[$i] = Flatted::transform($known, $input, $input[$i]);</span>
+<span class='curline'><a href='../S/2760.html#L67'>known</a>              67 frontend/node_modules/flatted/php/flatted.php   private static function index(&amp;$known, &amp;$input, &amp;$value) {</span>
+<span class='curline'><a href='../S/2760.html#L70'>known</a>              70 frontend/node_modules/flatted/php/flatted.php     $known-&gt;key[] = &amp;$value;</span>
+<span class='curline'><a href='../S/2760.html#L71'>known</a>              71 frontend/node_modules/flatted/php/flatted.php     $known-&gt;value[] = &amp;$index;</span>
+<span class='curline'><a href='../S/2760.html#L93'>known</a>              93 frontend/node_modules/flatted/php/flatted.php   private static function relate(&amp;$known, &amp;$input, &amp;$value) {</span>
+<span class='curline'><a href='../S/2760.html#L95'>known</a>              95 frontend/node_modules/flatted/php/flatted.php       $key = array_search($value, $known-&gt;key, true);</span>
+<span class='curline'><a href='../S/2760.html#L97'>known</a>              97 frontend/node_modules/flatted/php/flatted.php         return $known-&gt;value[$key];</span>
+<span class='curline'><a href='../S/2760.html#L98'>known</a>              98 frontend/node_modules/flatted/php/flatted.php       return Flatted::index($known, $input, $value);</span>
+<span class='curline'><a href='../S/2760.html#L120'>known</a>             120 frontend/node_modules/flatted/php/flatted.php   private static function transform(&amp;$known, &amp;$input, &amp;$value) {</span>
+<span class='curline'><a href='../S/2760.html#L123'>known</a>             123 frontend/node_modules/flatted/php/flatted.php         function ($value) use(&amp;$known, &amp;$input) {</span>
+<span class='curline'><a href='../S/2760.html#L124'>known</a>             124 frontend/node_modules/flatted/php/flatted.php           return Flatted::relate($known, $input, $value);</span>
+<span class='curline'><a href='../S/2760.html#L133'>known</a>             133 frontend/node_modules/flatted/php/flatted.php         $object-&gt;$key = Flatted::relate($known, $input, $value-&gt;$key);</span>
+</pre>
+</body>
+</html>

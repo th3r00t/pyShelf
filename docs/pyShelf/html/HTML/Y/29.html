@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>set</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/2760.html#L39'>set</a>                39 frontend/node_modules/flatted/php/flatted.php     $set = array();</span>
+<span class='curline'><a href='../S/2760.html#L40'>set</a>                40 frontend/node_modules/flatted/php/flatted.php     $set[] = &amp;$value;</span>
+<span class='curline'><a href='../S/2760.html#L42'>set</a>                42 frontend/node_modules/flatted/php/flatted.php       return Flatted::loop(false, array_keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L44'>set</a>                44 frontend/node_modules/flatted/php/flatted.php       return Flatted::loop(true, Flatted::keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L84'>set</a>                84 frontend/node_modules/flatted/php/flatted.php   private static function loop($obj, $keys, &amp;$input, &amp;$set, &amp;$output) {</span>
+<span class='curline'><a href='../S/2760.html#L88'>set</a>                88 frontend/node_modules/flatted/php/flatted.php         Flatted::ref($obj, $key, $input[$value-&gt;value], $input, $set, $output);</span>
+<span class='curline'><a href='../S/2760.html#L103'>set</a>               103 frontend/node_modules/flatted/php/flatted.php   private static function ref($obj, &amp;$key, &amp;$value, &amp;$input, &amp;$set, &amp;$output) {</span>
+<span class='curline'><a href='../S/2760.html#L104'>set</a>               104 frontend/node_modules/flatted/php/flatted.php     if (is_array($value) &amp;&amp; !in_array($value, $set, true)) {</span>
+<span class='curline'><a href='../S/2760.html#L105'>set</a>               105 frontend/node_modules/flatted/php/flatted.php       $set[] = $value;</span>
+<span class='curline'><a href='../S/2760.html#L106'>set</a>               106 frontend/node_modules/flatted/php/flatted.php       $value = Flatted::loop(false, array_keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L108'>set</a>               108 frontend/node_modules/flatted/php/flatted.php     elseif (is_object($value) &amp;&amp; !in_array($value, $set, true)) {</span>
+<span class='curline'><a href='../S/2760.html#L109'>set</a>               109 frontend/node_modules/flatted/php/flatted.php       $set[] = $value;</span>
+<span class='curline'><a href='../S/2760.html#L110'>set</a>               110 frontend/node_modules/flatted/php/flatted.php       $value = Flatted::loop(true, Flatted::keys($value), $input, $set, $value);</span>
+</pre>
+</body>
+</html>

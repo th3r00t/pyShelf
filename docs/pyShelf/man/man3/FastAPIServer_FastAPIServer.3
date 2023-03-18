@@ -1,0 +1,114 @@
+.TH "FastAPIServer.FastAPIServer" 3 "Sat Mar 18 2023" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FastAPIServer.FastAPIServer
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP (self, config)"
+.br
+.ti -1c
+.RI "def \fBcompile_static_files\fP (self)"
+.br
+.ti -1c
+.RI "None \fBuse_route_names_as_operation_ids\fP (self, FastAPI app)"
+.br
+.ti -1c
+.RI "def \fBindex\fP (Request request, int skip=0, int limit=10)"
+.br
+.ti -1c
+.RI "def \fBbooks\fP (Request request, int skip=0, int limit=10, collection=None)"
+.br
+.ti -1c
+.RI "def \fBbook\fP (Request request, int book_id)"
+.br
+.ti -1c
+.RI "def \fBcollections\fP (Request request)"
+.br
+.ti -1c
+.RI "def \fBrun\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBconfig\fP"
+.br
+.ti -1c
+.RI "\fBfe_config\fP"
+.br
+.ti -1c
+.RI "\fBfe_server\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP
+
+.PP
+.nf
+Entry point for FastAPI server\&.
+.fi
+.PP
+
+.SH "Constructor & Destructor Documentation"
+.PP
+.SS "def FastAPIServer\&.FastAPIServer\&.__init__ ( self,  config)"
+
+.PP
+.nf
+Initialize FastAPIServer object parameters\&.
+.fi
+.PP
+
+.SH "Member Function Documentation"
+.PP
+.SS "def FastAPIServer\&.FastAPIServer\&.book (Request request, int book_id)"
+
+.SS "def FastAPIServer\&.FastAPIServer\&.books (Request request, int  skip = \fC0\fP, int  limit = \fC10\fP,  collection = \fCNone\fP)"
+
+.SS "def FastAPIServer\&.FastAPIServer\&.collections (Request request)"
+
+.SS "def FastAPIServer\&.FastAPIServer\&.compile_static_files ( self)"
+
+.PP
+.nf
+Compile static files for web frontend\&.
+.fi
+.PP
+
+.SS "def FastAPIServer\&.FastAPIServer\&.index (Request request, int  skip = \fC0\fP, int  limit = \fC10\fP)"
+
+.SS "def FastAPIServer\&.FastAPIServer\&.run ( self)"
+
+.PP
+.nf
+Front end server entrypoint\&.
+.fi
+.PP
+
+.SS " None FastAPIServer\&.FastAPIServer\&.use_route_names_as_operation_ids ( self, FastAPI app)"
+
+.PP
+.nf
+Use route name as operation id\&.
+.fi
+.PP
+
+.SH "Member Data Documentation"
+.PP
+.SS "FastAPIServer\&.FastAPIServer\&.config"
+
+.SS "FastAPIServer\&.FastAPIServer\&.fe_config"
+
+.SS "FastAPIServer\&.FastAPIServer\&.fe_server"
+
+
+.SH "Author"
+.PP
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

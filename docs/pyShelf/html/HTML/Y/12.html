@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>input</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.9' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/2760.html#L31'>input</a>              31 frontend/node_modules/flatted/php/flatted.php     $input = array_map(</span>
+<span class='curline'><a href='../S/2760.html#L38'>input</a>              38 frontend/node_modules/flatted/php/flatted.php     $value = &amp;$input[0];</span>
+<span class='curline'><a href='../S/2760.html#L42'>input</a>              42 frontend/node_modules/flatted/php/flatted.php       return Flatted::loop(false, array_keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L44'>input</a>              44 frontend/node_modules/flatted/php/flatted.php       return Flatted::loop(true, Flatted::keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L52'>input</a>              52 frontend/node_modules/flatted/php/flatted.php     $input = array();</span>
+<span class='curline'><a href='../S/2760.html#L54'>input</a>              54 frontend/node_modules/flatted/php/flatted.php     $i = intval(Flatted::index($known, $input, $value));</span>
+<span class='curline'><a href='../S/2760.html#L55'>input</a>              55 frontend/node_modules/flatted/php/flatted.php     while ($i &lt; count($input)) {</span>
+<span class='curline'><a href='../S/2760.html#L56'>input</a>              56 frontend/node_modules/flatted/php/flatted.php       $output[$i] = Flatted::transform($known, $input, $input[$i]);</span>
+<span class='curline'><a href='../S/2760.html#L67'>input</a>              67 frontend/node_modules/flatted/php/flatted.php   private static function index(&amp;$known, &amp;$input, &amp;$value) {</span>
+<span class='curline'><a href='../S/2760.html#L68'>input</a>              68 frontend/node_modules/flatted/php/flatted.php     $input[] = &amp;$value;</span>
+<span class='curline'><a href='../S/2760.html#L69'>input</a>              69 frontend/node_modules/flatted/php/flatted.php     $index = strval(count($input) - 1);</span>
+<span class='curline'><a href='../S/2760.html#L84'>input</a>              84 frontend/node_modules/flatted/php/flatted.php   private static function loop($obj, $keys, &amp;$input, &amp;$set, &amp;$output) {</span>
+<span class='curline'><a href='../S/2760.html#L88'>input</a>              88 frontend/node_modules/flatted/php/flatted.php         Flatted::ref($obj, $key, $input[$value-&gt;value], $input, $set, $output);</span>
+<span class='curline'><a href='../S/2760.html#L93'>input</a>              93 frontend/node_modules/flatted/php/flatted.php   private static function relate(&amp;$known, &amp;$input, &amp;$value) {</span>
+<span class='curline'><a href='../S/2760.html#L98'>input</a>              98 frontend/node_modules/flatted/php/flatted.php       return Flatted::index($known, $input, $value);</span>
+<span class='curline'><a href='../S/2760.html#L103'>input</a>             103 frontend/node_modules/flatted/php/flatted.php   private static function ref($obj, &amp;$key, &amp;$value, &amp;$input, &amp;$set, &amp;$output) {</span>
+<span class='curline'><a href='../S/2760.html#L106'>input</a>             106 frontend/node_modules/flatted/php/flatted.php       $value = Flatted::loop(false, array_keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L110'>input</a>             110 frontend/node_modules/flatted/php/flatted.php       $value = Flatted::loop(true, Flatted::keys($value), $input, $set, $value);</span>
+<span class='curline'><a href='../S/2760.html#L120'>input</a>             120 frontend/node_modules/flatted/php/flatted.php   private static function transform(&amp;$known, &amp;$input, &amp;$value) {</span>
+<span class='curline'><a href='../S/2760.html#L123'>input</a>             123 frontend/node_modules/flatted/php/flatted.php         function ($value) use(&amp;$known, &amp;$input) {</span>
+<span class='curline'><a href='../S/2760.html#L124'>input</a>             124 frontend/node_modules/flatted/php/flatted.php           return Flatted::relate($known, $input, $value);</span>
+<span class='curline'><a href='../S/2760.html#L133'>input</a>             133 frontend/node_modules/flatted/php/flatted.php         $object-&gt;$key = Flatted::relate($known, $input, $value-&gt;$key);</span>
+</pre>
+</body>
+</html>

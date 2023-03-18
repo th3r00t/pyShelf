@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML><HEAD></HEAD><BODY>
+<OBJECT type="text/site properties">
+<param name="FrameName" value="right">
+</OBJECT>
+<UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html#ab6c693e30b5a121168f831aece10f07e"><param name="Name" value="CreateFile(self, _pointer)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/df9/namespaceDataHooks.html"><param name="Name" value="DataHooks"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d9/d71/classDataHooks_1_1BookInterface.html"><param name="Name" value="DataHooks::BookInterface"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="Name" value="FastAPIServer::FastAPIServer"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="Name" value="FastAPIServer::FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a0cf2ca2ef3916ad3969b56a528b3d425"><param name="Name" value="__init__(self, config)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="Name" value="FastAPIServer::FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5349c313c20853f1f7d894532573f897"><param name="Name" value="compile_static_files(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="Name" value="FastAPIServer::FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5af42242c4ab4a1ae9251a4a2406c697"><param name="Name" value="run(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html"><param name="Name" value="FastAPIServer::FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#ab6eb555c6de0af5a4efe2ce04882f6d8"><param name="Name" value="use_route_names_as_operation_ids(self, FastAPI app)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a189ba023c861b3e00b9432b679e6a0aa"><param name="Name" value="base64decode(string)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a57dbe9eeedbc1c135d3d81cda6dceab0"><param name="Name" value="book_tojson(book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#aa75759d299983913ba15f5198435606a"><param name="Name" value="books_tojson(obj)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a919f0a47c4009492ae493f74e22b9e08"><param name="Name" value="collections_tojson(collection)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#af26d1833d1dd63e3e5be68fb617ca71c"><param name="Name" value="convertDateTime(datetime timestamp)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html"><param name="Name" value="FastAPIServer"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a6c2e0cf336fd48a0b3d068c891da5f96"><param name="Name" value="summarize(string)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html#a5a4b3d09c4ca0533571ad25590558042"><param name="Name" value="__init__(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#a70a8cfac6cd6bd770282d4037134d7fa"><param name="Name" value="__init__(self, Config config)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a0cf2ca2ef3916ad3969b56a528b3d425"><param name="Name" value="__init__(self, config)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a0cf2ca2ef3916ad3969b56a528b3d425"><param name="Name" value="FastAPIServer::FastAPIServer"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a0ed6b941570b53aa8666104204fdd3b6"><param name="Name" value="__init__(self, config)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a0ed6b941570b53aa8666104204fdd3b6"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#a282f5cb33ebce51fdefdb20b571b7ee8"><param name="Name" value="__init__(self, root)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a189ba023c861b3e00b9432b679e6a0aa"><param name="Name" value="base64decode(string)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#aa5c8e584946dd5e4ff6e9b1379bc3c6b"><param name="Name" value="book_paths_list(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a57dbe9eeedbc1c135d3d81cda6dceab0"><param name="Name" value="book_tojson(book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#aa75759d299983913ba15f5198435606a"><param name="Name" value="books_tojson(obj)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a919f0a47c4009492ae493f74e22b9e08"><param name="Name" value="collections_tojson(collection)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a75b4d33e6dee46d4d18e6623d30f6dd2"><param name="Name" value="compare_shelf_current(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5349c313c20853f1f7d894532573f897"><param name="Name" value="compile_static_files(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#af26d1833d1dd63e3e5be68fb617ca71c"><param name="Name" value="convertDateTime(datetime timestamp)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#ae0fdacb661febbfa3cba95e578ad2112"><param name="Name" value="create_tables(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a0993bce2b4fe64a46d96a5eba1d5af50"><param name="Name" value="extract_content(self, book_zip, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#abcf0dc2d816393afbfb07ea9f5c152f9"><param name="Name" value="extract_cover_html(self, book_zip, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#abd1c3b416586faaabb37515705588a89"><param name="Name" value="extract_cover_image(self, book_zip, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a52115c91df4e18f24fd2da9f29ff0a54"><param name="Name" value="extract_metadata_epub(self, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#ae6a363b1a623bc4540030552aa53a6b6"><param name="Name" value="extract_metadata_pdf(self, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a9dec8499f181aee506861142004d002d"><param name="Name" value="filter_books(self)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a9dec8499f181aee506861142004d002d"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html#ad708c5a24143ca6fb38733f62396ee21"><param name="Name" value="filter_books(self)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html#ad708c5a24143ca6fb38733f62396ee21"><param name="Name" value="src::backend::tests::library_test::Test_Catalogue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a99595430857ac1e6c512edee79e6b6b9"><param name="Name" value="get_book(self, book_id)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a9db78285cfaf9aa22a396e0240743629"><param name="Name" value="get_books(self, collection=None, skip=None, limit=None)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a654a968311aa2041869b3109c27f1935"><param name="Name" value="get_collections(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a5f2c94ce0ff34168dec0221245be0deb"><param name="Name" value="get_connection_string(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#acda70b46a22be0435543d5f0aa3aaa60"><param name="Name" value="get_logger(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html#aeba433d4d2462604ddc498aaa22968a3"><param name="Name" value="image_result(self, query)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#ad4f260f1a97999cda3e663890fb4edfb"><param name="Name" value="import_books(self, **kwargs)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a8cdd73f80daca2b916ca813f3473915f"><param name="Name" value="import_books(self, list=None, **kwargs)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a912a5030c1277bb9b635eb4bb5c97c40"><param name="Name" value="insert_book(self, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#ac891591a180bf7da665981abf72762b0"><param name="Name" value="install(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#acaf6a7bc446ba9e54f315616a98db7a8"><param name="Name" value="make_collections(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="df/d4c/namespaceobjects.html"><param name="Name" value="objects"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html"><param name="Name" value="objects::JSInterface"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html"><param name="Name" value="objects::JSInterface"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#a70a8cfac6cd6bd770282d4037134d7fa"><param name="Name" value="__init__(self, Config config)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html"><param name="Name" value="objects::JSInterface"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/def/classobjects_1_1JSInterface.html#ac891591a180bf7da665981abf72762b0"><param name="Name" value="install(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#a3cbb2683695096a3b16e371e4ed5d1c5"><param name="Name" value="open_file(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html#a03e5a6c59bffd93c1e81ddc52a84254f"><param name="Name" value="open_file(self, root=&quot;config.json&quot;)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a84b65fe5bef35dcd0a163c223a95820c"><param name="Name" value="process_by_filetype(self, book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#adf0de9eb2e0994b196fb754ae8395a0d"><param name="Name" value="process_epub(book)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#a5af42242c4ab4a1ae9251a4a2406c697"><param name="Name" value="run(self)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a204c5171b7de8ddd199563fd1b252032"><param name="Name" value="scan_folder(self, _path=None)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a204c5171b7de8ddd199563fd1b252032"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#a05513be274e038d26b2d385e6e98e918"><param name="Name" value="scan_folder(self, _path=None)"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#a05513be274e038d26b2d385e6e98e918"><param name="Name" value="src::backend::lib::overide::ACatalogue"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html"><param name="Name" value="src::backend::lib::api_hooks::DuckDuckGo"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html"><param name="Name" value="src::backend::lib::api_hooks::DuckDuckGo"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d88/classsrc_1_1backend_1_1lib_1_1api__hooks_1_1DuckDuckGo.html#aeba433d4d2462604ddc498aaa22968a3"><param name="Name" value="image_result(self, query)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d0/d93/namespacesrc_1_1backend_1_1lib_1_1config.html"><param name="Name" value="src::backend::lib::config"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html"><param name="Name" value="src::backend::lib::config::Config"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html"><param name="Name" value="src::backend::lib::config::Config"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#a282f5cb33ebce51fdefdb20b571b7ee8"><param name="Name" value="__init__(self, root)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html"><param name="Name" value="src::backend::lib::config::Config"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#acda70b46a22be0435543d5f0aa3aaa60"><param name="Name" value="get_logger(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html"><param name="Name" value="src::backend::lib::config::Config"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/dfe/classsrc_1_1backend_1_1lib_1_1config_1_1Config.html#a3cbb2683695096a3b16e371e4ed5d1c5"><param name="Name" value="open_file(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a75b4d33e6dee46d4d18e6623d30f6dd2"><param name="Name" value="compare_shelf_current(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a0993bce2b4fe64a46d96a5eba1d5af50"><param name="Name" value="extract_content(self, book_zip, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#abcf0dc2d816393afbfb07ea9f5c152f9"><param name="Name" value="extract_cover_html(self, book_zip, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#abd1c3b416586faaabb37515705588a89"><param name="Name" value="extract_cover_image(self, book_zip, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a52115c91df4e18f24fd2da9f29ff0a54"><param name="Name" value="extract_metadata_epub(self, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#ae6a363b1a623bc4540030552aa53a6b6"><param name="Name" value="extract_metadata_pdf(self, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a9dec8499f181aee506861142004d002d"><param name="Name" value="filter_books(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a8cdd73f80daca2b916ca813f3473915f"><param name="Name" value="import_books(self, list=None, **kwargs)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a84b65fe5bef35dcd0a163c223a95820c"><param name="Name" value="process_by_filetype(self, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#adf0de9eb2e0994b196fb754ae8395a0d"><param name="Name" value="process_epub(book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html"><param name="Name" value="src::backend::lib::library::Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/da5/classsrc_1_1backend_1_1lib_1_1library_1_1Catalogue.html#a204c5171b7de8ddd199563fd1b252032"><param name="Name" value="scan_folder(self, _path=None)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d6/d90/classsrc_1_1backend_1_1lib_1_1models_1_1Base.html"><param name="Name" value="src::backend::lib::models::Base"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d6/d4e/classsrc_1_1backend_1_1lib_1_1models_1_1Book.html"><param name="Name" value="src::backend::lib::models::Book"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="df/d03/classsrc_1_1backend_1_1lib_1_1models_1_1Collection.html"><param name="Name" value="src::backend::lib::models::Collection"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html"><param name="Name" value="src::backend::lib::overide::ACatalogue"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html"><param name="Name" value="src::backend::lib::overide::ACatalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#ad4f260f1a97999cda3e663890fb4edfb"><param name="Name" value="import_books(self, **kwargs)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html"><param name="Name" value="src::backend::lib::overide::ACatalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="dc/ded/classsrc_1_1backend_1_1lib_1_1overide_1_1ACatalogue.html#a05513be274e038d26b2d385e6e98e918"><param name="Name" value="scan_folder(self, _path=None)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d5/d80/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1Admin.html"><param name="Name" value="src::backend::lib::pyShelf::Admin"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html"><param name="Name" value="src::backend::lib::pyShelf::InitFiles"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html"><param name="Name" value="src::backend::lib::pyShelf::InitFiles"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="da/d3c/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1InitFiles.html#ab6c693e30b5a121168f831aece10f07e"><param name="Name" value="CreateFile(self, _pointer)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/db9/classsrc_1_1backend_1_1lib_1_1pyShelf_1_1Server.html"><param name="Name" value="src::backend::lib::pyShelf::Server"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/de1/namespacesrc_1_1backend_1_1lib_1_1storage.html"><param name="Name" value="src::backend::lib::storage"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a0ed6b941570b53aa8666104204fdd3b6"><param name="Name" value="__init__(self, config)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#aa5c8e584946dd5e4ff6e9b1379bc3c6b"><param name="Name" value="book_paths_list(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#ae0fdacb661febbfa3cba95e578ad2112"><param name="Name" value="create_tables(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a99595430857ac1e6c512edee79e6b6b9"><param name="Name" value="get_book(self, book_id)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a9db78285cfaf9aa22a396e0240743629"><param name="Name" value="get_books(self, collection=None, skip=None, limit=None)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a654a968311aa2041869b3109c27f1935"><param name="Name" value="get_collections(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a5f2c94ce0ff34168dec0221245be0deb"><param name="Name" value="get_connection_string(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#a912a5030c1277bb9b635eb4bb5c97c40"><param name="Name" value="insert_book(self, book)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html"><param name="Name" value="src::backend::lib::storage::Storage"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d7/d40/classsrc_1_1backend_1_1lib_1_1storage_1_1Storage.html#acaf6a7bc446ba9e54f315616a98db7a8"><param name="Name" value="make_collections(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="df/d83/classsrc_1_1backend_1_1tests_1_1config__test_1_1TestConfig.html"><param name="Name" value="src::backend::tests::config_test::TestConfig"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d8/d3d/classsrc_1_1backend_1_1tests_1_1library__test_1_1TestCatalogue.html"><param name="Name" value="src::backend::tests::library_test::TestCatalogue"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html"><param name="Name" value="src::backend::tests::library_test::Test_Catalogue"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html"><param name="Name" value="src::backend::tests::library_test::Test_Catalogue"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dda/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Catalogue.html#ad708c5a24143ca6fb38733f62396ee21"><param name="Name" value="filter_books(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html"><param name="Name" value="src::backend::tests::library_test::Test_Config"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html"><param name="Name" value="src::backend::tests::library_test::Test_Config"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html#a5a4b3d09c4ca0533571ad25590558042"><param name="Name" value="__init__(self)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html"><param name="Name" value="src::backend::tests::library_test::Test_Config"></OBJECT>
+  <UL>
+    <LI><OBJECT type="text/sitemap"><param name="Local" value="d3/d29/classsrc_1_1backend_1_1tests_1_1library__test_1_1Test__Config.html#a03e5a6c59bffd93c1e81ddc52a84254f"><param name="Name" value="open_file(self, root=&quot;config.json&quot;)"></OBJECT>
+  </UL>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="db/dd5/namespaceFastAPIServer.html#a6c2e0cf336fd48a0b3d068c891da5f96"><param name="Name" value="summarize(string)"></OBJECT>
+  <LI><OBJECT type="text/sitemap"><param name="Local" value="dd/d22/classFastAPIServer_1_1FastAPIServer.html#ab6eb555c6de0af5a4efe2ce04882f6d8"><param name="Name" value="use_route_names_as_operation_ids(self, FastAPI app)"></OBJECT>
+</UL>
+</BODY>
+</HTML>
