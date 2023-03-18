@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+    db:
+        image: "postgres"
+        restart: always
+        environment:
+            - "POSTGRES_PASSWORD=pyshelf"
+            - "POSTGRES_USER=pyshelf"
+            - "POSTGRES_DB=pyshelf"
+        volumes:
+            - "db_data:/var/lib/postgresql/data/"
+    pyshelf:
+        image: "pyshelf/pyshelf"
+        restart: always
+        ports:
+            - "8000:8000"
+            - "1337:1337"
+        volumes:
+            - "${LOCAL_BOOK_DIR}:/books"
+        depends_on:
+            - db
+volumes:
+    db_data:
