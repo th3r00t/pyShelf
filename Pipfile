@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 websockets = "*"
 loguru = "*"
 pypdf2 = "*"
@@ -16,10 +15,7 @@ psycopg = "*"
 lxml = "*"
 "sqlalchemy.orm" = "*"
 sqlalchemy = "==2.0.0b3"
-pre-commit = "*"
 fastapi = {extras = ["all"], version = "*"}
-debugpy = "*"
-pudb = "*"
 jinja2 = "*"
 libsass = "*"
 nodejs-bin = "*"
@@ -27,6 +23,8 @@ npm = "*"
 brotlipy = "*"
 
 [dev-packages]
+debugpy = "*"
+pudb = "*"
 ptipython = "*"
 chardet = "*"
 pre-commit = "*"
