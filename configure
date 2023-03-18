@@ -1,8 +1,0 @@
-#!/usr/bin/env python3
-import os
-from src.backend.lib.storage import Storage
-from src.backend.lib.config import Config
-
-config = Config(os.path.split(os.path.realpath(__file__))[0])
-storage = Storage(config)
-storage.create_tables()
