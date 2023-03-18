@@ -5,37 +5,37 @@
 == Dependency Management ==
 :dependency:
 
-  * [X] npm  #934133e5
-  * [X] sass  #d2441aac
-  * [ ] pip  #cb0fd871
+  * [X] npm  #c5f8d347
+  * [X] sass  #8f43ab4c
+  * [ ] pip  #14ee256e
 
 == User Management ==
 :user:
 
-  * [ ] Registration System  #ff651c96
-    * [ ] oauth  #c817c425
-    * [ ] email&password  #42d560fb
-  * [ ] Login(out) System  #c8da03e4
-    * [ ] oauth  #f08099be
-    * [ ] email&password  #0f3f223b
-  * [ ] Reset Password System  #ae3feb3c
-    * [ ] email&password  #8f88c0f0
-  * [ ] User Delete System  #008610a9
+  * [ ] Registration System  #d1198f16
+    * [ ] oauth  #aa94c112
+    * [ ] email&password  #97231d67
+  * [ ] Login(out) System  #1df25e4a
+    * [ ] oauth  #67ea705c
+    * [ ] email&password  #80381cdb
+  * [ ] Reset Password System  #bf997b97
+    * [ ] email&password  #87fe5e34
+  * [ ] User Delete System  #d29c98a1
 
 == User Experience ==
 :ux:
 
-  * [ ] Favorites  #c9c938f6
-  * [ ] Permissions / Roles  #8bceae4f
-  * [ ] User Profile  #c8e96670
-  * [ ] User Settings  #55667a27
+  * [ ] Favorites  #0fc67f94
+  * [ ] Permissions / Roles  #9c4f279e
+  * [ ] User Profile  #289e0fe0
+  * [ ] User Settings  #51955b33
 
 == Data Management ==
 :data:
 
-  * [ ] Book Management System  #543a8aa8
-    * [ ] add  #3ca338a2
-    * [ ] remove  #eabcf39a
-    * [ ] update  #2eac2d91
-    * [ ] access level  #6a214db3
-    * [ ] ownership  #9d9610dc
+  * [ ] Book Management System  #e31c2bd7
+    * [ ] add  #bda9a0f3
+    * [ ] remove  #4b34e931
+    * [ ] update  #eb959340
+    * [ ] access level  #b00795a4
+    * [ ] ownership  #8c80edc5
