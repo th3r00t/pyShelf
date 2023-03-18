@@ -2,7 +2,7 @@ books/*
 *.epub
 *.idea
 *.pyc
-src/frontend/static/styles/pyShelf.css
+*.css
 .svn/
 app/content.opf
 .vscode
