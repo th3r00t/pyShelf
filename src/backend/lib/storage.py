@@ -1,6 +1,5 @@
 """Pyshelf's Main Storage Class."""
 import re
-import os
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 
@@ -36,8 +35,7 @@ class Storage:
         self.password = self.config.password
         self.db_host = self.config.db_host
         self.db_port = self.config.db_port
-        self.engine = create_engine(self.get_connection_string(),
-                                    pool_pre_ping=True)
+        self.engine = create_engine(self.get_connection_string(), pool_pre_ping=True)
 
     def get_connection_string(self):
         """Get connection string.
@@ -49,7 +47,7 @@ class Storage:
         str : sqlalchemy Connection String
         """
         if self.config.db_engine == "sqlite":
-            return f"sqlite:////{self.config.root}/pyshelf.db"
+            return f"sqlite:////{self.config.root}/pyshelf.sqlite3"
         elif self.config.db_engine == "psql":
             return f"postgresql://{self.user}:{self.password}\
             @{self.db_host}:{self.db_port}/{self.sql}"
@@ -86,6 +84,8 @@ class Storage:
                     cover_image = None
                 if not book[1]:
                     pass
+                # breakpoint()
+                self.parse_collections_from_path(book)
                 _book = Book(
                     title=book[0],
                     author=book[1],
@@ -117,6 +117,36 @@ class Storage:
         session.close()
         return _result
 
+    def parse_collections_from_path(self, book: dict()) -> list():
+        """Parse book path's to determine common folder structure.
+
+        Stores collections based on shared paths.
+
+        Parameters
+        ----------
+        book : dict()
+            Book object to parse.
+
+        Returns
+        -------
+        collections : list()
+            List of collections.
+        """
+        collections = []
+        title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
+        _pathing = book[3].split(self.config.book_path + "/")[1].split("/")
+        try:
+            _pathing.pop(0)
+            _pathing.pop(-1)
+        except IndexError:
+            pass
+        for _p in _pathing:
+            _s = _p.replace("'", "")
+            _x = re.sub(title_regx, "", _s)
+            _s = _x.strip()
+            collections.append(_s)
+        return collections
+
     def make_collections(self):
         """Parse book path's to determine common folder structure.
 
@@ -126,7 +156,7 @@ class Storage:
         self.config.logger.info("Making collections.")
         _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
         session = Session(self.engine)
-        _set = session.execute(select(Book.book_id, Book.file_name)).all()
+        _set = session.execute(select(Book.id, Book.file_name)).all()
         if _set.__len__() > 0:
             for book in _set:
                 path = self.config.book_path + "/"
@@ -143,25 +173,22 @@ class Storage:
                     _s = _x.strip()
                     _sess = Session(self.engine)
                     _q = _sess.execute(
-                        select(Collection.collection_id).where(
+                        select(Collection.id).where(
                             Collection.collection == _s,
-                            Collection.book_id == book.book_id,
+                            Collection.book_id == book.id,
                         )
                     )
                     _sess.close()
                     if _q.fetchone() is None:
-                        _collection = Collection(
-                            collection=_s, book_id=book.book_id)
+                        _collection = Collection(collection=_s, book_id=book.id)
                         with Session(self.engine) as _sess:
                             try:
                                 _sess.add(_collection)
                                 _sess.commit()
                                 _sess.close()
-                                self.config.logger.info(
-                                    f"Collection {_s} added.")
+                                self.config.logger.info(f"Collection {_s} added.")
                             except Exception as e:
-                                self.config.logger.error(
-                                    f"Collection {_s} failed: {e}")
+                                self.config.logger.error(f"Collection {_s} failed: {e}")
                     _collections.append(_p)
         self.config.logger.info("Finished making collections.")
 
@@ -180,21 +207,23 @@ class Storage:
         session = Session(self.engine)
         if collection:
             _result = session.execute(
-                select(Book).join(Collection)
-                .where(Collection.collection_id == collection)
-                .offset(skip).limit(limit)).all()
+                select(Book)
+                .join(Collection)
+                .where(Collection.id == collection)
+                .offset(skip)
+                .limit(limit)
+            ).all()
         else:
-            _result = session.execute(
-                    select(Book).offset(skip).limit(limit)).all()
+            _result = session.execute(select(Book).offset(skip).limit(limit)).all()
         session.close()
         return _result
 
-    def get_book(self, book_id):
+    def get_book(self, id):
         """Get book from database.
 
         Parameters
         ----------
-        book_id : int
+        id : int
             Book ID to filter by.
 
         Returns
@@ -202,7 +231,7 @@ class Storage:
         _result : ScalarResult Object
         """
         session = Session(self.engine)
-        _result = session.execute(select(Book).where(Book.book_id == book_id)).first()
+        _result = session.execute(select(Book).where(Book.id == id)).first()
         session.close()
         return _result
 
@@ -214,9 +243,6 @@ class Storage:
         _result : ScalarResult Object
         """
         session = Session(self.engine)
-        _result = session.execute(
-                select(Collection)
-                .join(Book)
-                ).all()
+        _result = session.execute(select(Collection).join(Book)).all()
         session.close()
         return _result

@@ -10,14 +10,14 @@ pyShelf features a recursive scraping algorithm that itterates over all
 sub-folders in your collection.
 
 == Scrapers ==
-  * [X] epub  #75f00edf
-  * [X] mobi  #2fe4b161
-  * [X] pdf  #ffa7e7f0
-  * [ ] cbz  #64b5da95
+  * [X] epub  #2899a8e9
+  * [X] mobi  #ec035720
+  * [X] pdf  #05875e64
+  * [ ] cbz  #4a513e39
 
 == Collections ==
-  * [ ] Manual Collections  #2e7e6fcf
-  * [X] Automated Collections  #81db675a
+  * [ ] Manual Collections  #b07156f4
+  * [ ] [[Automated Collections]]  #f258c1f8
 
 == State ==
 

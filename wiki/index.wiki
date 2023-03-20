@@ -38,7 +38,7 @@ pyShelf supports the following formats:
 == TODO ==
   * [ ] [[Book Scraping System]]  #f7edafb1
   * [ ] [[REST API]]  #c7bc51c5
-  * [ ] [[Frontend]]  #a76c1038
+  * [ ] [[Client]]  #c68b0664
 
 == Development ==
 

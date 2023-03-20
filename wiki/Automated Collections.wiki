@@ -1,0 +1,21 @@
+= Automated Collection Management System =
+The collection management system needs rewritten from the ground up.
+The model should look something like this.
+* [ ] TODO :: Refactor collections algorithm.  #8f46262c
+{{{python
+  Collection {
+    id: int
+    name: String
+    books: list(Book)
+  }
+}}}
+
+it is likely the book object will need rewritten as well.
+{{{python
+  Book {
+    id: int
+    title: String
+    # other book metadata
+    collection: list(Collection.id)
+  }
+}}}

@@ -6,22 +6,20 @@ import datetime
 
 timestamp = Annotated[
     datetime.datetime,
-    mapped_column(nullable=False, server_default=func.CURRENT_TIMESTAMP())
+    mapped_column(nullable=False, server_default=func.CURRENT_TIMESTAMP()),
 ]
 
 
 class Base(DeclarativeBase):
     """Base class for all models."""
 
-    pass
-
 
 class Book(Base):
     """Book model."""
 
-    __tablename__ = "books"
+    __tablename__ = "Book"
 
-    book_id: Mapped[int] = mapped_column(primary_key=True, nullable=False)
+    id: Mapped[int] = mapped_column(primary_key=True, nullable=False)
     title: Mapped[str]
     author: Mapped[Optional[str]]
     categories: Mapped[Optional[str]]
@@ -37,12 +35,11 @@ class Book(Base):
     publisher: Mapped[Optional[str]]
 
 
-
 class Collection(Base):
     """Collection model."""
 
-    __tablename__ = "collections"
+    __tablename__ = "Collection"
 
+    id: Mapped[int] = mapped_column(primary_key=True)
     collection: Mapped[str]
-    book_id: Mapped[int] = mapped_column(ForeignKey(Book.book_id))
-    collection_id: Mapped[int] = mapped_column(primary_key=True)
+    book_id: Mapped[int] = mapped_column(ForeignKey(Book.id))
