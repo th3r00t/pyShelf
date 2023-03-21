@@ -2,6 +2,7 @@
 import re
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
+from pathlib import Path
 
 from .models import Book, Collection
 
@@ -35,7 +36,8 @@ class Storage:
         self.password = self.config.password
         self.db_host = self.config.db_host
         self.db_port = self.config.db_port
-        self.engine = create_engine(self.get_connection_string(), pool_pre_ping=True)
+        self.engine = create_engine(self.get_connection_string(),
+                                    pool_pre_ping=True)
 
     def get_connection_string(self):
         """Get connection string.
@@ -50,10 +52,10 @@ class Storage:
             return f"sqlite:////{self.config.root}/pyshelf.sqlite3"
         elif self.config.db_engine == "psql":
             return f"postgresql://{self.user}:{self.password}\
-            @{self.db_host}:{self.db_port}/{self.sql}"
+                    @{self.db_host}:{self.db_port}/{self.sql}"
         elif self.config.db_engine == "mysql":
             return f"mysql://{self.user}:{self.password}\
-            @{self.db_host}:{self.db_port}/{self.sql}"
+                    @{self.db_host}:{self.db_port}/{self.sql}"
 
     def create_tables(self):
         """Create table structure."""
@@ -84,19 +86,18 @@ class Storage:
                     cover_image = None
                 if not book[1]:
                     pass
-                # breakpoint()
-                self.parse_collections_from_path(book)
+                collections = self.parse_collections_from_path(book)
                 _book = Book(
-                    title=book[0],
-                    author=book[1],
-                    cover=cover_image,
-                    file_name=book[3],
-                    description=book[4],
-                    identifier=book[5],
-                    publisher=book[6],
-                    rights=book[8],
-                    tags=book[9],
-                )
+                        title=book[0],
+                        author=book[1],
+                        cover=cover_image,
+                        file_name=book[3],
+                        description=book[4],
+                        identifier=book[5],
+                        publisher=book[6],
+                        rights=book[8],
+                        tags=book[9],
+                        )
                 session.add(_book)
                 session.commit()
                 session.close()
@@ -104,6 +105,7 @@ class Storage:
                 return True
             except Exception as e:
                 self.config.logger.error(f"{book[0][0:80]} :: {e}")
+                return False
 
     def book_paths_list(self):
         """Get file paths from database for comparison to system files.
@@ -134,17 +136,12 @@ class Storage:
         """
         collections = []
         title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
-        _pathing = book[3].split(self.config.book_path + "/")[1].split("/")
-        try:
-            _pathing.pop(0)
-            _pathing.pop(-1)
-        except IndexError:
-            pass
-        for _p in _pathing:
-            _s = _p.replace("'", "")
-            _x = re.sub(title_regx, "", _s)
-            _s = _x.strip()
-            collections.append(_s)
+        book_path: Path = Path(book[3])
+        store_path: Path = Path(self.config.book_path)
+        relative_book_path: Path = book_path.relative_to(store_path)
+        for path in relative_book_path.parts:
+            collections.append(re.sub(title_regx, "", path).strip())
+        collections.pop(-1)
         return collections
 
     def make_collections(self):
@@ -173,11 +170,11 @@ class Storage:
                     _s = _x.strip()
                     _sess = Session(self.engine)
                     _q = _sess.execute(
-                        select(Collection.id).where(
-                            Collection.collection == _s,
-                            Collection.book_id == book.id,
-                        )
-                    )
+                            select(Collection.id).where(
+                                Collection.collection == _s,
+                                Collection.book_id == book.id,
+                                )
+                            )
                     _sess.close()
                     if _q.fetchone() is None:
                         _collection = Collection(collection=_s, book_id=book.id)
@@ -207,12 +204,12 @@ class Storage:
         session = Session(self.engine)
         if collection:
             _result = session.execute(
-                select(Book)
-                .join(Collection)
-                .where(Collection.id == collection)
-                .offset(skip)
-                .limit(limit)
-            ).all()
+                    select(Book)
+                    .join(Collection)
+                    .where(Collection.id == collection)
+                    .offset(skip)
+                    .limit(limit)
+                    ).all()
         else:
             _result = session.execute(select(Book).offset(skip).limit(limit)).all()
         session.close()

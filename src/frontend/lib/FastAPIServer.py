@@ -79,10 +79,6 @@ def books_tojson(obj) -> dumps:
             "identifier": convert_none(book[0].identifier),
             "publisher": convert_none(book[0].publisher),
         })
-    # compressed = gzip.compress(dumps(_books).encode("utf-8"))
-    # compressed = gzip.compress(dumps(_books).encode())
-    # breakpoint()
-    # return dumps(_books)
     return _books
 
 

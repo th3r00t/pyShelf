@@ -13,8 +13,10 @@ sys.path.append(os.path.abspath("."))
 def execute_scan(root, **kwargs):
     """
     Main scan execution
+    
     :param root: Project root. Required to properly execute program. Sends to configuration.
     """
+    # TODO: Refactor for new collections system.
     _t1 = time.time()
     try:
         config = kwargs["config"]

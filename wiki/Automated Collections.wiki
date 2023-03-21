@@ -1,7 +1,7 @@
 = Automated Collection Management System =
 The collection management system needs rewritten from the ground up.
 The model should look something like this.
-* [ ] TODO :: Refactor collections algorithm.  #8f46262c
+* [ ] TODO :: Refactor collections algorithm.  #aebaee91
 {{{python
   Collection {
     id: int
@@ -19,3 +19,6 @@ it is likely the book object will need rewritten as well.
     collection: list(Collection.id)
   }
 }}}
+
+{{file://$HOME/.local/builds/pyShelf/src/backend/lib/storage.py}}
+{{file://$HOME/.local/builds/pyShelf/src/backend/pyShelf_ScanLibrary.py}}

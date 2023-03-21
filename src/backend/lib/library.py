@@ -22,7 +22,8 @@ class Catalogue:
         self.cover_regx = re.compile(r"\.jpg|\.jpeg|\.png|\.bmp|\.gif")
         self.html_regx = re.compile(r"\.html")
         self.title_sanitization_regx = re.compile(r"^(Book )+[0-9]*")
-        self.title_sanitization_lvl2_regx = re.compile(r"^(Book )+[0-9]*\W+(-)")
+        self.title_sanitization_lvl2_regx = re.compile(
+                r"^(Book )+[0-9]*\W+(-)")
         self.title_sanitization_dirs_regx = re.compile(r"/")
         self.root_dir = config.root
         self.book_folder = config.book_path
@@ -33,6 +34,8 @@ class Catalogue:
     def scan_folder(self, _path=None):
         """
         Scan folder by _path, allows recurisive scanning
+
+        :param _path: Path to scan
         """
         if _path is not None:
             folder = _path
@@ -64,7 +67,6 @@ class Catalogue:
         except TypeError as error:
             self.config.logger.error(error)
 
-
     def process_by_filetype(self, book):
         """Determine books filetype and process."""
         if book.endswith(".epub"):
@@ -95,9 +97,10 @@ class Catalogue:
 
     def extract_metadata_epub(self, book):
         """
-        Return extracted metadata and cover picture
-        book['path'] == Full path to ebook file
-        book['files'] == list of files from self.process_book(book)
+        Extract metadata from epub file
+
+        :param book: Dictionary of epub file contents
+        :returns: Dictionary of book metadata
         """
         book_zip = zipfile.ZipFile(book["path"], "r")
         with book_zip as f:
