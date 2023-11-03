@@ -7,6 +7,7 @@ books/*
 app/content.opf
 .vscode
 fontend/db.sqlite3
+*.sqlite3
 GPATH
 GRTAGS
 GTAGS
