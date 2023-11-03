@@ -1,8 +1,10 @@
 <!doctype html>
 {% block javascript %}
+<script type="text/javascript" src=static/script/pako.min.js>
 <script type="text/javascript">
   var books = {{ books|books_tojson }};
   let inflatedJSON = {};
+  const pako = require('pako');
   inflatedJSON = JSON.parse(pako.inflate(books, { to: 'string'}));
 </script>
 {% endblock %}
