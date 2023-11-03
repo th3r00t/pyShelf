@@ -64,7 +64,7 @@ def books_tojson(obj) -> dumps:
     for book in obj:
         convert_none = lambda x: x if x is not None else "None"
         _books.append({
-            "book_id": book[0].book_id,
+            "book_id": book[0].id,
             "title": book[0].title,
             "author": book[0].author,
             "categories": convert_none(book[0].categories),
@@ -79,7 +79,7 @@ def books_tojson(obj) -> dumps:
             "identifier": convert_none(book[0].identifier),
             "publisher": convert_none(book[0].publisher),
         })
-    return _books
+    return dumps(_books)
 
 
 def book_tojson(book) -> dumps:
