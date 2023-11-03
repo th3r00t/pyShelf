@@ -101,7 +101,7 @@ class Storage:
                 session.add(_book)
                 session.commit()
                 session.close()
-                self.config.logger.info(book[0][0:80])
+                # self.config.logger.info(book[0][0:80])
                 return True
             except Exception as e:
                 self.config.logger.error(f"{book[0][0:80]} :: {e}")
@@ -158,12 +158,13 @@ class Storage:
             for book in _set:
                 path = self.config.book_path + "/"
                 _collections = []
-                _pathing = book[1].split(path)[1].split("/")
                 try:
+                    _pathing = book[1].split(path)[1].split("/")
                     _pathing.pop(0)
                     _pathing.pop(-1)
                 except IndexError:
-                    continue
+                    continue  # Skip if path is invalid eg. a book with no con-
+                              # taining folder
                 for _p in _pathing:
                     _s = _p.replace("'", "")
                     _x = re.sub(_title_regx, "", _s)
@@ -183,7 +184,7 @@ class Storage:
                                 _sess.add(_collection)
                                 _sess.commit()
                                 _sess.close()
-                                self.config.logger.info(f"Collection {_s} added.")
+                                # self.config.logger.info(f"Collection {_s} added.")
                             except Exception as e:
                                 self.config.logger.error(f"Collection {_s} failed: {e}")
                     _collections.append(_p)
