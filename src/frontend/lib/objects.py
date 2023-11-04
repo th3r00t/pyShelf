@@ -19,6 +19,7 @@ class JSInterface():
         if which("npm"):
             self.config.logger.info("Installing JavaScript dependencies...")
             run(["npm", "install"], cwd=self.package_json.parent)
+
         else:
             self.config.logger.error("npm is not installed.")
             exit(1)

@@ -142,7 +142,14 @@ class FastAPIServer():
             output_style='compressed')
         with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
-        _pyShelf.close()
+
+        #_bulma_src = sass.compile(
+        #    filename='src/frontend/static/styles/bulma.sass',
+        #    source_map_filename='src/frontend/static/styles/bulma.sass',
+        #    output_style='compressed')
+        #with open('src/frontend/static/styles/bulma.css', 'w') as _bulma:
+        #    _bulma.write(_bulma_src[0])
+
         self.JSInterface.install()
         return True
 
