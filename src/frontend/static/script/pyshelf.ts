@@ -15,7 +15,12 @@ function sizeMaster() {
 $(document).ready(function() {
   // Get the current URL
   var url = window.location.href;
+  console.log(url);
   // Get the last part of the URL
+  $(".navbar-burger").click(function(){
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+  });
   sizeMaster();
   $(window).on('resize', function() {
     sizeMaster();
