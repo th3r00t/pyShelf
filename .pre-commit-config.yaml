@@ -13,7 +13,3 @@ repos:
     rev: v0.4.0
     hooks:
     -   id: autoflake8
--   repo: https://github.com/ambv/black
-    rev: 22.10.0
-    hooks:
-    - id: black

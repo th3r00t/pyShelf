@@ -101,22 +101,30 @@ def book_tojson(book) -> dumps:
             "publisher": book[0].publisher,
         })
 
+def tojson(obj) -> dumps:
+    return dumps(obj)
 
 def collections_tojson(collection) -> dumps:
     """Convert a collections object to json."""
     _collections = []
+    _collection_id_set = set()
     for _collection in collection:
-        _collections.append({
-            "collection_id": _collection[0].collection_id,
-            "book_id": _collection[0].book_id,
-            "collection": _collection[0].collection,
-        })
+        if _collection[0].id in _collection_id_set:
+            pass
+        else:
+            _collection_id_set.add(_collection[0].id)
+            _collections.append({
+                "collection_id": _collection[0].id,
+                "collection": _collection[0].collection,
+            })
     return dumps(_collections)
 
 
 templates.env.filters["b64decode"] = base64decode
 templates.env.filters["summarize"] = summarize
 templates.env.filters["books_tojson"] = books_tojson
+templates.env.filters["collections_tojson"] = collections_tojson
+templates.env.filters["tojson"] = tojson
 
 
 class FastAPIServer():
@@ -143,13 +151,6 @@ class FastAPIServer():
         with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
 
-        #_bulma_src = sass.compile(
-        #    filename='src/frontend/static/styles/bulma.sass',
-        #    source_map_filename='src/frontend/static/styles/bulma.sass',
-        #    output_style='compressed')
-        #with open('src/frontend/static/styles/bulma.css', 'w') as _bulma:
-        #    _bulma.write(_bulma_src[0])
-
         self.JSInterface.install()
         return True
 
@@ -163,11 +164,12 @@ class FastAPIServer():
     async def index(request: Request, skip: int = 0, limit: int = 10):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
         books = storage.get_books(collection=None, skip=skip, limit=limit)
+        collections = storage.get_collections()
         """Home page responder."""
-        context = {"request": request, "books": books}
+        context = {"request": request, "books": books, "collections": collections}
         return templates.TemplateResponse("index.html", context)
 
-    @app.get("/books", response_class=JSONResponse)
+    @app.get("/api/books", response_class=JSONResponse)
     async def books(request: Request, skip: int = 0, limit: int = 10, collection=None):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
         books = storage.get_books(collection, skip=skip, limit=limit)
@@ -176,14 +178,14 @@ class FastAPIServer():
         return JSONResponse(content=books_tojson(books))
         # return JSONResponse(content=books)
 
-    @app.get("/book/{book_id}", response_class=JSONResponse)
+    @app.get("/api/book/{book_id}", response_class=JSONResponse)
     async def book(request: Request, book_id: int):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
         book = storage.get_book(book_id)
         """Home page responder."""
         return JSONResponse(content=book_tojson(book))
 
-    @app.get("/collections", response_class=JSONResponse)
+    @app.get("/api/collections", response_class=JSONResponse)
     async def collections(request: Request):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
         collections = storage.get_collections()
