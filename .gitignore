@@ -18,6 +18,7 @@ package-lock.json
 frontend/interface/migrations/*
 src/backend/data/*.json
 src/frontend/node_modules
+src/frontend/static/script/pyshelf.js
 # Standard Python gitignore below
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
