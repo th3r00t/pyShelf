@@ -1,6 +1,6 @@
 
-# This file is used to build the Dockerhub image. To host pyShelf yourself for 
-# production, please use the official pyShelf image on 
+# This file is used to build the Dockerhub image. To host pyShelf yourself for
+# production, please use the official pyShelf image on
 # https://hub.docker.com/r/pyshelf/pyshelf
 
 # Use the following commands to build and push the docker image to Dockerhub:
@@ -15,14 +15,12 @@ EXPOSE 8000
 EXPOSE 1337
 
 RUN apt-get update -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3 python3-dev python3-pip python3-venv
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3.12 python3.12-dev python3.12-pip python3.12-venv python3.12-hatch
 
 COPY . /pyshelf
 COPY ./docker/config.json /pyshelf/config.json
 
 WORKDIR /pyshelf/
-RUN python3 -m pip install -r requirements.txt
+RUN python3.12 -m hatch shell
 
-ENTRYPOINT python3 configure \
-           && cd src/ \
-           && daphne -b 0.0.0.0 -p 8000 frontend.asgi:application
+ENTRYPOINT python3.12 pyshelf.py
