@@ -9,18 +9,17 @@
 #   docker login
 #   docker push pyshelf/pyshelf
 
-FROM ubuntu
+FROM python:3
 
 EXPOSE 8000
 EXPOSE 1337
 
-RUN apt-get update -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python3.12 python3.12-dev python3.12-pip python3.12-venv python3.12-hatch
+# RUN apt-get update -y
+# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python312 python312-dev python312-pip python312-venv python312-hatch
 
 COPY . /pyshelf
 COPY ./docker/config.json /pyshelf/config.json
-
+COPY ./docker/requirements.txt /pyshelf/requirements.txt
 WORKDIR /pyshelf/
-RUN python3.12 -m hatch shell
-
-ENTRYPOINT python3.12 pyshelf.py
+RUN python -m pip install --no-cache-dir -r requirements.txt
+ENTRYPOINT hatch run ./pyShelf.py
