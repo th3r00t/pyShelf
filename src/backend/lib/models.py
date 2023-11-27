@@ -1,6 +1,6 @@
 from typing import Optional
 from typing_extensions import Annotated
-from sqlalchemy import func, ForeignKey
+from sqlalchemy import func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 import datetime
 
@@ -42,4 +42,3 @@ class Collection(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     collection: Mapped[str]
-    book_id: Mapped[int] = mapped_column(ForeignKey(Book.id))

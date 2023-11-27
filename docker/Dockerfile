@@ -9,17 +9,30 @@
 #   docker login
 #   docker push pyshelf/pyshelf
 
-FROM python:3
+FROM ubuntu:latest
 
-EXPOSE 8000
+EXPOSE 8080
 EXPOSE 1337
 
-# RUN apt-get update -y
-# RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential python312 python312-dev python312-pip python312-venv python312-hatch
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev \
+libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget \
+libbz2-dev curl -y
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+RUN export NVM_DIR="$HOME/.nvm" ; \
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" ; nvm install 14 npm
+WORKDIR /tmp
+RUN wget https://www.python.org/ftp/python/3.12.0/Python-3.12.0.tgz
+RUN tar -xf Python-3.12.0.tgz
+WORKDIR /tmp/Python-3.12.0/
+RUN ./configure --enable-optimizations
+RUN make -j 4
+RUN make install
 
 COPY . /pyshelf
 COPY ./docker/config.json /pyshelf/config.json
 COPY ./docker/requirements.txt /pyshelf/requirements.txt
 WORKDIR /pyshelf/
-RUN python -m pip install --no-cache-dir -r requirements.txt
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
 ENTRYPOINT hatch run ./pyShelf.py

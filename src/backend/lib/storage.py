@@ -86,7 +86,8 @@ class Storage:
                     cover_image = None
                 if not book[1]:
                     pass
-                collections = self.parse_collections_from_path(book)
+                # collections = self.parse_collections_from_path(book)
+                # breakpoint()
                 _book = Book(
                         title=book[0],
                         author=book[1],
@@ -173,6 +174,7 @@ class Storage:
                     _q = _sess.execute(
                             select(Collection.id).where(
                                 Collection.collection == _s,
+                                # BUG: book.id is not the correct identifier.
                                 Collection.book_id == book.id,
                                 )
                             )
