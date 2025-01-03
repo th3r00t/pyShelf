@@ -59,7 +59,7 @@ You may need to click import books a second time if your import fails on the fir
 
 The official Docker image for pyShelf is [`pyshelf/pyshelf`](https://hub.docker.com/r/pyshelf/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. An example docker-compose.yml is included in the repo.
 
-You'll need a `.env` file wich sets the `LOCAL_BOOK_DIR` variable, for example:
+You'll need a `.env` file which sets the `LOCAL_BOOK_DIR` variable, for example:
 
 ```
 LOCAL_BOOK_DIR=/home/someone/books
