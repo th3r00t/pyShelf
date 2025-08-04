@@ -244,3 +244,16 @@ class Storage:
         _result = session.execute(select(Collection).join(Book)).all()
         session.close()
         return _result
+    
+    def get_collection(self, name):
+        """Get collection from database.
+
+        Returns
+        -------
+        _result : ScalarResult Object
+        """
+        session = Session(self.engine)
+        breakpoint()
+        _result = session.execute(select(Collection).where(Collection.name == name).join(Book)).all()
+        session.close()
+        return _result

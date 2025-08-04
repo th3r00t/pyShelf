@@ -49,7 +49,11 @@
       <div class="select is-small is-rounded is-link" id="collection_dropdown">
         <select id="collection_select">
           {% for collection in collections %}
-          <option value={{collection[0].id}} class="collection_selection">{{collection[0].collection}}</option>
+          <option
+						value={{collection[0].id}}
+						class="collection_selection"
+						onclick="window.location.href='/api/collection/{{ collection[0].collection }}'"
+					>{{collection[0].collection}}</option>
           {% endfor %}
         </select>
       </div>

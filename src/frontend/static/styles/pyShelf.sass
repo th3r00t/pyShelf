@@ -24,72 +24,8 @@ $navbar-item-color: $white
 $navbar-item-hover-background-color: $ps-color-secondary
 $navbar-dropdown-background-color: $ps-color-primary-trans
 $navbar-dropdown-item-hover-color: $ps-color-background !important
-$footer-background-color: $ps-color-primary-trans
-$footer-padding: 0.5rem 0.5rem
-//$navbar-dropdown-item-hover-background-color: $background !default
-//$navbar-dropdown-item-active-color: $link !default
-//$navbar-dropdown-item-active-background-color: $background !default
-@import "../../node_modules/bulma/sass/utilities/_all.sass";
-@import "../../node_modules/bulma/sass/utilities/initial-variables.sass";
-@import "../../node_modules/bulma/sass/utilities/functions.sass";
-@import "../../node_modules/bulma/sass/utilities/derived-variables.sass";
-@import "../../node_modules/bulma/sass/utilities/mixins.sass";
-@import "../../node_modules/bulma/sass/utilities/controls.sass";
-@import "../../node_modules/bulma/sass/utilities/extends.sass";
-@import "../../node_modules/bulma/sass/base/_all.sass";
-@import "../../node_modules/bulma/sass/base/minireset.sass";
-@import "../../node_modules/bulma/sass/base/generic.sass";
-@import "../../node_modules/bulma/sass/base/animations.sass";
-@import "../../node_modules/bulma/sass/elements/_all.sass";
-@import "../../node_modules/bulma/sass/elements/box.sass";
-@import "../../node_modules/bulma/sass/elements/button.sass";
-@import "../../node_modules/bulma/sass/elements/container.sass";
-@import "../../node_modules/bulma/sass/elements/content.sass";
-@import "../../node_modules/bulma/sass/elements/icon.sass";
-@import "../../node_modules/bulma/sass/elements/image.sass";
-@import "../../node_modules/bulma/sass/elements/notification.sass";
-@import "../../node_modules/bulma/sass/elements/progress.sass";
-@import "../../node_modules/bulma/sass/elements/table.sass";
-@import "../../node_modules/bulma/sass/elements/tag.sass";
-@import "../../node_modules/bulma/sass/elements/title.sass";
-@import "../../node_modules/bulma/sass/elements/other.sass";
-@import "../../node_modules/bulma/sass/form/_all.sass";
-@import "../../node_modules/bulma/sass/form/shared.sass";
-@import "../../node_modules/bulma/sass/form/input-textarea.sass";
-@import "../../node_modules/bulma/sass/form/checkbox-radio.sass";
-@import "../../node_modules/bulma/sass/form/select.sass";
-@import "../../node_modules/bulma/sass/form/file.sass";
-@import "../../node_modules/bulma/sass/form/tools.sass";
-@import "../../node_modules/bulma/sass/components/_all.sass";
-@import "../../node_modules/bulma/sass/components/breadcrumb.sass";
-@import "../../node_modules/bulma/sass/components/card.sass";
-@import "../../node_modules/bulma/sass/components/dropdown.sass";
-@import "../../node_modules/bulma/sass/components/level.sass";
-@import "../../node_modules/bulma/sass/components/media.sass";
-@import "../../node_modules/bulma/sass/components/menu.sass";
-@import "../../node_modules/bulma/sass/components/message.sass";
-@import "../../node_modules/bulma/sass/components/modal.sass";
-@import "../../node_modules/bulma/sass/components/navbar.sass";
-@import "../../node_modules/bulma/sass/components/pagination.sass";
-@import "../../node_modules/bulma/sass/components/panel.sass";
-@import "../../node_modules/bulma/sass/components/tabs.sass";
-@import "../../node_modules/bulma/sass/grid/_all.sass";
-@import "../../node_modules/bulma/sass/grid/columns.sass";
-@import "../../node_modules/bulma/sass/grid/tiles.sass";
-@import "../../node_modules/bulma/sass/helpers/_all.sass";
-@import "../../node_modules/bulma/sass/helpers/color.sass";
-@import "../../node_modules/bulma/sass/helpers/flexbox.sass";
-@import "../../node_modules/bulma/sass/helpers/float.sass";
-@import "../../node_modules/bulma/sass/helpers/other.sass";
-@import "../../node_modules/bulma/sass/helpers/overflow.sass";
-@import "../../node_modules/bulma/sass/helpers/position.sass";
-@import "../../node_modules/bulma/sass/helpers/spacing.sass";
-@import "../../node_modules/bulma/sass/helpers/typography.sass";
-@import "../../node_modules/bulma/sass/helpers/visibility.sass";
-@import "../../node_modules/bulma/sass/layout/_all.sass";
-@import "../../node_modules/bulma/sass/layout/hero.sass";
-@import "../../node_modules/bulma/sass/layout/section.sass";
-@import "../../node_modules/bulma/sass/layout/footer.sass"
+$footer-background-color: $ps-color-primary-trans !important
+// $footer-padding: 0.5rem 0.5rem
 
 .center-all
   align-items: center;
@@ -110,12 +46,60 @@ $footer-padding: 0.5rem 0.5rem
 
 #book-shelf
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))  // <== add this
+  gap: 1rem  // space between rows and columns
   justify-content: space-evenly;
-  align-items: center;
+  // align-items: center;
   align-content: center;
   padding: 1rem;
   margin: 1rem;
   // background-color: $ps-color-background;
+
+.book-thumbnail
+  z-index: 1;
+  position: relative;
+
+.no-image-title
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $white;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: rgba(0,0,0,0.7);
+  padding: 0.5rem;
+  border-radius: 5px;
+
+.no-image-author
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $white;
+  font-size: 1rem;
+  text-align: center;
+  background-color: rgba(0,0,0,0.7);
+  padding: 0.5rem;
+  border-radius: 5px;
+
+.display-alt::after
+  content: attr(alt);
+  display: block !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  font-size: 0.8rem;
+  padding: 0.2rem;
+
+.title, .subtitle
+  z-index: 2;
+  position: relative;
+  top: -155px;
+
 .collection
   display: flex;
   flex-direction: column;
@@ -123,3 +107,9 @@ $footer-padding: 0.5rem 0.5rem
   align-items: center;
   align-content: center;
   background-color: $ps-color-background;
+
+.footer
+  display: flex;
+  padding: 1rem !important;
+
+@import "../../node_modules/bulma/bulma.scss"
