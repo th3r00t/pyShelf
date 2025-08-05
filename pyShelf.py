@@ -22,7 +22,9 @@ def run_import():
     config.logger.info("Begining book import.")
     execute_scan(PRG_PATH, config=config)
     config.logger.info("Finished book import.")
+    storage = Storage(config=config)
     # MakeCollections(PRG_PATH, config=config)
+    storage.make_collections()
     return "Import Complete"
 
 

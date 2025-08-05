@@ -11,6 +11,7 @@
 	{% include 'header.html' %}
 	{% include 'navigation.html' %}
 	<section id="master-container">
+		<!-- <div id="book-shelf" class="container is-dark"> -->
 		<div id="book-shelf">
 			{% for book in books %}
 			{% set cover = book.cover|b64decode %}
@@ -43,8 +44,8 @@
 		</div>
 		<div id="pagination" class="container is-dark">
 			<nav class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous" href="/?skip={{ page-1 }}" id="prev-page">Previous</a>
-				<a class="pagination-next" href="/?skip={{ page+1 }}" id="next-page">Next</a>
+				<a class="pagination-previous" href="/api/collection/{{collection}}?skip={{ page|int - 1 }}" id="prev-page">Previous</a>
+				<a class="pagination-next" href="/api/collection/{{collection}}?skip={{ page|int + 1 }}" id="next-page">Next</a>
 			</nav>
 		</div>
 	</section>

@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from pathlib import Path
 
-from .models import Book, Collection
+from .models import Book, Collection, BookCollection
 
 
 class Storage:
@@ -135,89 +135,132 @@ class Storage:
         collections : list()
             List of collections.
         """
+        # collections = []
+        # title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
+        # book_path: Path = Path(book[3])
+        # store_path: Path = Path(self.config.book_path)
+        # relative_book_path: Path = book_path.relative_to(store_path)
+        # for path in relative_book_path.parts:
+        #     collections.append(re.sub(title_regx, "", path).strip())
+        # collections.pop(-1)
+        # return collections
         collections = []
         title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
         book_path: Path = Path(book[3])
         store_path: Path = Path(self.config.book_path)
         relative_book_path: Path = book_path.relative_to(store_path)
-        for path in relative_book_path.parts:
-            collections.append(re.sub(title_regx, "", path).strip())
-        collections.pop(-1)
+        # Keep all folder names except the actual file
+        for folder in relative_book_path.parts[:-1]:
+            clean_name = re.sub(title_regx, "", folder).strip()
+            if clean_name:
+                collections.append(clean_name)
         return collections
 
     def make_collections(self):
-        """Parse book path's to determine common folder structure.
-
-        Stores collections based on shared paths.
-        """
-        # TODO: Check this still works with the switch to sqlalchemy
+        """Ensure collections exist and link them to books (many-to-many)."""
         self.config.logger.info("Making collections.")
-        _title_regx = re.compile(r"^[0-9][0-9]*|-|\ \B")
         session = Session(self.engine)
-        _set = session.execute(select(Book.id, Book.file_name)).all()
-        if _set.__len__() > 0:
-            for book in _set:
-                path = self.config.book_path + "/"
-                _collections = []
-                try:
-                    _pathing = book[1].split(path)[1].split("/")
-                    _pathing.pop(0)
-                    _pathing.pop(-1)
-                except IndexError:
-                    continue  # Skip if path is invalid eg. a book with no con-
-                              # taining folder
-                for _p in _pathing:
-                    _s = _p.replace("'", "")
-                    _x = re.sub(_title_regx, "", _s)
-                    _s = _x.strip()
-                    _sess = Session(self.engine)
-                    _q = _sess.execute(
-                            select(Collection.id).where(
-                                Collection.collection == _s,
-                                # BUG: book.id is not the correct identifier.
-                                Collection.book_id == book.id,
-                                )
-                            )
-                    _sess.close()
-                    if _q.fetchone() is None:
-                        _collection = Collection(collection=_s, book_id=book.id)
-                        with Session(self.engine) as _sess:
-                            try:
-                                _sess.add(_collection)
-                                _sess.commit()
-                                _sess.close()
-                                # self.config.logger.info(f"Collection {_s} added.")
-                            except Exception as e:
-                                self.config.logger.error(f"Collection {_s} failed: {e}")
-                    _collections.append(_p)
+
+        # get all books and paths
+        books = session.execute(select(Book.id, Book.file_name)).all()
+        
+        for book_id, file_name in books:
+            try:
+                relative_parts = Path(file_name).relative_to(self.config.book_path).parts
+            except ValueError:
+                continue  # skip books outside the configured path
+
+            # exclude the actual file name
+            folder = relative_parts[1]
+            # for folder in folders:
+            #     clean_name = re.sub(r"^[0-9][0-9]*|-|\ \B", "", folder).strip()
+            #     if not clean_name:
+            #         continue
+
+                # check if collection exists
+            collection = session.execute(
+                select(Collection).where(Collection.name == folder)
+            ).scalar_one_or_none()
+            if not collection:
+                collection = Collection(name=folder)
+                session.add(collection)
+                session.flush()  # ensures collection.id is available
+
+            # check link
+            link_exists = session.execute(
+                select(BookCollection).where(
+                    BookCollection.book_id == book_id,
+                    BookCollection.collection_id == collection.id
+                )
+            ).first()
+
+            if not link_exists:
+                session.add(BookCollection(book_id=book_id, collection_id=collection.id))
+
+        session.commit()
+        session.close()
         self.config.logger.info("Finished making collections.")
+
+
+
+    # def get_books(self, collection=None, skip=None, limit=None):
+    #     """Get books from database.
+    #
+    #     Parameters
+    #     ----------
+    #     collection : str
+    #         Collection to filter by.
+    #
+    #     Returns
+    #     -------
+    #     _result : ScalarResult Object
+    #     """
+    #     session = Session(self.engine)
+    #     if collection:
+    #         _result = session.execute(
+    #                 select(Book)
+    #                 .join(Collection)
+    #                 # .where(Collection.id == collection)
+    #                 .where(Collection.name == collection)
+    #                 .offset(skip)
+    #                 .limit(limit)
+    #                 ).all()
+    #     else:
+    #         _result = session.execute(select(Book).offset(skip).limit(limit)).all()
+    #     session.close()
+    #     return _result
+
 
     def get_books(self, collection=None, skip=None, limit=None):
         """Get books from database.
 
         Parameters
         ----------
-        collection : str
-            Collection to filter by.
-
-        Returns
-        -------
-        _result : ScalarResult Object
+        collection : int or None
+            Collection ID to filter by.
+        skip : int or None
+            Number of records to skip (offset).
+        limit : int or None
+            Maximum number of records to return.
         """
-        session = Session(self.engine)
-        if collection:
-            _result = session.execute(
+        with Session(self.engine) as session:
+            if collection is not None:
+                # Join through BookCollection to filter books in a collection
+                result = session.execute(
                     select(Book)
-                    .join(Collection)
-                    # .where(Collection.id == collection)
-                    .where(Collection.collection == collection)
-                    .offset(skip)
-                    .limit(limit)
-                    ).all()
-        else:
-            _result = session.execute(select(Book).offset(skip).limit(limit)).all()
-        session.close()
-        return _result
+                    .join(BookCollection)
+                    .where(BookCollection.collection_id == collection)
+                    .offset(skip or 0)
+                    .limit(limit or 100)
+                ).scalars().all()
+            else:
+                result = session.execute(
+                    select(Book)
+                    .offset(skip or 0)
+                    .limit(limit or 100)
+                ).scalars().all()
+        return result
+
 
     def get_book(self, id):
         """Get book from database.
@@ -243,10 +286,15 @@ class Storage:
         -------
         _result : ScalarResult Object
         """
-        session = Session(self.engine)
-        _result = session.execute(select(Collection).join(Book)).all()
-        session.close()
-        return _result
+        with Session(self.engine) as session:
+            result = session.execute(
+                select(Collection).join(BookCollection).distinct()
+            ).scalars().all()
+        return result
+        # session = Session(self.engine)
+        # _result = session.execute(select(Collection).join(Book)).all()
+        # session.close()
+        # return _result
     
     def get_collection(self, name):
         """Get collection from database.
@@ -256,7 +304,6 @@ class Storage:
         _result : ScalarResult Object
         """
         session = Session(self.engine)
-        _result = session.execute(select(Collection).where(Collection.collection == name).join(Book)).all()
-        breakpoint()
+        _result = session.execute(select(Collection).where(Collection.name == name).join(Book)).all()
         session.close()
         return _result
