@@ -1,40 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 {% block javascript %}
 <script type="text/javascript" src=static/script/pako.min.js>
-<script type="text/javascript">
-  const books = {{ books|books_tojson }};
-  let inflatedJSON = {};
-  const pako = require('pako');
-  inflatedJSON = JSON.parse(pako.inflate(books, { to: 'string'}));
-</script>
-{% endblock %}
-{% include 'header.html' %}
-  {% include 'navigation.html' %}
-  <section id="master-container">
-    <div id="book-shelf" class="container is-dark">
-      {% for book in books %}
-      {% set cover = book[0].cover|b64decode %}
-      {% if cover != 'None' %}
-      <div class="is-dark book" id="{{book[0].id}}">
-        <div class="image book-thumbnail">
-          <figure class="image is-4by3">
-            <img src="data:;base64,{{ book[0].cover|b64decode }}" alt="{{ book[0].title }}">
-          </figure>
-        </div>
-      </div>
-      {% else %}
-      <div class="is-dark book" id="{{book[0].id}}">
-        <div class="image book-thumbnail">
-          <figure class="image is-4by3">
-            <img src="static/images/no-cover.jpg" alt="{{ book[0].title }}">
-          </figure>
-        </div>
-        <h3 class="title is-3">{{ book[0].title }}</h3>
-        <h4 class="subtitle is-4">{{ book[0].author }}</h4>
-        <p class="content">{{ book[0].description|summarize }}</p>
-      </div>
-      {% endif %}
-      {% endfor %}
-    </div>
-  </section>
-{% include 'footer.html' %}
+	<script type="text/javascript">
+		const books = {{ books|books_tojson }};
+		let inflatedJSON = {};
+		const pako = require('pako');
+		inflatedJSON = JSON.parse(pako.inflate(books, { to: 'string'}));
+	</script>
+	{% endblock %}
+	{% include 'header.html' %}
+	{% include 'navigation.html' %}
+	<section id="master-container">
+		<p>Total books: {{ books|length }}</p>
+		<!-- <div id="book-shelf" class="container is-dark"> -->
+		<div id="book-shelf" class="is-dark">
+			{% for book in books %}
+			{% set cover = book[0].cover|b64decode %}
+			{% if cover != 'None' %}
+			<div class="is-dark book" id="{{book[0].id}}" onclick="window.location.href='/api/get_book/{{ book[0].id }}'">
+				<div class="image book-thumbnail">
+					<figure class="image is-4by3">
+						<img src="data:;base64,{{ book[0].cover|b64decode }}" alt="{{ book[0].title }}">
+					</figure>
+				</div>
+			</div>
+			{% else %}
+			<div class="is-dark book" id="{{book[0].id}}" onclick="window.location.href='/api/get_book/{{ book[0].id }}'">
+				<div class="image book-thumbnail"
+						 style="
+										background-image: url('static/images/no-cover.jpg');
+										background-size: cover;
+										background-position: center;
+										background-repeat: no-repeat;
+										">
+					<figure class="image is-4by3">
+						<div class="no-image-title">{{ book[0].title }}</div>
+						<!-- alt="{{ book[0].title }}" -->
+					</figure>
+				</div>
+				<!-- <p class="content">{{ book[0].description|summarize }}</p> -->
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div id="pagination" class="container is-dark">
+			<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+				<a class="pagination-previous" href="/?skip={{ page-1 }}" id="prev-page">Previous</a>
+				<a class="pagination-next" href="/?skip={{ page+1 }}" id="next-page">Next</a>
+			</nav>
+		</div>
+	</section>
+	{% include 'footer.html' %}

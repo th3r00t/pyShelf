@@ -8,7 +8,7 @@ import datetime
 from json import dumps
 from base64 import b64encode
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -85,7 +85,7 @@ def books_tojson(obj) -> dumps:
 def book_tojson(book) -> dumps:
     """Convert a book object to a json."""
     return dumps({
-            "book_id": book[0].book_id,
+            "book_id": book[0].id,
             "title": book[0].title,
             "author": book[0].author,
             "categories": book[0].categories,
@@ -136,7 +136,7 @@ class FastAPIServer():
         app.mount("/static",
                   StaticFiles(directory="src/frontend/static"),
                   name="static")
-        self.fe_config = uvicorn.Config(app, port=8080,
+        self.fe_config = uvicorn.Config(app, host="0.0.0.0", port=8080,
                                         log_level="info", reload=True)
         self.fe_server = uvicorn.Server(self.fe_config)
         self.JSInterface: JSInterface = JSInterface(self.config)
@@ -147,7 +147,12 @@ class FastAPIServer():
         _pyShelf_src = sass.compile(
             filename='src/frontend/static/styles/pyShelf.sass',
             source_map_filename='src/frontend/static/styles/pyShelf.sass',
-            output_style='compressed')
+            output_style='compressed',
+            include_paths=[
+                'node_modules',
+                'src/frontend/static/styles'
+            ]
+        )
         with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
 
@@ -161,12 +166,12 @@ class FastAPIServer():
                 route.operation_id = route.name
 
     @app.get("/", response_class=HTMLResponse)
-    async def index(request: Request, skip: int = 0, limit: int = 10):
+    async def index(request: Request, skip: int = 0, limit: int = 30):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
-        books = storage.get_books(collection=None, skip=skip, limit=limit)
+        books = storage.get_books(collection=None, skip=skip*limit, limit=limit)
         collections = storage.get_collections()
         """Home page responder."""
-        context = {"request": request, "books": books, "collections": collections}
+        context = {"request": request, "books": books, "collections": collections, "page": skip, "limit": limit}
         return templates.TemplateResponse("index.html", context)
 
     @app.get("/api/books", response_class=JSONResponse)
@@ -184,6 +189,16 @@ class FastAPIServer():
         book = storage.get_book(book_id)
         """Home page responder."""
         return JSONResponse(content=book_tojson(book))
+    
+    @app.get("/api/get_book/{book_id}", response_class=FileResponse)
+    async def book(request: Request, book_id: int):
+        storage = Storage(Config(os.path.abspath(os.getcwd())))
+        book = storage.get_book(book_id)
+        file_path = book[0].file_name
+        if not os.path.exists(file_path):
+            return JSONResponse(status_code=404, content={"error": "File not found"})
+        """Book file responder."""
+        return FileResponse(path=file_path, filename=os.path.basename(file_path), media_type="application/octet-stream")
 
     @app.get("/api/collections", response_class=JSONResponse)
     async def collections(request: Request):
@@ -192,6 +207,17 @@ class FastAPIServer():
         """Home page responder."""
         return JSONResponse(content=collections_tojson(collections))
 
+    @app.get("/api/collection/{collection}", response_class=JSONResponse)
+    async def collection(request: Request, collection: str, skip=0, limit=30):
+        storage = Storage(Config(os.path.abspath(os.getcwd())))
+        # collection = storage.get_collection(collection_name)
+        collection = storage.get_books(collection)
+        """Collection file responder."""
+        collections = storage.get_collections()
+        # books = JSONResponse(content=books_tojson(collection))
+        context = {"request": request, "books": collection, "collections": collections, "page": skip, "limit": limit}
+        return templates.TemplateResponse("index.html", context)
+        # return JSONResponse(content=collections_tojson(collection))
 
     async def run(self):
         """Front end server entrypoint."""

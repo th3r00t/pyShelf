@@ -47,11 +47,18 @@
         </div>
       </div>
       <div class="select is-small is-rounded is-link" id="collection_dropdown">
-        <select id="collection_select">
+				<!-- <select id="collection_select" onchange="window.location.href='/api/collection/' + this.value"> -->
+				<select id="collection_select">
           {% for collection in collections %}
-          <option value={{collection[0].id}} class="collection_selection">{{collection[0].collection}}</option>
+						<option	value="{{collection[0].collection}}" class="collection_selection">{{collection[0].collection}}</option>
           {% endfor %}
         </select>
+				<script>
+					document.getElementById("collection_select").addEventListener("change", function() {
+						const value = encodeURIComponent(this.value);
+						window.location.href = `/api/collection/${value}`;
+					});
+				</script>
       </div>
     </div>
     <div class="navbar-end">
