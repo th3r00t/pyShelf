@@ -50,7 +50,7 @@
 				<!-- <select id="collection_select" onchange="window.location.href='/api/collection/' + this.value"> -->
 				<select id="collection_select">
           {% for collection in collections %}
-						<option	value="{{collection[0].collection}}" class="collection_selection">{{collection[0].collection}}</option>
+						<option	value="{{collection.id}}" class="collection_selection">{{collection.name}}</option>
           {% endfor %}
         </select>
 				<script>

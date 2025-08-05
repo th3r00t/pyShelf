@@ -64,20 +64,20 @@ def books_tojson(obj) -> dumps:
     for book in obj:
         convert_none = lambda x: x if x is not None else "None"
         _books.append({
-            "book_id": book[0].id,
-            "title": book[0].title,
-            "author": book[0].author,
-            "categories": convert_none(book[0].categories),
-            "cover": base64decode(book[0].cover),
-            "pages": convert_none(book[0].pages),
-            "progress": convert_none(book[0].progress),
-            "file_name": book[0].file_name,
-            "description": convert_none(book[0].description),
-            "date": convertDateTime(book[0].date),
-            "rights": convert_none(book[0].rights),
-            "tags": convert_none(book[0].tags),
-            "identifier": convert_none(book[0].identifier),
-            "publisher": convert_none(book[0].publisher),
+            "book_id": book.id,
+            "title": book.title,
+            "author": book.author,
+            "categories": convert_none(book.categories),
+            "cover": base64decode(book.cover),
+            "pages": convert_none(book.pages),
+            "progress": convert_none(book.progress),
+            "file_name": book.file_name,
+            "description": convert_none(book.description),
+            "date": convertDateTime(book.date),
+            "rights": convert_none(book.rights),
+            "tags": convert_none(book.tags),
+            "identifier": convert_none(book.identifier),
+            "publisher": convert_none(book.publisher),
         })
     return dumps(_books)
 
@@ -85,20 +85,20 @@ def books_tojson(obj) -> dumps:
 def book_tojson(book) -> dumps:
     """Convert a book object to a json."""
     return dumps({
-            "book_id": book[0].id,
-            "title": book[0].title,
-            "author": book[0].author,
-            "categories": book[0].categories,
-            "cover": base64decode(book[0].cover),
-            "pages": book[0].pages,
-            "progress": book[0].progress,
-            "file_name": book[0].file_name,
-            "description": book[0].description,
-            "date": convertDateTime(book[0].date),
-            "rights": book[0].rights,
-            "tags": book[0].tags,
-            "identifier": book[0].identifier,
-            "publisher": book[0].publisher,
+            "book_id": book.id,
+            "title": book.title,
+            "author": book.author,
+            "categories": book.categories,
+            "cover": base64decode(book.cover),
+            "pages": book.pages,
+            "progress": book.progress,
+            "file_name": book.file_name,
+            "description": book.description,
+            "date": convertDateTime(book.date),
+            "rights": book.rights,
+            "tags": book.tags,
+            "identifier": book.identifier,
+            "publisher": book.publisher,
         })
 
 def tojson(obj) -> dumps:
@@ -109,13 +109,13 @@ def collections_tojson(collection) -> dumps:
     _collections = []
     _collection_id_set = set()
     for _collection in collection:
-        if _collection[0].id in _collection_id_set:
+        if _collection.id in _collection_id_set:
             pass
         else:
-            _collection_id_set.add(_collection[0].id)
+            _collection_id_set.add(_collection.id)
             _collections.append({
-                "collection_id": _collection[0].id,
-                "collection": _collection[0].collection,
+                "collection_id": _collection.id,
+                "collection": _collection.name,
             })
     return dumps(_collections)
 
@@ -167,8 +167,13 @@ class FastAPIServer():
 
     @app.get("/", response_class=HTMLResponse)
     async def index(request: Request, skip: int = 0, limit: int = 30):
+        if skip <= 0:
+            skip_num = 0
+            skip = 0
+        else:
+            skip_num = skip * limit
         storage = Storage(Config(os.path.abspath(os.getcwd())))
-        books = storage.get_books(collection=None, skip=skip*limit, limit=limit)
+        books = storage.get_books(collection=None, skip=skip_num, limit=limit)
         collections = storage.get_collections()
         """Home page responder."""
         context = {"request": request, "books": books, "collections": collections, "page": skip, "limit": limit}
@@ -208,16 +213,25 @@ class FastAPIServer():
         return JSONResponse(content=collections_tojson(collections))
 
     @app.get("/api/collection/{collection}", response_class=JSONResponse)
-    async def collection(request: Request, collection: str, skip=0, limit=30):
-        storage = Storage(Config(os.path.abspath(os.getcwd())))
-        # collection = storage.get_collection(collection_name)
-        collection = storage.get_books(collection)
+    async def collection(request: Request, collection: str, skip:int=0, limit:int=30):
         """Collection file responder."""
+        storage = Storage(Config(os.path.abspath(os.getcwd())))
+        if skip <= 0:
+            skip_num = 0
+            skip = 0
+        else:
+            skip_num = skip * limit
+        books = storage.get_books(collection, skip=skip_num, limit=limit)
         collections = storage.get_collections()
-        # books = JSONResponse(content=books_tojson(collection))
-        context = {"request": request, "books": collection, "collections": collections, "page": skip, "limit": limit}
-        return templates.TemplateResponse("index.html", context)
-        # return JSONResponse(content=collections_tojson(collection))
+        context = {
+            "request": request,
+            "books": books,
+            "collections": collections,
+            "collection": collection,
+            "page": skip,
+            "limit": limit
+        }
+        return templates.TemplateResponse("collection.html", context)
 
     async def run(self):
         """Front end server entrypoint."""

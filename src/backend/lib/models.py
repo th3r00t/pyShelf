@@ -5,6 +5,7 @@ from sqlalchemy import func, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 import datetime
 
+# Timestamp annotation
 timestamp = Annotated[
     datetime.datetime,
     mapped_column(nullable=False, server_default=func.CURRENT_TIMESTAMP()),
@@ -14,7 +15,6 @@ timestamp = Annotated[
 class Base(DeclarativeBase):
     """Base class for all models."""
 
-from sqlalchemy.orm import relationship
 
 class Book(Base):
     """Book model."""
@@ -36,8 +36,10 @@ class Book(Base):
     identifier: Mapped[Optional[str]]
     publisher: Mapped[Optional[str]]
 
-    # One book → many collection entries
-    collections = relationship("Collection", back_populates="book", cascade="all, delete-orphan")
+    # Relationship to join table
+    book_collections = relationship(
+        "BookCollection", back_populates="book", cascade="all, delete-orphan"
+    )
 
 
 class Collection(Base):
@@ -46,8 +48,23 @@ class Collection(Base):
     __tablename__ = "Collection"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    collection: Mapped[str]
-    book_id: Mapped[int] = mapped_column(ForeignKey("Book.id"))
+    name: Mapped[str] = mapped_column(unique=True)
 
-    # Each collection entry points to one book
-    book = relationship("Book", back_populates="collections")
+    # Relationship to join table
+    book_collections = relationship(
+        "BookCollection", back_populates="collection", cascade="all, delete-orphan"
+    )
+
+
+class BookCollection(Base):
+    """Association table linking Books and Collections."""
+
+    __tablename__ = "BookCollection"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    book_id: Mapped[int] = mapped_column(ForeignKey("Book.id"))
+    collection_id: Mapped[int] = mapped_column(ForeignKey("Collection.id"))
+
+    # Relationships
+    book = relationship("Book", back_populates="book_collections")
+    collection = relationship("Collection", back_populates="book_collections")
