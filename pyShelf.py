@@ -6,7 +6,6 @@ from pathlib import Path
 from threading import Thread
 from src.backend.lib.config import Config
 from src.backend.lib.storage import Storage
-from src.backend.pyShelf_MakeCollections import MakeCollections
 from src.backend.pyShelf_ScanLibrary import execute_scan
 from src.frontend.lib.FastAPIServer import FastAPIServer
 # import websockets
@@ -23,7 +22,7 @@ def run_import():
     config.logger.info("Begining book import.")
     execute_scan(PRG_PATH, config=config)
     config.logger.info("Finished book import.")
-    MakeCollections(PRG_PATH, config=config)
+    # MakeCollections(PRG_PATH, config=config)
     return "Import Complete"
 
 
