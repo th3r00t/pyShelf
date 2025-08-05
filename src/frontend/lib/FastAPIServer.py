@@ -136,7 +136,7 @@ class FastAPIServer():
         app.mount("/static",
                   StaticFiles(directory="src/frontend/static"),
                   name="static")
-        self.fe_config = uvicorn.Config(app, port=8080,
+        self.fe_config = uvicorn.Config(app, host="0.0.0.0", port=8080,
                                         log_level="info", reload=True)
         self.fe_server = uvicorn.Server(self.fe_config)
         self.JSInterface: JSInterface = JSInterface(self.config)
@@ -207,12 +207,17 @@ class FastAPIServer():
         """Home page responder."""
         return JSONResponse(content=collections_tojson(collections))
 
-    @app.get("/api/collection/{collection_id}", response_class=JSONResponse)
-    async def collection(request: Request, collection_name: str):
+    @app.get("/api/collection/{collection}", response_class=JSONResponse)
+    async def collection(request: Request, collection: str, skip=0, limit=30):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
-        collection = storage.get_collection(collection_name)
+        # collection = storage.get_collection(collection_name)
+        collection = storage.get_books(collection)
         """Collection file responder."""
-        return JSONResponse(content=collections_tojson(collection))
+        collections = storage.get_collections()
+        # books = JSONResponse(content=books_tojson(collection))
+        context = {"request": request, "books": collection, "collections": collections, "page": skip, "limit": limit}
+        return templates.TemplateResponse("index.html", context)
+        # return JSONResponse(content=collections_tojson(collection))
 
     async def run(self):
         """Front end server entrypoint."""

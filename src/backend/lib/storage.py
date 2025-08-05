@@ -207,7 +207,8 @@ class Storage:
             _result = session.execute(
                     select(Book)
                     .join(Collection)
-                    .where(Collection.id == collection)
+                    # .where(Collection.id == collection)
+                    .where(Collection.collection == collection)
                     .offset(skip)
                     .limit(limit)
                     ).all()
@@ -253,7 +254,7 @@ class Storage:
         _result : ScalarResult Object
         """
         session = Session(self.engine)
+        _result = session.execute(select(Collection).where(Collection.collection == name).join(Book)).all()
         breakpoint()
-        _result = session.execute(select(Collection).where(Collection.name == name).join(Book)).all()
         session.close()
         return _result

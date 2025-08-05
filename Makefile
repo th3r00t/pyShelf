@@ -22,3 +22,6 @@ lint: style typing
 
 compile: 
 	cd src/frontend && sh compile.sh && cd ../..
+
+install:
+	cd src/frontend && npm install
