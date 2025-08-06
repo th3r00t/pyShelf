@@ -251,13 +251,15 @@ class Storage:
                     .join(BookCollection)
                     .where(BookCollection.collection_id == collection)
                     .offset(skip or 0)
-                    .limit(limit or 100)
+                    # .limit(limit or 100)
+                    .limit(limit)
                 ).scalars().all()
             else:
                 result = session.execute(
                     select(Book)
                     .offset(skip or 0)
-                    .limit(limit or 100)
+                    # .limit(limit or 100)
+                    .limit(limit)
                 ).scalars().all()
         return result
 

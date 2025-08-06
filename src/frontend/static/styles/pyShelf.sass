@@ -108,8 +108,45 @@ $footer-background-color: $ps-color-primary-trans !important
   align-content: center;
   background-color: $ps-color-background;
 
+#collection_dropdown
+  margin-top: auto;
+  margin-bottom: auto;
+
 .footer
   display: flex;
   padding: 1rem !important;
 
+
+#pagination-container
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem;
+
+#pagination-left, #pagination-right
+  background-color: $ps-color-secondary;
+
+#pagination-left
+  display: flex;
+  justify-content: flex-start;
+
+#pagination-center
+  display: flex;
+  justify-content: center;
+  flex: 1;
+
+#pagination-right
+  display: flex;
+  justify-content: flex-end;
+
 @import "../../node_modules/bulma/bulma.scss"
+
+.container-full
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
