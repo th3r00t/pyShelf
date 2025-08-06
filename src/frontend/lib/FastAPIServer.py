@@ -3,6 +3,7 @@ import uvicorn
 import os
 import sass
 import datetime
+import math
 # import gzip
 # import brotli
 from json import dumps
@@ -176,7 +177,15 @@ class FastAPIServer():
         books = storage.get_books(collection=None, skip=skip_num, limit=limit)
         collections = storage.get_collections()
         """Home page responder."""
-        context = {"request": request, "books": books, "collections": collections, "page": skip, "limit": limit}
+        total_books = len(storage.get_books())
+        context = {
+            "request": request,
+            "total_pages": math.ceil(total_books / limit),
+            "books": books,
+            "collections": collections,
+            "page": skip,
+            "limit": limit
+        }
         return templates.TemplateResponse("index.html", context)
 
     @app.get("/api/books", response_class=JSONResponse)
@@ -222,12 +231,14 @@ class FastAPIServer():
         else:
             skip_num = skip * limit
         books = storage.get_books(collection, skip=skip_num, limit=limit)
+        total_books = len(storage.get_books(collection))
         collections = storage.get_collections()
         context = {
             "request": request,
             "books": books,
             "collections": collections,
             "collection": collection,
+            "total_pages": math.ceil(total_books / limit),
             "page": skip,
             "limit": limit
         }

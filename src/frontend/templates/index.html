@@ -26,7 +26,7 @@
 			<div class="is-dark book" id="{{book.id}}" onclick="window.location.href='/api/get_book/{{ book.id }}'">
 				<div class="image book-thumbnail"
 						 style="
-										background-image: url("{{ url_for('static', path='images/no-cover.jpg') }}");
+										background-image: url({{ url_for('static', path='images/no-cover.jpg') }});
 										background-size: cover;
 										background-position: center;
 										background-repeat: no-repeat;
@@ -41,11 +41,16 @@
 			{% endif %}
 			{% endfor %}
 		</div>
-		<div id="pagination" class="container is-dark">
-			<nav class="pagination is-centered" role="navigation" aria-label="pagination">
-				<a class="pagination-previous" href="/?skip={{ page-1 }}" id="prev-page">Previous</a>
-				<a class="pagination-next" href="/?skip={{ page+1 }}" id="next-page">Next</a>
-			</nav>
+		<div id="pagination-container" class="container-full is-dark">
+			<div id="pagination-left">
+				<a class="pagination-previous" href="/?skip={{ page-1 }}" id="prev-page">< Previous</a>
+			</div>
+			<div id="pagination-center">
+				<span id="pagination-list">page {{ page }} of {{ total_pages }}</span>
+			</div>
+			<div id="pagination-right">
+				<a class="pagination-next" href="/?skip={{ page+1 }}" id="next-page">Next ></a>
+			</div>
 		</div>
 	</section>
 	{% include 'footer.html' %}

@@ -49,6 +49,10 @@
       <div class="select is-small is-rounded is-link" id="collection_dropdown">
 				<!-- <select id="collection_select" onchange="window.location.href='/api/collection/' + this.value"> -->
 				<select id="collection_select">
+					<option value="" disabled selected>Select a collection</option>
+					{% if collections is not defined or collections|length == 0 %}
+						<option value="" disabled>No collections available</option>
+					{% endif %}
           {% for collection in collections %}
 						<option	value="{{collection.id}}" class="collection_selection">{{collection.name}}</option>
           {% endfor %}
