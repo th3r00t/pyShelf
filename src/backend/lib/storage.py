@@ -1,5 +1,7 @@
 """Pyshelf's Main Storage Class."""
 import re
+from collections import defaultdict
+from rapidfuzz import process, fuzz
 from sqlalchemy import create_engine, select
 from sqlalchemy.orm import Session
 from pathlib import Path
@@ -89,16 +91,16 @@ class Storage:
                 # collections = self.parse_collections_from_path(book)
                 # breakpoint()
                 _book = Book(
-                        title=book[0],
-                        author=book[1],
-                        cover=cover_image,
-                        file_name=book[3],
-                        description=book[4],
-                        identifier=book[5],
-                        publisher=book[6],
-                        rights=book[8],
-                        tags=book[9],
-                        )
+                    title=book[0],
+                    author=book[1],
+                    cover=cover_image,
+                    file_name=book[3],
+                    description=book[4],
+                    identifier=book[5],
+                    publisher=book[6],
+                    rights=book[8],
+                    tags=book[9],
+                )
                 session.add(_book)
                 session.commit()
                 session.close()
@@ -163,21 +165,15 @@ class Storage:
 
         # get all books and paths
         books = session.execute(select(Book.id, Book.file_name)).all()
-        
+
         for book_id, file_name in books:
             try:
                 relative_parts = Path(file_name).relative_to(self.config.book_path).parts
             except ValueError:
                 continue  # skip books outside the configured path
 
-            # exclude the actual file name
             folder = relative_parts[1]
-            # for folder in folders:
-            #     clean_name = re.sub(r"^[0-9][0-9]*|-|\ \B", "", folder).strip()
-            #     if not clean_name:
-            #         continue
-
-                # check if collection exists
+            # check if collection exists
             collection = session.execute(
                 select(Collection).where(Collection.name == folder)
             ).scalar_one_or_none()
@@ -200,36 +196,6 @@ class Storage:
         session.commit()
         session.close()
         self.config.logger.info("Finished making collections.")
-
-
-
-    # def get_books(self, collection=None, skip=None, limit=None):
-    #     """Get books from database.
-    #
-    #     Parameters
-    #     ----------
-    #     collection : str
-    #         Collection to filter by.
-    #
-    #     Returns
-    #     -------
-    #     _result : ScalarResult Object
-    #     """
-    #     session = Session(self.engine)
-    #     if collection:
-    #         _result = session.execute(
-    #                 select(Book)
-    #                 .join(Collection)
-    #                 # .where(Collection.id == collection)
-    #                 .where(Collection.name == collection)
-    #                 .offset(skip)
-    #                 .limit(limit)
-    #                 ).all()
-    #     else:
-    #         _result = session.execute(select(Book).offset(skip).limit(limit)).all()
-    #     session.close()
-    #     return _result
-
 
     def get_books(self, collection=None, skip=None, limit=None):
         """Get books from database.
@@ -263,7 +229,6 @@ class Storage:
                 ).scalars().all()
         return result
 
-
     def get_book(self, id):
         """Get book from database.
 
@@ -293,11 +258,7 @@ class Storage:
                 select(Collection).join(BookCollection).distinct()
             ).scalars().all()
         return result
-        # session = Session(self.engine)
-        # _result = session.execute(select(Collection).join(Book)).all()
-        # session.close()
-        # return _result
-    
+
     def get_collection(self, name):
         """Get collection from database.
 
@@ -309,3 +270,79 @@ class Storage:
         _result = session.execute(select(Collection).where(Collection.name == name).join(Book)).all()
         session.close()
         return _result
+
+    # def fuzzy_search_books(self, query: str, limit: int = 30):
+    #     """Fuzzy search for books by title, author, or tags."""
+    #     with Session(self.engine) as session:
+    #         books = session.execute(select(Book)).scalars().all()
+    #
+    #     # Prepare a combined text field
+    #     book_choices = {book.id: f"{book.title or ''} {book.author or ''} {book.tags or ''}" 
+    #                     for book in books}
+    #
+    #     # Use RapidFuzz to score
+    #     results = process.extract(query, book_choices, scorer=fuzz.WRatio, limit=limit)
+    #
+    #     # results = [(matched_text, score, book_id), ...]
+    #     book_ids = [book_id for (_, score, book_id) in results if score > 50]  # threshold
+    #     books = [b for b in books if b.id in book_ids]
+    #     return books
+    
+
+    def parse_advanced_query(self, query: str) -> dict:
+        """Parse a query like 'title:"dark tower" author:king tags:fantasy'"""
+        fields = ["title", "author", "tags"]
+        tokens = re.findall(r'(\w+:"[^"]+"|\w+:\S+|"[^"]+"|\S+)', query)
+        parsed = defaultdict(list)
+
+        for token in tokens:
+            field_match = re.match(r"(\w+):\"(.+?)\"", token) or re.match(r"(\w+):(\S+)", token)
+            if field_match:
+                field, value = field_match.groups()
+                field = field.lower()
+                if field in fields:
+                    parsed[field].append(value.strip('"'))
+            elif token.startswith('"') and token.endswith('"'):
+                parsed["keywords"].append(token.strip('"'))
+            else:
+                parsed["keywords"].append(token)
+
+        return parsed
+
+    def fuzzy_search_books(self, query: str, limit: int = 30):
+        parsed = self.parse_advanced_query(query)
+        
+        with Session(self.engine) as session:
+            books = session.execute(select(Book)).scalars().all()
+
+        # Apply field filters
+        def match_field(book, field, values):
+            content = (getattr(book, field) or "").lower()
+            return all(v.lower() in content for v in values)
+
+        filtered = []
+        for book in books:
+            if any(
+                not match_field(book, field, values)
+                for field, values in parsed.items()
+                if field in ("title", "author", "tags")
+            ):
+                continue
+            filtered.append(book)
+
+        # Apply fuzzy keyword match if needed
+        if "keywords" in parsed:
+            book_choices = {
+                b.id: f"{b.title or ''} {b.author or ''} {b.tags or ''}" for b in filtered
+            }
+            fuzzy_results = process.extract(
+                " ".join(parsed["keywords"]),
+                book_choices,
+                scorer=fuzz.WRatio,
+                limit=limit
+            )
+            matched_ids = [book_id for _, score, book_id in fuzzy_results if score > 50]
+            return [b for b in filtered if b.id in matched_ids]
+        
+        return filtered
+

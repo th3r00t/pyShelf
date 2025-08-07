@@ -86,21 +86,21 @@ def books_tojson(obj) -> dumps:
 def book_tojson(book) -> dumps:
     """Convert a book object to a json."""
     return dumps({
-            "book_id": book.id,
-            "title": book.title,
-            "author": book.author,
-            "categories": book.categories,
-            "cover": base64decode(book.cover),
-            "pages": book.pages,
-            "progress": book.progress,
-            "file_name": book.file_name,
-            "description": book.description,
-            "date": convertDateTime(book.date),
-            "rights": book.rights,
-            "tags": book.tags,
-            "identifier": book.identifier,
-            "publisher": book.publisher,
-        })
+        "book_id": book.id,
+        "title": book.title,
+        "author": book.author,
+        "categories": book.categories,
+        "cover": base64decode(book.cover),
+        "pages": book.pages,
+        "progress": book.progress,
+        "file_name": book.file_name,
+        "description": book.description,
+        "date": convertDateTime(book.date),
+        "rights": book.rights,
+        "tags": book.tags,
+        "identifier": book.identifier,
+        "publisher": book.publisher,
+    })
 
 def tojson(obj) -> dumps:
     return dumps(obj)
@@ -178,6 +178,11 @@ class FastAPIServer():
         collections = storage.get_collections()
         """Home page responder."""
         total_books = len(storage.get_books())
+        if skip <= 0:
+            skip_num = 0
+            skip = 0
+        else:
+            skip_num = skip * limit
         context = {
             "request": request,
             "total_pages": math.ceil(total_books / limit),
@@ -203,7 +208,7 @@ class FastAPIServer():
         book = storage.get_book(book_id)
         """Home page responder."""
         return JSONResponse(content=book_tojson(book))
-    
+
     @app.get("/api/get_book/{book_id}", response_class=FileResponse)
     async def book(request: Request, book_id: int):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
@@ -221,7 +226,7 @@ class FastAPIServer():
         """Home page responder."""
         return JSONResponse(content=collections_tojson(collections))
 
-    @app.get("/api/collection/{collection}", response_class=JSONResponse)
+    @app.get("/api/collection/{collection}", response_class=HTMLResponse)
     async def collection(request: Request, collection: str, skip:int=0, limit:int=30):
         """Collection file responder."""
         storage = Storage(Config(os.path.abspath(os.getcwd())))
@@ -243,6 +248,22 @@ class FastAPIServer():
             "limit": limit
         }
         return templates.TemplateResponse("collection.html", context)
+    
+    @app.get("/api/search", response_class=HTMLResponse)
+    async def search_books_api(request: Request, search: str):
+        """Collection file responder."""
+        storage = Storage(Config(os.path.abspath(os.getcwd())))
+        books = storage.fuzzy_search_books(search)
+        total_books = len(books)
+        collections = storage.get_collections()
+        context = {
+            "request": request,
+            "books": books,
+            "collections": collections,
+            "total_pages": 1,
+            "total_books": total_books,
+        }
+        return templates.TemplateResponse("search.html", context)
 
     async def run(self):
         """Front end server entrypoint."""

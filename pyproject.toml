@@ -25,7 +25,7 @@ dependencies = [
   "mobi-python", "lxml", "sqlalchemy", "sqlalchemy.orm", "fastapi[all]",
   "jinja2", "libsass", "nodejs-bin", "npm", "brotlipy", "debugpy", "pudb",
   "ptipython", "chardet", "pre-commit", "coverage[toml]>=6.5","pytest",
-  "black>=23.1.0", "mypy>=1.0.0", "ruff>=0.0.243"
+  "black>=23.1.0", "mypy>=1.0.0", "ruff>=0.0.243", "rapidfuzz"
 ]
 
 [project.optional-dependencies]

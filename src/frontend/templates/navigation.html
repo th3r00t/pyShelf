@@ -1,81 +1,94 @@
 <script type="text/javascript">
-  const collections = {{ collections|collections_tojson }};
+const collections = {{ collections|collections_tojson }};
 </script>
 <nav id="navbar-main" class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://github.com/th3r00t/pyShelf">
-      <img src="{{ url_for('static', path='images/svg/logo-no-background-no-border.svg') }}" width="112" height="28" />
-    </a>
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div id="navbarMain" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
-      </a>
-      <a class="navbar-item">
-        Ebooks
-      </a>
-      <a class="navbar-item">
-        Comics
-      </a>
-      <a class="navbar-item">
-        Documentation
-      </a>
-      <div class="navbar-item dropdown is-hoverable is-right" id="more-menu">
-          <a class="navbar-link">
-            More
-          </a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
-            </a>
-            <a class="navbar-item">
-              Logs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-        </div>
-      </div>
-      <div class="select is-small is-rounded is-link" id="collection_dropdown">
-				<!-- <select id="collection_select" onchange="window.location.href='/api/collection/' + this.value"> -->
-				<select id="collection_select">
-					<option value="" disabled selected>Select a collection</option>
-					{% if collections is not defined or collections|length == 0 %}
-						<option value="" disabled>No collections available</option>
-					{% endif %}
-          {% for collection in collections %}
-						<option	value="{{collection.id}}" class="collection_selection">{{collection.name}}</option>
-          {% endfor %}
-        </select>
-				<script>
-					document.getElementById("collection_select").addEventListener("change", function() {
-						const value = encodeURIComponent(this.value);
-						window.location.href = `/api/collection/${value}`;
-					});
-				</script>
-      </div>
-    </div>
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="navbar-brand">
+		<a class="navbar-item" href="https://github.com/th3r00t/pyShelf">
+			<img src="{{ url_for('static', path='images/svg/logo-no-background-no-border.svg') }}" width="112" height="28" />
+		</a>
+		<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMain">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+	<div id="navbarMain" class="navbar-menu">
+		<div class="navbar-start is-flex is-flex-grow-1">
+			<a class="navbar-item" href="/">Home</a>
+			<div class="navbar-item is-flex-grow-1 px-2">
+				<div class="field is-grouped is-fullwidth" style="width: 100%;">
+					<p class="control is-expanded">
+						<span class="select is-small is-rounded is-link is-fullwidth">
+							<select id="collection_select">
+								<option value="" disabled selected>Select a collection</option>
+								{% if collections is not defined or collections|length == 0 %}
+								<option value="" disabled>No collections available</option>
+								{% endif %}
+								{% for collection in collections %}
+								<option value="{{collection.id}}" class="collection_selection">
+									<!-- {{collection.name[:80]}} -->
+									{{collection.name}}
+								</option>
+								{% endfor %}
+							</select>
+						</span>
+					</p>
+				</div>
+			</div>
+			<div class="navbar-item is-flex-grow-1 px-2">
+				<form action="/api/search" method="get" class="field has-addons is-flex-grow-1">
+					<div class="control is-expanded">
+						<input
+							class="input is-small is-dark is-link is-rounded-left"
+							type="text"
+							name="search"
+							placeholder="Search books..." />
+					</div>
+					<div class="control">
+						<button
+							class="button is-small is-dark is-link is-rounded-right"
+							type="submit">
+							Search
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="navbar-end">
+			<div class="navbar-item dropdown is-hoverable is-right" id="more-menu">
+				<a class="navbar-link">
+					More
+				</a>
+				<div class="navbar-dropdown">
+					<a class="navbar-item">
+						About
+					</a>
+					<a class="navbar-item">
+						Logs
+					</a>
+					<a class="navbar-item">
+						Documentation
+					</a>
+					<a class="navbar-item">
+						Contact
+					</a>
+					<hr class="navbar-divider">
+					<a class="navbar-item">
+						Report an issue
+					</a>
+				</div>
+			</div>
+			<div class="navbar-item">
+				<div class="buttons">
+					<a class="button is-primary is-small is-rounded is-dark is-link">
+						<strong>Sign up</strong>
+					</a>
+					<a class="button is-dark is-small is-rounded is-link">
+						Log in
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </nav>
