@@ -68,3 +68,22 @@ class BookCollection(Base):
     # Relationships
     book = relationship("Book", back_populates="book_collections")
     collection = relationship("Collection", back_populates="book_collections")
+
+class User(Base):
+    """User model."""
+
+    __tablename__ = "User"
+
+    id: Mapped[int] = mapped_column(primary_key=True, nullable=False)
+    username: Mapped[str] = mapped_column(unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(nullable=False)
+    email: Mapped[Optional[str]] = mapped_column(unique=True, nullable=True)
+    date_joined: Mapped[timestamp] = mapped_column(
+        nullable=False, server_default=func.CURRENT_TIMESTAMP()
+    )
+    last_login: Mapped[Optional[timestamp]] = mapped_column(
+        nullable=True, server_default=None
+    )
+    is_active: Mapped[bool] = mapped_column(nullable=False, default=True)
+    is_admin: Mapped[bool] = mapped_column(nullable=False, default=False)
+    is_superuser: Mapped[bool] = mapped_column(nullable=False, default=False)

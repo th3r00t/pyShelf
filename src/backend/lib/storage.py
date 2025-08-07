@@ -271,23 +271,6 @@ class Storage:
         session.close()
         return _result
 
-    # def fuzzy_search_books(self, query: str, limit: int = 30):
-    #     """Fuzzy search for books by title, author, or tags."""
-    #     with Session(self.engine) as session:
-    #         books = session.execute(select(Book)).scalars().all()
-    #
-    #     # Prepare a combined text field
-    #     book_choices = {book.id: f"{book.title or ''} {book.author or ''} {book.tags or ''}" 
-    #                     for book in books}
-    #
-    #     # Use RapidFuzz to score
-    #     results = process.extract(query, book_choices, scorer=fuzz.WRatio, limit=limit)
-    #
-    #     # results = [(matched_text, score, book_id), ...]
-    #     book_ids = [book_id for (_, score, book_id) in results if score > 50]  # threshold
-    #     books = [b for b in books if b.id in book_ids]
-    #     return books
-    
 
     def parse_advanced_query(self, query: str) -> dict:
         """Parse a query like 'title:"dark tower" author:king tags:fantasy'"""
