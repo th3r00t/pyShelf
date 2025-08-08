@@ -11,6 +11,10 @@ git checkout 0.8.0--dev-zipapp
 
 # Install dependencies in the correct branch context
 uv sync
+#export project dependencies to requirements.txt
+uv export --requirements > requirements.txt
+# Install Python dependencies
+pipx install -r requirements.txt
 
 # Build the release
 ./build.sh
