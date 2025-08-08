@@ -3,7 +3,7 @@
 # It sets up the environment and runs the main script.
 # first we need to activate the virtual environment
 if [ -d ".venv" ]; then
-	source venv/bin/activate
+	source .venv/bin/activate
 else
 	echo "Virtual environment not found. Please create it first."
 	exit 1
