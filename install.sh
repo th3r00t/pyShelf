@@ -3,7 +3,7 @@ set -e  # Exit on error
 
 cd /tmp/
 git clone https://github.com/th3r00t/pyShelf.git
-cd pyShelf
+cd /tmp/pyShelf/
 
 # Ensure the correct branch is checked out before installing dependencies
 git fetch origin
