@@ -1,4 +1,5 @@
 books/*
+release/*
 *.epub
 *.idea
 *.pyc
