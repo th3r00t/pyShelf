@@ -1,7 +1,7 @@
 """pyShelf's Frontend Objects."""
 from subprocess import run
 from pathlib import Path
-from ...backend.lib.config import Config
+from src.backend.lib.config import Config
 
 
 class JSInterface():

@@ -14,9 +14,9 @@ from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
-from ...backend.lib.storage import Storage
+from backend.lib.storage import Storage
 from .objects import JSInterface
-from ...backend.lib.config import Config
+from backend.lib.config import Config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="src/frontend/templates")
