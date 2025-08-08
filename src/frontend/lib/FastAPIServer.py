@@ -16,10 +16,13 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 from backend.lib.storage import Storage
 from .objects import JSInterface
+from .runtime_paths import ensure_assets
 from backend.lib.config import Config
 
 app = FastAPI()
-templates = Jinja2Templates(directory="src/frontend/templates")
+STATIC_DIR, TEMPLATES_DIR = ensure_assets()
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+# templates = Jinja2Templates(directory="src/frontend/templates")
 origins = [
     "http://localhost",
     "http://localhost:8081",
@@ -33,7 +36,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 def base64decode(string) -> str:
     """Decode a base64 string."""
@@ -134,9 +136,10 @@ class FastAPIServer():
     def __init__(self, config):
         """Initialize FastAPIServer object parameters."""
         self.config = config
-        app.mount("/static",
-                  StaticFiles(directory="src/frontend/static"),
-                  name="static")
+        app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+        # app.mount("/static",
+        #           StaticFiles(directory="src/frontend/static"),
+        #           name="static")
         self.fe_config = uvicorn.Config(app, host="0.0.0.0", port=8080,
                                         log_level="info", reload=True)
         self.fe_server = uvicorn.Server(self.fe_config)
