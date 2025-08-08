@@ -3,7 +3,7 @@ import os
 import re
 import zipfile
 
-import PyPDF2
+import pypdf
 from bs4 import BeautifulSoup
 from mobi import Mobi
 
@@ -178,7 +178,7 @@ class Catalogue:
         """
         ddg = DuckDuckGo()
         try:
-            pdf = PyPDF2.PdfFileReader(book)
+            pdf = pypdf.PdfFileReader(book)
         except Exception:
             return None
         try:
