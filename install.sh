@@ -33,7 +33,11 @@ if [ -f /etc/arch-release ]; then
 	cd /etc/pyShelf/src/frontend
 	sudo npm install
 	cd /etc/pyShelf
-	sudo mkdir release
+	#make release directory if it doesn't exist
+	if [ ! -d release ]; then
+		sudo mkdir release
+	fi
+	# build the release
 	sudo ./build.sh
 	# sudo -u pyshelf direnv allow
 else
