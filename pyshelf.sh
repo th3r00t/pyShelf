@@ -8,6 +8,7 @@ else
 	echo "Virtual environment not found. Please create it first."
 	exit 1
 fi
+export PYSHELF_ASSETS=/etc/pyShelf/src/frontend
 # then we need to run the main script
 if [ -f "/etc/pyShelf/release/pyshelf" ]; then
 	exec /etc/pyShelf/release/pyshelf	
