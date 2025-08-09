@@ -44,6 +44,7 @@ else
 fi
 
 # Build the release
+cd /etc/pyShelf
 sudo ./build.sh
 
 # Install assets
