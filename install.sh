@@ -61,7 +61,8 @@ echo "Enabling systemd service..."
 sudo systemctl daemon-reload
 sudo systemctl enable --now pyShelf.service
 echo "Installation complete."
-echo "You can now access pyShelf at http://localhost:8000"
+echo "You can now access pyShelf on port 8080"
 echo "If your books are not at /mnt/books, please edit the config file at \
-	/etc/pyShelf/config.json"
+	/etc/pyShelf/config.json and restart the service with \
+	'sudo systemctl restart pyShelf.service'."
 
