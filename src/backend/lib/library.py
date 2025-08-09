@@ -6,6 +6,10 @@ import zipfile
 import pypdf
 from bs4 import BeautifulSoup
 from mobi import Mobi
+from bs4 import XMLParsedAsHTMLWarning
+import warnings
+
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 from .api_hooks import DuckDuckGo
 from .storage import Storage
