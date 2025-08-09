@@ -4,6 +4,19 @@ set -e  # Exit on error
 cd /tmp/
 git clone https://github.com/th3r00t/pyShelf.git
 cd /tmp/pyShelf/
+# create pyshelf system user if it doesn't exist
+if ! id -u pyshelf >/dev/null 2>&1; then
+	sudo useradd -r -s /usr/bin/nologin pyshelfA
+	sudo mkdir -p /home/pyshelf
+	sudo chown pyshelf:pyshelf /home/pyshelf
+	sudo chmod 755 /home/pyshelf
+fi
+# make home dir for pyshelf user if it doesn't exist
+if [ ! -d /home/pyshelf ]; then
+	sudo mkdir -p /home/pyshelf
+	sudo chown pyshelf:pyshelf /home/pyshelf
+	sudo chmod 755 /home/pyshelf
+fi
 
 # Ensure the correct branch is checked out before installing dependencies
 git fetch origin
@@ -15,14 +28,12 @@ if [ -f /etc/arch-release ]; then
 	sudo mkdir /etc/pyShelf
 	sudo cp -avR . /etc/pyShelf
 	cd /etc/pyShelf
-	# I need to create a system user for pyshelf, if it doesn't exist
-	if ! id -u pyshelf >/dev/null 2>&1; then
-		sudo useradd -r -s /usr/bin/nologin pyshelf
-	fi
-	sudo chown -R pyshelf:pyshelf /etc/pyShelf
-	sudo chmod -R 755 /etc/pyShelf
-	sudo -u pyshelf uv sync
-	sudo -u pyshelf mkdir release
+	# sudo chown -R pyshelf:pyshelf /etc/pyShelf
+	# sudo chmod -R 755 /etc/pyShelf
+	# sudo -u pyshelf uv sync
+	# sudo -u pyshelf mkdir release
+	sudo uv sync
+	sudo mkdir release
 	# sudo -u pyshelf direnv allow
 else
 	sudo apt-get update
@@ -31,7 +42,7 @@ else
 fi
 
 # Build the release
-sudo -u pyshelf ./build.sh
+sudo ./build.sh
 
 # Install assets
 # sudo mkdir -p /var/lib/pyshelf/assets
@@ -40,5 +51,10 @@ sudo -u pyshelf ./build.sh
 
 # Install executable
 # sudo cp ./release/pyshelf /usr/local/bin/pyshelf
+sudo ln -s /etc/pyShelf/pyshelf.sh /usr/local/bin/
+# Make sure the executable is owned by the pyshelf user
+# sudo chown pyshelf:pyshelf /usr/local/bin/pyshelf.sh
+# Make the executable accessible
+# sudo chmod 755 /usr/local/bin/pyshelf.sh
 # sudo chown pyshelf:pyshelf /usr/local/bin/pyshelf
 

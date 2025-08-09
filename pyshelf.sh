@@ -9,8 +9,8 @@ else
 	exit 1
 fi
 # then we need to run the main script
-if [ -f "release/pyshelf" ]; then
-	sudo -u pyshelf /etc/pyShelf/release/pyshelf	
+if [ -f "/etc/pyShelf/release/pyshelf" ]; then
+	exec /etc/pyShelf/release/pyshelf	
 else
 	echo "Main script not found. Please check the directory."
 	exit 1
