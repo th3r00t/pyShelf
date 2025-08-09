@@ -10,7 +10,7 @@ else
 fi
 # then we need to run the main script
 if [ -f "/etc/pyShelf/release/pyshelf" ]; then
-	sudo export PYSHELF_ASSETS=/etc/pyShelf/src/frontend
+	export PYSHELF_ASSETS=/etc/pyShelf/src/frontend
 	exec /etc/pyShelf/release/pyshelf	
 else
 	echo "Main script not found. Please check the directory."
