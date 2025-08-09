@@ -23,7 +23,7 @@ git checkout 0.8.0--dev-zipapp
 
 # if on arch linux, install python3-uv
 if [ -f /etc/arch-release ]; then
-	sudo pacman -Syy python-uv
+	sudo pacman -Syy python-uv --noconfirm
 	sudo mkdir /etc/pyShelf
 	sudo cp -avR . /etc/pyShelf
 	cd /etc/pyShelf
