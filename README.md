@@ -1,4 +1,4 @@
-# pyShelf 0.7.0
+# pyShelf 0.8.0
 
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center">Having used Calibre for hosting my eBook collection in the past, I found myself frustrated having to install X on my server, or manage my library externally, Thus I have decided to spin up my own.</p>
@@ -13,31 +13,20 @@ _Other solutions require you to have access to an X server to at the very least 
 Follow or influence development @ <p align="center"><b>
     <a href="https://discord.gg/H9TbNJS">Discord</a>
 </b></p>
-## General Notes
-You may need to click import books a second time if your import fails on the first attempt
 
-## 0.7.0 Patch Notes.
+## 0.8.0 Patch Notes.
 
-# New Features
-
-* Administration System
-* PDF Support
-
-## Current Features
+## Features
 
 * Recursive Scanning
-* [Django](https://www.djangoproject.com/) based frontend
-* Seach via author, title, & file name fields.
+* Fuzzy Search with optional specifiers
+	- tag:fiction
+	- author:Clancy
+	- title:"The Hunt for Red October"
+	- The Expanse
 * Download System
-* Automated Collections
-    * A work in progress, the collections are based on your folder structure.
-* User System
-* Per User Favorites
+* Automated Collections based on folder structure
 * Expanded book information view
-* Websocket server
-    * currently only responds to ping, and importBooks, more responders are planned.
-* Full Docker integration.
-* On Demand Importing
 
 | Branch | Support | Feature set |
 | --- | --- | --- |
@@ -54,78 +43,29 @@ You may need to click import books a second time if your import fails on the fir
 ## Installation & Support Information
 
 # Installation
+	- curl -fsSL https://raw.githubusercontent.com/th3r00t/pyShelf/refs/heads/0.8.0--dev-zipapp/install.sh | sudo bash
 
-## Docker
-
-The official Docker image for pyShelf is [`pyshelf/pyshelf`](https://hub.docker.com/r/pyshelf/pyshelf). The easiest way to get pyShelf running is through `docker-compose`. An example docker-compose.yml is included in the repo.
-
-You'll need a `.env` file wich sets the `LOCAL_BOOK_DIR` variable, for example:
-
-```
-LOCAL_BOOK_DIR=/home/someone/books
-```
-
-The Docker image is still new, so there could still be some issues and missing features. Feel free to create a bug-issue when you encounter a bug. Development of the Docker image is discussed in https://github.com/th3r00t/pyShelf/pull/53 . Currently the database needs to be [PostgreSQL](https://www.postgresql.org/) with the account details shown in the example `docker-compose.yml`.
-    
-    Default User/Pass for web interface: pyshelf/pyshelf
-
-## Self Hosted
-This is targeted towards Network Administrators, and home enthusiasts whom I assume will know how to setup a [Django](https://www.djangoproject.com/) app, and a [PostgreSQL](https://www.postgresql.org/) server. For those unfamiliar with the required setup please use the included docker-compose.yml
-
-### Pre-req Dependencies
-
-* gcc
-* python3
-* pip
-* postgresql
-
-Once your database is ready very little is required to get the system up and running:
-
-From the main directory
-
-`pip install -r requirements.txt`
-
-`./configure`
-
-`cd src/ && daphne frontend.asgi:application` add -b 0.0.0.0 -p 8000 as required to specify which interface\'s and port to bind too
-
-As of 0.6.0 Django is being served up via Daphne, and the static files are served up via whitenoise.
-
-## Import Books
-The first step is to login, after logging in the button whill show your username, click on it once again, and a new menu will pop up with the option to logout, or import books.
 
 ## In Progress
 
 ### Organizational tools.
 
-- [x] Automated Collections
-- [ ] Manual Collections
-- [x] Books Removal
-- [ ] Access Restrictions
-- [ ] Metadata Manipulation
-- [ ] Ui\Ux Improvements
-- [ ] Others?
+- [x] Automated Collections $id{29fda2fe-4134-4905-8682-aab074acfdb2}
+- [ ] Manual Collections $id{c541949c-2e21-46c9-8089-a62fb6d043f6}
+- [ ] Books Removal $id{6b577a16-ac19-4f95-bf84-47938d966adf}
+- [ ] Access Restrictions $id{b6cf99a7-700b-46dd-9e75-5bc9fc7c4981}
+- [ ] Metadata Manipulation $id{35652d34-5d76-4496-92e5-67617a3226ad}
+- [ ] UiUx Improvements $id{9dd7c416-8919-40ed-a9a5-9503ad737e97}
+- [ ] Others? $id{da6e44b4-312f-43b2-883d-3355a70464e8}
 
 ### Improved cover image storage, and acquisition.
 
 ### OPDS Support
 
-### Support for other formats
-
-- [x] .mobi
-- [x] .pdf
-- [ ] .cbz
-- [ ] .zip (Zipped book folders, is this a new idea? (Consider storing your library folders zipped and retrieving a book on demand))
-
-## Future Goals
-
-### Terminal Backend for catalogue maintenance
 
 ## Development
 
 * [`pre-commit`](https://pre-commit.com/)
 _Before developing, run `pre-commit install` See the [documentation](https://pre-commit.com/) for more information._
-* ['Doxygen'](http://www.doxygen.nl/)
-_Any changes to source should be documented and have run doxygen doxygen.conf prior to commiting._
 * ['sem-ver'](https://semver.org)
 _Before advancing version numbers be sure to set PROJECT_NUMBER in doxygen.conf accordingly._
