@@ -149,7 +149,7 @@ class FastAPIServer():
 
     def compile_static_files(self):
         """Compile static files for web frontend."""
-        breakpoint()
+        # breakpoint()
         _pyShelf_src = sass.compile(
             filename=f"{STATIC_DIR}/styles/pyShelf.sass",
             # filename='src/frontend/static/styles/pyShelf.sass',
