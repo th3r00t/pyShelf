@@ -34,7 +34,7 @@ if [ -f /etc/arch-release ]; then
 	sudo npm install
 	cd /etc/pyShelf
 	#make release directory if it doesn't exist
-	if [ ! -d release ]; then
+	if [ ! -d /etc/pyShelf/release ]; then
 		sudo mkdir release
 	fi
 	# build the release
