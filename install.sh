@@ -25,7 +25,7 @@ else
 	fi
 	sudo apt-get update
 	sudo apt-get install -y git python3 python-is-python3 python3-pip nodejs npm libxml2 build-essential curl
-	curl -LsSf https://astral.sh/uv/install.sh | sh
+	curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" sh
 fi
 
 if [ ! -d /home/pyshelf ]; then
