@@ -171,8 +171,8 @@ class Storage:
                 relative_parts = Path(file_name).relative_to(self.config.book_path).parts
             except ValueError:
                 continue  # skip books outside the configured path
-            # breakpoint()
             if len(relative_parts) < 2:
+                breakpoint()
                 folder = relative_parts[1]
             else:
                 folder = relative_parts[0]
