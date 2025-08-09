@@ -21,7 +21,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-  "websockets", "loguru", "pypdf2", "bs4", "requests", "psycopg2-binary",
+  "websockets", "loguru", "pypdf", "bs4", "requests", "psycopg2-binary",
   "mobi-python", "lxml", "sqlalchemy", "sqlalchemy.orm", "fastapi[all]",
   "jinja2", "libsass", "nodejs-bin", "npm", "brotlipy", "debugpy", "pudb",
   "ptipython", "chardet", "pre-commit", "coverage[toml]>=6.5","pytest",

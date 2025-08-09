@@ -14,12 +14,16 @@ from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
-from ...backend.lib.storage import Storage
+from backend.lib.storage import Storage
 from .objects import JSInterface
-from ...backend.lib.config import Config
+from .runtime_paths import ensure_assets
+from backend.lib.config import Config
+
 
 app = FastAPI()
-templates = Jinja2Templates(directory="src/frontend/templates")
+STATIC_DIR, TEMPLATES_DIR = ensure_assets()
+templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+# templates = Jinja2Templates(directory="src/frontend/templates")
 origins = [
     "http://localhost",
     "http://localhost:8081",
@@ -33,7 +37,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 def base64decode(string) -> str:
     """Decode a base64 string."""
@@ -134,9 +137,10 @@ class FastAPIServer():
     def __init__(self, config):
         """Initialize FastAPIServer object parameters."""
         self.config = config
-        app.mount("/static",
-                  StaticFiles(directory="src/frontend/static"),
-                  name="static")
+        app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+        # app.mount("/static",
+        #           StaticFiles(directory="src/frontend/static"),
+        #           name="static")
         self.fe_config = uvicorn.Config(app, host="0.0.0.0", port=8080,
                                         log_level="info", reload=True)
         self.fe_server = uvicorn.Server(self.fe_config)
@@ -145,16 +149,21 @@ class FastAPIServer():
 
     def compile_static_files(self):
         """Compile static files for web frontend."""
+        # breakpoint()
         _pyShelf_src = sass.compile(
-            filename='src/frontend/static/styles/pyShelf.sass',
-            source_map_filename='src/frontend/static/styles/pyShelf.sass',
+            filename=f"{STATIC_DIR}/styles/pyShelf.sass",
+            # filename='src/frontend/static/styles/pyShelf.sass',
+            source_map_filename=f"{STATIC_DIR}/styles/pyShelf.sass",
+            # source_map_filename='src/frontend/static/styles/pyShelf.sass',
             output_style='compressed',
             include_paths=[
                 'node_modules',
-                'src/frontend/static/styles'
+                f"{STATIC_DIR}src/frontend/static/styles"
+                # 'src/frontend/static/styles'
             ]
         )
-        with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
+        with open(f"{STATIC_DIR}/styles/pyShelf.css", 'w') as _pyShelf:
+        # with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
 
         self.JSInterface.install()

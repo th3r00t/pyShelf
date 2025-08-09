@@ -52,7 +52,7 @@ class Config:
         self.config_structure = {
             "TITLE": "pyShelf E-Book Server",
             "VERSION": "0.7.0",
-            "BOOKPATH": f"{Path.home()}/Books",
+            "BOOKPATH": "/mnt/books",
             "DB_HOST": "localhost",
             "DB_PORT": "5432",
             "DB_ENGINE": "sqlite",

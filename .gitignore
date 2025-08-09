@@ -1,4 +1,5 @@
 books/*
+release/pyshelf
 *.epub
 *.idea
 *.pyc

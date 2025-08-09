@@ -3,9 +3,13 @@ import os
 import re
 import zipfile
 
-import PyPDF2
+import pypdf
 from bs4 import BeautifulSoup
 from mobi import Mobi
+from bs4 import XMLParsedAsHTMLWarning
+import warnings
+
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 from .api_hooks import DuckDuckGo
 from .storage import Storage
@@ -178,7 +182,7 @@ class Catalogue:
         """
         ddg = DuckDuckGo()
         try:
-            pdf = PyPDF2.PdfFileReader(book)
+            pdf = pypdf.PdfFileReader(book)
         except Exception:
             return None
         try:

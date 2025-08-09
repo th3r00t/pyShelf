@@ -4,10 +4,10 @@ import asyncio
 import sys
 from pathlib import Path
 from threading import Thread
-from src.backend.lib.config import Config
-from src.backend.lib.storage import Storage
-from src.backend.pyShelf_ScanLibrary import execute_scan
-from src.frontend.lib.FastAPIServer import FastAPIServer
+from backend.lib.config import Config
+from backend.lib.storage import Storage
+from backend.pyShelf_ScanLibrary import execute_scan
+from frontend.lib.FastAPIServer import FastAPIServer
 # import websockets
 
 
