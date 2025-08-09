@@ -171,8 +171,11 @@ class Storage:
                 relative_parts = Path(file_name).relative_to(self.config.book_path).parts
             except ValueError:
                 continue  # skip books outside the configured path
-
-            folder = relative_parts[1]
+            breakpoint()
+            if len(relative_parts) < 2:
+                folder = relative_parts[1]
+            else:
+                folder = relative_parts[0]
             # check if collection exists
             collection = session.execute(
                 select(Collection).where(Collection.name == folder)
