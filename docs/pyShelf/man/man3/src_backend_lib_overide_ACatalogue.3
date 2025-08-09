@@ -1,0 +1,269 @@
+.TH "src.backend.lib.overide.ACatalogue" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.overide.ACatalogue
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__init__\fP (self)"
+.br
+.ti -1c
+.RI "\fBscan_folder\fP (self, _path=None)"
+.br
+.ti -1c
+.RI "\fBimport_books\fP (self, **kwargs)"
+.br
+.ti -1c
+.RI "\fBfilter_books\fP (self)"
+.br
+.ti -1c
+.RI "\fBprocess_by_filetype\fP (self, book)"
+.br
+.ti -1c
+.RI "\fBextract_metadata_epub\fP (self, book)"
+.br
+.ti -1c
+.RI "\fBextract_metadata_pdf\fP (self, book)"
+.br
+.ti -1c
+.RI "\fBextract_metadata_mobi\fP (self, book)"
+.br
+.ti -1c
+.RI "\fBextract_content\fP (self, book_zip, book)"
+.br
+.ti -1c
+.RI "\fBextract_cover_html\fP (self, book_zip, book)"
+.br
+.ti -1c
+.RI "\fBextract_cover_image\fP (self, book_zip, book)"
+.br
+.ti -1c
+.RI "\fBcompare_shelf_current\fP (self)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBprocess_epub\fP (book)"
+.br
+.ti -1c
+.RI "\fBstripTags\fP (source)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "list \fBfile_list\fP = []"
+.br
+.ti -1c
+.RI "\fBopf_regx\fP = re\&.compile(r'\\\&.opf')"
+.br
+.ti -1c
+.RI "\fBcover_regx\fP = re\&.compile(r'\\\&.jpg|\\\&.jpeg|\\\&.png|\\\&.bmp|\\\&.gif')"
+.br
+.ti -1c
+.RI "\fBhtml_regx\fP = re\&.compile(r'\\\&.html')"
+.br
+.ti -1c
+.RI "\fBtitle_sanitization_regx\fP = re\&.compile(r'^(Book )+[0\-9]*')"
+.br
+.ti -1c
+.RI "\fBtitle_sanitization_lvl2_regx\fP"
+.br
+.ti -1c
+.RI "\fBtitle_sanitization_dirs_regx\fP = re\&.compile(r'/')"
+.br
+.ti -1c
+.RI "\fBroot_dir\fP = config\&.root"
+.br
+.ti -1c
+.RI "\fBbook_folder\fP = config\&.book_path"
+.br
+.ti -1c
+.RI "\fBbooks\fP = None"
+.br
+.ti -1c
+.RI "\fBdb_pointer\fP = config\&.catalogue_db"
+.br
+.ti -1c
+.RI "\fBconfig\fP = config"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Aynchronous overide of library\&.Catalogue,
+: TODO : Complete or discard this overide
+
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.overide\&.ACatalogue\&.__init__ ( self)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.compare_shelf_current ( self)\fR [inherited]\fP"
+
+.PP
+.nf
+Calls storage system, gets list of books stored and compares against files on disk
+
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.extract_content ( self,  book_zip,  book)\fR [inherited]\fP"
+
+.PP
+.nf
+Opens epub as zip file filters then stores as list any files matching opf_regx
+
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.extract_cover_html ( self,  book_zip,  book)\fR [inherited]\fP"
+
+.PP
+.nf
+Opens epub as zip file filters then stores as list any files matching html_regx
+
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.extract_cover_image ( self,  book_zip,  book)\fR [inherited]\fP"
+
+.PP
+.nf
+Opens epub as zip file filters then stores as list any files matching cover_regx
+
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.extract_metadata_epub ( self,  book)\fR [inherited]\fP"
+
+.PP
+.nf
+Extract metadata from epub file
+
+:param book: Dictionary of epub file contents
+:returns: Dictionary of book metadata
+
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.extract_metadata_mobi ( self,  book)\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.extract_metadata_pdf ( self,  book)\fR [inherited]\fP"
+
+.PP
+.nf
+Return extracted metadata
+:NOTES: Retrieval of data has been problematic, some pdf's providing
+reliable titles that corespond with the actual, and others being
+nonsense\&.
+
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.filter_books ( self)\fR [inherited]\fP"
+
+.PP
+.nf
+Calls scan_folder and filters out book files\&.
+
+:returns self\&._book_list_expanded: json string containing
+all book metadata
+
+.fi
+.PP
+ 
+.PP
+Reimplemented in \fBsrc\&.backend\&.tests\&.library_test\&.Test_Catalogue\fP\&.
+.SS "src\&.backend\&.lib\&.overide\&.ACatalogue\&.import_books ( self, ** kwargs)"
+
+.PP
+.nf
+Async overide of import_books
+
+.fi
+.PP
+ 
+.PP
+Reimplemented from \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.process_by_filetype ( self,  book)\fR [inherited]\fP"
+
+.PP
+.nf
+Determine books filetype and process\&.
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.process_epub ( book)\fR [static]\fP, \fR [inherited]\fP"
+
+.PP
+.nf
+Return dictionary of epub file contents
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.overide\&.ACatalogue\&.scan_folder ( self,  _path = \fRNone\fP)"
+
+.PP
+.nf
+Scan folder by _path, allows recurisive scanning
+
+.fi
+.PP
+ 
+.PP
+Reimplemented from \fBsrc\&.backend\&.lib\&.library\&.Catalogue\fP\&.
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.stripTags ( source)\fR [static]\fP, \fR [inherited]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.book_folder = config\&.book_path\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.books = None\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.config = config\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.cover_regx = re\&.compile(r'\\\&.jpg|\\\&.jpeg|\\\&.png|\\\&.bmp|\\\&.gif')\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.db_pointer = config\&.catalogue_db\fR [inherited]\fP"
+
+.SS "list src\&.backend\&.lib\&.library\&.Catalogue\&.file_list = []\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.html_regx = re\&.compile(r'\\\&.html')\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.opf_regx = re\&.compile(r'\\\&.opf')\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.root_dir = config\&.root\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.title_sanitization_dirs_regx = re\&.compile(r'/')\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.title_sanitization_lvl2_regx\fR [inherited]\fP"
+\fBInitial value:\fP
+.nf
+=  re\&.compile(
+                r"^(Book )+[0\-9]*\\W+(\-)")
+.PP
+.fi
+
+.SS "src\&.backend\&.lib\&.library\&.Catalogue\&.title_sanitization_regx = re\&.compile(r'^(Book )+[0\-9]*')\fR [inherited]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.
