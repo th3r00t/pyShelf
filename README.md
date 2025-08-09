@@ -19,6 +19,7 @@ ebook server with minimal requirements, and no reliance on X whatsoever._
 ## Features
 
 * Recursive Scanning
+* Cover Image Aggregation
 * Fuzzy Search with optional specifiers
 	- tag:fiction
 	- author:Clancy
@@ -34,17 +35,26 @@ ebook server with minimal requirements, and no reliance on X whatsoever._
 * pdf
 
 # Installation
-	- curl -fsSL https://raw.githubusercontent.com/th3r00t/pyShelf/refs/heads/0.8.0--dev-zipapp/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/th3r00t/pyShelf/refs/heads/0.8.0--dev-zipapp/install.sh | sudo bash
+pyShelf is installed as a systemd service and is enabled by default, you can control it with the following commands:
+```bash`
+systemctl start pyShelf
+systemctl restart pyshelf
+systemctl stop pyshelf
+systemctl disable pyshelf
+systemctl enable pyshelf
+````
+* if your books are not in the default location (/mnt/books) edit the config file at /etc/pyShelf/config.json
 
 # Coming Soon
-- [ ] Manual Collections $id{67975ab0-5cf3-41f3-9198-d4284d30729b}
-- [ ] Books Removal $id{5eee7312-f4de-4cf0-855e-36cc056a6bf1}
-- [ ] Access Restrictions $id{98254c2c-e5a5-47bc-9369-e01dc8d2b2dc}
-- [ ] Metadata Manipulation $id{b149f6f8-300f-47a7-97cb-9ef365585147}
-- [ ] UiUx Improvements $id{21546c49-f3c4-495b-ad9b-d045226b11a3}
-- [ ] Expanded book information view $id{bdfdc654-e18d-48ef-8dc1-26aa77c596be}
-- [ ] Improved Cover Image System $id{d7764dad-6926-44dd-9f3e-f03ee687b143}
-- [ ] OPDS Support $id{ca717447-4f7c-4eef-b430-1f8c649b15fb}
+- [ ] Manual Collections
+- [ ] Books Removal
+- [ ] Access Restrictions
+- [ ] Metadata Manipulation
+- [ ] UiUx Improvements
+- [ ] Expanded book information view
+- [ ] Improved Cover Image System
+- [ ] OPDS Support
 
 ## Development
 
