@@ -19,6 +19,7 @@ if [ -f /etc/arch-release ]; then
 	sudo pacman --noconfirm -Syy python python-uv git nodejs npm base-devel --needed
 else
 	# create pyshelf system user if it doesn't exist
+	echo "Installing dependencies for debian/ubuntu..."
 	if ! id -u pyshelf >/dev/null 2>&1; then
 		sudo useradd -r -s /usr/sbin/nologin pyshelf
 	fi
