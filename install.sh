@@ -23,7 +23,7 @@ else
 		sudo useradd -r -s /usr/sbin/nologin pyshelf
 	fi
 	sudo apt-get update
-	sudo apt-get install -y git python3-uv python3 python3-pip nodejs npm libxml2 libxslt1-dev zlib1g-dev libjpeg-turbo8-dev build-essential
+	sudo apt-get install -y git python3-uv python3 python-is-python3 python3-pip nodejs npm libxml2 libxslt1-dev zlib1g-dev libjpeg-turbo8-dev build-essential
 fi
 
 if [ ! -d /home/pyshelf ]; then
