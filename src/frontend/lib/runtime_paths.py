@@ -6,11 +6,6 @@ from importlib import resources
 
 ASSET_TOPS = ("static", "templates")
 
-def _inside_zipapp() -> bool:
-    # zipapps can be a single file (…/pyshelf.pyz) or an executable file without .pyz
-    # When invoked, sys.argv[0] is the archive path; treat non-directory as zipapp
-    return not Path(sys.argv[0]).is_dir()
-
 def assets_root() -> Path:
     """
     Directory that *contains* static/ and templates/.
@@ -19,15 +14,11 @@ def assets_root() -> Path:
       2) ./pyshelf (sibling dir next to the archive) when running as zipapp
       3) frontend/ (package dir) when running from source/unpacked tree
     """
-    env = os.environ.get("PYSHELF_ASSETS")
-    if env:
-        return Path(env)
-
-    if _inside_zipapp():
-        # e.g. /opt/pyshelf/pyshelf  -> use /opt/pyshelf/pyshelf{,/static,/templates}
-        base = Path(sys.argv[0]).resolve()
-        # strip suffix like ".pyz" if present to get a nice folder name
-        return base.with_suffix("")
+    # env = os.environ.get("PYSHELF_ASSETS")
+    # Check if system assets directory exists
+    sys_path = Path("/etc/pyShelf/src/frontend")
+    if sys_path.is_dir():
+        return sys_path.resolve()
 
     # Dev/regular run: __file__ = …/frontend/lib/runtime_paths.py => parents[1] == …/frontend
     return Path(__file__).resolve().parents[1]
