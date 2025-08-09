@@ -172,8 +172,7 @@ class Storage:
             except ValueError:
                 continue  # skip books outside the configured path
             if len(relative_parts) < 2:
-                breakpoint()
-                folder = relative_parts[1]
+                folder = "Unsorted"
             else:
                 folder = relative_parts[0]
             # check if collection exists
