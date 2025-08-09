@@ -37,6 +37,7 @@ ebook server with minimal requirements, and no reliance on X whatsoever._
 # Installation
 curl -fsSL https://raw.githubusercontent.com/th3r00t/pyShelf/refs/heads/0.8.0--dev-zipapp/install.sh | sudo bash
 pyShelf is installed as a systemd service and is enabled by default, you can control it with the following commands:
+
 ```bash`
 systemctl start pyShelf
 systemctl restart pyshelf
@@ -44,6 +45,7 @@ systemctl stop pyshelf
 systemctl disable pyshelf
 systemctl enable pyshelf
 ````
+
 * if your books are not in the default location (/mnt/books) edit the config file at /etc/pyShelf/config.json
 
 # Coming Soon
