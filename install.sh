@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e  # Exit on error
 
 cd /tmp/
@@ -38,6 +38,7 @@ if [ -f /etc/arch-release ]; then
 		sudo mkdir release
 	fi
 	# build the release
+	echo "Building release..."
 	sudo ./build.sh
 	# sudo -u pyshelf direnv allow
 else
