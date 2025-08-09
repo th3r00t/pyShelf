@@ -28,14 +28,13 @@ if [ -f /etc/arch-release ]; then
 	sudo mkdir /etc/pyShelf
 	sudo cp -avR . /etc/pyShelf
 	cd /etc/pyShelf
-	# sudo chown -R pyshelf:pyshelf /etc/pyShelf
-	# sudo chmod -R 755 /etc/pyShelf
-	# sudo -u pyshelf uv sync
-	# sudo -u pyshelf mkdir release
 	sudo uv sync
 	sudo mkdir release
 	cd /etc/pyShelf/src/frontend
 	sudo npm install
+	cd /etc/pyShelf
+	sudo mkdir release
+	sudo ./build.sh
 	# sudo -u pyshelf direnv allow
 else
 	sudo apt-get update
@@ -44,21 +43,6 @@ else
 fi
 
 # Build the release
-cd /etc/pyShelf
-sudo mkdir release
-sudo ./build.sh
-
-# Install assets
-# sudo mkdir -p /var/lib/pyshelf/assets
-# sudo cp -r ./src/frontend/static /var/lib/pyshelf/assets
-# sudo cp -r ./src/frontend/templates /var/lib/pyshelf/assets
 
 # Install executable
-# sudo cp ./release/pyshelf /usr/local/bin/pyshelf
 sudo ln -s /etc/pyShelf/pyshelf.sh /usr/local/bin/
-# Make sure the executable is owned by the pyshelf user
-# sudo chown pyshelf:pyshelf /usr/local/bin/pyshelf.sh
-# Make the executable accessible
-# sudo chmod 755 /usr/local/bin/pyshelf.sh
-# sudo chown pyshelf:pyshelf /usr/local/bin/pyshelf
-
