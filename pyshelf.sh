@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 # This script is used to run the pyshelf application.
 # It sets up the environment and runs the main script.
 # first we need to activate the virtual environment

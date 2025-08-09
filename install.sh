@@ -36,6 +36,7 @@ fi
 
 sudo mkdir /etc/pyShelf
 sudo cp -avR . /etc/pyShelf
+sudo chown -R pyshelf:pyshelf /etc/pyShelf
 cd /etc/pyShelf
 sudo uv sync
 # sudo mkdir release
