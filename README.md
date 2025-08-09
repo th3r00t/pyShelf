@@ -12,8 +12,8 @@
 ### You dont need an X server to host a website, Movies or Tv, so why should you need one to host ebooks?
 
 _Other solutions require you to have access to an X server to at the very least
-generate your book database, pyShelf doesnt. We aim to provide a fully featured
-ebook server with minimal requirements, and no reliance on X whatsoever._
+generate your book database, pyShelf doesnt. the aim is to provide a fully featured
+ebook server with minimal requirements, and no reliance on X._
 
 
 ## Features
@@ -33,6 +33,10 @@ ebook server with minimal requirements, and no reliance on X whatsoever._
 * epub
 * mobi
 * pdf
+
+# Pre-requisites
+	- Git
+	- Curl
 
 # Installation
 	curl -fsSL https://raw.githubusercontent.com/th3r00t/pyShelf/refs/heads/0.8.0--dev-zipapp/install.sh | sudo bash
