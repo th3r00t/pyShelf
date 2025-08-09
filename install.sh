@@ -33,9 +33,9 @@ if [ -f /etc/arch-release ]; then
 	# sudo -u pyshelf uv sync
 	# sudo -u pyshelf mkdir release
 	sudo uv sync
+	sudo mkdir release
 	cd /etc/pyShelf/src/frontend
 	sudo npm install
-	sudo mkdir release
 	# sudo -u pyshelf direnv allow
 else
 	sudo apt-get update
@@ -45,6 +45,7 @@ fi
 
 # Build the release
 cd /etc/pyShelf
+sudo mkdir release
 sudo ./build.sh
 
 # Install assets
