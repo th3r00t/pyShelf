@@ -10,6 +10,7 @@ else
 fi
 # then we need to run the main script
 if [ -f "/etc/pyShelf/release/pyshelf" ]; then
+	cd /etc/pyshelf
 	export PYSHELF_ASSETS=/etc/pyShelf/src/frontend
 	exec /etc/pyShelf/release/pyshelf	
 else
