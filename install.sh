@@ -33,21 +33,16 @@ if [ -f /etc/arch-release ]; then
 	cd /etc/pyShelf/src/frontend
 	sudo npm install
 	cd /etc/pyShelf
-	#make release directory if it doesn't exist
 	if [ ! -d /etc/pyShelf/release ]; then
 		sudo mkdir release
 	fi
-	# build the release
 	echo "Building release..."
 	sudo ./build.sh
+	echo "Linking executable..."
+	sudo ln -s /etc/pyShelf/pyshelf.sh /usr/local/bin/
 	# sudo -u pyshelf direnv allow
 else
 	sudo apt-get update
 	sudo apt-get install -y python3-uv python3 python3-pip nodejs npm libxml2 libxslt1-dev zlib1g-dev libjpeg-turbo8-dev build-essential
 	sudo pip install -r requirements.txt
 fi
-
-# Build the release
-
-# Install executable
-sudo ln -s /etc/pyShelf/pyshelf.sh /usr/local/bin/
