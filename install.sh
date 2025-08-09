@@ -24,7 +24,8 @@ else
 		sudo useradd -r -s /usr/sbin/nologin pyshelf
 	fi
 	sudo apt-get update
-	sudo apt-get install -y git python3-uv python3 python-is-python3 python3-pip nodejs npm libxml2 libxslt1-dev zlib1g-dev libjpeg-turbo8-dev build-essential
+	sudo apt-get install -y git python3 python-is-python3 python3-pip nodejs npm libxml2 build-essential curl
+	curl -LsSf https://astral.sh/uv/install.sh | sh
 fi
 
 if [ ! -d /home/pyshelf ]; then
