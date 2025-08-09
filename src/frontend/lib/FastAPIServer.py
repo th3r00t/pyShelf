@@ -19,6 +19,7 @@ from .objects import JSInterface
 from .runtime_paths import ensure_assets
 from backend.lib.config import Config
 
+
 app = FastAPI()
 STATIC_DIR, TEMPLATES_DIR = ensure_assets()
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
@@ -149,15 +150,19 @@ class FastAPIServer():
     def compile_static_files(self):
         """Compile static files for web frontend."""
         _pyShelf_src = sass.compile(
-            filename='src/frontend/static/styles/pyShelf.sass',
-            source_map_filename='src/frontend/static/styles/pyShelf.sass',
+            filename=f"{STATIC_DIR}/styles/pyShelf.sass",
+            # filename='src/frontend/static/styles/pyShelf.sass',
+            source_map_filename=f"{STATIC_DIR}/styles/pyShelf.sass",
+            # source_map_filename='src/frontend/static/styles/pyShelf.sass',
             output_style='compressed',
             include_paths=[
                 'node_modules',
-                'src/frontend/static/styles'
+                f"{STATIC_DIR}src/frontend/static/styles"
+                # 'src/frontend/static/styles'
             ]
         )
-        with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
+        with open(f"{STATIC_DIR}/styles/pyShelf.css", 'w') as _pyShelf:
+        # with open('src/frontend/static/styles/pyShelf.css', 'w') as _pyShelf:
             _pyShelf.write(_pyShelf_src[0])
 
         self.JSInterface.install()
