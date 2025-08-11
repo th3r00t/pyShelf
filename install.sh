@@ -8,7 +8,7 @@ cd /tmp/pyShelf/
 
 # Ensure the correct branch is checked out before installing dependencies
 git fetch origin
-git checkout 0.8.0--dev
+# git checkout 0.8.0--dev
 
 # if on arch linux, install python3-uv
 if [ -f /etc/arch-release ]; then
