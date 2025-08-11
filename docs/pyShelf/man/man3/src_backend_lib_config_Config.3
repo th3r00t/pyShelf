@@ -1,0 +1,258 @@
+.TH "src.backend.lib.config.Config" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.config.Config
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherited by \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__init__\fP (self, root)"
+.br
+.ti -1c
+.RI "\fBinit_config\fP (self)"
+.br
+.ti -1c
+.RI "\fBget_logger\fP (self)"
+.br
+.ti -1c
+.RI "\fBopen_file\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBroot\fP = root"
+.br
+.ti -1c
+.RI "dict \fBconfig_structure\fP"
+.br
+.ti -1c
+.RI "\fBlogger\fP = self\&.get_logger()"
+.br
+.ti -1c
+.RI "\fBbook_path\fP = env\&.get('BOOKPATH', self\&._data['BOOKPATH'])"
+.br
+.ti -1c
+.RI "str \fBTITLE\fP = env\&.get('TITLE', self\&._data['TITLE'])"
+.br
+.ti -1c
+.RI "\fBVERSION\fP = env\&.get('VERSION', self\&._data['VERSION'])"
+.br
+.ti -1c
+.RI "\fBbook_shelf\fP = env\&.get('BOOKSHELF', self\&._data['BOOKSHELF'])"
+.br
+.ti -1c
+.RI "\fBcatalogue_db\fP = env\&.get('DATABASE', self\&._data['DATABASE'])"
+.br
+.ti -1c
+.RI "\fBuser\fP = self\&._data['USER']"
+.br
+.ti -1c
+.RI "\fBpassword\fP = self\&._data['PASSWORD']"
+.br
+.ti -1c
+.RI "\fBdb_host\fP = env\&.get('DB_HOST', self\&._data['DB_HOST'])"
+.br
+.ti -1c
+.RI "\fBdb_port\fP = env\&.get('DB_PORT', self\&._data['DB_PORT'])"
+.br
+.ti -1c
+.RI "list \fBfile_array\fP = [self\&.book_shelf]"
+.br
+.ti -1c
+.RI "bool \fBauto_scan\fP = True"
+.br
+.ti -1c
+.RI "\fBallowed_hosts\fP"
+.br
+.ti -1c
+.RI "\fBdb_engine\fP = env\&.get('DB_ENGINE', self\&._data['DB_ENGINE'])"
+.br
+.ti -1c
+.RI "\fBdb_user\fP = env\&.get('USER', self\&._data['USER'])"
+.br
+.ti -1c
+.RI "\fBdb_pass\fP = env\&.get('PASSWORD', self\&._data['PASSWORD'])"
+.br
+.ti -1c
+.RI "\fBbuild_mode\fP = env\&.get('BUILD_MODE', self\&._data['BUILD_MODE'])"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "str \fB_fp\fP = 'config\&.json'"
+.br
+.ti -1c
+.RI "\fB_cp\fP = Path\&.joinpath(root, self\&._fp)"
+.br
+.ti -1c
+.RI "\fB_data\fP = self\&.init_config()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Main System Configuration\&.
+
+>>> config = Config(root)
+
+Parameters
+----------
+root : File system root of program
+
+Attributes
+----------
+root : str() stores root\&.
+config_structure : dict() Default Configuration Structure\&.
+_fp : str() file pointer to main configuration\&.
+_cp : Path() object of configuration file\&.
+_data : dict() parsed json of _fp\&.
+logger : holds logging configuration from get_logger()\&.
+book_path : directory pointer to main books folder\&.
+TITLE : str() Program title\&.
+VERSION : str() Program  version\&.
+TITLE : str() Combines TITLE & VERSION\&.
+book_shelf : Deprecation TODO: Is this still in use?
+catalogue_db : str() Database Name\&.
+user : str() Database user name\&.
+password : str() Database password\&.
+db_host : str() Database host\&.
+db_port : int() Database port\&.
+file_array : list() copy of book_shelf TODO: See book_shelf
+auto_scan: bool() Do we auto scan on launch?
+allowed_hosts : list() Allowed host list\&.
+db_engine : str() Desired database engine type\&.
+db_user : str() Database user name\&. Duplication Warning\&.
+db_pass : str() Database password\&. Duplication Warning\&.
+build_mode : str() Production | Development mode\&.
+
+Methods
+-------
+get_logger : Setup loguru\&.
+open_file : Parse configuration file\&.
+
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.config\&.Config\&.__init__ ( self,  root)"
+
+.PP
+.nf
+Initialize main configuration options\&.
+.fi
+.PP
+ 
+.SH "Member Function Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.config\&.Config\&.get_logger ( self)"
+
+.PP
+.nf
+Instantiate logging system\&.
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.config\&.Config\&.init_config ( self)"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.open_file ( self)"
+
+.PP
+.nf
+Open config\&.json and reads in configuration options\&.
+.fi
+.PP
+ 
+.PP
+Reimplemented in \fBsrc\&.backend\&.tests\&.library_test\&.Test_Config\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.config\&.Config\&._cp = Path\&.joinpath(root, self\&._fp)\fR [protected]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&._data = self\&.init_config()\fR [protected]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&._fp = 'config\&.json'\fR [protected]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.allowed_hosts"
+\fBInitial value:\fP
+.nf
+=  env\&.get("ALLOWED_HOSTS",
+                                     self\&._data["ALLOWED_HOSTS"])
+.PP
+.fi
+
+.SS "bool src\&.backend\&.lib\&.config\&.Config\&.auto_scan = True"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.book_path = env\&.get('BOOKPATH', self\&._data['BOOKPATH'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.book_shelf = env\&.get('BOOKSHELF', self\&._data['BOOKSHELF'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.build_mode = env\&.get('BUILD_MODE', self\&._data['BUILD_MODE'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.catalogue_db = env\&.get('DATABASE', self\&._data['DATABASE'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.config_structure"
+\fBInitial value:\fP
+.nf
+=  {
+            "TITLE": "pyShelf E\-Book Server",
+            "VERSION": "0\&.7\&.0",
+            "BOOKPATH": "/mnt/books",
+            "DB_HOST": "localhost",
+            "DB_PORT": "5432",
+            "DB_ENGINE": "sqlite",
+            "DATABASE": "pyshelf",
+            "USER": "pyshelf",
+            "PASSWORD": "pyshelf",
+            "BOOKSHELF": "data/shelf\&.json",
+            "ALLOWED_HOSTS": [
+                "localhost",
+                "127\&.0\&.0\&.1",
+                "[::1]",
+                "0\&.0\&.0\&.0"
+            ],
+            "BUILD_MODE": "development"
+        }
+.PP
+.fi
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_engine = env\&.get('DB_ENGINE', self\&._data['DB_ENGINE'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_host = env\&.get('DB_HOST', self\&._data['DB_HOST'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_pass = env\&.get('PASSWORD', self\&._data['PASSWORD'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_port = env\&.get('DB_PORT', self\&._data['DB_PORT'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_user = env\&.get('USER', self\&._data['USER'])"
+
+.SS "list src\&.backend\&.lib\&.config\&.Config\&.file_array = [self\&.book_shelf]"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.logger = self\&.get_logger()"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.password = self\&._data['PASSWORD']"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.root = root"
+
+.SS "str src\&.backend\&.lib\&.config\&.Config\&.TITLE = env\&.get('TITLE', self\&._data['TITLE'])"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.user = self\&._data['USER']"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.VERSION = env\&.get('VERSION', self\&._data['VERSION'])"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

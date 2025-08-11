@@ -1,0 +1,54 @@
+.TH "src.backend.lib.models.BookCollection" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.models.BookCollection
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBsrc\&.backend\&.lib\&.models\&.Base\fP\&.
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Mapped \fBid\fP = mapped_column(primary_key=True)"
+.br
+.ti -1c
+.RI "Mapped \fBbook_id\fP = mapped_column(ForeignKey('Book\&.id'))"
+.br
+.ti -1c
+.RI "Mapped \fBcollection_id\fP = mapped_column(ForeignKey('Collection\&.id'))"
+.br
+.ti -1c
+.RI "\fBbook\fP = relationship('Book', back_populates='book_collections')"
+.br
+.ti -1c
+.RI "\fBcollection\fP = relationship('Collection', back_populates='book_collections')"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Association table linking Books and Collections\&.
+.fi
+.PP
+ 
+.SH "Member Data Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.models\&.BookCollection\&.book = relationship('Book', back_populates='book_collections')\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.BookCollection\&.book_id = mapped_column(ForeignKey('Book\&.id'))\fR [static]\fP"
+
+.SS "src\&.backend\&.lib\&.models\&.BookCollection\&.collection = relationship('Collection', back_populates='book_collections')\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.BookCollection\&.collection_id = mapped_column(ForeignKey('Collection\&.id'))\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.BookCollection\&.id = mapped_column(primary_key=True)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

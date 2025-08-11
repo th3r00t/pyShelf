@@ -1,10 +1,93 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyshelf"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "GPL-3.0-or-later" }
+keywords = []
+authors = [
+  { name = "th3r00t", email = "tty0@th3r00t.dev" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "websockets", "loguru", "pypdf", "bs4", "requests", "psycopg2-binary",
+  "mobi-python", "lxml", "sqlalchemy", "sqlalchemy.orm", "fastapi[all]",
+  "jinja2", "libsass", "nodejs-bin", "npm", "brotlipy", "debugpy", "pudb",
+  "ptipython", "chardet", "pre-commit", "coverage[toml]>=6.5","pytest",
+  "black>=23.1.0", "mypy>=1.0.0", "ruff>=0.0.243", "rapidfuzz"
+]
+
+[project.optional-dependencies]
+dev = [
+]
+
+[project.urls]
+Documentation = "https://github.com/th3r00t/pyshelf#readme"
+Issues = "https://github.com/th3r00t/pyshelf/issues"
+Source = "https://github.com/th3r00t/pyshelf"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+target-version = ["py312"]
+line-length = 120
+skip-string-normalization = true
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+select = [
+  "A", "ARG", "B", "C", "DTZ", "E", "EM", "F", "FBT", "I", "ICN", "ISC", "N",
+  "PLC", "PLE", "PLR", "PLW", "Q", "RUF", "S", "T", "TID", "UP", "W", "YTT"
+]
+ignore = [
+  "B027", "FBT003", "S105", "S106", "S107", "C901", "PLR0911",
+  "PLR0912", "PLR0913", "PLR0915"
+]
+unfixable = ["F401"]
+
+[tool.ruff.isort]
+known-first-party = ["pyshelf"]
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.per-file-ignores]
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.coverage.run]
+source_pkgs = ["pyshelf", "tests"]
+branch = true
+parallel = true
+omit = ["src/pyshelf/__about__.py"]
+
+[tool.coverage.paths]
+pyshelf = ["src/pyshelf", "*/pyshelf/src/pyshelf"]
+tests = ["tests", "*/pyshelf/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
 [tool.isort]
 force_grid_wrap = 0
 include_trailing_comma = true
 line_length = 88
 multi_line_output = 3
 use_parentheses = true
-# NOTE: the known_third_party setting is managed by
-# seed-isort-config and should not be modified directly.
-# Any changes made to this setting will be overwritten.
-known_third_party = ["backend", "bs4", "django", "interface", "mobi", "prompt_toolkit", "psycopg2", "pyfiglet", "requests"]
+known_third_party = ["backend", "bs4", "django", "interface", "mobi", "prompt_toolkit", "psycopg2-binary", "pyfiglet", "requests"]

@@ -1,0 +1,208 @@
+/home/th3r00t/Projects/pyShelf/src/backend/tests/config_test.py:6: warning: Compound src::backend::tests::config_test::TestConfig is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:28: warning: Compound src::backend::tests::library_test::TestCatalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:19: warning: Compound src::backend::tests::library_test::Test_Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:8: warning: Compound src::backend::tests::library_test::Test_Config is not documented.
+error: Problems running htags. Check your installation
+error: USE_HTAGS is YES but htags(1) failed. 
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/DataHooks.py:10: warning: Member config (variable) of class DataHooks.BookInterface is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/DataHooks.py:11: warning: Member db (variable) of class DataHooks.BookInterface is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:108: warning: Member tojson(obj) (function) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:23: warning: Member app (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:24: warning: Member STATIC_DIR (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:24: warning: Member TEMPLATES_DIR (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:25: warning: Member templates (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:27: warning: Member origins (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:35: warning: Member allow_origins (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:36: warning: Member allow_credentials (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:37: warning: Member allow_methods (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:38: warning: Member allow_headers (variable) of namespace FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:42: warning: parameters of member FastAPIServer.base64decode are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:42: warning: return type of member FastAPIServer.base64decode is not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:90: warning: parameters of member FastAPIServer.book_tojson are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:90: warning: return type of member FastAPIServer.book_tojson is not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:66: warning: parameters of member FastAPIServer.books_tojson are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:66: warning: return type of member FastAPIServer.books_tojson is not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:112: warning: parameters of member FastAPIServer.collections_tojson are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:112: warning: return type of member FastAPIServer.collections_tojson is not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:61: warning: parameters of member FastAPIServer.convertDateTime are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:61: warning: return type of member FastAPIServer.convertDateTime is not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:51: warning: parameters of member FastAPIServer.summarize are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:51: warning: return type of member FastAPIServer.summarize is not documented
+<tojson>:1: warning: parameters of member FastAPIServer.tojson are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:179: warning: Member index(Request request, int skip=0, int limit=30) (function) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:206: warning: Member books(Request request, int skip=0, int limit=10, collection=None) (function) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:215: warning: Member book(Request request, int book_id) (function) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:222: warning: Member book(Request request, int book_id) (function) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:232: warning: Member collections(Request request) (function) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:139: warning: Member config (variable) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:144: warning: Member fe_config (variable) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:146: warning: Member fe_server (variable) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:147: warning: Member JSInterface (variable) of class FastAPIServer.FastAPIServer is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:138: warning: parameters of member FastAPIServer.FastAPIServer.__init__ are not documented
+<book>:1: warning: parameters of member FastAPIServer.FastAPIServer.book are not documented
+<books>:1: warning: parameters of member FastAPIServer.FastAPIServer.books are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:240: warning: parameters of member FastAPIServer.FastAPIServer.collection are not documented
+<collections>:1: warning: parameters of member FastAPIServer.FastAPIServer.collections are not documented
+<index>:1: warning: parameters of member FastAPIServer.FastAPIServer.index are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:263: warning: parameters of member FastAPIServer.FastAPIServer.search_books_api are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:173: warning: parameters of member FastAPIServer.FastAPIServer.use_route_names_as_operation_ids are not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/FastAPIServer.py:173: warning: return type of member FastAPIServer.FastAPIServer.use_route_names_as_operation_ids is not documented
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/objects.py:12: warning: Member package_json (variable) of class objects.JSInterface is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/objects.py:13: warning: Member config (variable) of class objects.JSInterface is not documented.
+/home/th3r00t/Projects/pyShelf/src/frontend/lib/objects.py:11: warning: parameters of member objects.JSInterface.__init__ are not documented
+/home/th3r00t/Projects/pyShelf/src/__main__.py:14: warning: Member root (variable) of namespace src.__main__ is not documented.
+/home/th3r00t/Projects/pyShelf/src/__main__.py:15: warning: Member config (variable) of namespace src.__main__ is not documented.
+/home/th3r00t/Projects/pyShelf/src/__main__.py:16: warning: Member PRG_PATH (variable) of namespace src.__main__ is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/api_hooks.py:10: warning: Member __init__(self) (function) of class src.backend.lib.api_hooks.DuckDuckGo is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/api_hooks.py:40: warning: Member description_result(self, query) (function) of class src.backend.lib.api_hooks.DuckDuckGo is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/api_hooks.py:11: warning: Member url (variable) of class src.backend.lib.api_hooks.DuckDuckGo is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/api_hooks.py:12: warning: Member imageurl (variable) of class src.backend.lib.api_hooks.DuckDuckGo is not documented.
+<__init__>:1: warning: parameters of member src.backend.lib.api_hooks.DuckDuckGo.__init__ are not documented
+<description_result>:1: warning: parameters of member src.backend.lib.api_hooks.DuckDuckGo.description_result are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/api_hooks.py:15: warning: parameters of member src.backend.lib.api_hooks.DuckDuckGo.image_result are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:101: warning: Member init_config(self) (function) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:51: warning: Member root (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:52: warning: Member config_structure (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:81: warning: Member logger (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:82: warning: Member book_path (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:83: warning: Member TITLE (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:84: warning: Member VERSION (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:86: warning: Member book_shelf (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:87: warning: Member catalogue_db (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:88: warning: Member user (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:89: warning: Member password (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:90: warning: Member db_host (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:91: warning: Member db_port (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:92: warning: Member file_array (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:93: warning: Member auto_scan (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:94: warning: Member allowed_hosts (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:96: warning: Member db_engine (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:97: warning: Member db_user (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:98: warning: Member db_pass (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:99: warning: Member build_mode (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:72: warning: Member _fp (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:74: warning: Member _cp (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:77: warning: Member _data (variable) of class src.backend.lib.config.Config is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:50: warning: parameters of member src.backend.lib.config.Config.__init__ are not documented
+<init_config>:1: warning: parameters of member src.backend.lib.config.Config.init_config are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:23: warning: Member __init__(self, config) (function) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:232: warning: Member extract_metadata_mobi(self, book) (function) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:228: warning: Member stripTags(source) (function) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:24: warning: Member file_list (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:25: warning: Member opf_regx (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:26: warning: Member cover_regx (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:27: warning: Member html_regx (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:28: warning: Member title_sanitization_regx (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:29: warning: Member title_sanitization_lvl2_regx (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:31: warning: Member title_sanitization_dirs_regx (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:32: warning: Member root_dir (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:33: warning: Member book_folder (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:34: warning: Member books (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:35: warning: Member db_pointer (variable) of class src.backend.lib.library.Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:36: warning: Member config (variable) of class src.backend.lib.library.Catalogue is not documented.
+<__init__>:1: warning: parameters of member src.backend.lib.library.Catalogue.__init__ are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:283: warning: parameters of member src.backend.lib.library.Catalogue.extract_content are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:290: warning: parameters of member src.backend.lib.library.Catalogue.extract_cover_html are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:297: warning: parameters of member src.backend.lib.library.Catalogue.extract_cover_image are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:103: warning: parameters of member src.backend.lib.library.Catalogue.extract_metadata_epub are not documented
+<extract_metadata_mobi>:1: warning: parameters of member src.backend.lib.library.Catalogue.extract_metadata_mobi are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:178: warning: parameters of member src.backend.lib.library.Catalogue.extract_metadata_pdf are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:331: warning: parameters of member src.backend.lib.library.Catalogue.import_books are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:75: warning: parameters of member src.backend.lib.library.Catalogue.process_by_filetype are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:87: warning: parameters of member src.backend.lib.library.Catalogue.process_epub are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/library.py:39: warning: parameters of member src.backend.lib.library.Catalogue.scan_folder are not documented
+<stripTags>:1: warning: parameters of member src.backend.lib.library.Catalogue.stripTags are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:24: warning: Member id (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:25: warning: Member title (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:26: warning: Member author (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:27: warning: Member categories (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:28: warning: Member cover (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:29: warning: Member pages (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:30: warning: Member progress (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:31: warning: Member file_name (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:32: warning: Member description (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:33: warning: Member date (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:34: warning: Member rights (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:35: warning: Member tags (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:36: warning: Member identifier (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:37: warning: Member publisher (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:40: warning: Member book_collections (variable) of class src.backend.lib.models.Book is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:64: warning: Member id (variable) of class src.backend.lib.models.BookCollection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:65: warning: Member book_id (variable) of class src.backend.lib.models.BookCollection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:66: warning: Member collection_id (variable) of class src.backend.lib.models.BookCollection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:69: warning: Member book (variable) of class src.backend.lib.models.BookCollection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:70: warning: Member collection (variable) of class src.backend.lib.models.BookCollection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:50: warning: Member id (variable) of class src.backend.lib.models.Collection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:51: warning: Member name (variable) of class src.backend.lib.models.Collection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:54: warning: Member book_collections (variable) of class src.backend.lib.models.Collection is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:77: warning: Member id (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:78: warning: Member username (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:79: warning: Member password (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:80: warning: Member email (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:81: warning: Member date_joined (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:84: warning: Member last_login (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:87: warning: Member is_active (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:88: warning: Member is_admin (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/models.py:89: warning: Member is_superuser (variable) of class src.backend.lib.models.User is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/overide.py:15: warning: Member __init__(self) (function) of class src.backend.lib.overide.ACatalogue is not documented.
+<__init__>:1: warning: parameters of member src.backend.lib.overide.ACatalogue.__init__ are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/overide.py:38: warning: parameters of member src.backend.lib.overide.ACatalogue.import_books are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/overide.py:19: warning: parameters of member src.backend.lib.overide.ACatalogue.scan_folder are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:15: warning: Member __init__(self, file_array) (function) of class src.backend.lib.pyShelf.InitFiles is not documented.
+<__init__>:1: warning: parameters of member src.backend.lib.pyShelf.InitFiles.__init__ are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:23: warning: parameters of member src.backend.lib.pyShelf.InitFiles.CreateFile are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:38: warning: Member __init__(self, root) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:45: warning: Member __aexit__(self, *args, **kwargs) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:48: warning: Member initialize_server(self) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:54: warning: Member runImport(self) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:61: warning: Member socketio(self, websocket, path) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:79: warning: Member pong(self) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:83: warning: Member start(self) (function) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:39: warning: Member root (variable) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:40: warning: Member host (variable) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:41: warning: Member config (variable) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:42: warning: Member loop (variable) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:43: warning: Member serve (variable) of class src.backend.lib.pyShelf.Server is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/pyShelf.py:86: warning: Member socketio (variable) of class src.backend.lib.pyShelf.Server is not documented.
+<__init__>:1: warning: parameters of member src.backend.lib.pyShelf.Server.__init__ are not documented
+<__aexit__>:1: warning: parameters of member src.backend.lib.pyShelf.Server.__aexit__ are not documented
+<initialize_server>:1: warning: parameters of member src.backend.lib.pyShelf.Server.initialize_server are not documented
+<pong>:1: warning: parameters of member src.backend.lib.pyShelf.Server.pong are not documented
+<runImport>:1: warning: parameters of member src.backend.lib.pyShelf.Server.runImport are not documented
+<socketio>:1: warning: parameters of member src.backend.lib.pyShelf.Server.socketio are not documented
+<start>:1: warning: parameters of member src.backend.lib.pyShelf.Server.start are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:297: warning: Member fuzzy_search_books(self, str query, int limit=30) (function) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:35: warning: Member config (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:36: warning: Member sql (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:37: warning: Member user (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:38: warning: Member password (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:39: warning: Member db_host (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:40: warning: Member db_port (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:41: warning: Member engine (variable) of class src.backend.lib.storage.Storage is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:34: warning: parameters of member src.backend.lib.storage.Storage.__init__ are not documented
+<fuzzy_search_books>:1: warning: parameters of member src.backend.lib.storage.Storage.fuzzy_search_books are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:235: warning: parameters of member src.backend.lib.storage.Storage.get_book are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:203: warning: parameters of member src.backend.lib.storage.Storage.get_books are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:265: warning: parameters of member src.backend.lib.storage.Storage.get_collection are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:69: warning: parameters of member src.backend.lib.storage.Storage.insert_book are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:278: warning: parameters of member src.backend.lib.storage.Storage.parse_advanced_query are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:278: warning: return type of member src.backend.lib.storage.Storage.parse_advanced_query is not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:126: warning: parameters of member src.backend.lib.storage.Storage.parse_collections_from_path are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/storage.py:126: warning: return type of member src.backend.lib.storage.Storage.parse_collections_from_path is not documented
+/home/th3r00t/Projects/pyShelf/src/backend/tests/config_test.py:9: warning: Member test_book_dir(self) (function) of class src.backend.tests.config_test.TestConfig is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/config_test.py:12: warning: Member test_title(self) (function) of class src.backend.tests.config_test.TestConfig is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/config_test.py:15: warning: Member test_version(self) (function) of class src.backend.tests.config_test.TestConfig is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/config_test.py:7: warning: Member config (variable) of class src.backend.tests.config_test.TestConfig is not documented.
+<test_book_dir>:1: warning: parameters of member src.backend.tests.config_test.TestConfig.test_book_dir are not documented
+<test_title>:1: warning: parameters of member src.backend.tests.config_test.TestConfig.test_title are not documented
+<test_version>:1: warning: parameters of member src.backend.tests.config_test.TestConfig.test_version are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:20: warning: Member __init__(self) (function) of class src.backend.tests.library_test.Test_Catalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:24: warning: Member book_shelf (variable) of class src.backend.tests.library_test.Test_Catalogue is not documented.
+<__init__>:1: warning: parameters of member src.backend.tests.library_test.Test_Catalogue.__init__ are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:9: warning: Member __init__(self) (function) of class src.backend.tests.library_test.Test_Config is not documented.
+<__init__>:1: warning: parameters of member src.backend.tests.library_test.Test_Config.__init__ are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/lib/config.py:120: warning: parameters of member src.backend.tests.library_test.Test_Config.open_file are not documented
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:32: warning: Member test_filter_books(self) (function) of class src.backend.tests.library_test.TestCatalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:29: warning: Member root (variable) of class src.backend.tests.library_test.TestCatalogue is not documented.
+/home/th3r00t/Projects/pyShelf/src/backend/tests/library_test.py:30: warning: Member config (variable) of class src.backend.tests.library_test.TestCatalogue is not documented.
+<test_filter_books>:1: warning: parameters of member src.backend.tests.library_test.TestCatalogue.test_filter_books are not documented
