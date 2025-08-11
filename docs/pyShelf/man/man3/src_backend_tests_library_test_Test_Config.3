@@ -1,0 +1,207 @@
+.TH "src.backend.tests.library_test.Test_Config" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.tests.library_test.Test_Config
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBsrc\&.backend\&.lib\&.config\&.Config\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__init__\fP (self)"
+.br
+.ti -1c
+.RI "\fBopen_file\fP (self, root='config\&.json')"
+.br
+.ti -1c
+.RI "\fBinit_config\fP (self)"
+.br
+.ti -1c
+.RI "\fBget_logger\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBroot\fP = root"
+.br
+.ti -1c
+.RI "dict \fBconfig_structure\fP"
+.br
+.ti -1c
+.RI "\fBlogger\fP = self\&.get_logger()"
+.br
+.ti -1c
+.RI "\fBbook_path\fP = env\&.get('BOOKPATH', self\&._data['BOOKPATH'])"
+.br
+.ti -1c
+.RI "str \fBTITLE\fP = env\&.get('TITLE', self\&._data['TITLE'])"
+.br
+.ti -1c
+.RI "\fBVERSION\fP = env\&.get('VERSION', self\&._data['VERSION'])"
+.br
+.ti -1c
+.RI "\fBbook_shelf\fP = env\&.get('BOOKSHELF', self\&._data['BOOKSHELF'])"
+.br
+.ti -1c
+.RI "\fBcatalogue_db\fP = env\&.get('DATABASE', self\&._data['DATABASE'])"
+.br
+.ti -1c
+.RI "\fBuser\fP = self\&._data['USER']"
+.br
+.ti -1c
+.RI "\fBpassword\fP = self\&._data['PASSWORD']"
+.br
+.ti -1c
+.RI "\fBdb_host\fP = env\&.get('DB_HOST', self\&._data['DB_HOST'])"
+.br
+.ti -1c
+.RI "\fBdb_port\fP = env\&.get('DB_PORT', self\&._data['DB_PORT'])"
+.br
+.ti -1c
+.RI "list \fBfile_array\fP = [self\&.book_shelf]"
+.br
+.ti -1c
+.RI "bool \fBauto_scan\fP = True"
+.br
+.ti -1c
+.RI "\fBallowed_hosts\fP"
+.br
+.ti -1c
+.RI "\fBdb_engine\fP = env\&.get('DB_ENGINE', self\&._data['DB_ENGINE'])"
+.br
+.ti -1c
+.RI "\fBdb_user\fP = env\&.get('USER', self\&._data['USER'])"
+.br
+.ti -1c
+.RI "\fBdb_pass\fP = env\&.get('PASSWORD', self\&._data['PASSWORD'])"
+.br
+.ti -1c
+.RI "\fBbuild_mode\fP = env\&.get('BUILD_MODE', self\&._data['BUILD_MODE'])"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "str \fB_fp\fP = 'config\&.json'"
+.br
+.ti -1c
+.RI "\fB_cp\fP = Path\&.joinpath(root, self\&._fp)"
+.br
+.ti -1c
+.RI "\fB_data\fP = self\&.init_config()"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "src\&.backend\&.tests\&.library_test\&.Test_Config\&.__init__ ( self)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.config\&.Config\&.get_logger ( self)\fR [inherited]\fP"
+
+.PP
+.nf
+Instantiate logging system\&.
+.fi
+.PP
+ 
+.SS "src\&.backend\&.lib\&.config\&.Config\&.init_config ( self)\fR [inherited]\fP"
+
+.SS "src\&.backend\&.tests\&.library_test\&.Test_Config\&.open_file ( self,  root = \fR'config\&.json'\fP)"
+
+.PP
+.nf
+Open config\&.json and reads in configuration options\&.
+.fi
+.PP
+ 
+.PP
+Reimplemented from \fBsrc\&.backend\&.lib\&.config\&.Config\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.config\&.Config\&._cp = Path\&.joinpath(root, self\&._fp)\fR [protected]\fP, \fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&._data = self\&.init_config()\fR [protected]\fP, \fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&._fp = 'config\&.json'\fR [protected]\fP, \fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.allowed_hosts\fR [inherited]\fP"
+\fBInitial value:\fP
+.nf
+=  env\&.get("ALLOWED_HOSTS",
+                                     self\&._data["ALLOWED_HOSTS"])
+.PP
+.fi
+
+.SS "bool src\&.backend\&.lib\&.config\&.Config\&.auto_scan = True\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.book_path = env\&.get('BOOKPATH', self\&._data['BOOKPATH'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.book_shelf = env\&.get('BOOKSHELF', self\&._data['BOOKSHELF'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.build_mode = env\&.get('BUILD_MODE', self\&._data['BUILD_MODE'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.catalogue_db = env\&.get('DATABASE', self\&._data['DATABASE'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.config_structure\fR [inherited]\fP"
+\fBInitial value:\fP
+.nf
+=  {
+            "TITLE": "pyShelf E\-Book Server",
+            "VERSION": "0\&.7\&.0",
+            "BOOKPATH": "/mnt/books",
+            "DB_HOST": "localhost",
+            "DB_PORT": "5432",
+            "DB_ENGINE": "sqlite",
+            "DATABASE": "pyshelf",
+            "USER": "pyshelf",
+            "PASSWORD": "pyshelf",
+            "BOOKSHELF": "data/shelf\&.json",
+            "ALLOWED_HOSTS": [
+                "localhost",
+                "127\&.0\&.0\&.1",
+                "[::1]",
+                "0\&.0\&.0\&.0"
+            ],
+            "BUILD_MODE": "development"
+        }
+.PP
+.fi
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_engine = env\&.get('DB_ENGINE', self\&._data['DB_ENGINE'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_host = env\&.get('DB_HOST', self\&._data['DB_HOST'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_pass = env\&.get('PASSWORD', self\&._data['PASSWORD'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_port = env\&.get('DB_PORT', self\&._data['DB_PORT'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.db_user = env\&.get('USER', self\&._data['USER'])\fR [inherited]\fP"
+
+.SS "list src\&.backend\&.lib\&.config\&.Config\&.file_array = [self\&.book_shelf]\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.logger = self\&.get_logger()\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.password = self\&._data['PASSWORD']\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.root = root\fR [inherited]\fP"
+
+.SS "str src\&.backend\&.lib\&.config\&.Config\&.TITLE = env\&.get('TITLE', self\&._data['TITLE'])\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.user = self\&._data['USER']\fR [inherited]\fP"
+
+.SS "src\&.backend\&.lib\&.config\&.Config\&.VERSION = env\&.get('VERSION', self\&._data['VERSION'])\fR [inherited]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

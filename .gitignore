@@ -1,19 +1,25 @@
 books/*
+release/pyshelf
 *.epub
 *.idea
 *.pyc
+*.css
 .svn/
 app/content.opf
 .vscode
 fontend/db.sqlite3
+*.sqlite3
 GPATH
 GRTAGS
 GTAGS
 data/shelf.json
+data/pyshelf.log
 package-lock.json
 .#*
 frontend/interface/migrations/*
 src/backend/data/*.json
+src/frontend/node_modules
+src/frontend/static/script/pyshelf.js
 # Standard Python gitignore below
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -127,6 +133,7 @@ dmypy.json
 # End of https://www.gitignore.io/api/python
 0
 config.backup.json
+config.json
 uwsgi.ini
 installer.log
 pyshelf_nginx.conf

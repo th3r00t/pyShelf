@@ -4,8 +4,8 @@ import sys
 import time
 
 from .lib.config import Config
-from .lib.library import Catalogue
-from .lib.pyShelf import InitFiles
+# from .lib.library import Catalogue
+# from .lib.pyShelf import InitFiles
 from .lib.storage import Storage
 
 sys.path.append(os.path.abspath("."))

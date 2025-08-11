@@ -1,0 +1,51 @@
+.TH "src.backend.lib.models.Collection" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.models.Collection
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBsrc\&.backend\&.lib\&.models\&.Base\fP\&.
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Mapped \fBid\fP = mapped_column(primary_key=True)"
+.br
+.ti -1c
+.RI "Mapped \fBname\fP = mapped_column(unique=True)"
+.br
+.ti -1c
+.RI "\fBbook_collections\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Collection model\&.
+.fi
+.PP
+ 
+.SH "Member Data Documentation"
+.PP 
+.SS "src\&.backend\&.lib\&.models\&.Collection\&.book_collections\fR [static]\fP"
+\fBInitial value:\fP
+.nf
+=  relationship(
+        "BookCollection", back_populates="collection", cascade="all, delete\-orphan"
+    )
+.PP
+.fi
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.Collection\&.id = mapped_column(primary_key=True)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.Collection\&.name = mapped_column(unique=True)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

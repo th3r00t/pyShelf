@@ -1,0 +1,10 @@
+[Unit]
+Description=pyShelf Ebook Server
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/pyshelf.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

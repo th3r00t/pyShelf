@@ -1,0 +1,152 @@
+.TH "FastAPIServer.FastAPIServer" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+FastAPIServer.FastAPIServer
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fB__init__\fP (self, config)"
+.br
+.ti -1c
+.RI "\fBcompile_static_files\fP (self)"
+.br
+.ti -1c
+.RI "None \fBuse_route_names_as_operation_ids\fP (self, FastAPI app)"
+.br
+.ti -1c
+.RI "\fBindex\fP (Request request, int skip=0, int limit=30)"
+.br
+.ti -1c
+.RI "\fBbooks\fP (Request request, int skip=0, int limit=10, \fBcollection\fP=None)"
+.br
+.ti -1c
+.RI "\fBbook\fP (Request request, int book_id)"
+.br
+.ti -1c
+.RI "\fBbook\fP (Request request, int book_id)"
+.br
+.ti -1c
+.RI "\fBcollections\fP (Request request)"
+.br
+.ti -1c
+.RI "\fBcollection\fP (Request request, str collection, int skip=0, int limit=30)"
+.br
+.ti -1c
+.RI "\fBsearch_books_api\fP (Request request, str search)"
+.br
+.ti -1c
+.RI "\fBrun\fP (self)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBconfig\fP = config"
+.br
+.ti -1c
+.RI "\fBfe_config\fP"
+.br
+.ti -1c
+.RI "\fBfe_server\fP = uvicorn\&.Server(self\&.fe_config)"
+.br
+.ti -1c
+.RI "\fBJSInterface\fP \fBJSInterface\fP = \fBJSInterface\fP(self\&.config)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+Entry point for FastAPI server\&.
+.fi
+.PP
+ 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "FastAPIServer\&.FastAPIServer\&.__init__ ( self,  config)"
+
+.PP
+.nf
+Initialize FastAPIServer object parameters\&.
+.fi
+.PP
+ 
+.SH "Member Function Documentation"
+.PP 
+.SS "FastAPIServer\&.FastAPIServer\&.book (Request request, int book_id)"
+
+.SS "FastAPIServer\&.FastAPIServer\&.book (Request request, int book_id)"
+
+.SS "FastAPIServer\&.FastAPIServer\&.books (Request request, int  skip = \fR0\fP, int  limit = \fR10\fP,  collection = \fRNone\fP)"
+
+.SS "FastAPIServer\&.FastAPIServer\&.collection (Request request, str collection, int skip = \fR0\fP, int limit = \fR30\fP)"
+
+.PP
+.nf
+Collection file responder\&.
+.fi
+.PP
+ 
+.SS "FastAPIServer\&.FastAPIServer\&.collections (Request request)"
+
+.SS "FastAPIServer\&.FastAPIServer\&.compile_static_files ( self)"
+
+.PP
+.nf
+Compile static files for web frontend\&.
+.fi
+.PP
+ 
+.SS "FastAPIServer\&.FastAPIServer\&.index (Request request, int  skip = \fR0\fP, int  limit = \fR30\fP)"
+
+.SS "FastAPIServer\&.FastAPIServer\&.run ( self)"
+
+.PP
+.nf
+Front end server entrypoint\&.
+.fi
+.PP
+ 
+.SS "FastAPIServer\&.FastAPIServer\&.search_books_api (Request request, str search)"
+
+.PP
+.nf
+Collection file responder\&.
+.fi
+.PP
+ 
+.SS " None FastAPIServer\&.FastAPIServer\&.use_route_names_as_operation_ids ( self, FastAPI app)"
+
+.PP
+.nf
+Use route name as operation id\&.
+.fi
+.PP
+ 
+.SH "Member Data Documentation"
+.PP 
+.SS "FastAPIServer\&.FastAPIServer\&.config = config"
+
+.SS "FastAPIServer\&.FastAPIServer\&.fe_config"
+\fBInitial value:\fP
+.nf
+=  uvicorn\&.Config(app, host="0\&.0\&.0\&.0", port=8080,
+                                        log_level="info", reload=True)
+.PP
+.fi
+
+.SS "FastAPIServer\&.FastAPIServer\&.fe_server = uvicorn\&.Server(self\&.fe_config)"
+
+.SS "\fBJSInterface\fP FastAPIServer\&.FastAPIServer\&.JSInterface = \fBJSInterface\fP(self\&.config)"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

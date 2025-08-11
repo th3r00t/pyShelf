@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% block javascript %}
+<script type="text/javascript" src={{ url_for('static', path='script/pako.min.js') }}>
+	<script type="text/javascript">
+		const books = {{ books|books_tojson }};
+		let inflatedJSON = {};
+		const pako = require('pako');
+		inflatedJSON = JSON.parse(pako.inflate(books, { to: 'string'}));
+	</script>
+	{% endblock %}
+	{% include 'header.html' %}
+	{% include 'navigation.html' %}
+	<section id="master-container">
+		<div id="book-shelf">
+			{% for book in books %}
+			{% set cover = book.cover|b64decode %}
+			{% if cover != 'None' %}
+			<div class="is-dark book" id="{{book.id}}" onclick="window.location.href='/api/get_book/{{ book.id }}'">
+				<div class="image book-thumbnail">
+					<figure class="image is-4by3">
+						<img src="data:;base64,{{ book.cover|b64decode }}" alt="{{ book.title }}">
+					</figure>
+				</div>
+			</div>
+			{% else %}
+			<div class="is-dark book" id="{{book.id}}" onclick="window.location.href='/api/get_book/{{ book.id }}'">
+				<div class="image book-thumbnail"
+						 style="
+										background-image: url({{ url_for('static', path='images/no-cover.jpg') }});
+										background-size: cover;
+										background-position: center;
+										background-repeat: no-repeat;
+										">
+					<figure class="image is-4by3">
+						<div class="no-image-title">{{ book.title }}</div>
+						<!-- alt="{{ book.title }}" -->
+					</figure>
+				</div>
+				<!-- <p class="content">{{ book.description|summarize }}</p> -->
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+	</section>
+	{% include 'footer.html' %}

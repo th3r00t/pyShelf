@@ -1,0 +1,88 @@
+.TH "src.backend.lib.models.User" 3 "Sat Aug 9 2025 19:53:55" "Version 0.8.0" "pyShelf Open Source Ebook Server" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src.backend.lib.models.User
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBsrc\&.backend\&.lib\&.models\&.Base\fP\&.
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Mapped \fBid\fP = mapped_column(primary_key=True, nullable=False)"
+.br
+.ti -1c
+.RI "Mapped \fBusername\fP = mapped_column(unique=True, nullable=False)"
+.br
+.ti -1c
+.RI "Mapped \fBpassword\fP = mapped_column(nullable=False)"
+.br
+.ti -1c
+.RI "Mapped \fBemail\fP = mapped_column(unique=True, nullable=True)"
+.br
+.ti -1c
+.RI "Mapped \fBdate_joined\fP"
+.br
+.ti -1c
+.RI "Mapped \fBlast_login\fP"
+.br
+.ti -1c
+.RI "Mapped \fBis_active\fP = mapped_column(nullable=False, default=True)"
+.br
+.ti -1c
+.RI "Mapped \fBis_admin\fP = mapped_column(nullable=False, default=False)"
+.br
+.ti -1c
+.RI "Mapped \fBis_superuser\fP = mapped_column(nullable=False, default=False)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+User model\&.
+.fi
+.PP
+ 
+.SH "Member Data Documentation"
+.PP 
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.date_joined\fR [static]\fP"
+\fBInitial value:\fP
+.nf
+=  mapped_column(
+        nullable=False, server_default=func\&.CURRENT_TIMESTAMP()
+    )
+.PP
+.fi
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.email = mapped_column(unique=True, nullable=True)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.id = mapped_column(primary_key=True, nullable=False)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.is_active = mapped_column(nullable=False, default=True)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.is_admin = mapped_column(nullable=False, default=False)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.is_superuser = mapped_column(nullable=False, default=False)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.last_login\fR [static]\fP"
+\fBInitial value:\fP
+.nf
+=  mapped_column(
+        nullable=True, server_default=None
+    )
+.PP
+.fi
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.password = mapped_column(nullable=False)\fR [static]\fP"
+
+.SS "Mapped src\&.backend\&.lib\&.models\&.User\&.username = mapped_column(unique=True, nullable=False)\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for pyShelf Open Source Ebook Server from the source code\&.

@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "bulma": "*",
+    "pako": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.25",
+    "jquery": "^3.7.1"
+  }
+}

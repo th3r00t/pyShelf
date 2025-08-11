@@ -2,10 +2,14 @@
 import os
 import re
 import zipfile
-import PyPDF2
 
+import pypdf
 from bs4 import BeautifulSoup
 from mobi import Mobi
+from bs4 import XMLParsedAsHTMLWarning
+import warnings
+
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 from .api_hooks import DuckDuckGo
 from .storage import Storage
@@ -22,7 +26,8 @@ class Catalogue:
         self.cover_regx = re.compile(r"\.jpg|\.jpeg|\.png|\.bmp|\.gif")
         self.html_regx = re.compile(r"\.html")
         self.title_sanitization_regx = re.compile(r"^(Book )+[0-9]*")
-        self.title_sanitization_lvl2_regx = re.compile(r"^(Book )+[0-9]*\W+(-)")
+        self.title_sanitization_lvl2_regx = re.compile(
+                r"^(Book )+[0-9]*\W+(-)")
         self.title_sanitization_dirs_regx = re.compile(r"/")
         self.root_dir = config.root
         self.book_folder = config.book_path
@@ -33,6 +38,8 @@ class Catalogue:
     def scan_folder(self, _path=None):
         """
         Scan folder by _path, allows recurisive scanning
+
+        :param _path: Path to scan
         """
         if _path is not None:
             folder = _path
@@ -40,35 +47,40 @@ class Catalogue:
             folder = str(self.root_dir) + "/" + self.book_folder
         else:
             folder = self.book_folder
-        for f in os.listdir(folder):
-            _path = os.path.abspath(folder + "/" + f)
-            if os.path.isdir(_path.strip() + "/"):
-                self.file_list.append(self.scan_folder(_path))
-            else:
-                self.file_list.append(_path)
+        try:
+            for f in os.listdir(folder):
+                _path = os.path.abspath(folder + "/" + f)
+                if os.path.isdir(_path.strip() + "/"):
+                    self.file_list.append(self.scan_folder(_path))
+                else:
+                    self.file_list.append(_path)
+        except FileNotFoundError as fnfe:
+            self.config.logger.error(fnfe)
 
     def filter_books(self):
-        """
-        Calls scan_folder and filters out book files
-        Proceeds to call process_book
+        """Calls scan_folder and filters out book files.
 
-        :returns self._book_list_expanded: json string containing all book metadata
+        :returns self._book_list_expanded: json string containing
+        all book metadata
         """
         self.scan_folder()  # Populate file list
         regx = re.compile(r"\.epub|\.mobi|\.pdf")
         try:
-            self.books = list(filter(regx.search, filter(None, self.file_list)))
-        except TypeError as e:
-            self.config.logger.error(e)
+            self.books = list(filter(
+                regx.search, filter(None, self.file_list)))
+        except TypeError as error:
+            self.config.logger.error(error)
 
     def process_by_filetype(self, book):
+        """Determine books filetype and process."""
         if book.endswith(".epub"):
             epub = self.process_epub(book)
             return self.extract_metadata_epub(epub)
-        elif book.endswith(".mobi"):
+        if book.endswith(".mobi"):
             return self.extract_metadata_mobi(book)
-        elif book.endswith(".pdf"):
+        if book.endswith(".pdf"):
             return self.extract_metadata_pdf(book)
+        self.config.logger.error(f"Unknown Filetype {book}")
 
     @staticmethod
     def process_epub(book):
@@ -89,9 +101,10 @@ class Catalogue:
 
     def extract_metadata_epub(self, book):
         """
-        Return extracted metadata and cover picture
-        book['path'] == Full path to ebook file
-        book['files'] == list of files from self.process_book(book)
+        Extract metadata from epub file
+
+        :param book: Dictionary of epub file contents
+        :returns: Dictionary of book metadata
         """
         book_zip = zipfile.ZipFile(book["path"], "r")
         with book_zip as f:
@@ -105,7 +118,8 @@ class Catalogue:
             if re.match(self.title_sanitization_regx, title):
                 if re.match(self.title_sanitization_lvl2_regx, title):
                     title = re.split(r"-+\W", title)[1]
-                else: title = re.split(self.title_sanitization_regx, title)[2]
+                else:
+                    title = re.split(self.title_sanitization_regx, title)[2]
 
             author = soup.find("dc:creator")
             if author is not None:
@@ -161,14 +175,14 @@ class Catalogue:
         return book_details
 
     def extract_metadata_pdf(self, book):
-        """ Return extracted metadata
+        """Return extracted metadata
         :NOTES: Retrieval of data has been problematic, some pdf's providing
         reliable titles that corespond with the actual, and others being
         nonsense.
         """
         ddg = DuckDuckGo()
         try:
-            pdf = PyPDF2.PdfFileReader(book)
+            pdf = pypdf.PdfFileReader(book)
         except Exception:
             return None
         try:
@@ -226,21 +240,23 @@ class Catalogue:
         author = book.author().decode("utf-8")
         book_config = book.config
         try:
-            description = self.stripTags(book_config['exth']['records'][103].decode("utf-8"))
+            description = self.stripTags(
+                book_config["exth"]["records"][103].decode("utf-8")
+            )
         except KeyError:
             description = None
         try:
-            identifier = book_config['exth']['records'][104].decode("utf-8")
+            identifier = book_config["exth"]["records"][104].decode("utf-8")
         except KeyError:
             identifier = None
         try:
-            publisher = book_config['exth']['records'][101].decode("utf-8")
+            publisher = book_config["exth"]["records"][101].decode("utf-8")
         except KeyError:
             publisher = None
         date = None
         rights = None
         try:
-            ftags = book_config['exth']['records'][105].decode("utf-8")
+            ftags = book_config["exth"]["records"][105].decode("utf-8")
             if ":" in ftags:
                 ftags = ftags.replace(":", ",")
             elif ";" in ftags:
@@ -282,10 +298,12 @@ class Catalogue:
         Opens epub as zip file filters then stores as list any files matching cover_regx
         """
         try:
-            cover = book_zip.open(list(filter(self.cover_regx.search, book["files"]))[0])
+            cover = book_zip.open(
+                list(filter(self.cover_regx.search, book["files"]))[0]
+            )
             cover = book_zip.read(cover.name)
             return cover
-        except Exception as e:
+        except Exception:
             return False
 
     def compare_shelf_current(self):
@@ -294,15 +312,18 @@ class Catalogue:
         """
         db = Storage(self.config)
         stored = db.book_paths_list()
-        db.close()
+        if not stored:
+            stored = []
         if self.books is None:
             self.filter_books()
         on_disk, in_storage = [], []
         for _x in self.books:
             on_disk.append(_x)
         for _y in stored:
-            in_storage.append(_y[0])
-        a, b, = set(on_disk), set(in_storage)
+            in_storage.append(_y)
+        a, b, = set(
+            on_disk
+        ), set(in_storage)
         c = set.difference(a, b)
         return c
 
@@ -313,22 +334,17 @@ class Catalogue:
         Iterates over list and inserts new books into database.
         """
         try:
-            fsocket = kwargs['socket']
+            fsocket = kwargs["socket"]
         except KeyError:
-            fsocket = '/dev/null'
+            fsocket = "/dev/null"
         book_list = self.compare_shelf_current()
         db = Storage(self.config)
         for book in book_list:
             book = self.process_by_filetype(book)
-            with open(fsocket, 'w') as _socket:
+            with open(fsocket, "w") as _socket:
                 try:
                     _socket.write(book[0])
                 except TypeError:
                     continue
             _socket.close()
             db.insert_book(book)
-        inserted = db.commit()
-        if inserted is not True:
-            self.config.logger.error("Failed storing {} in database".format(str(book)))
-            pass
-        db.close()
