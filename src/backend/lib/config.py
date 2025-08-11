@@ -102,7 +102,7 @@ class Config:
         try:
             return self.open_file()
         except FileNotFoundError:
-            with open(self._fp, 'w') as _config_file:
+            with open(self._fp, "w") as _config_file:
                 json.dump(self.config_structure, _config_file)
                 _config_file.close()
             return self.open_file()
