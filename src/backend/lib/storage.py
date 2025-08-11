@@ -87,7 +87,7 @@ class Storage:
                 if not book[2]:  # If cover image is missing unset entry
                     cover_image = None
                 if not book[1]:
-                    pass
+                    book[1] = "Unknown Author"
                 # collections = self.parse_collections_from_path(book)
                 # breakpoint()
                 _book = Book(
