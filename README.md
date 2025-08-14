@@ -1,5 +1,7 @@
 # pyShelf 0.8.0
 
+![alt text](https://github.com/th3r00t/pyShelf/blob/master/pyshelf-desktop-preview.png?raw=true)
+![alt text](https://github.com/th3r00t/pyShelf/blob/master/pyshelf-mobile-preview.png?raw=true)
 <p align="center"><b>Terminal based ebook server. Open source & Lightweight.</b></p>
 <p align="center"><b><a href="https://discord.gg/H9TbNJS">Discord</a></b></p>
 <p align="center">
