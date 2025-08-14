@@ -32,7 +32,6 @@ ebook server with minimal requirements, and no reliance on X._
 
 * epub
 * mobi
-* pdf
 
 # Pre-requisites
 	- Git
