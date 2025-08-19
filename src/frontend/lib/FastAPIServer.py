@@ -222,7 +222,9 @@ class FastAPIServer():
     async def book(request: Request, book_id: int):
         storage = Storage(Config(os.path.abspath(os.getcwd())))
         book = storage.get_book(book_id)
-        file_path = book[0].file_name
+        if book is None:
+            return JSONResponse(status_code=404, content={"error": "Book not found"})
+        file_path = book.file_name
         if not os.path.exists(file_path):
             return JSONResponse(status_code=404, content={"error": "File not found"})
         """Book file responder."""
